@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team16.example/intent-sdn-sla/intent.schema.json",
+  "title": "Team 16 Intent Grammar (FROZEN v1.0)",
+  "description": "Frozen at ST-1, 07 August 2026. Five constraint types, three on_violation actions, one 1-5 priority scale. Adding a constraint type after ST-3 requires whole-team sign-off and is rejected by default (see docs/decisions.md, ADR-002).",
+
+  "type": "object",
+  "required": ["intent"],
+  "additionalProperties": false,
+  "properties": {
+    "intent": {
+      "type": "object",
+      "required": ["id", "tenant", "priority", "match", "guarantee"],
+      "additionalProperties": false,
+      "properties": {
+
+        "id": {
+          "type": "string",
+          "pattern": "^INT-[0-9]{3,}$",
+          "description": "Stable identifier, e.g. INT-003."
+        },
+
+        "tenant": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "description": "Lower-case tenant/service name, e.g. telemedicine-video."
+        },
+
+        "priority": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "1 = highest, 5 = best effort. Drives preemption in M2. Ties resolved by admission order: first admitted keeps its resources."
+        },
+
+        "match": {
+          "type": "object",
+          "required": ["src", "dst"],
+          "additionalProperties": false,
+          "properties": {
+            "src":   { "$ref": "#/$defs/cidr" },
+            "dst":   { "$ref": "#/$defs/cidr" },
+            "proto": { "type": "string", "enum": ["tcp", "udp", "icmp", "any"], "default": "any" },
+            "dport": { "type": "integer", "minimum": 1, "maximum": 65535 }
+          }
+        },
+
+        "guarantee": {
+          "type": "object",
+          "description": "THE FIVE FROZEN CONSTRAINT TYPES. Do not add a sixth.",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "min_bandwidth_mbps": {
+              "type": "number", "exclusiveMinimum": 0, "maximum": 10000,
+              "description": "Constraint 1. Guaranteed rate, enforced by an OVS HTB queue in M4."
+            },
+            "max_latency_ms": {
+              "type": "number", "exclusiveMinimum": 0, "maximum": 10000,
+              "description": "Constraint 2. One-way delay ceiling, measured by active probe in M5."
+            },
+            "max_loss_pct": {
+              "type": "number", "minimum": 0, "maximum": 100,
+              "description": "Constraint 3. Loss ceiling as a percentage, derived from counter deltas in M5."
+            },
+            "isolate_from": {
+              "type": "array", "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true,
+              "description": "Constraint 4. Tenants this intent must not share a path with. Enforced by disjoint-path selection in M3."
+            },
+            "avoid_links": {
+              "type": "array", "items": { "$ref": "#/$defs/link" },
+              "uniqueItems": true,
+              "description": "Constraint 5. Links this intent must never traverse, e.g. s3-s4. Pruned before path selection in M3."
+            }
+          }
+        },
+
+        "consistency": {
+          "type": "string",
+          "enum": ["strict", "relaxed"],
+          "default": "strict",
+          "description": "strict -> two-phase versioned update (lossless, roughly doubles flow-table use during switch-over). relaxed -> direct install (cheap, drops packets in flight). Operator-declared."
+        },
+
+        "on_violation": {
+          "type": "string",
+          "enum": ["reroute", "degrade", "alert_only"],
+          "default": "reroute",
+          "description": "THE THREE FROZEN ACTIONS. reroute: recompute and reinstall. degrade: reduce the guarantee rather than move. alert_only: log and raise, take no action."
+        },
+
+        "dwell_seconds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 600,
+          "default": 10,
+          "description": "Anti-oscillation hold-off. Minimum time before this intent may be re-planned again. Tunable so the oscillation graph (metric E6) can be produced with damping on and off."
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "cidr": {
+      "type": "string",
+      "pattern": "^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])/(3[0-2]|[12]?[0-9])$",
+      "description": "IPv4 address with prefix length, e.g. 10.0.0.1/32."
+    },
+    "link": {
+      "type": "string",
+      "pattern": "^s[0-9]+-s[0-9]+$",
+      "description": "Undirected switch-to-switch link identifier, e.g. s3-s4. Canonical form is lower-numbered switch first."
+    }
+  }
+}

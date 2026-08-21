@@ -1,0 +1,19 @@
+# Pinned per ADR-001. Python 3.9 only.
+# Ryu is unmaintained; these pins are the last combination known to work together.
+ryu==4.34
+eventlet==0.30.2          # 0.31+ removes the monkeypatch Ryu 4.34 relies on
+dnspython==1.16.0         # eventlet 0.30.2 breaks against dnspython 2.x
+networkx==2.8.8           # 3.x drops some Python 3.9 support paths
+fastapi==0.95.2
+uvicorn==0.22.0
+pydantic==1.10.13         # v2 changes validation semantics; M1 is written for v1
+jsonschema==4.17.3
+PyYAML==6.0.1
+requests==2.31.0
+scapy==2.5.0
+pandas==1.5.3
+matplotlib==3.7.5
+# --- dev / CI only ---
+pytest==7.4.4
+pytest-cov==4.1.0
+ruff==0.1.15

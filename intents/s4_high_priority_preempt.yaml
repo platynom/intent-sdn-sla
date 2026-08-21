@@ -1,0 +1,19 @@
+# Scenario S4 - priority-1 intent arriving on a full network.
+# Exercises M2 preemption. Expected: a lower-priority intent is demoted and the
+# decision is written to the audit log with its reason.
+intent:
+  id: INT-004
+  tenant: emergency-voice
+  priority: 1
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+    proto: udp
+    dport: 5060
+  guarantee:
+    min_bandwidth_mbps: 30
+    max_latency_ms: 15
+    max_loss_pct: 0.1
+  consistency: strict
+  on_violation: reroute
+  dwell_seconds: 5

@@ -1,0 +1,21 @@
+# One command to a running system:  docker compose up --build
+#
+# NOTE: Mininet and Open vSwitch need kernel network namespaces and the OVS
+# datapath, so this container must run privileged with host networking.
+# That is a Mininet requirement, not a shortcut on our part.
+services:
+  sdn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: team16/intent-sdn-sla:dev
+    container_name: intent-sdn-sla
+    privileged: true            # required by Mininet / OVS datapath
+    network_mode: host          # controller listens on 6653, dashboard on 8080
+    volumes:
+      - .:/app                  # live code reload during development
+      - /lib/modules:/lib/modules:ro
+    working_dir: /app
+    command: bash
+    stdin_open: true
+    tty: true

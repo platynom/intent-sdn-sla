@@ -1,0 +1,18 @@
+# Scenario S3 - deliberately infeasible fourth intent.
+# Exercises M2 admission control. Expected: REJECT with a stated reason, or a
+# degraded counter-offer. Never a silent failure.
+intent:
+  id: INT-003
+  tenant: bulk-backup
+  priority: 4
+  match:
+    src: 10.0.0.7/32
+    dst: 10.0.0.8/32
+    proto: tcp
+    dport: 873
+  guarantee:
+    min_bandwidth_mbps: 500      # exceeds every path in the topology
+    max_latency_ms: 5
+  consistency: relaxed
+  on_violation: degrade
+  dwell_seconds: 20

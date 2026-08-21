@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Intent-Based SDN for 5G SLA Enforcement"
+message: "A laptop-reproducible reference implementation. If you use this, please also cite the works below, whose methods we implement."
+type: software
+authors:
+  - name: "Team 16"
+license: MIT
+references:
+  - type: article
+    title: "Intent-Based Networking - Concepts and Definitions"
+    notes: "RFC 9315, IRTF Network Management Research Group, 2022. We follow its lifecycle vocabulary."
+  - type: conference-paper
+    title: "Abstractions for Network Update"
+    notes: "Reitblatt et al., ACM SIGCOMM 2012. We use the two-phase versioned update method as-is."
+  - type: conference-paper
+    title: "Enforcing Customizable Consistency Properties in Software-Defined Networks"
+    notes: "Zhou et al., USENIX NSDI 2015. Selective consistency follows this work; we do not claim it."
+  - type: article
+    title: "A Survey on Intent-Based Networking"
+    notes: "Leivadeas and Falkner, IEEE Communications Surveys and Tutorials, 2023. Its open-challenges section motivates this work."

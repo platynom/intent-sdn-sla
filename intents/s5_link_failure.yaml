@@ -1,0 +1,18 @@
+# Scenario S5 - active path fails. Exercises fast re-plan and both update modes.
+# Run once with consistency: strict and once with relaxed to produce metric E4.
+intent:
+  id: INT-005
+  tenant: telemedicine-video
+  priority: 2
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+    proto: udp
+    dport: 5002
+  guarantee:
+    min_bandwidth_mbps: 25
+    max_latency_ms: 30
+    max_loss_pct: 0.5
+  consistency: strict
+  on_violation: reroute
+  dwell_seconds: 5

@@ -1,0 +1,18 @@
+# Scenario S8 - one member of the six-intent mixed load, run for 10 minutes.
+# Exercises the whole system for stability, control overhead and rule count.
+intent:
+  id: INT-008
+  tenant: enterprise-voip
+  priority: 2
+  match:
+    src: 10.0.0.5/32
+    dst: 10.0.0.6/32
+    proto: udp
+    dport: 5061
+  guarantee:
+    min_bandwidth_mbps: 10
+    max_latency_ms: 40
+    max_loss_pct: 1.0
+  consistency: relaxed
+  on_violation: reroute
+  dwell_seconds: 10

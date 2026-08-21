@@ -1,0 +1,8 @@
+# Must be REJECTED: on_violation outside the three frozen actions.
+intent:
+  id: INT-902
+  tenant: rogue
+  priority: 2
+  match: {src: 10.0.0.1/32, dst: 10.0.0.2/32}
+  guarantee: {min_bandwidth_mbps: 10}
+  on_violation: explode

@@ -1,0 +1,5 @@
+# Must be REJECTED without crashing: this is not valid YAML.
+intent:
+  id: INT-905
+   tenant: rogue
+  priority: [unclosed

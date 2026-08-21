@@ -1,0 +1,9 @@
+# Must be REJECTED by the semantic layer: avoid_links not in canonical order.
+intent:
+  id: INT-904
+  tenant: rogue
+  priority: 2
+  match: {src: 10.0.0.1/32, dst: 10.0.0.2/32}
+  guarantee:
+    min_bandwidth_mbps: 10
+    avoid_links: [s4-s3]

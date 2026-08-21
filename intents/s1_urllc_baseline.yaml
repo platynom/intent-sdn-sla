@@ -1,0 +1,19 @@
+# Scenario S1 - single URLLC intent on an idle network.
+# Exercises M1, M3, M4 happy path. Expected: path installed, SLA green,
+# baseline latency recorded.
+intent:
+  id: INT-001
+  tenant: telemedicine-video
+  priority: 1
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+    proto: udp
+    dport: 5001
+  guarantee:
+    min_bandwidth_mbps: 20
+    max_latency_ms: 20
+    max_loss_pct: 0.5
+  consistency: strict
+  on_violation: reroute
+  dwell_seconds: 10

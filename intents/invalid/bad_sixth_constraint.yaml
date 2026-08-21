@@ -1,0 +1,9 @@
+# Must be REJECTED: introduces a sixth constraint type. The grammar is frozen.
+intent:
+  id: INT-900
+  tenant: rogue
+  priority: 2
+  match: {src: 10.0.0.1/32, dst: 10.0.0.2/32}
+  guarantee:
+    min_bandwidth_mbps: 10
+    max_jitter_ms: 5          # <-- not one of the five frozen constraints

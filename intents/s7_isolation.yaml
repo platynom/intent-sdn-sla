@@ -1,0 +1,19 @@
+# Scenario S7 - IoT traffic must not share a path with public traffic.
+# DEFERRED under the three-member variant. Kept so the grammar stays exercised
+# and so the scenario can be restored without rewriting anything.
+intent:
+  id: INT-007
+  tenant: iot-sensors
+  priority: 3
+  match:
+    src: 10.0.0.7/32
+    dst: 10.0.0.8/32
+    proto: udp
+    dport: 5683
+  guarantee:
+    min_bandwidth_mbps: 5
+    isolate_from: [public-internet, video-streaming]
+    avoid_links: [s3-s4]
+  consistency: strict
+  on_violation: reroute
+  dwell_seconds: 15

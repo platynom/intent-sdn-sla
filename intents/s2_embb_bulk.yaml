@@ -1,0 +1,16 @@
+# Scenario S2 - bulk eMBB transfer placed on the same path as S1.
+# Drives the URLLC intent into violation so the closed loop must re-plan.
+intent:
+  id: INT-002
+  tenant: video-streaming
+  priority: 3
+  match:
+    src: 10.0.0.5/32
+    dst: 10.0.0.6/32
+    proto: tcp
+    dport: 5201
+  guarantee:
+    min_bandwidth_mbps: 60
+  consistency: relaxed
+  on_violation: alert_only
+  dwell_seconds: 30

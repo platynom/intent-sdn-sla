@@ -1,0 +1,7 @@
+# Must be REJECTED: priority outside the 1-5 scale.
+intent:
+  id: INT-901
+  tenant: rogue
+  priority: 9
+  match: {src: 10.0.0.1/32, dst: 10.0.0.2/32}
+  guarantee: {min_bandwidth_mbps: 10}

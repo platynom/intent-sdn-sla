@@ -1,0 +1,17 @@
+# Scenario S6 - two paths of near-equal quality. Exercises hysteresis + dwell.
+# dwell_seconds: 0 makes the loop flap on purpose. Raise it to show damping.
+intent:
+  id: INT-006
+  tenant: telemedicine-video
+  priority: 2
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+    proto: udp
+    dport: 5003
+  guarantee:
+    max_latency_ms: 22
+    max_loss_pct: 1.0
+  consistency: relaxed
+  on_violation: reroute
+  dwell_seconds: 0        # damping OFF - flip to 10 for the damped run

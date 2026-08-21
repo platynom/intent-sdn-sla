@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.db
+*.sqlite3
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+# evaluation outputs: raw CSV IS committed, figures are regenerated
+experiments/figures/*.png
+experiments/figures/*.pdf
+!experiments/figures/.gitkeep
+.DS_Store
