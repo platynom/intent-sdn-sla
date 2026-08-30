@@ -18,7 +18,6 @@ from src.common.events import (
     Event,
     EventBus,
     EventType,
-    Severity,
     path_installed,
     sla_restored,
     sla_violated,
