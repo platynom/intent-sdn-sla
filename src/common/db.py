@@ -8,7 +8,8 @@ results and the state that produced them.
 Concurrency note: M1's REST API, M5's collector and M6's dashboard all touch this
 database from different threads. SQLite handles that with WAL mode and a busy
 timeout, both set in `connect()`. Do not share a Connection between threads —
-call `connect()` in each.
+call `connect()` in each, or rely on check_same_thread=False for the FastAPI
+case where a dependency-injected connection crosses the threadpool boundary.
 """
 
 from __future__ import annotations
@@ -124,7 +125,10 @@ def connect(path: Optional[Path] = None) -> sqlite3.Connection:
     db_path = Path(path) if path is not None else DEFAULT_DB_PATH
     if str(db_path) != ":memory:":
         db_path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(str(db_path), timeout=5.0)
+    # check_same_thread=False because FastAPI dispatches sync endpoints to a
+    # threadpool: the connection is created on one thread and used on another.
+    # WAL plus the busy timeout make concurrent access safe.
+    conn = sqlite3.connect(str(db_path), timeout=5.0, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA journal_mode = WAL")
     conn.execute("PRAGMA synchronous = NORMAL")
