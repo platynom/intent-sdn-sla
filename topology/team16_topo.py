@@ -8,8 +8,9 @@ on a plain Python environment.
 
 from __future__ import annotations
 
-# Guard Mininet imports – they are only required when the script is executed
-# inside the Docker container that provides Mininet, OVS and the controller.
+# ---------------------------------------------------------------------------
+# Mininet imports – guarded to keep the module importable without Mininet.
+# ---------------------------------------------------------------------------
 try:
     from mininet.topo import Topo
     from mininet.link import TCLink
@@ -20,18 +21,25 @@ try:
     MININET_AVAILABLE = True
 except ImportError:  # pragma: no cover
     MININET_AVAILABLE = False
-    # Provide dummy placeholders so type checkers are happy when the module is
-    # imported in an environment without Mininet.
-    Topo = object  # type: ignore
-    TCLink = object  # type: ignore
-    Mininet = object  # type: ignore
-    RemoteController = object  # type: ignore
-    OVSSwitch = object  # type: ignore
-    CLI = lambda *a, **kw: None  # type: ignore
-    setLogLevel = lambda *a, **kw: None  # type: ignore
-    info = print  # type: ignore
+    class _Stub:
+        def __call__(self, *args, **kwargs):
+            raise RuntimeError("Mininet is not available in this environment")
+    Topo = _Stub
+    TCLink = _Stub
+    Mininet = _Stub
+    RemoteController = _Stub
+    OVSSwitch = _Stub
+    def CLI(*args, **kwargs):
+        """Placeholder CLI – does nothing when Mininet is absent."""
+        pass
+    def setLogLevel(*args, **kwargs):
+        """Placeholder log level setter – no‑op without Mininet."""
+        pass
+    def info(msg):
+        """Placeholder for mininet.log.info – prints to stdout."""
+        print(msg)
 
-# Import the single source of truth for the network.
+# Load the single source of truth for the network.
 from topology.topology_spec import SWITCHES, HOSTS, LINKS
 
 
@@ -49,23 +57,17 @@ class Team16Topo(Topo):
     """
 
     def __init__(self, *args, **kwargs):
-        # Initialise the parent ``Topo`` only when Mininet is present.
-        if MININET_AVAILABLE:
-            super().__init__(*args, **kwargs)
-        else:
-            return
-
-        # Add all switches.
+        if not MININET_AVAILABLE:
+            raise RuntimeError(
+                "Mininet is not available in this environment; run this inside the container (docker compose exec sdn ...)"
+            )
+        super().__init__(*args, **kwargs)
         for sw in SWITCHES:
             self.addSwitch(sw)
-
-        # Add hosts and attach them to their designated switches.
         for host in HOSTS:
             ip_cidr = f"{host.ip}/24"
             self.addHost(host.name, ip=ip_cidr)
-            self.addLink(host.name, host.switch)  # unconstrained host link
-
-        # Add fabric links with bandwidth / delay constraints.
+            self.addLink(host.name, host.switch)
         for link in LINKS:
             self.addLink(
                 link.a,
@@ -79,63 +81,56 @@ class Team16Topo(Topo):
 
 
 def _print_link_summary():
-    """Print a compact table of each switch‑to‑switch link and its budget."""
-    info("\nLink summary (name  bw_Mbps  delay_ms)\n")
+    """Print a compact table of each switch‑to‑switch link and its budget.
+    Floats are displayed with one decimal place.
+    """
+    info("\nLink summary (name        bw_Mbps  delay_ms)\n")
     for link in LINKS:
-        info(f"{link.name:12s}  {link.bw_mbps:7d}  {link.delay_ms:8d}\n")
+        info(f"{link.name:12s}  {link.bw_mbps:7.1f}  {link.delay_ms:8.1f}\n")
 
 
 def main():  # pragma: no cover
     """Entry point for ``python topology/team16_topo.py``.
-
     Optional arguments:
     * ``--no-cli`` – run without dropping into the Mininet CLI.
     * ``--controller-ip`` / ``--controller-port`` – remote controller address.
     """
     import argparse
-
     parser = argparse.ArgumentParser(description="Team16 Mininet topology")
     parser.add_argument("--no-cli", action="store_true", help="skip CLI")
     parser.add_argument("--controller-ip", default="127.0.0.1", help="controller IP")
     parser.add_argument("--controller-port", type=int, default=6653, help="controller port")
     args = parser.parse_args()
-
     if not MININET_AVAILABLE:
         raise RuntimeError("Mininet is not available in this environment")
-
     setLogLevel("info")
-
     net = Mininet(
         topo=Team16Topo(),
         switch=OVSSwitch,
         controller=None,
         link=TCLink,
         autoSetMacs=True,
-        autoStaticArp=True,
+        # autoStaticArp=False  # ARP will be handled by the SDN controller.
     )
-
     net.addController(
         "c0",
         controller=RemoteController,
         ip=args.controller_ip,
         port=args.controller_port,
     )
-
     info("*** Starting network\n")
     net.start()
-
     _print_link_summary()
-
     info("*** Running pingAll\n")
     net.pingAll()
-
     if not args.no_cli:
         info("*** Launching Mininet CLI\n")
         CLI(net)
-
     info("*** Stopping network\n")
     net.stop()
 
+# Register the topology for ``mn --custom`` usage.
+topos = {"team16": (lambda: Team16Topo())}
 
 if __name__ == "__main__":
     main()
