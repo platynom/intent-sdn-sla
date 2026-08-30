@@ -17,3 +17,4 @@ matplotlib==3.7.5
 pytest==7.4.4
 pytest-cov==4.1.0
 ruff==0.1.15
+reportlab==4.4.9
