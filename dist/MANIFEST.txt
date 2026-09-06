@@ -1,14 +1,14 @@
 Intent-Based SDN release manifest
-Generated UTC: 2026-09-06T18:46:24.595298+00:00
+Generated UTC: 2026-09-06T19:09:52.189922+00:00
 Archive: intent-sdn-sla_20260907.zip
-Git history: included (161280 bytes; below 20 MiB)
-Included files: 254
-Included bytes: 549667
+Git history: included (897832 bytes; below 20 MiB)
+Included files: 300
+Included bytes: 1295630
 Excluded entries: 12
-ZIP SHA-256: c58d78e78cb204b7bb4a958c97e803f9fd921dd2a43883954555add5aad59e38
+ZIP SHA-256: 395087e250e131b7e0a6a1f68d98bba6d0f24089f645f961a5b4df48fa7be3b1
 
 INCLUDED FILES
-.git/COMMIT_EDITMSG | 48 bytes
+.git/COMMIT_EDITMSG | 53 bytes
 .git/HEAD | 21 bytes
 .git/config | 163 bytes
 .git/description | 73 bytes
@@ -25,30 +25,43 @@ INCLUDED FILES
 .git/hooks/prepare-commit-msg.sample | 1492 bytes
 .git/hooks/push-to-checkout.sample | 2783 bytes
 .git/hooks/update.sample | 3650 bytes
-.git/index | 7551 bytes
+.git/index | 9155 bytes
 .git/info/exclude | 240 bytes
-.git/logs/HEAD | 1945 bytes
-.git/logs/refs/heads/main | 1945 bytes
+.git/logs/HEAD | 2326 bytes
+.git/logs/refs/heads/main | 2326 bytes
+.git/objects/00/61577c01e34f6e1e3e114aa8c24ba1d4a3f1e5 | 1688 bytes
 .git/objects/01/b2bb94f549b5fb7edc0fb21fdc53174cd1e3b8 | 93 bytes
+.git/objects/0a/5ec3627e08574fe345b9643491867401d717f2 | 3467 bytes
+.git/objects/0b/035279b968faf9598fa9d92462ce12eee60336 | 6508 bytes
+.git/objects/0b/2f4be932e7b1ce5621005847b324735142ddc6 | 4075 bytes
 .git/objects/0b/3e7c0f3430bc0574a0aff21c448ac227414ff0 | 3266 bytes
 .git/objects/0b/aebbb88fcd7a4031a154fa09c291d70b303549 | 744 bytes
 .git/objects/10/914808b48d5e98cc812f859c5d12d08a273648 | 94 bytes
+.git/objects/13/f9d30fcc9f5b7cfbdb96c11cb7e03d1e8ccd6b | 186 bytes
+.git/objects/14/1c8efdfcb0480ddd6f3b56d1b8b3b90e90a59c | 339 bytes
 .git/objects/14/605f3879f85ab4f9baf97008ab9250eb1d3ce2 | 511 bytes
 .git/objects/14/eb622560c18c006848e65953bbe7c762ddbd50 | 270 bytes
 .git/objects/18/2430d4f306465cb639559908f7e3fbf2059f99 | 146 bytes
 .git/objects/18/54dfbe1c25e039060458d576ee1fd9de752d06 | 2953 bytes
+.git/objects/18/fdb94e39b8635f63bd4925470927b3a7abf365 | 6713 bytes
 .git/objects/19/755b78b156f969c2bb69197e51e0de77a74167 | 84 bytes
+.git/objects/1b/29207a9242e58a6bcc4149a7aaf8f6a96149df | 291 bytes
+.git/objects/1c/53d9aa46d1c35c8597149f9e61ea759ea50871 | 136 bytes
 .git/objects/1d/2ecde0af9536371f07811d2145ea0d4f406d26 | 526 bytes
+.git/objects/1d/59715dc7bafdc1cae0a2407bfc69031e6e02f9 | 99 bytes
 .git/objects/20/eeae9eecec9f122eaff6ace74400e9672a7346 | 508 bytes
 .git/objects/21/2cce841ba7561a89c151596be7793a69e60d13 | 2237 bytes
 .git/objects/22/be20155e8595baa002aaf3ab855447e3959b7a | 633 bytes
 .git/objects/26/5a3dad8d7ee6a042285d472944966a30a8b7bd | 419 bytes
 .git/objects/26/b91442b2cc5d0c9d3cbba4bd5e858718620e02 | 169 bytes
+.git/objects/27/8e01389837bd46cb48d3af375d7950cc4bec21 | 133 bytes
 .git/objects/28/03d6b44ae9972145e581144c979cb2e309a48b | 410 bytes
 .git/objects/2a/5cc99a17637e29e5577861917c03bd88425bf8 | 126 bytes
 .git/objects/2a/8bb22e6e3e034d5a3dd442c56269d07dbb69a9 | 187 bytes
 .git/objects/2a/b45eb0690194944070a5dc6b991c28dbdf6b70 | 646 bytes
+.git/objects/2c/54b3478410d6007b4deb57b0ab53d6341183ea | 212 bytes
 .git/objects/2d/1807e6dd5040a0fae7ad97bde7150f3f9aab2b | 200 bytes
+.git/objects/2d/445fd89a98be27ee1a034dfe81c9204a852aaf | 1604 bytes
 .git/objects/2d/b1d5a68acbbf43beba44b6c37b846989f5671b | 1596 bytes
 .git/objects/2d/c1e4c64afd1afb756a09cc26e3718a81de8b52 | 58 bytes
 .git/objects/31/6989e455195add23f36613be8882f70799ce24 | 72 bytes
@@ -58,6 +71,9 @@ INCLUDED FILES
 .git/objects/3a/b687326c3beb705c6d3b64c701e7fddf8d4e42 | 155 bytes
 .git/objects/3b/341d945535490e31327bfe51ce9a8388dc95d2 | 151 bytes
 .git/objects/3d/a120e9d0f4810a0845537e00ba90f164d7161a | 152 bytes
+.git/objects/3f/3ccaff0d0c777fb9a8a32a6d2f2880cf5843b2 | 244 bytes
+.git/objects/3f/76b6e3a401e0ac458c9ae2cc6673a89842cbf6 | 11262 bytes
+.git/objects/40/6c6882eb7c557a44f79197dede0c42c785d631 | 801 bytes
 .git/objects/40/8b336d0d558ef7bf269cab3268b889f6c940a1 | 239 bytes
 .git/objects/41/24c30233b82924eac9e0ad3ed47319dc58ca7f | 1333 bytes
 .git/objects/41/6258f04c4f411f9a0163a00de507cd015312e0 | 209 bytes
@@ -70,6 +86,8 @@ INCLUDED FILES
 .git/objects/44/601ebeaeac3ec9a133e7c3d9f39106248d1bc2 | 4734 bytes
 .git/objects/45/bc04e5a1aa69b28aef720f23c726339d0c8f14 | 102 bytes
 .git/objects/46/9d4852ec9017dc2603ac535f139e7d96d35fc9 | 176 bytes
+.git/objects/46/e5b16e74b9f0f1cce29d89e1eb1f5e82a2390f | 1518 bytes
+.git/objects/48/d8a014f30f5c72da9a53b2446b098653e5b376 | 24964 bytes
 .git/objects/49/5227f80388b8398bb0ac44faad56ed542ae967 | 2468 bytes
 .git/objects/49/53e11310de1241d11588d82bf17e6de53f10fb | 618 bytes
 .git/objects/4a/633d6389dbdfa447e18c226ae620fb54681d27 | 1933 bytes
@@ -77,13 +95,17 @@ INCLUDED FILES
 .git/objects/4b/0f6372564dc8b81fee93084be3ca95457b7521 | 323 bytes
 .git/objects/4b/28846bac1f5861b83b10800bda2b3e92e4adc2 | 4807 bytes
 .git/objects/4b/a060e60e37cb87dfc5449705c085320c3913d6 | 134 bytes
+.git/objects/4f/e1ca1d01d91c77e8549906c03d0cb6e0411fea | 244 bytes
 .git/objects/50/6a484a04bc7d29bec0312737f732ae3384502d | 435 bytes
+.git/objects/54/28926de4d1f67e3634b8a066b16779d85f001c | 1835 bytes
 .git/objects/54/7e961c97e65849c1ea58d8f82c34951e3ffc2a | 555 bytes
+.git/objects/54/9212855e6abc164aa73ad5318b5c2b9f8a5036 | 305912 bytes
 .git/objects/55/a92efeac13713c24323529fcb75c47e5d72a00 | 124 bytes
 .git/objects/57/cc3b7ad3066669e1802b8d103586f35020d4b2 | 4412 bytes
 .git/objects/58/23e3ab8a5fc9a3115fff5c57d632c1f49ea23b | 194 bytes
 .git/objects/5a/22912039e132ecce233e02b0267a312865cd4c | 97 bytes
 .git/objects/5a/7c3171377aa26c8fdc2e16c774228411c59416 | 100 bytes
+.git/objects/5b/2e697465464cb3a866dba3e3716817d273fd17 | 2588 bytes
 .git/objects/5b/7f0e94ab9e6ed32b2e1f1408422468ddc38fed | 2132 bytes
 .git/objects/5d/3ea3544402e9289d9baf777343d2278946515a | 160 bytes
 .git/objects/5e/5fb72a034843cf3d6b809245cd226e9dc4bfb6 | 119 bytes
@@ -93,12 +115,15 @@ INCLUDED FILES
 .git/objects/65/213875ce2dd2b04cd7a4f86ad71e2bb07d8b6d | 290 bytes
 .git/objects/65/d03182c7c593956c507ca21a2a0d613304e15d | 1236 bytes
 .git/objects/6a/d5837d9edbe012572496c6f5c9b64384a100d5 | 79 bytes
+.git/objects/6d/131dcbcf21ff0d9a1aee6d304efc56d76ebd64 | 165 bytes
+.git/objects/6d/5632bb421208fcee55a5461e68a1fa4df4ff6c | 2087 bytes
 .git/objects/70/483a6c676e0f30c30cc6851e2a5d7d2fdb1ba2 | 1949 bytes
 .git/objects/70/78628d400da23fdbccc630f4b815ab2a697bdb | 282 bytes
 .git/objects/72/59c489840258ba0972aabac220ec6bcab1a7b6 | 180 bytes
 .git/objects/72/639d498cfc74aba5e1f5a3e937eed70b24bee3 | 87 bytes
 .git/objects/72/f88f463a3e4f01abb4723a69c23563a84971ad | 652 bytes
 .git/objects/74/5c1a54fe3c9e071ad07442b181e400b0628e7c | 1381 bytes
+.git/objects/74/f111e77b087a0704fb08725013ae45f8b8012b | 5872 bytes
 .git/objects/75/c2aaf0e71b7299550050df8c17ab2a1a6f2958 | 429 bytes
 .git/objects/79/1f1ce1ee5a6f0b3b55ed70480142f648dff10e | 45 bytes
 .git/objects/7b/8c1ed9b8e1f4ab483453188549407957dfe3e4 | 58 bytes
@@ -106,9 +131,11 @@ INCLUDED FILES
 .git/objects/81/bb12221b464ccbf4b774a9a6f25dec9470c15a | 397 bytes
 .git/objects/81/de83b3dfacc1d4b30c4e9d3e4e8d1777532d07 | 94 bytes
 .git/objects/82/1f6c09482ef408f31414b5f9e30d8450351132 | 52 bytes
+.git/objects/83/008ae943801073a245d05db3e85f7326dd714d | 107 bytes
 .git/objects/85/710764c281ad2bdab788c667b446240de0d781 | 135 bytes
 .git/objects/87/0106d9e338859a47617b41ceab74e5becc870d | 1720 bytes
 .git/objects/8b/54f5e502f52843ed77e28f4720f04a14da25b1 | 366 bytes
+.git/objects/8c/cfec971b19d5e52a1e9eac639e583a7d2fb076 | 45 bytes
 .git/objects/8c/d9441e0ce439d8d29c5dba30b0f4c392711f94 | 73 bytes
 .git/objects/8d/5e69bd1e828f814893d0bf0aded831c52381ea | 86 bytes
 .git/objects/93/50f8cf00b88cfb7a405211ff5bb09edbeb3740 | 57 bytes
@@ -117,7 +144,10 @@ INCLUDED FILES
 .git/objects/95/3b0f37e80974a837b49bd435bf53f0fecdfed5 | 674 bytes
 .git/objects/95/806d327a624b8075d18beebec632fd4d21da55 | 88 bytes
 .git/objects/99/81ff8f7f5d1294c09ae551a0cc6c710e414807 | 95 bytes
+.git/objects/9a/84da09772b7b53a3242dbc705d493bd836c1dc | 771 bytes
+.git/objects/9c/03476a8e77fd2e3e511456ba8509000b809eaf | 3148 bytes
 .git/objects/9c/1607222b078611785ab3cdf0a9b9fab6b65668 | 94 bytes
+.git/objects/9d/2f24bc97d1489ec30f14628a4c15aa00e9e6a1 | 178 bytes
 .git/objects/a0/3c403d33719b26c35c85b58852156f0ae85b03 | 290 bytes
 .git/objects/a1/6c500cef65482a742e13b460f70a1722408096 | 290 bytes
 .git/objects/a1/7b2f2c8971adb28ec0271c389222185f681514 | 190 bytes
@@ -125,6 +155,7 @@ INCLUDED FILES
 .git/objects/a7/78bd9b23b40725d2134b0c09dbdcac18d59163 | 150 bytes
 .git/objects/a7/7acee3cff0ced668e90e7d57ace4c6d266a7b3 | 633 bytes
 .git/objects/a8/24d6bd8f33748c5e94f726a0f15dfff95fc1d8 | 8403 bytes
+.git/objects/a8/4bc5617e9224416929a8b283322d458267c946 | 2318 bytes
 .git/objects/a9/8820996b01ab8811ecbfe9a295e8411f5804ca | 2030 bytes
 .git/objects/ac/b0eb76af2b0b91cf25deae2c515dabe09c437f | 174 bytes
 .git/objects/b1/380eeff685a853b3f0bc44bdce7ad5d41601fa | 2346 bytes
@@ -132,13 +163,16 @@ INCLUDED FILES
 .git/objects/b3/8df61b8c85896e76d1f079849632dfa282ff88 | 94 bytes
 .git/objects/b3/f4d13088dfe621c1a8dd79f708253765e4c6e6 | 3385 bytes
 .git/objects/b5/d7663382c8b82f64c7b6c1fb3c693fd931dea6 | 199 bytes
+.git/objects/b6/5f85b655be70801b0544926c59518ea242dc46 | 3034 bytes
 .git/objects/b6/9432016e106722133314b0de1b422688b6a308 | 1854 bytes
 .git/objects/b9/553d0fc0df88aa73f5315612d446d5ac70031b | 185 bytes
 .git/objects/b9/9baf045b2c7830d29902076f427482f07b9ae8 | 2860 bytes
+.git/objects/ba/5f210af9c2b0da0fb0e88b24a5890ead3937ed | 2998 bytes
 .git/objects/bb/7fb5137836d1a0f43de9b89c82b1a918eb74e3 | 364 bytes
 .git/objects/bb/f56cc4ae5449abe9a005befaa2bdbe3a8e0b0a | 311 bytes
 .git/objects/bc/6a22f427561cfb780dcf2d915ed22b3fbad5e3 | 1733 bytes
 .git/objects/bd/ebc1618c4fb097d6b999162eca6491be21fa1c | 51 bytes
+.git/objects/be/0814c2e379584e20ad7a1f1d6c46e7c7b92a27 | 2935 bytes
 .git/objects/c4/afcbba74427a17e6c84dbd20953f8c761658d7 | 119 bytes
 .git/objects/c5/3400b8b9ba9e9c95a2613dd22b1e5f0b8acff9 | 3034 bytes
 .git/objects/c6/65a3a9ea25a3ea2b079aed95e508381707a69e | 108 bytes
@@ -148,15 +182,21 @@ INCLUDED FILES
 .git/objects/ca/13d98a1cd8264431a86cd76160a91d6cc0e234 | 301 bytes
 .git/objects/ca/2f078d6bc7b482bdbeb5813968e0327db78223 | 417 bytes
 .git/objects/ca/a0f787e3119f17e199ca31e73c7df2e360a55a | 290 bytes
+.git/objects/ca/efcf0bb08c1569dfa7ea9777ae7ef64627734f | 2589 bytes
 .git/objects/ce/675e3389221b603cf1035e135386b09d156451 | 304 bytes
 .git/objects/cf/5e77dd6f8980090e4019256648cfed14e36d6e | 598 bytes
+.git/objects/cf/90137feedf0fcb1c90abb7b4a5002c8607f12a | 770 bytes
 .git/objects/d1/c8c51c79909f5d9a887d2ea6833480d06f5236 | 102 bytes
 .git/objects/d2/3520c2a4cd70177faa32892af9808daa038549 | 152 bytes
+.git/objects/d2/84aaceba450690f42195fb6165a04fc3011184 | 153 bytes
 .git/objects/d3/ff0380d08e8e7b98190ce3d9652b3ec18cbc7b | 2215 bytes
+.git/objects/d5/02ef210de3fc54c160ea8e5219f9be6c8a9cb1 | 189 bytes
 .git/objects/d5/64d0bc3dd917926892c55e3706cc116d5b165e | 53 bytes
 .git/objects/d5/ff77e388675e1495d2a0f5e03320fa6080649a | 94 bytes
 .git/objects/d6/1ecdf9bf0dcc54c13fb622a6c0b2ee32749fe3 | 199 bytes
+.git/objects/da/3253bda3b4231de24688d21616702f2998478e | 306434 bytes
 .git/objects/db/dee5ac2dfed682ece765cd9c02a97693be4b58 | 322 bytes
+.git/objects/dc/f50c3dd017e0677c2bd71c832e3859a6a1cfaf | 2515 bytes
 .git/objects/dd/1f611e7be937f83132b7caea686b9273398d2d | 4407 bytes
 .git/objects/de/59498cbacc0ef04efebff932fa55585c095b3c | 555 bytes
 .git/objects/de/fdff39681cc1c123d0b908982e54f9ea646dbc | 597 bytes
@@ -170,6 +210,12 @@ INCLUDED FILES
 .git/objects/e6/63b12cfb119ff873a6413ecd30b39d4565d767 | 2955 bytes
 .git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391 | 15 bytes
 .git/objects/e9/a4a0ccf12a6294c9b3bd785c1149d7166f84c0 | 342 bytes
+.git/objects/eb/ce8d48eece0598e05c52f2bf96397ce484ec80 | 473 bytes
+.git/objects/ec/b47022dcf0b863866710230f0b725244426fab | 3082 bytes
+.git/objects/ed/bf40c93f467ce40fba1e820267af2130c01440 | 3253 bytes
+.git/objects/ee/eddc37879d1a5a7c14050b91a0f124a32a5164 | 14517 bytes
+.git/objects/ef/dd5cdc1892116817d9cdae782720c12568e4d2 | 1634 bytes
+.git/objects/f3/38801e65ea59e23ade2668e6220c5d501615c1 | 95 bytes
 .git/objects/f3/506b54216edb8bdd933def77e1194372d7ac07 | 126 bytes
 .git/objects/f4/c9e571fc37166dd32a11130e4e45fea7b0d6b0 | 370 bytes
 .git/objects/fa/3a4b609f052cce4c4b974fba06e5b8f344309d | 178 bytes
@@ -186,10 +232,10 @@ SETUP.md | 4715 bytes
 demo_st4.py | 4569 bytes
 docker-compose.yml | 763 bytes
 docker/entrypoint.sh | 639 bytes
-docs/HANDOVER.md | 2999 bytes
+docs/HANDOVER.md | 3472 bytes
 docs/architecture.md | 4694 bytes
 docs/build_report.py | 25175 bytes
-docs/build_steps_explained.py | 26881 bytes
+docs/build_steps_explained.py | 35819 bytes
 docs/decisions.md | 4263 bytes
 docs/progress_report.pdf | 16064 bytes
 experiments/figures/.gitkeep | 0 bytes
