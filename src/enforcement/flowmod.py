@@ -29,12 +29,8 @@ def _resolve_ip_to_host_port(ip_str: str, switch: str, port_map: Dict[Tuple[str,
     raw_ip = ip_str.split("/")[0].strip()
     for host in HOSTS:
         if host.ip == raw_ip:
-            # Look up switch -> host in port_map
-            if (switch, host.name) in port_map:
-                return port_map[(switch, host.name)]
-            # If host names are not in port_map, default host access port on switch (typically 1)
-            # but we can also check if port_map has (switch, host.ip) or fallback.
-            return port_map.get((switch, host.name), 1)
+            # Never guess an access port: a wrong default silently redirects traffic.
+            return port_map[(switch, host.name)]
     raise KeyError(f"no host found with IP {ip_str}")
 
 
@@ -61,18 +57,8 @@ def build_match(datapath: Any, intent: IntentRecord) -> Any:
       - ip_proto: 6 (TCP), 17 (UDP), 1 (ICMP), or omitted if "any".
       - tcp_dst / udp_dst: optional port match if proto is tcp or udp and dport is set.
     """
-    if not RYU_AVAILABLE or datapath is None:
-        return {
-            "eth_type": 0x0800,
-            "src": intent.match.src,
-            "dst": intent.match.dst,
-            "proto": intent.match.proto,
-            "dport": intent.match.dport,
-        }
-
-    parser = datapath.ofproto_parser
     match_kwargs: Dict[str, Any] = {
-        "eth_type": ether.ETH_TYPE_IP,  # 0x0800
+        "eth_type": 0x0800,
     }
 
     # Parse src and dst IPs (support CIDR if provided)
@@ -84,17 +70,20 @@ def build_match(datapath: Any, intent: IntentRecord) -> Any:
 
     proto = intent.match.proto.lower()
     if proto == "tcp":
-        match_kwargs["ip_proto"] = inet.IPPROTO_TCP
+        match_kwargs["ip_proto"] = 6
         if intent.match.dport is not None:
             match_kwargs["tcp_dst"] = intent.match.dport
     elif proto == "udp":
-        match_kwargs["ip_proto"] = inet.IPPROTO_UDP
+        match_kwargs["ip_proto"] = 17
         if intent.match.dport is not None:
             match_kwargs["udp_dst"] = intent.match.dport
     elif proto == "icmp":
-        match_kwargs["ip_proto"] = inet.IPPROTO_ICMP
+        match_kwargs["ip_proto"] = 1
 
-    return parser.OFPMatch(**match_kwargs)
+    if not RYU_AVAILABLE or datapath is None:
+        return match_kwargs
+
+    return datapath.ofproto_parser.OFPMatch(**match_kwargs)
 
 
 def rules_for_path(

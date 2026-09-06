@@ -84,9 +84,12 @@ def _print_link_summary():
     """Print a compact table of each switch‑to‑switch link and its budget.
     Floats are displayed with one decimal place.
     """
-    info("\nLink summary (name        bw_Mbps  delay_ms)\n")
+    # Use stdout directly so the summary is capturable in automation as well as
+    # visible in the interactive Mininet console. Mininet's info() logger binds
+    # its output stream at import time and bypasses redirect_stdout.
+    print("\nLink summary (name        bw_Mbps  delay_ms)")
     for link in LINKS:
-        info(f"{link.name:12s}  {link.bw_mbps:7.1f}  {link.delay_ms:8.1f}\n")
+        print(f"{link.name:12s}  {link.bw_mbps:7.1f}  {link.delay_ms:8.1f}")
 
 
 def main():  # pragma: no cover

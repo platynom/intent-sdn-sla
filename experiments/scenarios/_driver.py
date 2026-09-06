@@ -7,35 +7,76 @@ Both commands print CSV rows to stdout with columns:
 run_id,timestamp,metric,value,unit (or appropriate for flowpilot).
 """
 import argparse
+import csv
+import re
 import sys
 import time
-import csv
+
+import networkx as nx
 from mininet.net import Mininet
 from mininet.node import OVSSwitch
 from mininet.link import TCLink
 from topology.team16_topo import Team16Topo
+from topology.topology_spec import HOSTS, build_graph
 
-def set_static_forwarding(net):
-    """Configure each switch for standalone learning (no controller)."""
+
+def _attached_switch(host_name):
+    """Return the access switch declared for a topology host."""
+    return next(host.switch for host in HOSTS if host.name == host_name)
+
+
+def _port_toward(net, switch_name, neighbor_name):
+    """Read the live OpenFlow port joining a switch to one neighbor."""
+    switch = net.get(switch_name)
+    neighbor = net.get(neighbor_name)
+    interface = switch.connectionsTo(neighbor)[0][0]
+    return switch.ports[interface]
+
+
+def set_static_forwarding(net, src_host="h1", dst_host="h2"):
+    """Install a loop-free bidirectional path without a controller."""
     for sw in net.switches:
-        sw.cmd(f"ovs-vsctl set-fail-mode {sw.name} standalone")
+        sw.cmd(f"ovs-vsctl set-fail-mode {sw.name} secure")
+        sw.cmd(f"ovs-ofctl -O OpenFlow13 del-flows {sw.name}")
+
+    graph = build_graph()
+    route = nx.shortest_path(
+        graph,
+        _attached_switch(src_host),
+        _attached_switch(dst_host),
+        weight="delay_ms",
+    )
+    nodes = [src_host, *route, dst_host]
+    for index, switch_name in enumerate(route, start=1):
+        left_port = _port_toward(net, switch_name, nodes[index - 1])
+        right_port = _port_toward(net, switch_name, nodes[index + 1])
+        switch = net.get(switch_name)
+        switch.cmd(
+            f"ovs-ofctl -O OpenFlow13 add-flow {switch_name} "
+            f"priority=10,in_port={left_port},actions=output:{right_port}"
+        )
+        switch.cmd(
+            f"ovs-ofctl -O OpenFlow13 add-flow {switch_name} "
+            f"priority=10,in_port={right_port},actions=output:{left_port}"
+        )
 
 def parse_ping(ping_output):
-    # loss percentage
-    loss_line = [line for line in ping_output.splitlines() if "packet loss" in line]
-    loss = 0
-    if loss_line:
-        part = loss_line[0].split(',')[2].strip()
-        loss = part.split('%')[0]
-    # rtt stats line
-    stats_line = [line for line in ping_output.splitlines() if "rtt min/avg/max/mdev" in line]
-    rtt_vals = ("0","0","0","0")
-    if stats_line:
-        stats = stats_line[0].split('=')[1].strip().split('/')
-        rtt_vals = tuple(v.strip() for v in stats)
-        # Strip trailing ' ms' from the mdev entry (fourth element)
-        rtt_vals = (rtt_vals[0], rtt_vals[1], rtt_vals[2], rtt_vals[3].split()[0])
+    """Extract numeric loss and RTT values from iputils ping output."""
+    loss_match = re.search(r"([0-9]+(?:\.[0-9]+)?)%\s+packet loss", ping_output)
+    loss = loss_match.group(1) if loss_match else "0"
+    stats_match = re.search(
+        r"(?:rtt|round-trip) min/avg/max/(?:mdev|stddev) = "
+        r"([0-9.]+)/([0-9.]+)/([0-9.]+)/([0-9.]+)",
+        ping_output,
+    )
+    rtt_vals = stats_match.groups() if stats_match else ("0", "0", "0", "0")
     return loss, rtt_vals
+
+
+def parse_iperf_mbps(iperf_output):
+    """Return the final numeric Mbits/sec result from iperf3 text output."""
+    values = re.findall(r"([0-9]+(?:\.[0-9]+)?)\s+Mbits/sec", iperf_output)
+    return values[-1] if values else "0"
 
 def baseline(runs):
     net = Mininet(topo=Team16Topo(), switch=OVSSwitch, link=TCLink, controller=None)
@@ -49,14 +90,10 @@ def baseline(runs):
         ping_out = h1.cmd('ping -c 100 -i 0.1 10.0.0.2')
         loss, (rtt_min, rtt_avg, rtt_max, rtt_mdev) = parse_ping(ping_out)
         # iperf3 server in background
-        h2.cmd('iperf3 -s -1 &')
+        h2.cmd('iperf3 -s -1 -D')
         time.sleep(1)
         iperf_out = h1.cmd('iperf3 -c 10.0.0.2 -t 30 -f m')
-        # extract throughput (Mbits/sec) from last line
-        thr = '0'
-        for line in iperf_out.splitlines():
-            if 'Mbits/sec' in line:
-                thr = line.split()[-2]
+        thr = parse_iperf_mbps(iperf_out)
         # output csv rows
         writer = csv.writer(sys.stdout)
         writer.writerow([i, ts, 'loss', loss, '%'])

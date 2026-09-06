@@ -9,7 +9,7 @@ docker compose up --build -d          # pinned Mininet + OVS + Ryu
 docker compose exec sdn make demo     # topology, controller, one URLLC intent
 ```
 
-Open <http://localhost:8080> for the live dashboard.
+The live dashboard is planned for ST-11 and is not implemented yet.
 
 ---
 
@@ -79,9 +79,9 @@ src/
   intent_manager/     M1  schema.json, validator.py, REST API
   admission/          M2  residual graph, feasibility, preemption
   pathing/            M3  yen_ksp.py, prune.py
-  enforcement/        M4  flowmod.py, queues.py, two_phase.py
-  telemetry/          M5  collector.py, probes.py, detector.py
-  dashboard/          M6  app.py, static/
+  enforcement/        M4  flowmod.py, queues.py, controller.py
+  telemetry/          M5  collector.py, probes.py, detector.py, runtime.py
+  dashboard/          M6  planned for ST-11
   common/             models.py, db.py, events.py, audit.py
 topology/             Mininet topology and tc link budgets
 experiments/          run_all.sh, scenarios/, results/raw/ (CSV committed), plots/
@@ -94,8 +94,8 @@ tests/                unit tests plus one end-to-end smoke test
 ```bash
 python3.9 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-pytest tests -q          # 50 tests, no network or root needed
-ruff check src tests
+pytest tests -q          # software-only suite; no network or root needed
+ruff check src tests topology experiments
 ```
 
 Everything touching Mininet, Open vSwitch or Ryu **must** run inside the container.
@@ -126,7 +126,12 @@ figure is regenerable.
 
 ## Status
 
-ST-1 complete: stack pinned, grammar frozen, CI green. Implementation begins at ST-2.
+ST-1 through ST-6 are complete. The Docker image builds, the software-only test
+suite passes, and Scenario S1 has been executed in Docker against a live Mininet,
+Open vSwitch and Ryu datapath. It installs an accepted intent, attaches its HTB
+queue, sends matching UDP traffic, collects one-hertz telemetry and persists the
+measurements. ST-7 (automatic closed-loop rerouting) is next; the dashboard remains
+planned for ST-11.
 
 ## Licence
 

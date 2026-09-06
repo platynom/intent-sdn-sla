@@ -9,6 +9,7 @@ OVS QoS/HTB queues.
 from __future__ import annotations
 
 import logging
+import time
 from typing import Any, Dict, Optional, Tuple
 
 try:
@@ -16,6 +17,7 @@ try:
     from ryu.controller import ofp_event
     from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER, set_ev_cls
     from ryu.ofproto import ofproto_v1_3
+    from ryu.lib import hub
     from ryu.topology import event as topo_event
     from ryu.topology.api import get_link, get_switch
     RYU_AVAILABLE = True
@@ -30,14 +32,16 @@ except ImportError:  # pragma: no cover
     topo_event = None
     get_link = None
     get_switch = None
+    hub = None
 
     def set_ev_cls(*args, **kwargs):
         def decorator(fn):
             return fn
         return decorator
 
+from src.common import db as dbm
 from src.common.events import EventBus, path_installed
-from src.common.models import IntentRecord, PathPlan
+from src.common.models import IntentRecord, IntentState, PathPlan
 from src.enforcement.flowmod import cookie_for_intent, install, remove, rules_for_path
 from src.enforcement.queues import ensure_queue
 from topology.topology_spec import HOSTS, SWITCHES
@@ -48,8 +52,7 @@ class Team16Controller(BaseApp):
     Ryu controller managing OpenFlow 1.3 switches for the Team16 5G transport topology.
     """
 
-    if RYU_AVAILABLE:
-        OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
+    OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION if RYU_AVAILABLE else 0x04]
 
     def __init__(self, *args, **kwargs):
         if RYU_AVAILABLE:
@@ -61,6 +64,77 @@ class Team16Controller(BaseApp):
         # (sw_a, sw_b) -> out_port or (sw_a, host_name) -> out_port
         self.port_map: Dict[Tuple[str, str], int] = {}
         self.event_bus: Optional[EventBus] = None
+        # SQLite is the cross-process handoff between M1/M3 and this Ryu app.
+        # The value records the path revision already installed for each intent.
+        self._installed_plans: Dict[str, Tuple[Optional[int], float]] = {}
+        self._sync_thread = hub.spawn(self._enforcement_loop) if RYU_AVAILABLE else None
+
+    def _enforcement_loop(self) -> None:
+        """Install paths persisted by the API as their switches become ready."""
+        while True:
+            try:
+                self._sync_intents_from_db()
+            except Exception:
+                self.logger.exception("Failed to synchronize persisted intents")
+            hub.sleep(0.5)
+
+    def _sync_intents_from_db(self) -> None:
+        """Apply new paths and withdrawals found in the shared SQLite database."""
+        conn = dbm.connect()
+        try:
+            dbm.init_db(conn)
+            rows = conn.execute(
+                "SELECT id, state FROM intents "
+                "WHERE state IN ('pending', 'admitted', 'active', 'withdrawn')"
+            ).fetchall()
+
+            for row in rows:
+                intent_id = str(row["id"])
+                if row["state"] == IntentState.WITHDRAWN.value:
+                    if intent_id in self._installed_plans:
+                        self.remove_intent(intent_id)
+                        self._installed_plans.pop(intent_id, None)
+                    continue
+
+                intent = dbm.load_intent(conn, intent_id)
+                plan = dbm.current_path(conn, intent_id)
+                if intent is None or plan is None:
+                    continue
+
+                # Never partially install a path while its switches are still connecting.
+                if any(switch not in self.datapaths for switch in plan.switches):
+                    continue
+
+                revision = (plan.version, plan.computed_at)
+                if self._installed_plans.get(intent_id) == revision:
+                    continue
+
+                if intent_id in self._installed_plans:
+                    self.remove_intent(intent_id)
+
+                installed = self.install_plan(plan, intent)
+                expected = 2 * len(plan.switches)
+                if installed != expected:
+                    self.logger.error(
+                        "Installed %s of %s expected rules for intent %s",
+                        installed,
+                        expected,
+                        intent_id,
+                    )
+                    continue
+
+                intent.state = IntentState.ACTIVE
+                intent.updated_at = time.time()
+                dbm.save_intent(conn, intent)
+                self._installed_plans[intent_id] = revision
+                self.logger.info(
+                    "Activated intent %s with %s rules on path %s",
+                    intent_id,
+                    installed,
+                    " -> ".join(plan.switches),
+                )
+        finally:
+            conn.close()
 
     def _dpid_to_sw_name(self, dpid: int) -> str:
         """Convert integer DPID (e.g. 1, 7) to switch name ('s1', 's7')."""

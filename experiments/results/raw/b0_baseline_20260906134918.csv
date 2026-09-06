@@ -1,0 +1,7 @@
+run_id,timestamp,metric,value,unit
+1,1788702561,loss,0,%
+1,1788702561,rtt_min,12.213,ms
+1,1788702561,rtt_avg,12.825,ms
+1,1788702561,rtt_max,26.945,ms
+1,1788702561,rtt_mdev,1.460,ms
+1,1788702561,throughput,71.7,Mbits/s
