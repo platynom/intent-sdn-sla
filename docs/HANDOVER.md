@@ -58,3 +58,12 @@ docker compose exec -T sdn bash experiments/scenarios/s1_single_intent.sh
 2. `docs/architecture.md` - topology, routes and why alternatives are mandatory.
 3. `docs/decisions.md` - frozen design decisions and the ONOS fallback.
 4. `prompts/` - bounded implementation briefs, beginning with ST-7.
+
+## Known defect
+
+The events table in experiments/results/state.db is empty after the live
+Scenario S1 run. Measurements persisted (5 rows) but no event rows were written,
+even though the scenario reported sla.violated. The event was emitted in-process
+and not saved. ST-7 subscribes to these events and the audit log depends on them,
+so this must be fixed before ST-7 is considered working. Verify with:
+sqlite3 experiments/results/state.db 'select count(*) from events;'
