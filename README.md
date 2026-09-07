@@ -4,7 +4,7 @@ Write down a service promise. The system installs it on the network, measures wh
 it is being kept, and re-plans automatically when it is not — on one laptop.
 
 ```bash
-git clone <repo-url> && cd intent-sdn-sla
+git clone https://github.com/platynom/intent-sdn-sla.git && cd intent-sdn-sla
 docker compose up --build -d          # pinned Mininet + OVS + Ryu
 docker compose exec sdn make demo     # topology, controller, one URLLC intent
 ```

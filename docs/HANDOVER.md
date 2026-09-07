@@ -10,6 +10,23 @@ and is intended to re-plan when a real SLA breach persists. It is a compact,
 reproducible reference implementation for 5G-style service assurance, not a claim
 of a novel networking algorithm.
 
+## How to get the code
+
+The repository is the single source of truth:
+
+```bash
+git clone https://github.com/platynom/intent-sdn-sla.git
+cd intent-sdn-sla
+```
+
+It is private, so ask Tanmay for collaborator access first. Do all work on a branch
+(`feat/<subtask>-<short-name>`) and open a pull request; `main` is protected.
+
+**Do not work from the Drive zip.** `intent-sdn-sla_20260907.zip` in Google Drive is
+a frozen snapshot taken on 7 September 2026. It is there for reference only. Any
+change made inside it is invisible to everyone else and will diverge from `main`
+immediately.
+
 ## The six modules
 
 | Module | Question it answers | Responsibility |
