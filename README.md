@@ -133,6 +133,14 @@ queue, sends matching UDP traffic, collects one-hertz telemetry and persists the
 measurements. ST-7 (automatic closed-loop rerouting) is next; the dashboard remains
 planned for ST-11.
 
+**Known defect blocking ST-7.** After the Scenario S1 run, `experiments/results/state.db`
+holds 5 measurement rows but zero rows in `events`, despite the scenario reporting
+`sla.violated`. The event was emitted in-process and never persisted. ST-7 subscribes
+to these events and the audit log reads from the same table, so this must be fixed
+first. Verify with
+`sqlite3 experiments/results/state.db 'select count(*) from events;'`.
+Full write-up in [`docs/HANDOVER.md`](docs/HANDOVER.md).
+
 ## Licence
 
 MIT. See [`CITATION.cff`](CITATION.cff) for the work whose methods this implements —
