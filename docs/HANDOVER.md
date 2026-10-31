@@ -1,31 +1,22 @@
-# Project handover
+# Project Handover
 
 ## What this project does
 
 An operator describes a network promise as a YAML intent: which traffic matters
 and the bandwidth, latency, loss, isolation or link-avoidance requirement it must
 meet. The system validates that request, decides whether it is feasible, computes
-a suitable path, generates OpenFlow enforcement, measures the delivered service
-and is intended to re-plan when a real SLA breach persists. It is a compact,
-reproducible reference implementation for 5G-style service assurance, not a claim
-of a novel networking algorithm.
+a suitable path, generates OpenFlow 1.3 rules and OVS HTB queue commands (bound via
+`OFPActionSetQueue`), measures the delivered service, and automatically re-plans
+when a real SLA breach persists. It is a compact, reproducible reference
+implementation for 5G-style service assurance, not a claim of a novel networking
+algorithm.
 
 ## How to get the code
 
-The repository is the single source of truth:
-
 ```bash
-git clone https://github.com/platynom/intent-sdn-sla.git
-cd intent-sdn-sla
+git clone --branch feat/st-12-eval-completion https://github.com/5rikanth/SDN.git
+cd SDN
 ```
-
-It is private, so ask Tanmay for collaborator access first. Do all work on a branch
-(`feat/<subtask>-<short-name>`) and open a pull request; `main` is protected.
-
-**Do not work from the Drive zip.** `intent-sdn-sla_20260907.zip` in Google Drive is
-a frozen snapshot taken on 7 September 2026. It is there for reference only. Any
-change made inside it is invisible to everyone else and will diverge from `main`
-immediately.
 
 ## The six modules
 
@@ -34,128 +25,47 @@ immediately.
 | M1 Intent Manager | What does the user want? | Validate and store machine-readable intents; expose the REST API. |
 | M2 Admission and Conflict | Can we provide it? | Decide whether capacity exists and resolve competing requests. |
 | M3 Path Computation | How can we provide it? | Compute and prune candidate paths, then choose deterministically. |
-| M4 Enforcement | Can we make the network do it? | Generate OpenFlow 1.3 rules and OVS HTB queue commands. |
+| M4 Enforcement | Can we make the network do it? | Generate OpenFlow 1.3 rules (`OFPActionSetQueue`) and OVS HTB queue commands; two-phase update. |
 | M5 Telemetry and SLA Monitor | Is it actually working? | Collect measurements and distinguish persistent breaches from noise. |
 | M6 Dashboard and Audit | What is happening, and why? | Present status and preserve the causal explanation of every action. |
 
-## Current state
+## Current state (`feat/st-12-eval-completion`)
 
-**Baseline ST-1 through ST-6:** Scenario S1 previously passed in the project
-container, installing INT-001 OpenFlow rules and a 20 Mbps HTB queue, sending
-matching UDP traffic along `s1-s2-s3-s7`, and persisting five one-hertz samples.
+- **Container test suite & lint**: `270 passed, 11 skipped` (`pytest tests -q`), `ruff check src tests topology experiments` clean (`0` errors).
+- **Live smoke scenarios**: `s1_single_intent.sh`, `s1_single_intent.sh --st7`, `s9_preemption.sh`, and `s10_two_phase.sh` all pass in sequence inside the privileged Python 3.9 container.
+- **Objective O1 (B3 repetitions & matched-detector B2, $n=10$ each)**:
+  - `B2` ($n=10$): detection `99.467 ms` (`[96.249, 102.684]`), recovery `279.355 ms` (`[228.889, 329.821]`).
+  - `B2_matched_detector` ($n=10$): detection `2116.845 ms` (`[2107.259, 2126.432]`), recovery `467.711 ms` (`[424.880, 510.542]`).
+  - `B3` ($n=10$): detection `2104.262 ms` (`[2101.405, 2107.119]`), recovery `618.535 ms` (`[559.508, 677.561]`).
+- **Objective O2 (E4 headline packet loss during reconfiguration, $n=10$ each)**:
+  - `B2` (`relaxed`): `42.000` packets lost (`[42.000, 42.000]`), `0.000` reordered.
+  - `B3` (`strict` two-phase, citing Reitblatt et al., SIGCOMM 2012): `0.000` packets lost (`[0.000, 0.000]`), `28.000` reordered (`[28.000, 28.000]`).
+- **Objective O3 (HTB queue binding fix & verification, $n=10$ each)**:
+  - Fixed `src/enforcement/flowmod.py` and `src/enforcement/queues.py` so forward inter-switch hops emit `OFPActionSetQueue(1)` when `min_bandwidth_mbps > 0`.
+  - `bound` ($n=10$): `24.995 Mbit/s` (`[24.995, 24.996]`, `0.000%` loss) under `150 Mbit/s` competing `iperf3` cross-traffic (`74.352 Mbit/s`).
+  - `unbound` control ($n=10$): `19.091 Mbit/s` (`[18.818, 19.365]`, `23.620%` loss — violates the `20 Mbit/s` SLA in all 10 runs).
+- **Objective O4 (E5 flow-table entries across 4 concurrent intents, $n=10$ each)**:
+  - `all_relaxed`: peak `6.000` rules on busiest switch (`27.500` total across fabric), `56.800` packets lost (`[55.087, 58.513]`).
+  - `selective` (2 strict + 2 relaxed, citing CCG, Zhou et al., NSDI 2015): peak `9.000` rules on busiest switch (`39.800` total), `33.900` total packets lost (`0.000` lost on strict intents).
+  - `all_strict`: peak `10.000` rules on busiest switch (`42.000` total), `0.000` packets lost.
+- **Objective O5 (E6 live route oscillation over 10-minute runs on S6, $n=3$ each)**:
+  - `B2` (hysteresis+dwell OFF): `90.000` reroutes/10 min (`[90.000, 90.000]`, `0` dwell suppressions).
+  - `B3` (hysteresis+dwell ON): `48.667` reroutes/10 min (`[45.798, 51.535]`, `25.667` dwell suppressions/10 min).
+- **Objective O6 (E1 SLA violation duration, $n=10$ each)**:
+  - `B1` (open-loop): `15.000 s` (`[15.000, 15.000]`, right-censored at the 15 s fault window).
+  - `B3` (closed-loop): `3.003 s` (`[3.003, 3.003]`, uncensored).
+- **Objective O7 (E7 admission decision latency scaling, $n=10$ per point)**:
+  - `k=1`: `47.889 ms` (`[45.179, 50.599]`); `k=2`: `49.420 ms` (`[46.253, 52.587]`); `k=4`: `49.665 ms` (`[48.146, 51.184]`); `k=8`: `51.845 ms` (`[50.336, 53.354]`); `k=16`: `59.496 ms` (`[53.442, 65.550]`).
+- **Objective O8 (E8 control-plane overhead over 60 s window, $n=10$ each)**:
+  - `B1` (open-loop): `8.108 msgs/s` (`[8.032, 8.185]`), `0.826%` `ryu-manager` CPU (`[0.789, 0.863]`).
+  - `B3` (closed-loop): `9.228 msgs/s` (`[9.129, 9.327]`, $+13.8\%$ higher than `B1`), `0.794%` `ryu-manager` CPU (`[0.768, 0.819]`).
+- **Objective O9 (ST-13 figures & documentation)**:
+  - All PNG and PDF figures generated in `experiments/figures/`.
+  - SHA-256 manifest written to `experiments/results/MANIFEST.sha256`.
 
-**Local ST-7 branch (`feat/st-07-close-loop`):** Confirmed telemetry violations
-are persisted to SQLite and bridged into the controller process. The live `--st7`
-scenario passed in Python 3.9 with Mininet, OVS and Ryu: telemetry rerouted INT-001
-to `s1-s4-s5-s7`, one reroute and a causal audit entry were recorded, and a UDP
-probe replied after the route change. The container suite passed 245 tests (11
-skipped) and Ruff passed.
+## Remaining limitations
 
-**Local ST-8 branch (`feat/st-08-admission`):** Admission now accounts for active
-bandwidth reservations on current paths, chooses feasible residual-capacity routes,
-and persists an explainable ADMIT/REJECT event. The Python 3.9 container suite
-passed 241 tests (11 skipped); Ruff passed.
-
-**Local ST-9 branch (`feat/st-09-preemption`):** Higher-priority requests may
-displace one lower-priority reservation if that makes a path feasible; the
-controller removes the victim's installed rules before installing the new path.
-The live `s9_preemption.sh` scenario passed in Python 3.9 with Mininet, OVS and
-Ryu, verifying victim state, the persisted preemption event and flow-rule removal.
-The container suite passed 245 tests (11 skipped) and Ruff passed. The M5 detector
-already has EWMA, consecutive-confirmation, hysteresis and dwell gates.
-
-**Local ST-10 branch (`feat/st-10-two-phase`):** Strict paths now stage tagged
-forwarding rules, flip untagged ingress classifiers after an OpenFlow barrier,
-retain the old version through a bounded Mininet drain interval, then remove its
-rules. Versioned classifier cookies and VLAN matches let withdrawal and cleanup
-target the right rules. The live `s10_two_phase.sh` scenario passed in the Python
-3.9 container: it flipped VLAN 100 to VLAN 101 onto the alternate route, removed
-the old north-path rules, and delivered a UDP probe afterward. The suite passed
-248 tests (11 skipped) and Ruff passed. The drain interval is sized for this
-emulated topology; production WAN deployments need measured packet-lifetime
-bounds before claiming lossless updates.
-
-These branches are local and have not been pushed or merged. GitHub rejected the
-push for account `5rikanth` with HTTP 403; collaborator write access is needed before
-opening the required PRs. Protected `main` remains unchanged.
-
-**Local ST-11 branch (`feat/st-11-dashboard`):** The M6 dashboard now serves a
-read-only operator view of intent state, paths, latest SLA measurements, selectable
-measurement charts and the persisted audit trail. JSON endpoints expose the same
-overview and per-intent detail. Compose runs the dashboard in a separate container
-and publishes port 8080 on `127.0.0.1` only. The page and endpoints were checked in
-the browser and container; the Python 3.9 suite passed 252 tests (11 skipped) and
-Ruff passed.
-
-**Cumulative local ST-12 branch (`feat/st-12-evaluation`):** ST-1 through ST-11
-are present in one branch. The Python 3.9 container suite passes 261 tests
-(11 skipped), Ruff passes, and the ST-7, ST-9 and ST-10 live scenarios pass in
-sequence. ST-9 now removes its scenario-owned reservations on exit so it cannot
-bias later tests. The ten-run B0 baseline and its Student t 95% intervals are
-saved under `experiments/results/`. The corrected E5 pilot loaded 2,000 unique
-rules at each configured flow limit from 100 to 5,000 on OVS 2.17.12; this
-software-switch pilot showed no cap effect. Its CSV is in the same raw-results
-directory. A ten-run B1 open-loop pilot also passed: each run installed and
-verified the path without telemetry probes, recording POST-response latency
-(mean 61.982 ms; 95% t interval 57.251–66.712 ms). The raw files and summary are
-under `experiments/results/`. This is not a claim of switch-install latency.
-The controlled B2 latency-fault trace now has ten live runs: mean detection-to-
-persistence 99.467 ms (95% t interval 96.249–102.684 ms), mean violation-to-path
-install 279.355 ms (interval 228.889–329.821 ms), and one reroute in every run.
-The B2 admission ablation also verified 140 Mbps of conflicting reservations on
-a 100 Mbps shared route. A matching B3 strict-update/default-detector pilot passed
-once (2.098 s detection persistence, 475 ms route installation); nine more B3
-runs are needed before comparison. The original B1–B3 scenario definitions and
-E1–E8 metric contract remain absent. A candidate operational contract is documented in
-`docs/EVALUATION_PROTOCOL_PROPOSAL.md`; it is explicitly a proposal, not the
-original plan, and needs team review before measurements are labeled E1–E8.
-
-## What is not true yet
-
-1. ST-12 is incomplete: B0, B1, and proposed B2 measurements have ten runs;
-   B3 needs nine more repetitions and an alternating dwell trace. The original
-   E1–E8 contract is absent from the checkout.
-2. ST-13–14 figures, evaluation and final reporting remain.
-3. The live results are from containerized Mininet and Open vSwitch, not physical
-   switching hardware.
-
-## Acceptance commands
-
-```bash
-docker compose build
-docker compose up -d
-docker compose exec -T sdn pytest tests -q
-docker compose exec -T sdn ruff check src tests topology experiments
-docker compose exec -T sdn bash experiments/scenarios/s1_single_intent.sh
-docker compose exec -T sdn bash experiments/scenarios/s1_single_intent.sh --st7
-docker compose exec -T sdn bash experiments/scenarios/s9_preemption.sh
-docker compose exec -T sdn bash experiments/scenarios/s10_two_phase.sh
-docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/b2_no_conflict.sh | bash -s"
-docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/b2_closed_loop.sh | bash -s -- --runs 10"
-docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/b3_closed_loop.sh | bash -s -- --runs 10"
-docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/run_all.sh | bash -s -- --reuse-b0"
-curl http://localhost:8080/api/dashboard
-```
-
-The `--st7` mode runs the S1 live checks, writes one deterministic confirmed
-violation to SQLite, and waits for the controller to install the expected
-alternate route, checks its switch rules, sends a UDP probe across it, and checks
-the causal audit record. It is an integration check; the normal S1 command
-remains the ST-1 through ST-6 baseline.
-
-## Read these first
-
-1. `SETUP.md` - install, verify and run the software-only workflow.
-2. `docs/architecture.md` - topology, routes and why alternatives are mandatory.
-3. `docs/decisions.md` - frozen design decisions and the ONOS fallback.
-4. `prompts/` - bounded implementation briefs, beginning with ST-7.
-
-## Resolved defect: persisted violation events
-
-The original S1 run persisted measurements but not confirmed violation events.
-ST-7 now saves confirmed detector events to SQLite and has Ryu consume them through
-the controller's event bus and `ControlLoop`. The live Python 3.9 scenario observed
-a red telemetry breach, rerouted INT-001 from `s1-s2-s3-s7` to `s1-s4-s5-s7`,
-recorded one reroute and a causal audit entry, and received a UDP reply afterward.
-Recheck after a new run with:
-`sqlite3 experiments/results/state.db 'select count(*) from events;'`
+1. All experiments run in containerized Mininet + Open vSwitch 2.17.12 on a single laptop, not physical ASIC switch hardware or a 5G RAN.
+2. Topology is fixed at 7 switches and 8 hosts; links `s3-s7` and `s6-s7` are marked `inferred` in `topology/topology_spec.py`.
+3. The 250 ms two-phase drain window is calibrated for this emulated topology, not a general WAN delay bound.
+4. For `E6`, $n=3$ ten-minute live runs per baseline (60 minutes total runtime) were executed; all other metrics have $n=10$ independent runs.

@@ -667,10 +667,11 @@
       "metric": "packets_lost",
       "group_a": "B2",
       "group_b": "B3",
-      "t_statistic": 0.0,
+      "t_statistic": null,
       "degrees_of_freedom": 18.0,
-      "p_value_two_sided": 1.0,
-      "mean_diff": 42.0
+      "p_value_two_sided": 0.0,
+      "mean_diff": 42.0,
+      "note": "zero sample variance in both groups with distinct constant values (deterministic separation)"
     },
     {
       "metric": "packets_duplicated",
@@ -685,10 +686,11 @@
       "metric": "packets_reordered",
       "group_a": "B2",
       "group_b": "B3",
-      "t_statistic": 0.0,
+      "t_statistic": null,
       "degrees_of_freedom": 18.0,
-      "p_value_two_sided": 1.0,
-      "mean_diff": -28.0
+      "p_value_two_sided": 0.0,
+      "mean_diff": -28.0,
+      "note": "zero sample variance in both groups with distinct constant values (deterministic separation)"
     },
     {
       "metric": "packets_sent",

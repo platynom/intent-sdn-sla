@@ -4,7 +4,7 @@ Write down a service promise. The system installs it on the network, measures wh
 it is being kept, and re-plans automatically when it is not — on one laptop.
 
 ```bash
-git clone https://github.com/platynom/intent-sdn-sla.git && cd intent-sdn-sla
+git clone https://github.com/5rikanth/SDN.git && cd SDN
 docker compose up --build -d          # pinned Mininet + OVS + Ryu
 docker compose exec sdn make demo     # topology, controller, one URLLC intent
 ```
@@ -22,9 +22,11 @@ activation and **assurance** — for transport-layer network slices, built to ru
 single commodity laptop with 8 GB of RAM.
 
 **We make no novelty claim.** Intent-based SLA assurance is established work, as is
-consistent network update. What this repository contributes is an artifact: an
-implementation small enough that anyone can run it, measured against explicit
-baselines with confidence intervals, with each component's contribution isolated.
+consistent network update (Reitblatt et al., SIGCOMM 2012) and selective update
+consistency (CCG, Zhou et al., NSDI 2015). What this repository contributes is an
+artifact: an implementation small enough that anyone can run it, measured against
+explicit baselines with confidence intervals, with each component's contribution
+isolated.
 
 ## Architecture
 
@@ -33,7 +35,7 @@ baselines with confidence intervals, with each component's contribution isolated
 | **M1** Intent Manager | *What does the user want?* | YAML parse, JSON-Schema validation, REST API, SQLite store |
 | **M2** Admission & Conflict | *Can we provide it?* | Residual-capacity graph; admit / reject / preempt / degrade |
 | **M3** Path Computation | *How can we provide it?* | Yen k-shortest paths with constraint pruning |
-| **M4** Enforcement | *Can we make the network do it?* | OpenFlow 1.3 rules, HTB queues, two-phase versioned update |
+| **M4** Enforcement | *Can we make the network do it?* | OpenFlow 1.3 rules, HTB queues (`SET_QUEUE`), two-phase versioned update |
 | **M5** Telemetry & SLA Monitor | *Is it actually working?* | Per-intent delay, jitter and loss; hysteresis and dwell timer |
 | **M6** Dashboard & Audit Log | *What is happening, and why?* | Live topology, SLA badges, causal event chain |
 
@@ -81,14 +83,14 @@ src/
   intent_manager/     M1  schema.json, validator.py, REST API
   admission/          M2  residual graph, feasibility, preemption
   pathing/            M3  yen_ksp.py, prune.py
-  enforcement/        M4  flowmod.py, queues.py, controller.py
-  telemetry/          M5  collector.py, probes.py, detector.py, runtime.py
+  enforcement/        M4  flowmod.py, queues.py, two_phase.py, controller.py
+  telemetry/          M5  collector.py, probes.py, detector.py, loop.py, runtime.py
   dashboard/          M6  read-only operator dashboard and audit view
   common/             models.py, db.py, events.py, audit.py
 topology/             Mininet topology and tc link budgets
-experiments/          run_all.sh, scenarios/, results/raw/ (CSV committed), plots/
-docs/                 architecture.md, decisions.md (ADRs), viva.md
-tests/                unit tests plus one end-to-end smoke test
+experiments/          scenarios/, results/{raw,summary}/, figures/, analyze/summarize/plot scripts
+docs/                 architecture.md, decisions.md, EXPERIMENTAL_RESULTS.md, PROJECT_REPORT.md
+tests/                unit tests plus end-to-end smoke and evaluation analysis tests
 ```
 
 ## Development
@@ -111,24 +113,29 @@ interface needs agreement from both sides, recorded in `docs/decisions.md`.
 
 ## Evaluation
 
-The project plan calls for four baselines × eight metrics, at least ten repetitions
-and 95% confidence intervals. The checkout currently has a ten-run B0 harness and
-an E5 feasibility pilot; it does not contain the original E1–E8 measurement
-definitions or the original B1–B3 scenario specifications. The runner regenerates only evidence
-that is implemented and labels the remaining work. A candidate contract for review
-is in `docs/EVALUATION_PROTOCOL_PROPOSAL.md`; it is not the missing original plan.
+The project plan (Section 11 of `00_TEAM16_Project_Plan.pdf`) defines four baselines (`B0`–`B3`) and eight metrics (`E1`–`E8`), plus data-plane HTB queue-binding verification (`O3`), with $\ge 10$ independent runs ($n=3$ ten-minute live runs for `E6`) and two-sided 95% Student-$t$ confidence intervals. Complete results, Welch two-sample $t$-tests, and limitations are documented in [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md).
 
 ```bash
-docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/run_all.sh | bash -s"
-# Add --reuse-b0 to reuse the existing ten-run CSV instead of running B0 again.
-# Run a B1 install-and-forget pilot (no telemetry probes):
-docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/b1_open_loop.sh | bash -s -- --runs 10"
-# Run the B2 no-conflict-check admission ablation (intentionally overbooks a link):
-docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/b2_no_conflict.sh | bash -s"
-# Run ten B2 relaxed closed-loop measurements:
+# Closed-loop E2/E3 latency evaluation (B2, B2_matched_detector, B3):
 docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/b2_closed_loop.sh | bash -s -- --runs 10"
-# Run the matching B3 strict closed-loop baseline:
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/b2_matched_detector.sh | bash -s -- --runs 10"
 docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/b3_closed_loop.sh | bash -s -- --runs 10"
+# Headline E4 packet loss during reconfiguration (1,000 pkt/s UDP stream):
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/e4_packet_loss.sh | bash -s -- --mode b2 --runs 10"
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/e4_packet_loss.sh | bash -s -- --mode b3 --runs 10"
+# O3 HTB queue binding under 150 Mbps cross-traffic (bound vs unbound control):
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/o3_queue_binding.sh | bash -s -- --mode bound --runs 10"
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/o3_queue_binding.sh | bash -s -- --mode unbound --runs 10"
+# E5 flow-table entries (all_strict, selective, all_relaxed), E6 oscillation, E1, E7, E8:
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/e5_flow_table_entries.sh | bash -s -- --mode all_strict --runs 10"
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/e6_oscillation.sh | bash -s -- --mode b3 --runs 3 --duration 600"
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/e1_violation_duration.sh | bash -s -- --mode b3 --runs 10"
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/e7_admission_scaling.sh | bash -s -- --runs 10"
+docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/e8_control_overhead.sh | bash -s -- --mode b3 --runs 10 --window 60"
+# Recompute summaries and regenerate all PNG + PDF figures:
+docker compose exec -T sdn python3.9 experiments/analyze_closed_loop.py
+docker compose exec -T sdn python3.9 experiments/summarize_metrics.py
+docker compose exec -T sdn python3.9 experiments/plot_results.py
 ```
 
 | | Baseline |
@@ -140,26 +147,28 @@ docker compose exec -T sdn bash -lc "sed 's/\\r$//' experiments/scenarios/b3_clo
 
 ## Status
 
-The cumulative local ST-12 branch contains ST-1 through ST-11. Its current
-container validation passes 261 tests (11 skipped) with Ruff clean; live ST-7,
-ST-9 and ST-10 scenarios pass in sequence. ST-11 adds the read-only dashboard at
-`http://localhost:8080`. ST-12 has a ten-run B0 baseline sample and a corrected
-flow-table pilot: on OVS 2.17.12, 2,000 unique rules installed at every tested
-limit from 100 through 5,000, so the software-switch E5 cap had no observed effect.
-An open-loop B1 pilot has ten POST-response latency runs (mean 61.982 ms,
-95% t interval 57.251–66.712 ms); it remains a pilot measurement and is not yet
-included in the cross-baseline comparison. B2 now has ten controlled closed-loop
-runs plus a live admission-ablation pilot. One matching B3 strict-update run
-passed, but nine more B3 repetitions and an alternating anti-oscillation trace
-remain. ST-13–14 reporting also remains. See
-[`docs/HANDOVER.md`](docs/HANDOVER.md) for branch status and validation results.
+All subtasks **ST-1 through ST-13** are complete on branch `feat/st-12-eval-completion`:
+- **Container test suite**: `270 passed, 11 skipped` (`pytest tests -q`), `ruff check` clean (`0` errors).
+- **Live smoke scenarios**: `s1_single_intent.sh`, `s1_single_intent.sh --st7`, `s9_preemption.sh`, and `s10_two_phase.sh` all pass in sequence.
+- **Resolved HTB queue-binding defect (O3)**: Forward inter-switch OpenFlow rules now emit `OFPActionSetQueue(1)` when `min_bandwidth_mbps > 0`. Under 150 Mbit/s competing cross-traffic (`n=10`), the queue-bound 20 Mbit/s SLA intent achieves `24.995 Mbit/s` (`[24.995, 24.996]`, `0.000%` loss), whereas the unbound control drops to `19.091 Mbit/s` (`[18.818, 19.365]`, `23.620%` loss).
+- **Complete E1–E8 evaluation (`n=10` per configuration; `n=3` ten-minute live runs for E6)**:
+  - **E1 Violation duration**: `15.000 s` right-censored (`B1`) vs `3.003 s` (`[3.003, 3.003]`, `B3`).
+  - **E2 Detection latency**: `99.467 ms` (`[96.249, 102.684]`, `B2`), `2116.845 ms` (`[2107.259, 2126.432]`, `B2_matched_detector`), `2104.262 ms` (`[2101.405, 2107.119]`, `B3`).
+  - **E3 Recovery latency**: `279.355 ms` (`[228.889, 329.821]`, `B2`), `467.711 ms` (`[424.880, 510.542]`, `B2_matched_detector`), `618.535 ms` (`[559.508, 677.561]`, `B3`).
+  - **E4 Headline packet loss during reconfiguration**: `42.000` packets lost (`[42.000, 42.000]`, `B2` relaxed) vs `0.000` packets lost (`[0.000, 0.000]`, `B3` strict two-phase, with `28.000` packets reordered due to the faster alternate path).
+  - **E5 Flow-table entries (4 concurrent intents)**: peak `6.000` rules on busiest switch (`56.800` pkts lost) for `all_relaxed`, `9.000` rules (`33.900` total pkts lost, `0.000` strict pkts lost) for `selective` 50/50 (citing CCG, Zhou et al., NSDI 2015), and `10.000` rules (`0.000` pkts lost) for `all_strict`.
+  - **E6 Route oscillation (10-min live S6)**: `90.000` reroutes/10 min (`B2`) vs `48.667` (`[45.798, 51.535]`, `B3`, with `25.667` dwell suppressions/10 min).
+  - **E7 Admission scaling**: `47.889 ms` (`k=1`), `49.420 ms` (`k=2`), `49.665 ms` (`k=4`), `51.845 ms` (`k=8`), `59.496 ms` (`k=16`).
+  - **E8 Control-plane overhead (60 s window)**: `8.108 msgs/s` (`[8.032, 8.185]`, `B1`) vs `9.228 msgs/s` (`[9.129, 9.327]`, `B3`, $+13.8\%$ higher in `B3`); `ryu-manager` CPU utilization is `0.826%` (`B1`) vs `0.794%` (`B3`).
+- See [`docs/HANDOVER.md`](docs/HANDOVER.md) and [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md) for full details.
 
 **Resolved ST-7 defect.** Confirmed violation events are persisted to SQLite for
-the controller and audit log to consume. The live ST-7 scenario previously verified
+the controller and audit log to consume. The live ST-7 scenario verified
 the persisted event, reroute, causal audit entry and post-reroute UDP delivery.
 
 ## Licence
 
 MIT. See [`CITATION.cff`](CITATION.cff) for the work whose methods this implements —
-in particular the two-phase versioned update of Reitblatt et al. (SIGCOMM 2012), which
-we use as a building block and do not claim as a contribution.
+in particular the two-phase versioned update of Reitblatt et al. (SIGCOMM 2012) and
+selective consistency of Zhou et al. (NSDI 2015), which we use as building blocks and
+do not claim as contributions.

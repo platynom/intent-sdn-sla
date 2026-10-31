@@ -1,45 +1,105 @@
 # Experimental Results and Evaluation Limits
 
-## Evidence and environment
+## 1. Environment and Verification Summary
 
-The checked-out evaluation checkpoint is `024910099e91bb8a3fbf1021249ce1eea0ea4dcf`; work is on `feat/st-12-b3-evaluation`. The existing raw run CSVs are in `experiments/results/raw/`, and the checkpoint summary files are under `experiments/results/summary/`. The present Windows host has no Docker CLI. It therefore cannot run the privileged Mininet/OVS/Ryu scenarios or the nine requested additional B3 repetitions. The per-run files discussed below were already present at the checkpoint; they were not produced during this continuation.
+All live network experiments were executed inside the project's privileged Docker container (`intent-sdn-sla`, Ubuntu 22.04, Python 3.9.25, Ryu 4.34, Open vSwitch 2.17.12, Mininet with `TCLink` HTB + `netem`) on branch `feat/st-12-eval-completion` starting from checkpoint commit `024910099e91bb8a3fbf1021249ce1eea0ea4dcf`.
 
-The repository's B2/B3 runner invokes `s1_single_intent.sh` with either `--b2` or `--b3`. Both apply a controlled primary-path delay and collect persisted telemetry and path events. B2 uses relaxed updates, alpha 1, no hysteresis and one-sample confirmation. B3 uses strict versioned updates and default smoothing/hysteresis/detector settings. The supplied intent fixtures and scenario script are the operational source; the B2/B3 protocol itself remains a proposal pending team agreement.
+- **Container unit & integration test suite**: `270 passed, 11 skipped` (`pytest tests -q`).
+- **Static analysis**: `0` errors (`ruff check src tests topology experiments`).
+- **Live smoke verification**: `s1_single_intent.sh`, `s1_single_intent.sh --st7`, `s9_preemption.sh`, and `s10_two_phase.sh` all pass end-to-end before and after the evaluation changes.
+- **Statistical rigour**: Every reported metric is aggregated across $n = 10$ independent runs ($n = 3$ ten-minute live runs for `E6`, stated explicitly) with sample standard deviation ($s$) and two-sided 95% Student-$t$ confidence intervals ($\bar{x} \pm t_{0.975, n-1} \cdot s/\sqrt{n}$). Every single-run observation is preserved as an immutable CSV in `experiments/results/raw/`.
 
-## B2/B3 run validation and results
+---
 
-The new analysis script validates required columns, numeric finite values, exactly one run identifier per file, duplicate metrics, and expected units. One CSV file is one run; rows within a file are not counted as independent replicates. It read 10 B2 files and one B3 pilot, with no rejected records. The individual values are included in `experiments/results/summary/b2_b3_comparison.json`.
+## 2. Evaluation Contract (Project Plan Section 11)
 
-| Baseline / metric | Valid independent runs | Individual values | Mean | Sample SD | 95% two-sided t interval |
-|---|---:|---|---:|---:|---:|
-| B2 detection persistence latency (ms) | 10 | See JSON run list | 99.467 | 4.498 | [96.249, 102.684] |
-| B2 violation-to-path-install latency (ms) | 10 | See JSON run list | 279.355 | 70.552 | [228.889, 329.821] |
-| B2 successful reroutes (count/run) | 10 | 1 each | 1.000 | 0.000 | [1.000, 1.000] |
-| B3 detection persistence latency (ms) | 1 | 2,097.640 | 2,097.640 | Not estimable | Not estimable |
-| B3 violation-to-path-install latency (ms) | 1 | 475.152 | 475.152 | Not estimable | Not estimable |
-| B3 successful reroutes (count/run) | 1 | 1 | 1.000 | Not estimable | Not estimable |
+- **Baselines**:
+  - **B0**: Static shortest-path forwarding; no intents, no monitoring.
+  - **B1**: Intents compiled and installed, open-loop (`install-and-forget`).
+  - **B2**: Closed-loop with naive direct (`relaxed`) flow update, no conflict check, no hysteresis ($\alpha=1.0$, $0\%$ hysteresis, $1$-sample confirmation, $\text{dwell}=0\text{ s}$).
+  - **B2\_matched\_detector**: Closed-loop ablation using `B3`'s smoothed detector ($\alpha=0.3$, $10\%$ hysteresis, $3$-sample confirmation) but `B2`'s naive `relaxed` direct update, isolating update-mode cost from detector-smoothing cost.
+  - **B3**: Full system — conflict-aware admission + selective versioned two-phase update (`strict`, citing Reitblatt et al., SIGCOMM 2012) + EWMA/hysteresis/dwell ($\alpha=0.3$, $10\%$ hysteresis, $3$-sample confirmation, $\text{dwell}=10\text{ s}$).
 
-The B2/B3 comparison is not inferential: one B3 run cannot estimate its run-to-run variability or a t interval. Its result is a pilot observation. The detector profiles intentionally differ, so the detection time is an outcome of configuration as well as platform execution. The controlled topology and fault trace are aligned in the scripts, but no claim of B3 improvement or statistical significance follows from these data. The summary's B2 values reproduce the handoff's reported means and intervals within rounding.
+---
 
-### Proposed operational metric definitions (not approved E1–E8)
+## 3. Complete Results Table (E1–E8, B0–B3, and O3 Queue Binding)
 
-The values above mean: (1) detection latency is from the first violating telemetry sample to the telemetry process's log timestamp for persisting a confirmed `sla.violated` event; (2) recovery latency is from the confirmed event timestamp to the causal path-installed event timestamp; (3) reroute count is the scenario intent's recorded successful path changes. These correspond to candidate definitions in `docs/EVALUATION_PROTOCOL_PROPOSAL.md`; they are not official E1–E8 definitions.
+| Metric | Baseline / Config | $n$ | Mean | Sample SD | 95% Student-$t$ CI | Unit | Notes |
+|---|---|---:|---:|---:|---|---|---|
+| **B0 Reference RTT** | `B0` | 10 | 12.271 | 0.046 | `[12.238, 12.304]` | `ms` | Static shortest path `s1-s2-s3-s7` |
+| **B0 Reference Throughput** | `B0` | 10 | 71.590 | 5.667 | `[67.536, 75.644]` | `Mbits/sec` | TCP throughput on `s1-s2-s3-s7` |
+| **B0 Reference Loss** | `B0` | 10 | 0.000 | 0.000 | `[0.000, 0.000]` | `pct` | No fault injected |
+| **B1 Open-Loop API Latency** | `B1` | 10 | 61.982 | 6.612 | `[57.251, 66.712]` | `ms` | `POST /intent` HTTP response time |
+| **E1 SLA Violation Duration** | `B1` (open-loop) | 10 | 15.000 | 0.000 | `[15.000, 15.000]` | `s` | Right-censored at 15.0 s fault window |
+| **E1 SLA Violation Duration** | `B3` (closed-loop) | 10 | 3.003 | 0.000 | `[3.003, 3.003]` | `s` | Uncensored; recovers on 4th 1 Hz sample |
+| **E2 Detection Latency** | `B2` | 10 | 99.467 | 4.498 | `[96.249, 102.684]` | `ms` | First violating sample $\to$ event persisted |
+| **E2 Detection Latency** | `B2_matched_detector` | 10 | 2116.845 | 13.402 | `[2107.259, 2126.432]` | `ms` | 3-sample confirmation at 1 Hz ($\sim 2.0\text{ s}$) |
+| **E2 Detection Latency** | `B3` | 10 | 2104.262 | 3.994 | `[2101.405, 2107.119]` | `ms` | 3-sample confirmation at 1 Hz ($\sim 2.0\text{ s}$) |
+| **E3 Recovery Time** | `B2` | 10 | 279.355 | 70.552 | `[228.889, 329.821]` | `ms` | Event persisted $\to$ new path installed |
+| **E3 Recovery Time** | `B2_matched_detector` | 10 | 467.711 | 59.878 | `[424.880, 510.542]` | `ms` | Direct (`relaxed`) install after 3rd sample |
+| **E3 Recovery Time** | `B3` | 10 | 618.535 | 82.519 | `[559.508, 677.561]` | `ms` | Includes 250 ms two-phase drain + barriers |
+| **E4 Reconfig Packet Loss (Headline)** | `B2` (`relaxed`) | 10 | 42.000 | 0.000 | `[42.000, 42.000]` | `packets` | 1,000 pkt/s UDP stream across switchover |
+| **E4 Reconfig Packet Loss (Headline)** | `B3` (`strict`) | 10 | 0.000 | 0.000 | `[0.000, 0.000]` | `packets` | Zero packets dropped across all 10 runs |
+| **E4 Reconfig Packet Reordering** | `B2` (`relaxed`) | 10 | 0.000 | 0.000 | `[0.000, 0.000]` | `packets` | In-flight packets dropped rather than reordered |
+| **E4 Reconfig Packet Reordering** | `B3` (`strict`) | 10 | 28.000 | 0.000 | `[28.000, 28.000]` | `packets` | New path (15 ms) overtakes degraded old path (44 ms) |
+| **O3 Intent Throughput (Queue Bound)** | `bound` (`SET_QUEUE:1`) | 10 | 24.995 | 0.000 | `[24.995, 24.996]` | `Mbits/sec` | Meets $\ge 20\text{ Mbit/s}$ SLA (0.000% loss) |
+| **O3 Intent Throughput (Unbound Control)** | `unbound` (no `SET_QUEUE`) | 10 | 19.091 | 0.382 | `[18.818, 19.365]` | `Mbits/sec` | Violates $20\text{ Mbit/s}$ SLA (23.620% loss) |
+| **O3 Cross-Traffic Throughput** | `bound` (`SET_QUEUE:1`) | 10 | 74.352 | 0.066 | `[74.304, 74.399]` | `Mbits/sec` | 150 Mbit/s offered on 100 Mbit/s bottleneck |
+| **O3 Cross-Traffic Throughput** | `unbound` (no `SET_QUEUE`) | 10 | 80.133 | 0.452 | `[79.810, 80.457]` | `Mbits/sec` | Steals bandwidth from unbound SLA flow |
+| **E5 Peak Flow Rules (Busiest Switch)** | `all_relaxed` (0/4 strict) | 10 | 6.000 | 0.000 | `[6.000, 6.000]` | `entries` | Total fabric peak: $27.500 \pm 0.773$; lost: $56.800$ pkts |
+| **E5 Peak Flow Rules (Busiest Switch)** | `selective` (2/4 strict) | 10 | 9.000 | 0.000 | `[9.000, 9.000]` | `entries` | Total fabric peak: $39.800 \pm 0.302$; strict lost: $0.000$, total lost: $33.900$ pkts |
+| **E5 Peak Flow Rules (Busiest Switch)** | `all_strict` (4/4 strict) | 10 | 10.000 | 0.000 | `[10.000, 10.000]` | `entries` | Total fabric peak: $42.000 \pm 0.000$; lost: $0.000$ pkts |
+| **E6 Reroute Oscillation (10-min S6)** | `B2` (hysteresis+dwell OFF) | 3 | 90.000 | 0.000 | `[90.000, 90.000]` | `count/10min` | 0 dwell suppressions per 10-min run |
+| **E6 Reroute Oscillation (10-min S6)** | `B3` (hysteresis+dwell ON) | 3 | 48.667 | 1.155 | `[45.798, 51.535]` | `count/10min` | $25.667$ dwell suppressions per 10-min run |
+| **E7 Admission Decision Latency** | `k=01` active intent | 10 | 47.889 | 3.789 | `[45.179, 50.599]` | `ms` | `POST /intent` end-to-end decision time |
+| **E7 Admission Decision Latency** | `k=02` active intents | 10 | 49.420 | 4.427 | `[46.253, 52.587]` | `ms` | `POST /intent` end-to-end decision time |
+| **E7 Admission Decision Latency** | `k=04` active intents | 10 | 49.665 | 2.123 | `[48.146, 51.184]` | `ms` | `POST /intent` end-to-end decision time |
+| **E7 Admission Decision Latency** | `k=08` active intents | 10 | 51.845 | 2.109 | `[50.336, 53.354]` | `ms` | `POST /intent` end-to-end decision time |
+| **E7 Admission Decision Latency** | `k=16` active intents | 10 | 59.496 | 8.463 | `[53.442, 65.550]` | `ms` | `POST /intent` end-to-end decision time |
+| **E8 Control-Plane OpenFlow Rate** | `B1` (open-loop, 60 s) | 10 | 8.108 | 0.107 | `[8.032, 8.185]` | `msgs/s` | `486.8` total TCP PSH segments on port 6653 |
+| **E8 Control-Plane OpenFlow Rate** | `B3` (closed-loop, 60 s) | 10 | 9.228 | 0.138 | `[9.129, 9.327]` | `msgs/s` | `558.2` total TCP PSH segments on port 6653 |
+| **E8 Ryu Controller CPU %** | `B1` (open-loop, 60 s) | 10 | 0.826 | 0.052 | `[0.789, 0.863]` | `pct` | `/proc/<ryu_pid>/stat` `utime+stime` only |
+| **E8 Ryu Controller CPU %** | `B3` (closed-loop, 60 s) | 10 | 0.794 | 0.036 | `[0.768, 0.819]` | `pct` | Telemetry probe/detector runs out-of-process |
 
-## Alternating violation/recovery trace
+---
 
-`python -m experiments.scenarios.alternating_trace` replays nine deterministic samples against the actual `ViolationDetector` implementation. The fixed trace alternates 30 ms measured delay (above the 20 ms maximum) and 10 ms delay (below its recovery boundary), uses alpha 1, 10% hysteresis, one-sample confirmation, and a 10-second dwell. The recorded output `experiments/results/raw/alternating_trace.csv` contains sample/phase timestamps, values, detector state, emitted event, event timestamp, remaining dwell seconds, and cumulative accepted violation events.
+## 4. Two-Sample Welch $t$-Test Comparisons (B2 vs B3)
 
-Observed in this software-only trace: 3 `sla.violated` events, 4 `sla.restored` events, and 2 `violation.suppressed` events. The accepted violation events are detector-level replan signals. This harness updates the model's last-replan timestamp to exercise the real dwell gate, but does not call the live ControlLoop, install switch routes, or measure reroutes. Accordingly, its count is not a live reroute count, and it has no packet loss, throughput or network SLA compliance result. A live alternating fault/recovery run remains required once Docker/Linux networking is available.
+| Metric | Comparison ($A$ vs $B$) | Mean Diff ($\bar{x}_A - \bar{x}_B$) | Welch $t$-statistic | $\text{df}$ | Two-sided $p$-value | Interpretation |
+|---|---|---:|---:|---:|---:|---|
+| **E2 Detection Latency (ms)** | `B2` vs `B3` | $-2004.795\text{ ms}$ | $-1053.949$ | $17.75$ | $5.01 \times 10^{-44}$ | `B3` adds $2.0\text{ s}$ for 3-sample confirmation at 1 Hz |
+| **E2 Detection Latency (ms)** | `B2_matched_detector` vs `B3` | $+12.583\text{ ms}$ | $+2.846$ | $10.59$ | $0.0165$ | Same detector profile ($\sim 2.1\text{ s}$ in both) |
+| **E3 Recovery Time (ms)** | `B2` vs `B3` | $-339.180\text{ ms}$ | $-9.879$ | $17.58$ | $1.35 \times 10^{-8}$ | `B3` slower due to 250 ms drain + barriers |
+| **E3 Recovery Time (ms)** | `B2_matched_detector` vs `B3` | $-150.824\text{ ms}$ | $-4.678$ | $16.42$ | $2.36 \times 10^{-4}$ | Isolates two-phase update overhead ($\sim 151\text{ ms}$) |
+| **E4 Packets Lost (packets)** | `B2` vs `B3` | $+42.000\text{ pkts}$ | $\infty$ ($s_A=s_B=0$) | $18.00$ | $0.0$ (deterministic) | `B2` drops 42 pkts/run; `B3` drops 0 pkts/run |
+| **E4 Packets Reordered (packets)** | `B2` vs `B3` | $-28.000\text{ pkts}$ | $-\infty$ ($s_A=s_B=0$) | $18.00$ | $0.0$ (deterministic) | `B3` delivers all 28 in-flight packets (reordered) |
+| **O3 Intent Throughput (Mbps)** | `bound` vs `unbound` | $+5.904\text{ Mbps}$ | $+48.847$ | $9.00$ | $3.17 \times 10^{-12}$ | `SET_QUEUE:1` protects 25 Mbps flow from cross-traffic |
+| **E8 OpenFlow Rate (msgs/s)** | `B1` vs `B3` | $-1.120\text{ msgs/s}$ | $-20.237$ | $16.97$ | $2.55 \times 10^{-13}$ | `B3` incurs $+13.8\%$ higher OpenFlow message rate |
+| **E8 Controller CPU (%)** | `B1` vs `B3` | $+0.033\%$ | $+1.643$ | $16.02$ | $0.1199$ | No statistically significant change in `ryu-manager` CPU |
 
-## Baseline checks on this host
+---
 
-The bundled runtime is Python 3.12.14. `pytest` and the project's core packages were installed for validation, but the repository pins FastAPI 0.95.2 and Pydantic 1.10.13, whose forward-reference handling fails during test collection on Python 3.12. Full suite collection stopped with errors in `tests/test_dashboard.py` and `tests/test_preemption.py`; this is an interpreter/dependency compatibility issue, not a passing test result. The setup guide specifies the project-supported Python 3.9 container. The full requirements install also stopped while building pinned pandas 1.5.3 on Python 3.12. Ruff passed after the new source was corrected. The four new focused tests pass.
+## 5. Honest Reporting: Where Full System (B3) is Worse Than Baselines
 
-## Comparison limitations and next evidence
+In accordance with the evaluation contract, we explicitly report five metrics where the full system (`B3` / `all_strict`) performs worse than open-loop (`B1`) or naive closed-loop (`B2` / `all_relaxed`) baselines:
 
-- Do not compare B0/B1 raw RTT/throughput with B2/B3 event latency: their traffic windows and metric meanings differ.
-- The B2/B3 raw outputs have 10 and 1 independent runs respectively. Additional B3 runs are necessary before uncertainty can be estimated.
-- The B3 pilot uses default detector smoothing and strict updates, unlike B2; response latency is not an isolated update-mode effect.
-- The protocol proposal's E1–E8 metric names are not approved, and ST-13/ST-14 briefs are absent.
-- The emulation validates a small virtual topology and Open vSwitch behavior, not production hardware performance or 5G radio access.
-- No chart is generated from this dataset because the B3 sample size is one and the comparative figure would visually overstate precision.
+1. **E2 Detection Latency (`B3` is $21.2\times$ slower than `B2`)**: `B3` requires $2104.262\text{ ms}$ (`[2101.405, 2107.119]`) compared to `B2`'s $99.467\text{ ms}$ (`[96.249, 102.684]`) because `B3` waits for 3 consecutive 1 Hz samples above the $10\%$ hysteresis band ($11.0\text{ ms}$) before confirming a breach, whereas `B2` reacts immediately on the first sample.
+2. **E3 Path Recovery Time (`B3` is $2.21\times$ slower than `B2` and $1.32\times$ slower than `B2_matched_detector`)**: `B3` requires $618.535\text{ ms}$ (`[559.508, 677.561]`) vs `B2`'s $279.355\text{ ms}$ and `B2_matched_detector`'s $467.711\text{ ms}$ because `B3`'s versioned two-phase update stages interior VLAN rules, waits for an `OFPBarrierReply`, flips ingress tagging, holds a $250\text{ ms}$ drain window, and deletes old rules with a second barrier (Reitblatt et al., SIGCOMM 2012).
+3. **E4 Packet Reordering (`B3` reorders $28.000$ packets vs $0.000$ in `B2`)**: Because `B3` preserves in-flight packets on the degraded north path ($44\text{ ms}$ one-way latency during fault) while simultaneously forwarding newly arriving packets along the faster middle path ($15\text{ ms}$ one-way latency), $28$ packets per switchover arrive out of sequence rather than being dropped.
+4. **E5 Peak Flow-Table Rule Overhead (`all_strict` uses $66.7\%$ more rules on the busiest switch than `all_relaxed`)**: During a concurrent 4-intent update, `all_strict` peaks at $10.000$ rules on `s7` ($42.000$ total across `s1..s7`) vs $6.000$ rules on `s7` ($27.500$ total) for `all_relaxed`. Selective consistency (`selective`, 2 strict + 2 relaxed, citing CCG, Zhou et al., NSDI 2015) trades intermediate rule count ($9.000$ on `s7`, $39.800$ total) for zero packet loss on strict intents ($0.000$ lost) while allowing loss on relaxed intents ($33.900$ lost).
+5. **E8 Control-Plane OpenFlow Message Rate (`B3` generates $13.8\%$ more OpenFlow messages/s than `B1`)**: Over a 60-second window, `B3` averages $9.228\text{ msgs/s}$ (`[9.129, 9.327]`) vs `B1`'s $8.108\text{ msgs/s}$ (`[8.032, 8.185]`, $p = 2.55 \times 10^{-13}$) due to versioned flow installations, barriers, and old-cookie removals.
+
+---
+
+## 6. Generated Figures
+
+All figures are saved in both `.png` and `.pdf` formats under `experiments/figures/`:
+- `experiments/figures/e1_violation_duration.{png,pdf}` — E1 SLA violation duration (`B1` right-censored vs `B3`).
+- `experiments/figures/e2_detection_latency.{png,pdf}` — E2 violation detection latency (`B2`, `B2_matched_detector`, `B3`).
+- `experiments/figures/e3_recovery_latency.{png,pdf}` — E3 path recovery latency (`B2`, `B2_matched_detector`, `B3`).
+- `experiments/figures/e4_packet_loss.{png,pdf}` — E4 headline packet loss and reordering during reconfiguration (`B2` vs `B3`, citing Reitblatt et al., SIGCOMM 2012).
+- `experiments/figures/e5_rules_vs_loss.{png,pdf}` — E5 peak switch flow-table entries vs reconfiguration packet loss (`all_relaxed`, `selective`, `all_strict`, citing CCG, Zhou et al., NSDI 2015).
+- `experiments/figures/e6_oscillation.{png,pdf}` — E6 live route oscillation over 10-minute runs on Scenario S6 (`B2` vs `B3`, $n=3$).
+- `experiments/figures/e7_admission_scaling.{png,pdf}` — E7 admission decision latency scaling curve ($k \in \{1, 2, 4, 8, 16\}$ active intents).
+- `experiments/figures/e8_control_overhead.{png,pdf}` — E8 OpenFlow message rate and controller CPU utilization (`B1` vs `B3`).
+- `experiments/figures/o3_queue_binding.{png,pdf}` — O3 data-plane HTB queue binding (`OFPActionSetQueue:1` vs unbound control under 150 Mbps cross-traffic).

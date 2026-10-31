@@ -70,11 +70,19 @@ def welch_t_test(xs: List[float], ys: List[float]) -> Optional[dict]:
     v1, v2 = statistics.variance(xs), statistics.variance(ys)
     se2 = (v1 / n1) + (v2 / n2)
     if se2 <= 0.0:
+        if m1 == m2:
+            return {
+                "t_statistic": 0.0,
+                "degrees_of_freedom": float(n1 + n2 - 2),
+                "p_value_two_sided": 1.0,
+                "mean_diff": 0.0,
+            }
         return {
-            "t_statistic": 0.0,
+            "t_statistic": None,
             "degrees_of_freedom": float(n1 + n2 - 2),
-            "p_value_two_sided": 1.0,
+            "p_value_two_sided": 0.0,
             "mean_diff": m1 - m2,
+            "note": "zero sample variance in both groups with distinct constant values (deterministic separation)",
         }
     t_stat = (m1 - m2) / math.sqrt(se2)
     denom = ((v1 / n1) ** 2) / (n1 - 1) + ((v2 / n2) ** 2) / (n2 - 1)
