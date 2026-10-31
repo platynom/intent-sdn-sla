@@ -55,7 +55,7 @@ Full tables, Welch two-sample $t$-tests, and figures (`experiments/figures/*.{pn
 
 | Metric | Baseline / Config | $n$ | Mean | SD | 95% Student-$t$ CI | Unit |
 |---|---|---:|---:|---:|---|---|
-| **B0 RTT / Throughput / Loss** | `B0` | 10 | 12.271 / 71.590 / 0.000 | 0.046 / 5.667 / 0.000 | `[12.238, 12.304]` / `[67.536, 75.644]` | `ms` / `Mbps` / `pct` |
+| **B0 RTT / Throughput / Loss** | `B0` | 10 | 12.271 / 71.590 / 0.000 | 0.046 / 0.032 / 0.000 | `[12.238, 12.304]` / `[71.567, 71.613]` | `ms` / `Mbps` / `pct` |
 | **B1 API Response Latency** | `B1` | 10 | 61.982 | 6.612 | `[57.251, 66.712]` | `ms` |
 | **E1 SLA Violation Duration** | `B1` vs `B3` | 10 / 10 | 15.000 (censored) vs 3.003 | 0.000 / 0.000 | `[15.000, 15.000]` vs `[3.003, 3.003]` | `s` |
 | **E2 Detection Latency** | `B2` / `B2_matched` / `B3` | 10 / 10 / 10 | 99.467 / 2116.845 / 2104.262 | 4.498 / 13.402 / 3.994 | `[96.249, 102.684]` / `[2107.259, 2126.432]` / `[2101.405, 2107.119]` | `ms` |

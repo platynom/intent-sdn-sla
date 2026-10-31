@@ -27,7 +27,7 @@ All live network experiments were executed inside the project's privileged Docke
 | Metric | Baseline / Config | $n$ | Mean | Sample SD | 95% Student-$t$ CI | Unit | Notes |
 |---|---|---:|---:|---:|---|---|---|
 | **B0 Reference RTT** | `B0` | 10 | 12.271 | 0.046 | `[12.238, 12.304]` | `ms` | Static shortest path `s1-s2-s3-s7` |
-| **B0 Reference Throughput** | `B0` | 10 | 71.590 | 5.667 | `[67.536, 75.644]` | `Mbits/sec` | TCP throughput on `s1-s2-s3-s7` |
+| **B0 Reference Throughput** | `B0` | 10 | 71.590 | 0.032 | `[71.567, 71.613]` | `Mbits/sec` | TCP throughput on `s1-s2-s3-s7` |
 | **B0 Reference Loss** | `B0` | 10 | 0.000 | 0.000 | `[0.000, 0.000]` | `pct` | No fault injected |
 | **B1 Open-Loop API Latency** | `B1` | 10 | 61.982 | 6.612 | `[57.251, 66.712]` | `ms` | `POST /intent` HTTP response time |
 | **E1 SLA Violation Duration** | `B1` (open-loop) | 10 | 15.000 | 0.000 | `[15.000, 15.000]` | `s` | Right-censored at 15.0 s fault window |
