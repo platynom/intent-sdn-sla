@@ -6,22 +6,24 @@ set -euo pipefail
 ST7_CLOSE_LOOP=0
 B1_OPEN_LOOP=0
 B2_PROFILE=0
+B2_MATCHED_PROFILE=0
 B3_PROFILE=0
 for arg in "$@"; do
     case "$arg" in
         --st7) ST7_CLOSE_LOOP=1 ;;
         --b1) B1_OPEN_LOOP=1 ;;
         --b2) B2_PROFILE=1; ST7_CLOSE_LOOP=1 ;;
+        --b2-matched) B2_MATCHED_PROFILE=1; ST7_CLOSE_LOOP=1 ;;
         --b3) B3_PROFILE=1; ST7_CLOSE_LOOP=1 ;;
-        *) echo "Usage: $0 [--st7 | --b1 | --b2 | --b3]"; exit 2 ;;
+        *) echo "Usage: $0 [--st7 | --b1 | --b2 | --b2-matched | --b3]"; exit 2 ;;
     esac
 done
-if [[ "$#" -gt 1 ]] && [[ "$B1_OPEN_LOOP" -eq 1 || "$B2_PROFILE" -eq 1 || "$B3_PROFILE" -eq 1 ]]; then
-    echo "--b1, --b2 and --b3 are independent experiment modes"
+if [[ "$#" -gt 1 ]] && [[ "$B1_OPEN_LOOP" -eq 1 || "$B2_PROFILE" -eq 1 || "$B2_MATCHED_PROFILE" -eq 1 || "$B3_PROFILE" -eq 1 ]]; then
+    echo "--b1, --b2, --b2-matched and --b3 are independent experiment modes"
     exit 2
 fi
-if [[ "$B2_PROFILE" -eq 1 && "$B3_PROFILE" -eq 1 ]]; then
-    echo "--b2 and --b3 are mutually exclusive"
+if [[ $((B2_PROFILE + B2_MATCHED_PROFILE + B3_PROFILE)) -gt 1 ]]; then
+    echo "--b2, --b2-matched and --b3 are mutually exclusive"
     exit 2
 fi
 
@@ -94,6 +96,10 @@ if [ "${B2_PROFILE}" -eq 1 ]; then
     INTENT_FILE="experiments/scenarios/fixtures/b2_single_intent.yaml"
     TEAM16_EXPERIMENT_MODE=b2 python3.9 -m uvicorn src.intent_manager.api:app \
         --host 127.0.0.1 --port 8000 >"${LOG_DIR}/api-b2-closed-loop.log" 2>&1 &
+elif [ "${B2_MATCHED_PROFILE}" -eq 1 ]; then
+    INTENT_FILE="experiments/scenarios/fixtures/b2_matched_detector.yaml"
+    python3.9 -m uvicorn src.intent_manager.api:app \
+        --host 127.0.0.1 --port 8000 >"${LOG_DIR}/api-b2-matched-closed-loop.log" 2>&1 &
 elif [ "${B3_PROFILE}" -eq 1 ]; then
     INTENT_FILE="experiments/scenarios/fixtures/b3_single_intent.yaml"
     python3.9 -m uvicorn src.intent_manager.api:app \
@@ -133,7 +139,7 @@ net.stop()
 DRIVER_PID=$!
 sleep 4
 
-if [ "${B2_PROFILE}" -eq 1 ] || [ "${B3_PROFILE}" -eq 1 ]; then
+if [ "${B2_PROFILE}" -eq 1 ] || [ "${B2_MATCHED_PROFILE}" -eq 1 ] || [ "${B3_PROFILE}" -eq 1 ]; then
     NETEM_PARENT=$(sudo tc qdisc show dev s1-eth2 \
         | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") {print $(i+1); exit}}')
     if [ -z "${NETEM_PARENT}" ]; then
@@ -184,7 +190,7 @@ fi
 if [ -n "${QUEUE_ID}" ]; then
     QUEUE_RATE=$(sudo ovs-vsctl get queue "${QUEUE_ID}" other_config || true)
 fi
-if [ "${B2_PROFILE}" -eq 1 ] || [ "${B3_PROFILE}" -eq 1 ]; then
+if [ "${B2_PROFILE}" -eq 1 ] || [ "${B2_MATCHED_PROFILE}" -eq 1 ] || [ "${B3_PROFILE}" -eq 1 ]; then
     echo "PASS: latency-only experiment intent does not require a bandwidth queue"
 elif echo "${QUEUE_RATE}" | grep -q "20000000"; then
     echo "PASS: 20 Mbps HTB queue attached to s1-eth2"
@@ -304,7 +310,7 @@ from src.common import db
 conn = db.connect()
 print(db.reroute_count(conn, 'INT-001'))
 conn.close()")
-            if [ "${B2_PROFILE}" -eq 1 ]; then
+            if [ "${B2_PROFILE}" -eq 1 ] || [ "${B2_MATCHED_PROFILE}" -eq 1 ]; then
                 python3.9 - <<'PY'
 from src.common import db
 conn = db.connect()
@@ -346,7 +352,7 @@ conn.close()")
                 echo "FAIL: no live UDP probe reply after the reroute"
                 exit 1
             fi
-            if [ "${B2_PROFILE}" -eq 1 ] || [ "${B3_PROFILE}" -eq 1 ]; then
+            if [ "${B2_PROFILE}" -eq 1 ] || [ "${B2_MATCHED_PROFILE}" -eq 1 ] || [ "${B3_PROFILE}" -eq 1 ]; then
                 POST_ROUTE_DELAY=$(echo "${POST_ROUTE_LOG}" \
                     | sed -n 's/.*delay_ms=\([0-9.]*\).*/\1/p')
                 if ! awk -v delay="${POST_ROUTE_DELAY}" 'BEGIN {exit !(delay < 35)}'; then
@@ -358,8 +364,14 @@ conn.close()")
             echo "PASS: controller consumed persisted violation and installed ${ALTERNATE_ROUTE}"
             echo "PASS: matching UDP traffic received a probe reply after the reroute"
             echo "PASS: reroute count=${REROUTE_COUNT}; causal audit entries=${AUDIT_COUNT}"
-            if [ "${B2_PROFILE}" -eq 1 ] || [ "${B3_PROFILE}" -eq 1 ]; then
-                python3.9 - "${RUN_STARTED_AT}" "${B2_PROFILE}" <<'PY'
+            if [ "${B2_PROFILE}" -eq 1 ] || [ "${B2_MATCHED_PROFILE}" -eq 1 ] || [ "${B3_PROFILE}" -eq 1 ]; then
+                PROFILE_TAG="b3_closed_loop"
+                if [ "${B2_PROFILE}" -eq 1 ]; then
+                    PROFILE_TAG="b2_closed_loop"
+                elif [ "${B2_MATCHED_PROFILE}" -eq 1 ]; then
+                    PROFILE_TAG="b2_matched_detector"
+                fi
+                python3.9 - "${RUN_STARTED_AT}" "${PROFILE_TAG}" <<'PY'
 import csv
 import re
 import sys
@@ -372,7 +384,7 @@ from src.common.models import Measurement
 
 conn = db.connect()
 start = float(sys.argv[1])
-profile = 'b2' if sys.argv[2] == '1' else 'b3'
+profile_tag = sys.argv[2]
 intent = db.load_intent(conn, 'INT-001')
 measurements = [
     Measurement(
@@ -389,7 +401,7 @@ first_breach = next((sample for sample in measurements if sample.violates(intent
 events = [event for event in db.events_for(conn, intent.id)
           if event.at >= start]
 violations = [event for event in events if event.type is EventType.SLA_VIOLATED]
-assert first_breach is not None and violations, 'B2 run did not produce a measured confirmed violation'
+assert first_breach is not None and violations, 'Run did not produce a measured confirmed violation'
 violation = min(violations, key=lambda event: event.at)
 telemetry_log = Path('/var/log/team16/telemetry.log').read_text(encoding='utf-8')
 persisted_matches = [
@@ -398,7 +410,7 @@ persisted_matches = [
     if 'event=sla.violated' in line
 ]
 persisted_matches = [match for match in persisted_matches if match]
-assert persisted_matches, 'B2 violation persistence timestamp missing from telemetry log'
+assert persisted_matches, 'Violation persistence timestamp missing from telemetry log'
 event_persisted_at = float(persisted_matches[-1].group(1))
 causal_installs = [
     event for event in events
@@ -406,7 +418,7 @@ causal_installs = [
     and event.at >= violation.at
     and {'measurement', 'threshold', 'decision', 'action'} <= set(event.payload)
 ]
-assert causal_installs, 'B2 violation has no causal path-installed event'
+assert causal_installs, 'Violation has no causal path-installed event'
 recovery = min(causal_installs, key=lambda event: event.at)
 metrics = [
     ('detection_latency', (event_persisted_at - first_breach.at) * 1000, 'ms'),
@@ -416,13 +428,13 @@ metrics = [
 result_dir = Path('experiments/results/raw')
 result_dir.mkdir(parents=True, exist_ok=True)
 stamp = time.strftime('%Y%m%d%H%M%S')
-result_path = result_dir / f'{profile}_closed_loop_{stamp}.csv'
+result_path = result_dir / f'{profile_tag}_{stamp}.csv'
 with result_path.open('w', newline='', encoding='utf-8') as output:
     writer = csv.writer(output)
     writer.writerow(['run_id', 'timestamp', 'metric', 'value', 'unit'])
     for metric, value, unit in metrics:
         writer.writerow([1, int(time.time()), metric, f'{value:.6f}', unit])
-print(f'{profile.upper()} run metrics written to {result_path}')
+print(f'{profile_tag.upper()} run metrics written to {result_path}')
 conn.close()
 PY
             fi
@@ -433,6 +445,9 @@ PY
         fi
         if [ "${B2_PROFILE}" -eq 1 ]; then
             echo "=== SCENARIO B2: RELAXED CLOSED-LOOP PILOT PASSED ==="
+        fi
+        if [ "${B2_MATCHED_PROFILE}" -eq 1 ]; then
+            echo "=== SCENARIO B2 MATCHED-DETECTOR: RELAXED CLOSED-LOOP PASSED ==="
         fi
         exit 0
     fi

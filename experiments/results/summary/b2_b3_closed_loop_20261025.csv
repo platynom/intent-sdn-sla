@@ -1,7 +1,10 @@
 baseline,metric,n,mean,stdev,ci95_t_low,ci95_t_high,min,max,unit,interpretation
-B2,detection_latency,10,99.467,4.498,96.249,102.684,94.968,110.836,ms,"Controlled 40 ms primary-link delay; relaxed update; alpha=1; no hysteresis; one-sample confirmation"
-B2,recovery_latency,10,279.355,70.552,228.889,329.821,215.894,440.267,ms,"From confirmed SLA event timestamp to causal path-installed event timestamp"
-B2,reroute_count,10,1.000,0.000,1.000,1.000,1.000,1.000,count,"One reroute in each run"
-B3,detection_latency,1,2097.640,,,,,2097.640,2097.640,ms,"Single pilot only; strict update and default detector smoothing/hysteresis; not comparable as a ten-run result"
-B3,recovery_latency,1,475.152,,,,,475.152,475.152,ms,"Single pilot only; strict versioned path update"
-B3,reroute_count,1,1.000,,,,,1.000,1.000,count,"Single pilot only"
+B2,detection_latency,10,99.467,4.498,96.249,102.684,94.968,110.836,ms,Controlled 40 ms primary-link delay; relaxed update; alpha=1; no hysteresis; one-sample confirmation
+B2,recovery_latency,10,279.355,70.552,228.889,329.821,215.894,440.267,ms,Controlled 40 ms primary-link delay; relaxed update; alpha=1; no hysteresis; one-sample confirmation
+B2,reroute_count,10,1.000,0.000,1.000,1.000,1.000,1.000,count,Controlled 40 ms primary-link delay; relaxed update; alpha=1; no hysteresis; one-sample confirmation
+B2_matched_detector,detection_latency,10,2116.845,13.402,2107.259,2126.432,2099.741,2141.119,ms,"Controlled 40 ms primary-link delay; relaxed update; default detector (alpha=0.3, hysteresis=0.1, 3-sample confirmation)"
+B2_matched_detector,recovery_latency,10,467.711,59.878,424.880,510.542,370.405,537.938,ms,"Controlled 40 ms primary-link delay; relaxed update; default detector (alpha=0.3, hysteresis=0.1, 3-sample confirmation)"
+B2_matched_detector,reroute_count,10,1.000,0.000,1.000,1.000,1.000,1.000,count,"Controlled 40 ms primary-link delay; relaxed update; default detector (alpha=0.3, hysteresis=0.1, 3-sample confirmation)"
+B3,detection_latency,10,2104.262,3.994,2101.405,2107.119,2097.640,2110.407,ms,"Controlled 40 ms primary-link delay; strict versioned two-phase update; default detector (alpha=0.3, hysteresis=0.1, 3-sample confirmation)"
+B3,recovery_latency,10,618.535,82.519,559.508,677.561,475.152,740.103,ms,"Controlled 40 ms primary-link delay; strict versioned two-phase update; default detector (alpha=0.3, hysteresis=0.1, 3-sample confirmation)"
+B3,reroute_count,10,1.000,0.000,1.000,1.000,1.000,1.000,count,"Controlled 40 ms primary-link delay; strict versioned two-phase update; default detector (alpha=0.3, hysteresis=0.1, 3-sample confirmation)"

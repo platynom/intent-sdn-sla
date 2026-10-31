@@ -1,5 +1,5 @@
 {
-  "comparability": "provisional; B2 and B3 have latency-only intents and use the same controlled primary-link delay; detector and update policies differ by definition. B3 currently has one run.",
+  "comparability": "B2, B2_matched_detector, and B3 have latency-only intents and use the same controlled primary-link 40 ms delay. B2 uses relaxed updates with alpha=1, hysteresis=0, consecutive=1; B2_matched_detector uses relaxed updates with B3's default detector (alpha=0.3, hysteresis=0.1, consecutive=3); B3 uses strict two-phase updates with default detector.",
   "summaries": [
     {
       "baseline": "B2",
@@ -161,55 +161,390 @@
       "ci_method": "two-sided Student t"
     },
     {
+      "baseline": "B2_matched_detector",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "individual_runs": [
+        {
+          "file": "b2_matched_detector_20261031180325.csv",
+          "value": 2105.64065
+        },
+        {
+          "file": "b2_matched_detector_20261031180348.csv",
+          "value": 2134.172201
+        },
+        {
+          "file": "b2_matched_detector_20261031180410.csv",
+          "value": 2141.11948
+        },
+        {
+          "file": "b2_matched_detector_20261031180432.csv",
+          "value": 2111.464977
+        },
+        {
+          "file": "b2_matched_detector_20261031180455.csv",
+          "value": 2107.074499
+        },
+        {
+          "file": "b2_matched_detector_20261031180517.csv",
+          "value": 2123.112679
+        },
+        {
+          "file": "b2_matched_detector_20261031180539.csv",
+          "value": 2099.741459
+        },
+        {
+          "file": "b2_matched_detector_20261031180602.csv",
+          "value": 2106.954336
+        },
+        {
+          "file": "b2_matched_detector_20261031180624.csv",
+          "value": 2115.567446
+        },
+        {
+          "file": "b2_matched_detector_20261031180646.csv",
+          "value": 2123.607159
+        }
+      ],
+      "mean": 2116.8454886,
+      "sample_stddev": 13.401600879838321,
+      "ci95_t_low": 2107.2592269089314,
+      "ci95_t_high": 2126.4317502910685,
+      "ci_method": "two-sided Student t"
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "individual_runs": [
+        {
+          "file": "b2_matched_detector_20261031180325.csv",
+          "value": 535.595179
+        },
+        {
+          "file": "b2_matched_detector_20261031180348.csv",
+          "value": 375.1719
+        },
+        {
+          "file": "b2_matched_detector_20261031180410.csv",
+          "value": 500.81706
+        },
+        {
+          "file": "b2_matched_detector_20261031180432.csv",
+          "value": 434.751987
+        },
+        {
+          "file": "b2_matched_detector_20261031180455.csv",
+          "value": 473.968029
+        },
+        {
+          "file": "b2_matched_detector_20261031180517.csv",
+          "value": 483.565807
+        },
+        {
+          "file": "b2_matched_detector_20261031180539.csv",
+          "value": 537.93788
+        },
+        {
+          "file": "b2_matched_detector_20261031180602.csv",
+          "value": 512.359142
+        },
+        {
+          "file": "b2_matched_detector_20261031180624.csv",
+          "value": 370.40472
+        },
+        {
+          "file": "b2_matched_detector_20261031180646.csv",
+          "value": 452.539444
+        }
+      ],
+      "mean": 467.7111148,
+      "sample_stddev": 59.87815345278759,
+      "ci95_t_low": 424.87984010953096,
+      "ci95_t_high": 510.5423894904691,
+      "ci_method": "two-sided Student t"
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "individual_runs": [
+        {
+          "file": "b2_matched_detector_20261031180325.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_matched_detector_20261031180348.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_matched_detector_20261031180410.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_matched_detector_20261031180432.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_matched_detector_20261031180455.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_matched_detector_20261031180517.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_matched_detector_20261031180539.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_matched_detector_20261031180602.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_matched_detector_20261031180624.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_matched_detector_20261031180646.csv",
+          "value": 1.0
+        }
+      ],
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "ci_method": "two-sided Student t"
+    },
+    {
       "baseline": "B3",
       "metric": "detection_latency",
       "unit": "ms",
-      "n_independent_runs": 1,
+      "n_independent_runs": 10,
       "individual_runs": [
         {
           "file": "b3_closed_loop_20261025165852.csv",
           "value": 2097.639799
+        },
+        {
+          "file": "b3_closed_loop_20261031175952.csv",
+          "value": 2101.378679
+        },
+        {
+          "file": "b3_closed_loop_20261031180014.csv",
+          "value": 2103.054762
+        },
+        {
+          "file": "b3_closed_loop_20261031180036.csv",
+          "value": 2110.407114
+        },
+        {
+          "file": "b3_closed_loop_20261031180059.csv",
+          "value": 2101.372957
+        },
+        {
+          "file": "b3_closed_loop_20261031180121.csv",
+          "value": 2110.208511
+        },
+        {
+          "file": "b3_closed_loop_20261031180143.csv",
+          "value": 2105.060816
+        },
+        {
+          "file": "b3_closed_loop_20261031180206.csv",
+          "value": 2105.281353
+        },
+        {
+          "file": "b3_closed_loop_20261031180228.csv",
+          "value": 2105.942249
+        },
+        {
+          "file": "b3_closed_loop_20261031180250.csv",
+          "value": 2102.274179
         }
       ],
-      "mean": 2097.639799,
-      "sample_stddev": null,
-      "ci95_t_low": null,
-      "ci95_t_high": null,
-      "ci_method": null
+      "mean": 2104.2620419,
+      "sample_stddev": 3.9936944023881997,
+      "ci95_t_low": 2101.4053235124943,
+      "ci95_t_high": 2107.1187602875057,
+      "ci_method": "two-sided Student t"
     },
     {
       "baseline": "B3",
       "metric": "recovery_latency",
       "unit": "ms",
-      "n_independent_runs": 1,
+      "n_independent_runs": 10,
       "individual_runs": [
         {
           "file": "b3_closed_loop_20261025165852.csv",
           "value": 475.151539
+        },
+        {
+          "file": "b3_closed_loop_20261031175952.csv",
+          "value": 740.103245
+        },
+        {
+          "file": "b3_closed_loop_20261031180014.csv",
+          "value": 672.392607
+        },
+        {
+          "file": "b3_closed_loop_20261031180036.csv",
+          "value": 546.379566
+        },
+        {
+          "file": "b3_closed_loop_20261031180059.csv",
+          "value": 656.965017
+        },
+        {
+          "file": "b3_closed_loop_20261031180121.csv",
+          "value": 510.090351
+        },
+        {
+          "file": "b3_closed_loop_20261031180143.csv",
+          "value": 618.499517
+        },
+        {
+          "file": "b3_closed_loop_20261031180206.csv",
+          "value": 640.890598
+        },
+        {
+          "file": "b3_closed_loop_20261031180228.csv",
+          "value": 673.581362
+        },
+        {
+          "file": "b3_closed_loop_20261031180250.csv",
+          "value": 651.293516
         }
       ],
-      "mean": 475.151539,
-      "sample_stddev": null,
-      "ci95_t_low": null,
-      "ci95_t_high": null,
-      "ci_method": null
+      "mean": 618.5347318,
+      "sample_stddev": 82.51922875695615,
+      "ci95_t_low": 559.5081327763406,
+      "ci95_t_high": 677.5613308236594,
+      "ci_method": "two-sided Student t"
     },
     {
       "baseline": "B3",
       "metric": "reroute_count",
       "unit": "count",
-      "n_independent_runs": 1,
+      "n_independent_runs": 10,
       "individual_runs": [
         {
           "file": "b3_closed_loop_20261025165852.csv",
           "value": 1.0
+        },
+        {
+          "file": "b3_closed_loop_20261031175952.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_closed_loop_20261031180014.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_closed_loop_20261031180036.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_closed_loop_20261031180059.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_closed_loop_20261031180121.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_closed_loop_20261031180143.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_closed_loop_20261031180206.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_closed_loop_20261031180228.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_closed_loop_20261031180250.csv",
+          "value": 1.0
         }
       ],
       "mean": 1.0,
-      "sample_stddev": null,
-      "ci95_t_low": null,
-      "ci95_t_high": null,
-      "ci_method": null
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "ci_method": "two-sided Student t"
+    }
+  ],
+  "welch_tests": [
+    {
+      "metric": "detection_latency",
+      "group_a": "B2",
+      "group_b": "B3",
+      "n_a": 10,
+      "n_b": 10,
+      "t_statistic": -1053.9485793191425,
+      "degrees_of_freedom": 17.751211431449665,
+      "p_value_two_sided": 5.013059467116545e-44,
+      "mean_diff": -2004.7954556
+    },
+    {
+      "metric": "detection_latency",
+      "group_a": "B2_matched_detector",
+      "group_b": "B3",
+      "n_a": 10,
+      "n_b": 10,
+      "t_statistic": 2.8455611733238575,
+      "degrees_of_freedom": 10.585978399443526,
+      "p_value_two_sided": 0.016487706517644408,
+      "mean_diff": 12.583446699999968
+    },
+    {
+      "metric": "detection_latency",
+      "group_a": "B2",
+      "group_b": "B2_matched_detector",
+      "n_a": 10,
+      "n_b": 10,
+      "t_statistic": -451.2846580142714,
+      "degrees_of_freedom": 11.00237428804842,
+      "p_value_two_sided": 7.859156796439164e-25,
+      "mean_diff": -2017.3789023
+    },
+    {
+      "metric": "recovery_latency",
+      "group_a": "B2",
+      "group_b": "B3",
+      "n_a": 10,
+      "n_b": 10,
+      "t_statistic": -9.879369663097368,
+      "degrees_of_freedom": 17.57547492360889,
+      "p_value_two_sided": 1.350553874176063e-08,
+      "mean_diff": -339.1798496
+    },
+    {
+      "metric": "recovery_latency",
+      "group_a": "B2_matched_detector",
+      "group_b": "B3",
+      "n_a": 10,
+      "n_b": 10,
+      "t_statistic": -4.678007790414927,
+      "degrees_of_freedom": 16.42039644107788,
+      "p_value_two_sided": 0.00023586691112247138,
+      "mean_diff": -150.823617
+    },
+    {
+      "metric": "recovery_latency",
+      "group_a": "B2",
+      "group_b": "B2_matched_detector",
+      "n_a": 10,
+      "n_b": 10,
+      "t_statistic": -6.43678390237329,
+      "degrees_of_freedom": 17.536485759465553,
+      "p_value_two_sided": 5.289122102665063e-06,
+      "mean_diff": -188.3562326
     }
   ],
   "runs": [
@@ -314,12 +649,202 @@
       }
     },
     {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180325.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2105.64065,
+        "recovery_latency": 535.595179,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180348.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2134.172201,
+        "recovery_latency": 375.1719,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180410.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2141.11948,
+        "recovery_latency": 500.81706,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180432.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2111.464977,
+        "recovery_latency": 434.751987,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180455.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2107.074499,
+        "recovery_latency": 473.968029,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180517.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2123.112679,
+        "recovery_latency": 483.565807,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180539.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2099.741459,
+        "recovery_latency": 537.93788,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180602.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2106.954336,
+        "recovery_latency": 512.359142,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180624.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2115.567446,
+        "recovery_latency": 370.40472,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2_matched_detector",
+      "file": "b2_matched_detector_20261031180646.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2123.607159,
+        "recovery_latency": 452.539444,
+        "reroute_count": 1.0
+      }
+    },
+    {
       "baseline": "B3",
       "file": "b3_closed_loop_20261025165852.csv",
       "run_id": 1,
       "values": {
         "detection_latency": 2097.639799,
         "recovery_latency": 475.151539,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261031175952.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2101.378679,
+        "recovery_latency": 740.103245,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261031180014.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2103.054762,
+        "recovery_latency": 672.392607,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261031180036.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2110.407114,
+        "recovery_latency": 546.379566,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261031180059.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2101.372957,
+        "recovery_latency": 656.965017,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261031180121.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2110.208511,
+        "recovery_latency": 510.090351,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261031180143.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2105.060816,
+        "recovery_latency": 618.499517,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261031180206.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2105.281353,
+        "recovery_latency": 640.890598,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261031180228.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2105.942249,
+        "recovery_latency": 673.581362,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261031180250.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2102.274179,
+        "recovery_latency": 651.293516,
         "reroute_count": 1.0
       }
     }
