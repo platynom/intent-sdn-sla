@@ -199,7 +199,8 @@ cross_mbps, cross_loss = rx_mbps_and_loss(cross_data)
 out_dir = Path(os.environ.get('O3_RAW_DIR', 'experiments/results/raw'))
 out_dir.mkdir(parents=True, exist_ok=True)
 stamp = time.strftime('%Y%m%d%H%M%S')
-out_path = out_dir / f'o3_queue_{mode}_{stamp}_{run_idx:02d}.csv'
+prefix = os.environ.get('O3_RESULT_PREFIX', 'o3_queue')
+out_path = out_dir / f'{prefix}_{mode}_{stamp}_{run_idx:02d}.csv'
 now_ts = int(time.time())
 with out_path.open('w', newline='', encoding='utf-8') as f:
     w = csv.writer(f)

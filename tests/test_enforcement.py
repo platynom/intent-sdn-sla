@@ -266,7 +266,7 @@ def test_queue_minimum_mbps_is_converted_to_bits_per_second(monkeypatch):
         return SimpleNamespace(stdout=stdout)
 
     monkeypatch.setattr(queues.subprocess, "run", fake_run)
-    queues.ensure_queue("s1", "s1-eth2", 20)
+    queues.ensure_queue("s1", "s1-eth2", 20, egress_peer="s2")
     assert any("other-config:min-rate=20000000" in argv for argv in calls)
 
 
@@ -280,7 +280,7 @@ def test_ensure_queue_reuses_existing_qos_record(monkeypatch):
         return SimpleNamespace(stdout=stdout)
 
     monkeypatch.setattr(queues.subprocess, "run", fake_run)
-    queues.ensure_queue("s1", "s1-eth2", 20)
+    queues.ensure_queue("s1", "s1-eth2", 20, egress_peer="s2")
     assert calls[1][calls[1].index("qos") + 1] == "qos-existing"
     assert not any(
         left == "create" and right == "qos"
@@ -298,9 +298,22 @@ def test_ensure_queue_creates_qos_when_port_has_none(monkeypatch):
         return SimpleNamespace(stdout="[]\n" if "get" in argv else "")
 
     monkeypatch.setattr(queues.subprocess, "run", fake_run)
-    queues.ensure_queue("s1", "s1-eth2", 20)
+    queues.ensure_queue("s1", "s1-eth2", 20, egress_peer="s2")
     assert "qos=@newqos" in calls[1]
     assert "type=linux-htb" in calls[1]
+
+
+def test_queue_root_ceiling_uses_actual_egress_link_capacity(monkeypatch):
+    """A 100 Mbps default would overstate the 40 Mbps southern link ceiling."""
+    calls = []
+
+    def fake_run(argv, **kwargs):
+        calls.append(argv)
+        return SimpleNamespace(stdout="[]\n" if "get" in argv else "")
+
+    monkeypatch.setattr(queues.subprocess, "run", fake_run)
+    queues.ensure_queue("s1", "s1-eth4", 20, egress_peer="s6")
+    assert "other-config:max-rate=40000000" in calls[1]
 
 
 def test_clear_queues_is_safe_when_nothing_is_configured(monkeypatch):

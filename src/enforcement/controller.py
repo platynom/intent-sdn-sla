@@ -377,7 +377,12 @@ class Team16Controller(BaseApp):
                 if out_port_num is not None:
                     # In OVS, port name is typically f"{sw}-eth{out_port_num}"
                     port_name = f"{sw}-eth{out_port_num}"
-                    ensure_queue(switch=sw, port=port_name, min_mbps=min_bw)
+                    ensure_queue(
+                        switch=sw,
+                        port=port_name,
+                        min_mbps=min_bw,
+                        egress_peer=next_sw,
+                    )
 
         old_plan = getattr(self, "_installed_plan_records", {}).get(intent.id)
         if old_plan is not None and old_plan.computed_at == plan.computed_at:

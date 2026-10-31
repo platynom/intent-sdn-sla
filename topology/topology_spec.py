@@ -120,6 +120,14 @@ def link_names() -> tuple[str, ...]:
     return tuple(link.name for link in LINKS)
 
 
+def link_capacity_mbps(a: str, b: str) -> float:
+    """Return the configured capacity of one switch-to-switch egress link."""
+    for link in LINKS:
+        if {link.a, link.b} == {a, b}:
+            return float(link.bw_mbps)
+    raise KeyError(f"no topology link between {a} and {b}")
+
+
 def build_graph():
     """Return a NetworkX graph of the switch fabric.
 

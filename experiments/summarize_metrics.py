@@ -196,6 +196,20 @@ def summarize_o3(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
     return res
 
 
+def summarize_o3_current(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    files = list(raw_dir.glob("o3current_queue_bound_*.csv"))
+    if not files:
+        return None
+    res = summarize_group(files, lambda _path: "bound")
+    write_summary_files(
+        res["summaries"], [], res["runs"],
+        summary_dir / "o3_current_queue_binding_summary.json",
+        summary_dir / "o3_current_queue_binding_summary.csv",
+        description="Current-code O3 bound queue using topology-derived egress capacity",
+    )
+    return res
+
+
 def summarize_e5(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
     files = list(raw_dir.glob("e5_*.csv"))
     if not files:
@@ -405,6 +419,7 @@ def main() -> int:
     for label, fn in (
         ("E4", summarize_e4),
         ("O3", summarize_o3),
+        ("O3-current", summarize_o3_current),
         ("E5", summarize_e5),
         ("E6", summarize_e6),
         ("E1", summarize_e1),

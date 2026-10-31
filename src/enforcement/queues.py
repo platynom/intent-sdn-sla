@@ -25,6 +25,7 @@ def ensure_queue(
     port: str,
     min_mbps: float,
     max_mbps: Optional[float] = None,
+    egress_peer: Optional[str] = None,
 ) -> int:
     """
     Create or reuse an HTB QoS record on the specified switch port and configure a queue.
@@ -33,9 +34,15 @@ def ensure_queue(
     Reuses existing QoS record on the port if present to avoid duplicate ineffective QoS records.
     Returns the queue id (e.g. 1).
     """
+    if max_mbps is None:
+        if egress_peer is None:
+            raise ValueError("egress_peer is required when max_mbps is not provided")
+        from topology.topology_spec import link_capacity_mbps
+
+        max_mbps = link_capacity_mbps(switch, egress_peer)
     min_bps = int(min_mbps * 1_000_000)
-    max_bps_clause = f",other-config:max-rate={int(max_mbps * 1_000_000)}" if max_mbps is not None else ""
-    qos_max_bps = int(max_mbps * 1_000_000) if max_mbps is not None else max(min_bps, 100_000_000)
+    max_bps = int(max_mbps * 1_000_000)
+    qos_max_bps = max_bps
 
     # Check if a QoS record already exists on this port
     # ovs-vsctl get port <port> qos
@@ -57,7 +64,8 @@ def ensure_queue(
             "--id=@q",
             "create",
             "queue",
-            f"other-config:min-rate={min_bps}{max_bps_clause}",
+            f"other-config:min-rate={min_bps}",
+            f"other-config:max-rate={max_bps}",
         ])
     else:
         # Create a new QoS record and attach to port
@@ -79,7 +87,8 @@ def ensure_queue(
             "--id=@q",
             "create",
             "queue",
-            f"other-config:min-rate={min_bps}{max_bps_clause}",
+            f"other-config:min-rate={min_bps}",
+            f"other-config:max-rate={max_bps}",
         ])
 
     return queue_id
