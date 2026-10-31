@@ -1,0 +1,9 @@
+group,metric,n,mean,stdev,ci95_t_low,ci95_t_high,min,max,unit
+B1,controller_cpu_pct,10,0.826,0.052,0.789,0.863,0.733,0.916,pct
+B1,openflow_msgs_per_s,10,8.108,0.107,8.032,8.185,7.996,8.361,msgs_per_s
+B1,openflow_msgs_total,10,486.800,6.477,482.167,491.433,480.000,502.000,count
+B1,window_duration_s,10,60.036,0.013,60.027,60.046,60.028,60.072,s
+B3,controller_cpu_pct,10,0.794,0.036,0.768,0.819,0.744,0.860,pct
+B3,openflow_msgs_per_s,10,9.228,0.138,9.129,9.327,8.994,9.456,msgs_per_s
+B3,openflow_msgs_total,10,558.200,8.351,552.227,564.173,544.000,572.000,count
+B3,window_duration_s,10,60.488,0.014,60.478,60.498,60.466,60.516,s
