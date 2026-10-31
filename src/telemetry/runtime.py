@@ -20,6 +20,15 @@ def persist_confirmed_event(conn, event) -> None:
         db.save_event(conn, event)
 
 
+def reload_persisted_replan_state(conn, detector: ViolationDetector) -> bool:
+    """Refresh dwell state written by the controller in another process."""
+    latest_intent = db.load_intent(conn, detector.intent.id)
+    if latest_intent is None:
+        return False
+    detector.intent.last_replan_at = latest_intent.last_replan_at
+    return True
+
+
 def flow_bytes(switch: str, cookie: int) -> int:
     """Read byte counters for one intent cookie from one OpenFlow switch."""
     result = subprocess.run(
@@ -118,9 +127,7 @@ def main() -> int:
             sample.loss_pct,
             sample.throughput_mbps,
         )
-        latest_intent = db.load_intent(conn, args.intent)
-        if latest_intent is not None:
-            detector.intent.last_replan_at = latest_intent.last_replan_at
+        reload_persisted_replan_state(conn, detector)
         event = detector.observe(sample, now=started)
         # The detector emits confirmed transitions in-process. Persist them
         # alongside measurements so ST-7 and the audit view can consume them.

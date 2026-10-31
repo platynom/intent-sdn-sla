@@ -1,0 +1,273 @@
+{
+  "description": "B3 closed-loop results rerun after controller concurrency and persisted-dwell fixes",
+  "summaries": [
+    {
+      "group": "B3-current",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 2115.9396409,
+      "sample_stddev": 10.073423039633898,
+      "ci95_t_low": 2108.734048803309,
+      "ci95_t_high": 2123.145232996691,
+      "min": 2103.310823,
+      "max": 2132.895231,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "b3_current_closed_loop_20261031215434.csv",
+          "value": 2119.118452
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215456.csv",
+          "value": 2109.425306
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215519.csv",
+          "value": 2132.895231
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215542.csv",
+          "value": 2110.233068
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215605.csv",
+          "value": 2119.521856
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215628.csv",
+          "value": 2111.781359
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215651.csv",
+          "value": 2103.310823
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215714.csv",
+          "value": 2109.15494
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215736.csv",
+          "value": 2132.750511
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215759.csv",
+          "value": 2111.204863
+        }
+      ]
+    },
+    {
+      "group": "B3-current",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 537.8525494,
+      "sample_stddev": 127.82784976447319,
+      "ci95_t_low": 446.41636724266147,
+      "ci95_t_high": 629.2887315573386,
+      "min": 289.127111,
+      "max": 745.568752,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "b3_current_closed_loop_20261031215434.csv",
+          "value": 289.127111
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215456.csv",
+          "value": 562.693119
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215519.csv",
+          "value": 584.098577
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215542.csv",
+          "value": 598.557472
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215605.csv",
+          "value": 405.757904
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215628.csv",
+          "value": 572.418451
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215651.csv",
+          "value": 466.597557
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215714.csv",
+          "value": 745.568752
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215736.csv",
+          "value": 510.350466
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215759.csv",
+          "value": 643.356085
+        }
+      ]
+    },
+    {
+      "group": "B3-current",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "b3_current_closed_loop_20261031215434.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215456.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215519.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215542.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215605.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215628.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215651.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215714.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215736.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b3_current_closed_loop_20261031215759.csv",
+          "value": 1.0
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [],
+  "runs": [
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215434.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2119.118452,
+        "recovery_latency": 289.127111,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215456.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2109.425306,
+        "recovery_latency": 562.693119,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215519.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2132.895231,
+        "recovery_latency": 584.098577,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215542.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2110.233068,
+        "recovery_latency": 598.557472,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215605.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2119.521856,
+        "recovery_latency": 405.757904,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215628.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2111.781359,
+        "recovery_latency": 572.418451,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215651.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2103.310823,
+        "recovery_latency": 466.597557,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215714.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2109.15494,
+        "recovery_latency": 745.568752,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215736.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2132.750511,
+        "recovery_latency": 510.350466,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3-current",
+      "file": "b3_current_closed_loop_20261031215759.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2111.204863,
+        "recovery_latency": 643.356085,
+        "reroute_count": 1.0
+      }
+    }
+  ]
+}

@@ -153,14 +153,14 @@ All subtasks **ST-1 through ST-13** are complete on branch `feat/st-12-eval-comp
 - **Resolved HTB queue-binding defect (O3)**: Forward inter-switch OpenFlow rules now emit `OFPActionSetQueue(1)` when `min_bandwidth_mbps > 0`. Under 150 Mbit/s competing cross-traffic (`n=10`), the queue-bound 20 Mbit/s SLA intent achieves `24.995 Mbit/s` (`[24.995, 24.996]`, `0.000%` loss), whereas the unbound control drops to `19.091 Mbit/s` (`[18.818, 19.365]`, `23.620%` loss).
 - **Complete E1–E8 evaluation (`n=10` per configuration; `n=3` ten-minute live runs for E6)**:
   - **E1 Violation duration**: `15.000 s` right-censored (`B1`) vs `3.003 s` (`[3.003, 3.003]`, `B3`).
-  - **E2 Detection latency**: `99.467 ms` (`[96.249, 102.684]`, `B2`), `2116.845 ms` (`[2107.259, 2126.432]`, `B2_matched_detector`), `2104.262 ms` (`[2101.405, 2107.119]`, `B3`).
-  - **E3 Recovery latency**: `279.355 ms` (`[228.889, 329.821]`, `B2`), `467.711 ms` (`[424.880, 510.542]`, `B2_matched_detector`), `618.535 ms` (`[559.508, 677.561]`, `B3`).
-  - **E4 Headline packet loss during reconfiguration**: `42.000` packets lost (`[42.000, 42.000]`, `B2` relaxed) vs `0.000` packets lost (`[0.000, 0.000]`, `B3` strict two-phase, with `28.000` packets reordered due to the faster alternate path).
+  - **E2 Detection latency**: current-code `B3` is `2115.940 ms` (`[2108.734, 2123.145]`, n=10). Historical baseline comparisons are retained in the provenance report.
+  - **E3 Recovery latency**: current-code `B3` is `537.853 ms` (`[446.416, 629.289]`, n=10). Historical baseline comparisons are retained in the provenance report.
+  - **E4 Headline packet loss during reconfiguration (current code)**: `41.000` packets lost (`[39.455, 42.545]`, `B2` relaxed) vs `0.000` (`B3` strict two-phase), with `28.000` packets reordered due to the faster alternate path.
   - **E5 Flow-table entries (4 concurrent intents)**: peak `6.000` rules on busiest switch (`56.800` pkts lost) for `all_relaxed`, `9.000` rules (`33.900` total pkts lost, `0.000` strict pkts lost) for `selective` 50/50 (citing CCG, Zhou et al., NSDI 2015), and `10.000` rules (`0.000` pkts lost) for `all_strict`.
   - **E6 Route oscillation (10-min live S6)**: `90.000` reroutes/10 min (`B2`) vs `48.667` (`[45.798, 51.535]`, `B3`, with `25.667` dwell suppressions/10 min).
   - **E7 Admission scaling**: `47.889 ms` (`k=1`), `49.420 ms` (`k=2`), `49.665 ms` (`k=4`), `51.845 ms` (`k=8`), `59.496 ms` (`k=16`).
   - **E8 Control-plane overhead (60 s window)**: corrected E8v2 full-control-stack CPU is `0.939%` (`[0.907, 0.971]`, `B1`) vs `5.078%` (`[4.954, 5.201]`, `B3`). The original controller-only CPU result is retained as provenance but superseded because it excluded the telemetry process.
-- See [`docs/HANDOVER.md`](docs/HANDOVER.md) and [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md) for full details.
+- See [`docs/HANDOVER.md`](docs/HANDOVER.md), [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md), and [`docs/RESULT_PROVENANCE.md`](docs/RESULT_PROVENANCE.md) for full details.
 
 **Resolved ST-7 defect.** Confirmed violation events are persisted to SQLite for
 the controller and audit log to consume. The live ST-7 scenario verified

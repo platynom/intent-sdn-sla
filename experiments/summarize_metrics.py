@@ -160,6 +160,48 @@ def summarize_e4(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
     return res
 
 
+def summarize_e4_current(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    files = list(raw_dir.glob("e4current_b[23]_reconfig_*.csv"))
+    if not files:
+        return None
+    def classify(path: Path) -> Optional[str]:
+        if path.name.startswith("e4current_b2_"):
+            return "B2"
+        if path.name.startswith("e4current_b3_"):
+            return "B3"
+        return None
+    res = summarize_group(files, classify)
+    tests = []
+    for metric in ("packets_lost", "packets_duplicated", "packets_reordered", "packets_sent"):
+        result = welch_t_test(
+            res["values_by_key"].get(("B2", metric), []),
+            res["values_by_key"].get(("B3", metric), []),
+        )
+        if result is not None:
+            tests.append({"metric": metric, "group_a": "B2", "group_b": "B3", **result})
+    write_summary_files(
+        res["summaries"], tests, res["runs"],
+        summary_dir / "e4_current_packet_loss_summary.json",
+        summary_dir / "e4_current_packet_loss_summary.csv",
+        description="Current-code E4 packet loss and reordering during reconfiguration",
+    )
+    return res
+
+
+def summarize_b3_current(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    files = list(raw_dir.glob("b3_current_closed_loop_*.csv"))
+    if not files:
+        return None
+    res = summarize_group(files, lambda _path: "B3-current")
+    write_summary_files(
+        res["summaries"], [], res["runs"],
+        summary_dir / "b3_current_closed_loop_summary.json",
+        summary_dir / "b3_current_closed_loop_summary.csv",
+        description="B3 closed-loop results rerun after controller concurrency and persisted-dwell fixes",
+    )
+    return res
+
+
 def summarize_o3(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
     files = list(raw_dir.glob("o3_queue_*.csv"))
     if not files:
@@ -418,6 +460,8 @@ def main() -> int:
     summary_dir = Path("experiments/results/summary")
     for label, fn in (
         ("E4", summarize_e4),
+        ("E4-current", summarize_e4_current),
+        ("B3-current", summarize_b3_current),
         ("O3", summarize_o3),
         ("O3-current", summarize_o3_current),
         ("E5", summarize_e5),

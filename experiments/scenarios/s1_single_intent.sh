@@ -365,11 +365,11 @@ conn.close()")
             echo "PASS: matching UDP traffic received a probe reply after the reroute"
             echo "PASS: reroute count=${REROUTE_COUNT}; causal audit entries=${AUDIT_COUNT}"
             if [ "${B2_PROFILE}" -eq 1 ] || [ "${B2_MATCHED_PROFILE}" -eq 1 ] || [ "${B3_PROFILE}" -eq 1 ]; then
-                PROFILE_TAG="b3_closed_loop"
+                PROFILE_TAG="${TEAM16_RESULT_TAG:-b3_closed_loop}"
                 if [ "${B2_PROFILE}" -eq 1 ]; then
-                    PROFILE_TAG="b2_closed_loop"
+                    PROFILE_TAG="${TEAM16_RESULT_TAG:-b2_closed_loop}"
                 elif [ "${B2_MATCHED_PROFILE}" -eq 1 ]; then
-                    PROFILE_TAG="b2_matched_detector"
+                    PROFILE_TAG="${TEAM16_RESULT_TAG:-b2_matched_detector}"
                 fi
                 python3.9 - "${RUN_STARTED_AT}" "${PROFILE_TAG}" <<'PY'
 import csv

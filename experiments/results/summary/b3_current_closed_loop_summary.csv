@@ -1,0 +1,4 @@
+group,metric,n,mean,stdev,ci95_t_low,ci95_t_high,min,max,unit
+B3-current,detection_latency,10,2115.940,10.073,2108.734,2123.145,2103.311,2132.895,ms
+B3-current,recovery_latency,10,537.853,127.828,446.416,629.289,289.127,745.569,ms
+B3-current,reroute_count,10,1.000,0.000,1.000,1.000,1.000,1.000,count

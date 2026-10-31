@@ -215,7 +215,8 @@ import os
 stamp = time.strftime('%Y%m%d%H%M%S')
 out_dir = Path(os.environ.get('E4_RAW_DIR', 'experiments/results/raw'))
 out_dir.mkdir(parents=True, exist_ok=True)
-out_path = out_dir / f'e4_{mode}_reconfig_{stamp}_{run_idx:02d}.csv'
+prefix = os.environ.get('E4_RESULT_PREFIX', 'e4')
+out_path = out_dir / f'{prefix}_{mode}_reconfig_{stamp}_{run_idx:02d}.csv'
 now_ts = int(time.time())
 with out_path.open('w', newline='', encoding='utf-8') as f:
     w = csv.writer(f)
