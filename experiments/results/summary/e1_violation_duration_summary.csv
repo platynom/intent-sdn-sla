@@ -1,0 +1,5 @@
+group,metric,n,mean,stdev,ci95_t_low,ci95_t_high,min,max,unit
+B1,right_censored,10,1.000,0.000,1.000,1.000,1.000,1.000,flag
+B1,sla_violation_duration_s,10,15.000,0.000,15.000,15.000,15.000,15.000,s
+B3,right_censored,10,0.000,0.000,0.000,0.000,0.000,0.000,flag
+B3,sla_violation_duration_s,10,3.003,0.000,3.003,3.003,3.003,3.004,s
