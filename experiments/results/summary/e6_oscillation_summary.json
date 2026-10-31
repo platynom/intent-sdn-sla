@@ -1,0 +1,447 @@
+{
+  "description": "E6 route oscillation (reroutes per 10 min) on Scenario S6 (intents/s6_oscillation_trap.yaml), B2 (hysteresis+dwell OFF) vs B3 (hysteresis+dwell ON)",
+  "summaries": [
+    {
+      "group": "B2",
+      "metric": "duration_s",
+      "unit": "s",
+      "n_independent_runs": 3,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b2_20261031193155_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031194211_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031195228_03.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "dwell_suppressions",
+      "unit": "count",
+      "n_independent_runs": 3,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b2_20261031193155_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031194211_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031195228_03.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "raw_reroute_count",
+      "unit": "count",
+      "n_independent_runs": 3,
+      "mean": 90.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 90.0,
+      "ci95_t_high": 90.0,
+      "min": 90.0,
+      "max": 90.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b2_20261031193155_01.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031194211_02.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031195228_03.csv",
+          "value": 90.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "reroute_count_10min",
+      "unit": "count_per_10min",
+      "n_independent_runs": 3,
+      "mean": 90.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 90.0,
+      "ci95_t_high": 90.0,
+      "min": 90.0,
+      "max": 90.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b2_20261031193155_01.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031194211_02.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031195228_03.csv",
+          "value": 90.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "restorations_emitted",
+      "unit": "count",
+      "n_independent_runs": 3,
+      "mean": 50.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 50.0,
+      "ci95_t_high": 50.0,
+      "min": 50.0,
+      "max": 50.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b2_20261031193155_01.csv",
+          "value": 50.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031194211_02.csv",
+          "value": 50.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031195228_03.csv",
+          "value": 50.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "violations_emitted",
+      "unit": "count",
+      "n_independent_runs": 3,
+      "mean": 50.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 50.0,
+      "ci95_t_high": 50.0,
+      "min": 50.0,
+      "max": 50.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b2_20261031193155_01.csv",
+          "value": 50.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031194211_02.csv",
+          "value": 50.0
+        },
+        {
+          "file": "e6_oscillation_b2_20261031195228_03.csv",
+          "value": 50.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "duration_s",
+      "unit": "s",
+      "n_independent_runs": 3,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b3_20261031200246_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031201302_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031202319_03.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "dwell_suppressions",
+      "unit": "count",
+      "n_independent_runs": 3,
+      "mean": 25.666666666666668,
+      "sample_stddev": 0.5773502691896257,
+      "ci95_t_low": 24.232333333333333,
+      "ci95_t_high": 27.101000000000003,
+      "min": 25.0,
+      "max": 26.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b3_20261031200246_01.csv",
+          "value": 26.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031201302_02.csv",
+          "value": 26.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031202319_03.csv",
+          "value": 25.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "raw_reroute_count",
+      "unit": "count",
+      "n_independent_runs": 3,
+      "mean": 48.666666666666664,
+      "sample_stddev": 1.1547005383792515,
+      "ci95_t_low": 45.797999999999995,
+      "ci95_t_high": 51.535333333333334,
+      "min": 48.0,
+      "max": 50.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b3_20261031200246_01.csv",
+          "value": 48.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031201302_02.csv",
+          "value": 48.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031202319_03.csv",
+          "value": 50.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "reroute_count_10min",
+      "unit": "count_per_10min",
+      "n_independent_runs": 3,
+      "mean": 48.666666666666664,
+      "sample_stddev": 1.1547005383792515,
+      "ci95_t_low": 45.797999999999995,
+      "ci95_t_high": 51.535333333333334,
+      "min": 48.0,
+      "max": 50.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b3_20261031200246_01.csv",
+          "value": 48.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031201302_02.csv",
+          "value": 48.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031202319_03.csv",
+          "value": 50.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "restorations_emitted",
+      "unit": "count",
+      "n_independent_runs": 3,
+      "mean": 51.666666666666664,
+      "sample_stddev": 0.5773502691896257,
+      "ci95_t_low": 50.23233333333333,
+      "ci95_t_high": 53.101,
+      "min": 51.0,
+      "max": 52.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b3_20261031200246_01.csv",
+          "value": 52.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031201302_02.csv",
+          "value": 52.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031202319_03.csv",
+          "value": 51.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "violations_emitted",
+      "unit": "count",
+      "n_independent_runs": 3,
+      "mean": 40.333333333333336,
+      "sample_stddev": 0.5773502691896257,
+      "ci95_t_low": 38.899,
+      "ci95_t_high": 41.76766666666667,
+      "min": 40.0,
+      "max": 41.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6_oscillation_b3_20261031200246_01.csv",
+          "value": 40.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031201302_02.csv",
+          "value": 40.0
+        },
+        {
+          "file": "e6_oscillation_b3_20261031202319_03.csv",
+          "value": 41.0
+        }
+      ]
+    }
+  ],
+  "welch_tests": [
+    {
+      "metric": "reroute_count_10min",
+      "group_a": "B2",
+      "group_b": "B3",
+      "t_statistic": 62.00000000000001,
+      "degrees_of_freedom": 2.0,
+      "p_value_two_sided": 0.00026004421191209103,
+      "mean_diff": 41.333333333333336
+    },
+    {
+      "metric": "raw_reroute_count",
+      "group_a": "B2",
+      "group_b": "B3",
+      "t_statistic": 62.00000000000001,
+      "degrees_of_freedom": 2.0,
+      "p_value_two_sided": 0.00026004421191209103,
+      "mean_diff": 41.333333333333336
+    },
+    {
+      "metric": "violations_emitted",
+      "group_a": "B2",
+      "group_b": "B3",
+      "t_statistic": 28.999999999999993,
+      "degrees_of_freedom": 2.0,
+      "p_value_two_sided": 0.001186944038478561,
+      "mean_diff": 9.666666666666664
+    },
+    {
+      "metric": "dwell_suppressions",
+      "group_a": "B2",
+      "group_b": "B3",
+      "t_statistic": -77.00000000000001,
+      "degrees_of_freedom": 2.0,
+      "p_value_two_sided": 0.00016861984775461784,
+      "mean_diff": -25.666666666666668
+    }
+  ],
+  "runs": [
+    {
+      "group": "B2",
+      "file": "e6_oscillation_b2_20261031193155_01.csv",
+      "run_id": 1,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 50.0,
+        "restorations_emitted": 50.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6_oscillation_b2_20261031194211_02.csv",
+      "run_id": 2,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 50.0,
+        "restorations_emitted": 50.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6_oscillation_b2_20261031195228_03.csv",
+      "run_id": 3,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 50.0,
+        "restorations_emitted": 50.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e6_oscillation_b3_20261031200246_01.csv",
+      "run_id": 1,
+      "values": {
+        "reroute_count_10min": 48.0,
+        "raw_reroute_count": 48.0,
+        "violations_emitted": 40.0,
+        "restorations_emitted": 52.0,
+        "dwell_suppressions": 26.0,
+        "duration_s": 600.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e6_oscillation_b3_20261031201302_02.csv",
+      "run_id": 2,
+      "values": {
+        "reroute_count_10min": 48.0,
+        "raw_reroute_count": 48.0,
+        "violations_emitted": 40.0,
+        "restorations_emitted": 52.0,
+        "dwell_suppressions": 26.0,
+        "duration_s": 600.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e6_oscillation_b3_20261031202319_03.csv",
+      "run_id": 3,
+      "values": {
+        "reroute_count_10min": 50.0,
+        "raw_reroute_count": 50.0,
+        "violations_emitted": 41.0,
+        "restorations_emitted": 51.0,
+        "dwell_suppressions": 25.0,
+        "duration_s": 600.0
+      }
+    }
+  ]
+}

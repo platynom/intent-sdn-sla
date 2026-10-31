@@ -118,6 +118,9 @@ def main() -> int:
             sample.loss_pct,
             sample.throughput_mbps,
         )
+        latest_intent = db.load_intent(conn, args.intent)
+        if latest_intent is not None:
+            detector.intent.last_replan_at = latest_intent.last_replan_at
         event = detector.observe(sample, now=started)
         # The detector emits confirmed transitions in-process. Persist them
         # alongside measurements so ST-7 and the audit view can consume them.
