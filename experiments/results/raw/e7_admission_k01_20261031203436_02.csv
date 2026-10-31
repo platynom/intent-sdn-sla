@@ -1,0 +1,3 @@
+run_id,timestamp,metric,value,unit
+2,1793478876,admission_decision_latency_ms,45.424848,ms
+2,1793478876,active_intents,1,count

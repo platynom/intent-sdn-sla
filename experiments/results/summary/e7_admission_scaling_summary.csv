@@ -1,0 +1,11 @@
+group,metric,n,mean,stdev,ci95_t_low,ci95_t_high,min,max,unit
+k=01,active_intents,10,1.000,0.000,1.000,1.000,1.000,1.000,count
+k=01,admission_decision_latency_ms,10,47.889,3.789,45.179,50.599,42.086,54.399,ms
+k=02,active_intents,10,2.000,0.000,2.000,2.000,2.000,2.000,count
+k=02,admission_decision_latency_ms,10,49.420,4.427,46.253,52.587,45.871,60.239,ms
+k=04,active_intents,10,4.000,0.000,4.000,4.000,4.000,4.000,count
+k=04,admission_decision_latency_ms,10,49.665,2.123,48.146,51.184,47.199,54.669,ms
+k=08,active_intents,10,8.000,0.000,8.000,8.000,8.000,8.000,count
+k=08,admission_decision_latency_ms,10,51.845,2.109,50.336,53.354,50.059,56.961,ms
+k=16,active_intents,10,16.000,0.000,16.000,16.000,16.000,16.000,count
+k=16,admission_decision_latency_ms,10,59.496,8.463,53.442,65.550,53.433,76.559,ms

@@ -1,0 +1,1008 @@
+{
+  "description": "E7 admission decision latency (ms) vs number of active intents (1, 2, 4, 8, 16)",
+  "summaries": [
+    {
+      "group": "k=01",
+      "metric": "active_intents",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k01_20261031203436_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_07.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e7_admission_k01_20261031203437_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e7_admission_k01_20261031203437_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e7_admission_k01_20261031203437_10.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=01",
+      "metric": "admission_decision_latency_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 47.8890457,
+      "sample_stddev": 3.7890414108532666,
+      "ci95_t_low": 45.178717072217914,
+      "ci95_t_high": 50.59937432778208,
+      "min": 42.086338,
+      "max": 54.398577,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k01_20261031203436_01.csv",
+          "value": 45.308148
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_02.csv",
+          "value": 45.424848
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_03.csv",
+          "value": 54.398577
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_04.csv",
+          "value": 52.27047
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_05.csv",
+          "value": 48.047856
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_06.csv",
+          "value": 42.086338
+        },
+        {
+          "file": "e7_admission_k01_20261031203436_07.csv",
+          "value": 45.188247
+        },
+        {
+          "file": "e7_admission_k01_20261031203437_08.csv",
+          "value": 46.106649
+        },
+        {
+          "file": "e7_admission_k01_20261031203437_09.csv",
+          "value": 49.142259
+        },
+        {
+          "file": "e7_admission_k01_20261031203437_10.csv",
+          "value": 50.917065
+        }
+      ]
+    },
+    {
+      "group": "k=02",
+      "metric": "active_intents",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 2.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 2.0,
+      "ci95_t_high": 2.0,
+      "min": 2.0,
+      "max": 2.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k02_20261031203437_01.csv",
+          "value": 2.0
+        },
+        {
+          "file": "e7_admission_k02_20261031203437_02.csv",
+          "value": 2.0
+        },
+        {
+          "file": "e7_admission_k02_20261031203437_03.csv",
+          "value": 2.0
+        },
+        {
+          "file": "e7_admission_k02_20261031203437_04.csv",
+          "value": 2.0
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_05.csv",
+          "value": 2.0
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_06.csv",
+          "value": 2.0
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_07.csv",
+          "value": 2.0
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_08.csv",
+          "value": 2.0
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_09.csv",
+          "value": 2.0
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_10.csv",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "group": "k=02",
+      "metric": "admission_decision_latency_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 49.420070100000004,
+      "sample_stddev": 4.427321399436972,
+      "ci95_t_low": 46.253175196472405,
+      "ci95_t_high": 52.5869650035276,
+      "min": 45.870549,
+      "max": 60.239395,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k02_20261031203437_01.csv",
+          "value": 49.16546
+        },
+        {
+          "file": "e7_admission_k02_20261031203437_02.csv",
+          "value": 47.625854
+        },
+        {
+          "file": "e7_admission_k02_20261031203437_03.csv",
+          "value": 47.214153
+        },
+        {
+          "file": "e7_admission_k02_20261031203437_04.csv",
+          "value": 45.870549
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_05.csv",
+          "value": 47.609854
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_06.csv",
+          "value": 54.088975
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_07.csv",
+          "value": 60.239395
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_08.csv",
+          "value": 46.33975
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_09.csv",
+          "value": 47.760655
+        },
+        {
+          "file": "e7_admission_k02_20261031203438_10.csv",
+          "value": 48.286056
+        }
+      ]
+    },
+    {
+      "group": "k=04",
+      "metric": "active_intents",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 4.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 4.0,
+      "ci95_t_high": 4.0,
+      "min": 4.0,
+      "max": 4.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k04_20261031203439_01.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_02.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_03.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_04.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_05.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_06.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e7_admission_k04_20261031203440_07.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e7_admission_k04_20261031203440_08.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e7_admission_k04_20261031203440_09.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e7_admission_k04_20261031203440_10.csv",
+          "value": 4.0
+        }
+      ]
+    },
+    {
+      "group": "k=04",
+      "metric": "admission_decision_latency_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 49.6646613,
+      "sample_stddev": 2.1233709290145253,
+      "ci95_t_low": 48.14579877191475,
+      "ci95_t_high": 51.18352382808525,
+      "min": 47.198754,
+      "max": 54.669278,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k04_20261031203439_01.csv",
+          "value": 48.078255
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_02.csv",
+          "value": 50.415163
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_03.csv",
+          "value": 48.283556
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_04.csv",
+          "value": 49.634062
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_05.csv",
+          "value": 49.982763
+        },
+        {
+          "file": "e7_admission_k04_20261031203439_06.csv",
+          "value": 50.155464
+        },
+        {
+          "file": "e7_admission_k04_20261031203440_07.csv",
+          "value": 50.440563
+        },
+        {
+          "file": "e7_admission_k04_20261031203440_08.csv",
+          "value": 47.788755
+        },
+        {
+          "file": "e7_admission_k04_20261031203440_09.csv",
+          "value": 54.669278
+        },
+        {
+          "file": "e7_admission_k04_20261031203440_10.csv",
+          "value": 47.198754
+        }
+      ]
+    },
+    {
+      "group": "k=08",
+      "metric": "active_intents",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 8.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 8.0,
+      "ci95_t_high": 8.0,
+      "min": 8.0,
+      "max": 8.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k08_20261031203440_01.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_02.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_03.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_04.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_05.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_06.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e7_admission_k08_20261031203442_07.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e7_admission_k08_20261031203442_08.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e7_admission_k08_20261031203442_09.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e7_admission_k08_20261031203442_10.csv",
+          "value": 8.0
+        }
+      ]
+    },
+    {
+      "group": "k=08",
+      "metric": "admission_decision_latency_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 51.845048,
+      "sample_stddev": 2.109034109681439,
+      "ci95_t_low": 50.33644070210529,
+      "ci95_t_high": 53.353655297894704,
+      "min": 50.058862,
+      "max": 56.960984,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k08_20261031203440_01.csv",
+          "value": 50.058862
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_02.csv",
+          "value": 53.169672
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_03.csv",
+          "value": 50.627864
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_04.csv",
+          "value": 50.713965
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_05.csv",
+          "value": 51.616468
+        },
+        {
+          "file": "e7_admission_k08_20261031203441_06.csv",
+          "value": 50.782065
+        },
+        {
+          "file": "e7_admission_k08_20261031203442_07.csv",
+          "value": 51.264866
+        },
+        {
+          "file": "e7_admission_k08_20261031203442_08.csv",
+          "value": 56.960984
+        },
+        {
+          "file": "e7_admission_k08_20261031203442_09.csv",
+          "value": 53.134572
+        },
+        {
+          "file": "e7_admission_k08_20261031203442_10.csv",
+          "value": 50.121162
+        }
+      ]
+    },
+    {
+      "group": "k=16",
+      "metric": "active_intents",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 16.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 16.0,
+      "ci95_t_high": 16.0,
+      "min": 16.0,
+      "max": 16.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k16_20261031203443_01.csv",
+          "value": 16.0
+        },
+        {
+          "file": "e7_admission_k16_20261031203443_02.csv",
+          "value": 16.0
+        },
+        {
+          "file": "e7_admission_k16_20261031203443_03.csv",
+          "value": 16.0
+        },
+        {
+          "file": "e7_admission_k16_20261031203444_04.csv",
+          "value": 16.0
+        },
+        {
+          "file": "e7_admission_k16_20261031203444_05.csv",
+          "value": 16.0
+        },
+        {
+          "file": "e7_admission_k16_20261031203444_06.csv",
+          "value": 16.0
+        },
+        {
+          "file": "e7_admission_k16_20261031203445_07.csv",
+          "value": 16.0
+        },
+        {
+          "file": "e7_admission_k16_20261031203445_08.csv",
+          "value": 16.0
+        },
+        {
+          "file": "e7_admission_k16_20261031203445_09.csv",
+          "value": 16.0
+        },
+        {
+          "file": "e7_admission_k16_20261031203446_10.csv",
+          "value": 16.0
+        }
+      ]
+    },
+    {
+      "group": "k=16",
+      "metric": "admission_decision_latency_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 59.4959011,
+      "sample_stddev": 8.463375705646648,
+      "ci95_t_low": 53.44198746448661,
+      "ci95_t_high": 65.54981473551338,
+      "min": 53.433372,
+      "max": 76.558846,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e7_admission_k16_20261031203443_01.csv",
+          "value": 53.772273
+        },
+        {
+          "file": "e7_admission_k16_20261031203443_02.csv",
+          "value": 56.699983
+        },
+        {
+          "file": "e7_admission_k16_20261031203443_03.csv",
+          "value": 58.217187
+        },
+        {
+          "file": "e7_admission_k16_20261031203444_04.csv",
+          "value": 54.850776
+        },
+        {
+          "file": "e7_admission_k16_20261031203444_05.csv",
+          "value": 56.711782
+        },
+        {
+          "file": "e7_admission_k16_20261031203444_06.csv",
+          "value": 53.433372
+        },
+        {
+          "file": "e7_admission_k16_20261031203445_07.csv",
+          "value": 54.421775
+        },
+        {
+          "file": "e7_admission_k16_20261031203445_08.csv",
+          "value": 76.558846
+        },
+        {
+          "file": "e7_admission_k16_20261031203445_09.csv",
+          "value": 73.967337
+        },
+        {
+          "file": "e7_admission_k16_20261031203446_10.csv",
+          "value": 56.32568
+        }
+      ]
+    }
+  ],
+  "welch_tests": [],
+  "runs": [
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203436_01.csv",
+      "run_id": 1,
+      "values": {
+        "admission_decision_latency_ms": 45.308148,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203436_02.csv",
+      "run_id": 2,
+      "values": {
+        "admission_decision_latency_ms": 45.424848,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203436_03.csv",
+      "run_id": 3,
+      "values": {
+        "admission_decision_latency_ms": 54.398577,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203436_04.csv",
+      "run_id": 4,
+      "values": {
+        "admission_decision_latency_ms": 52.27047,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203436_05.csv",
+      "run_id": 5,
+      "values": {
+        "admission_decision_latency_ms": 48.047856,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203436_06.csv",
+      "run_id": 6,
+      "values": {
+        "admission_decision_latency_ms": 42.086338,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203436_07.csv",
+      "run_id": 7,
+      "values": {
+        "admission_decision_latency_ms": 45.188247,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203437_08.csv",
+      "run_id": 8,
+      "values": {
+        "admission_decision_latency_ms": 46.106649,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203437_09.csv",
+      "run_id": 9,
+      "values": {
+        "admission_decision_latency_ms": 49.142259,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=01",
+      "file": "e7_admission_k01_20261031203437_10.csv",
+      "run_id": 10,
+      "values": {
+        "admission_decision_latency_ms": 50.917065,
+        "active_intents": 1.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203437_01.csv",
+      "run_id": 1,
+      "values": {
+        "admission_decision_latency_ms": 49.16546,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203437_02.csv",
+      "run_id": 2,
+      "values": {
+        "admission_decision_latency_ms": 47.625854,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203437_03.csv",
+      "run_id": 3,
+      "values": {
+        "admission_decision_latency_ms": 47.214153,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203437_04.csv",
+      "run_id": 4,
+      "values": {
+        "admission_decision_latency_ms": 45.870549,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203438_05.csv",
+      "run_id": 5,
+      "values": {
+        "admission_decision_latency_ms": 47.609854,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203438_06.csv",
+      "run_id": 6,
+      "values": {
+        "admission_decision_latency_ms": 54.088975,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203438_07.csv",
+      "run_id": 7,
+      "values": {
+        "admission_decision_latency_ms": 60.239395,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203438_08.csv",
+      "run_id": 8,
+      "values": {
+        "admission_decision_latency_ms": 46.33975,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203438_09.csv",
+      "run_id": 9,
+      "values": {
+        "admission_decision_latency_ms": 47.760655,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=02",
+      "file": "e7_admission_k02_20261031203438_10.csv",
+      "run_id": 10,
+      "values": {
+        "admission_decision_latency_ms": 48.286056,
+        "active_intents": 2.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203439_01.csv",
+      "run_id": 1,
+      "values": {
+        "admission_decision_latency_ms": 48.078255,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203439_02.csv",
+      "run_id": 2,
+      "values": {
+        "admission_decision_latency_ms": 50.415163,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203439_03.csv",
+      "run_id": 3,
+      "values": {
+        "admission_decision_latency_ms": 48.283556,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203439_04.csv",
+      "run_id": 4,
+      "values": {
+        "admission_decision_latency_ms": 49.634062,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203439_05.csv",
+      "run_id": 5,
+      "values": {
+        "admission_decision_latency_ms": 49.982763,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203439_06.csv",
+      "run_id": 6,
+      "values": {
+        "admission_decision_latency_ms": 50.155464,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203440_07.csv",
+      "run_id": 7,
+      "values": {
+        "admission_decision_latency_ms": 50.440563,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203440_08.csv",
+      "run_id": 8,
+      "values": {
+        "admission_decision_latency_ms": 47.788755,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203440_09.csv",
+      "run_id": 9,
+      "values": {
+        "admission_decision_latency_ms": 54.669278,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=04",
+      "file": "e7_admission_k04_20261031203440_10.csv",
+      "run_id": 10,
+      "values": {
+        "admission_decision_latency_ms": 47.198754,
+        "active_intents": 4.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203440_01.csv",
+      "run_id": 1,
+      "values": {
+        "admission_decision_latency_ms": 50.058862,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203441_02.csv",
+      "run_id": 2,
+      "values": {
+        "admission_decision_latency_ms": 53.169672,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203441_03.csv",
+      "run_id": 3,
+      "values": {
+        "admission_decision_latency_ms": 50.627864,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203441_04.csv",
+      "run_id": 4,
+      "values": {
+        "admission_decision_latency_ms": 50.713965,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203441_05.csv",
+      "run_id": 5,
+      "values": {
+        "admission_decision_latency_ms": 51.616468,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203441_06.csv",
+      "run_id": 6,
+      "values": {
+        "admission_decision_latency_ms": 50.782065,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203442_07.csv",
+      "run_id": 7,
+      "values": {
+        "admission_decision_latency_ms": 51.264866,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203442_08.csv",
+      "run_id": 8,
+      "values": {
+        "admission_decision_latency_ms": 56.960984,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203442_09.csv",
+      "run_id": 9,
+      "values": {
+        "admission_decision_latency_ms": 53.134572,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=08",
+      "file": "e7_admission_k08_20261031203442_10.csv",
+      "run_id": 10,
+      "values": {
+        "admission_decision_latency_ms": 50.121162,
+        "active_intents": 8.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203443_01.csv",
+      "run_id": 1,
+      "values": {
+        "admission_decision_latency_ms": 53.772273,
+        "active_intents": 16.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203443_02.csv",
+      "run_id": 2,
+      "values": {
+        "admission_decision_latency_ms": 56.699983,
+        "active_intents": 16.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203443_03.csv",
+      "run_id": 3,
+      "values": {
+        "admission_decision_latency_ms": 58.217187,
+        "active_intents": 16.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203444_04.csv",
+      "run_id": 4,
+      "values": {
+        "admission_decision_latency_ms": 54.850776,
+        "active_intents": 16.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203444_05.csv",
+      "run_id": 5,
+      "values": {
+        "admission_decision_latency_ms": 56.711782,
+        "active_intents": 16.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203444_06.csv",
+      "run_id": 6,
+      "values": {
+        "admission_decision_latency_ms": 53.433372,
+        "active_intents": 16.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203445_07.csv",
+      "run_id": 7,
+      "values": {
+        "admission_decision_latency_ms": 54.421775,
+        "active_intents": 16.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203445_08.csv",
+      "run_id": 8,
+      "values": {
+        "admission_decision_latency_ms": 76.558846,
+        "active_intents": 16.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203445_09.csv",
+      "run_id": 9,
+      "values": {
+        "admission_decision_latency_ms": 73.967337,
+        "active_intents": 16.0
+      }
+    },
+    {
+      "group": "k=16",
+      "file": "e7_admission_k16_20261031203446_10.csv",
+      "run_id": 10,
+      "values": {
+        "admission_decision_latency_ms": 56.32568,
+        "active_intents": 16.0
+      }
+    }
+  ]
+}
