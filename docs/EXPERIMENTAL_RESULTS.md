@@ -60,6 +60,8 @@ All live network experiments were executed inside the project's privileged Docke
 | **E8 Control-Plane OpenFlow Rate** | `B3` (closed-loop, 60 s) | 10 | 9.228 | 0.138 | `[9.129, 9.327]` | `msgs/s` | `558.2` total TCP PSH segments on port 6653 |
 | **E8 Ryu Controller CPU %** | `B1` (open-loop, 60 s) | 10 | 0.826 | 0.052 | `[0.789, 0.863]` | `pct` | `/proc/<ryu_pid>/stat` `utime+stime` only |
 | **E8 Ryu Controller CPU %** | `B3` (closed-loop, 60 s) | 10 | 0.794 | 0.036 | `[0.768, 0.819]` | `pct` | Telemetry probe/detector runs out-of-process |
+| **E8v2 Full Control-Stack CPU %** | `B1` (open-loop, 60 s) | 10 | 0.939 | 0.045 | `[0.907, 0.971]` | `pct` | Inclusive Ryu + API process-tree CPU |
+| **E8v2 Full Control-Stack CPU %** | `B3` (closed-loop, 60 s) | 10 | 5.078 | 0.173 | `[4.954, 5.201]` | `pct` | Inclusive Ryu + API + telemetry + probe CPU |
 
 ---
 
@@ -88,6 +90,7 @@ In accordance with the evaluation contract, we explicitly report five metrics wh
 3. **E4 Packet Reordering (`B3` reorders $28.000$ packets vs $0.000$ in `B2`)**: Because `B3` preserves in-flight packets on the degraded north path ($44\text{ ms}$ one-way latency during fault) while simultaneously forwarding newly arriving packets along the faster middle path ($15\text{ ms}$ one-way latency), $28$ packets per switchover arrive out of sequence rather than being dropped.
 4. **E5 Peak Flow-Table Rule Overhead (`all_strict` uses $66.7\%$ more rules on the busiest switch than `all_relaxed`)**: During a concurrent 4-intent update, `all_strict` peaks at $10.000$ rules on `s7` ($42.000$ total across `s1..s7`) vs $6.000$ rules on `s7` ($27.500$ total) for `all_relaxed`. Selective consistency (`selective`, 2 strict + 2 relaxed, citing CCG, Zhou et al., NSDI 2015) trades intermediate rule count ($9.000$ on `s7`, $39.800$ total) for zero packet loss on strict intents ($0.000$ lost) while allowing loss on relaxed intents ($33.900$ lost).
 5. **E8 Control-Plane OpenFlow Message Rate (`B3` generates $13.8\%$ more OpenFlow messages/s than `B1`)**: Over a 60-second window, `B3` averages $9.228\text{ msgs/s}$ (`[9.129, 9.327]`) vs `B1`'s $8.108\text{ msgs/s}$ (`[8.032, 8.185]`, $p = 2.55 \times 10^{-13}$) due to versioned flow installations, barriers, and old-cookie removals.
+6. **E8v2 full-stack CPU supersedes the original controller-only CPU field**: the original E8 CPU column measured only `ryu-manager` and excluded the separate telemetry process. The corrected inclusive process-tree measurement is `0.939%` (`[0.907, 0.971]`) for `B1` and `5.078%` (`[4.954, 5.201]`) for `B3`; telemetry accounts for `4.140%` of the B3 mean. Original E8 raw files remain preserved for provenance, while E8v2 is the primary CPU result.
 
 ---
 

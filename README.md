@@ -159,7 +159,7 @@ All subtasks **ST-1 through ST-13** are complete on branch `feat/st-12-eval-comp
   - **E5 Flow-table entries (4 concurrent intents)**: peak `6.000` rules on busiest switch (`56.800` pkts lost) for `all_relaxed`, `9.000` rules (`33.900` total pkts lost, `0.000` strict pkts lost) for `selective` 50/50 (citing CCG, Zhou et al., NSDI 2015), and `10.000` rules (`0.000` pkts lost) for `all_strict`.
   - **E6 Route oscillation (10-min live S6)**: `90.000` reroutes/10 min (`B2`) vs `48.667` (`[45.798, 51.535]`, `B3`, with `25.667` dwell suppressions/10 min).
   - **E7 Admission scaling**: `47.889 ms` (`k=1`), `49.420 ms` (`k=2`), `49.665 ms` (`k=4`), `51.845 ms` (`k=8`), `59.496 ms` (`k=16`).
-  - **E8 Control-plane overhead (60 s window)**: `8.108 msgs/s` (`[8.032, 8.185]`, `B1`) vs `9.228 msgs/s` (`[9.129, 9.327]`, `B3`, $+13.8\%$ higher in `B3`); `ryu-manager` CPU utilization is `0.826%` (`B1`) vs `0.794%` (`B3`).
+  - **E8 Control-plane overhead (60 s window)**: corrected E8v2 full-control-stack CPU is `0.939%` (`[0.907, 0.971]`, `B1`) vs `5.078%` (`[4.954, 5.201]`, `B3`). The original controller-only CPU result is retained as provenance but superseded because it excluded the telemetry process.
 - See [`docs/HANDOVER.md`](docs/HANDOVER.md) and [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md) for full details.
 
 **Resolved ST-7 defect.** Confirmed violation events are persisted to SQLite for

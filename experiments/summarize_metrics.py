@@ -89,7 +89,7 @@ def summarize_group(
 
 def write_summary_files(
     summaries: List[dict],
-    welch_tests: List[dict],
+    statistical_tests: List[dict],
     runs: List[dict],
     json_path: Path,
     csv_path: Path,
@@ -101,7 +101,7 @@ def write_summary_files(
     payload = {
         "description": description,
         "summaries": summaries,
-        "welch_tests": welch_tests,
+        "statistical_tests": statistical_tests,
         "runs": runs,
     }
     json_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
@@ -355,6 +355,50 @@ def summarize_e8(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
     return res
 
 
+def summarize_e8_v2(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    """Summarize superseding E8 runs that cover the complete control stack."""
+    files = list(raw_dir.glob("e8v2_overhead_*.csv"))
+    if not files:
+        return None
+
+    def classify(p: Path) -> Optional[str]:
+        if p.name.startswith("e8v2_overhead_b1_"):
+            return "B1"
+        if p.name.startswith("e8v2_overhead_b3_"):
+            return "B3"
+        return None
+
+    res = summarize_group(files, classify)
+    welch = []
+    for metric in (
+        "openflow_msgs_per_s",
+        "openflow_msgs_total",
+        "ryu_cpu_pct",
+        "api_cpu_pct",
+        "telemetry_cpu_pct",
+        "probe_cpu_pct",
+        "control_stack_cpu_pct",
+    ):
+        xs = res["values_by_key"].get(("B1", metric), [])
+        ys = res["values_by_key"].get(("B3", metric), [])
+        wt = welch_t_test(xs, ys)
+        if wt is not None:
+            welch.append({"metric": metric, "group_a": "B1", "group_b": "B3", **wt})
+    write_summary_files(
+        res["summaries"],
+        welch,
+        res["runs"],
+        summary_dir / "e8v2_control_overhead_summary.json",
+        summary_dir / "e8v2_control_overhead_summary.csv",
+        description=(
+            "E8v2 control-plane overhead over a 60 s window: OpenFlow message "
+            "rate plus inclusive CPU for Ryu, API, telemetry runtime, active "
+            "probe responder, and descendants. Supersedes the Ryu-only v1 CPU metric."
+        ),
+    )
+    return res
+
+
 def main() -> int:
     raw_dir = Path("experiments/results/raw")
     summary_dir = Path("experiments/results/summary")
@@ -366,6 +410,7 @@ def main() -> int:
         ("E1", summarize_e1),
         ("E7", summarize_e7),
         ("E8", summarize_e8),
+        ("E8v2", summarize_e8_v2),
     ):
         res = fn(raw_dir, summary_dir)
         if res is not None:

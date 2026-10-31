@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Objective O8 (E8): Control-plane overhead over a fixed 60 s window (B1 vs B3).
-# Measures OpenFlow message rate (msgs/s on port 6653) and controller CPU %
-# (/proc/<pid>/stat utime+stime delta over 60 s).
+# Measures OpenFlow message rate (msgs/s on port 6653) and CPU for the full
+# control stack over the same window.  The v1 experiment sampled only the
+# ryu-manager PID.  v2 records Ryu, API, telemetry runtime, active-probe
+# responder, and their descendants separately, plus their summed total.
 set -euo pipefail
 
 MODE="b1"
@@ -51,9 +53,9 @@ clean_mininet() {
 
 run_one() {
     local run_idx="$1"
-    local ryu_pid="" api_pid="" topo_pid="" echo_pid="" pcap_pid="" workload_pid=""
+    local ryu_pid="" api_pid="" topo_pid="" echo_pid="" pcap_pid="" workload_pid="" telemetry_pid=""
     cleanup_one() {
-        for pid in "${workload_pid:-}" "${pcap_pid:-}" "${echo_pid:-}" "${topo_pid:-}" "${api_pid:-}" "${ryu_pid:-}"; do
+        for pid in "${telemetry_pid:-}" "${workload_pid:-}" "${pcap_pid:-}" "${echo_pid:-}" "${topo_pid:-}" "${api_pid:-}" "${ryu_pid:-}"; do
             if [ -n "${pid}" ] && kill -0 "${pid}" 2>/dev/null; then
                 kill "${pid}" 2>/dev/null || true
                 wait "${pid}" 2>/dev/null || true
@@ -137,24 +139,9 @@ net.stop()
     pcap_pid=$!
     sleep 0.3
 
-    # Read initial controller CPU ticks from /proc/<ryu_pid>/stat
-    local cpu_start_info
-    cpu_start_info=$(python3.9 - "${ryu_pid}" <<'PY'
-import os
-import sys
-import time
-pid = int(sys.argv[1])
-fields = open(f"/proc/{pid}/stat", encoding="utf-8").read().rsplit(")", 1)[1].split()
-utime = int(fields[11])
-stime = int(fields[12])
-clk = os.sysconf(os.sysconf_names["SC_CLK_TCK"])
-print(f"{utime + stime} {clk} {time.perf_counter()}")
-PY
-)
-
     if [ "${MODE}" = "b1" ]; then
         # B1 open-loop: no telemetry polling or closed-loop adaptation during the 60 s window
-        sleep "${WINDOW_S}"
+        :
     else
         # B3 closed-loop: active 1 Hz telemetry + periodic fault/recovery triggers over the 60 s window
         mnexec -da "${h2_pid}" python3.9 -u -c "
@@ -203,29 +190,36 @@ while time.perf_counter() - start < window_s:
 PY
         workload_pid=$!
 
+        # Keep telemetry alive slightly beyond the measurement window so its
+        # final /proc counters (including reaped probe children) remain readable.
         python3.9 -m src.telemetry.runtime \
             --intent INT-001 --source-pid "${h1_pid}" --target 10.0.0.2 --port 5001 \
-            --switch s1 --samples "${WINDOW_S}" --interval 1.0 \
-            >"${LOG_DIR}/telemetry-e8-${run_idx}.log" 2>&1 || true
+            --switch s1 --samples "$((WINDOW_S + 5))" --interval 1.0 \
+            >"${LOG_DIR}/telemetry-e8-${run_idx}.log" 2>&1 &
+        telemetry_pid=$!
+    fi
 
+    local cpu_start_info cpu_end_info
+    cpu_start_info=$(python3.9 experiments/process_cpu.py \
+        --component "ryu=${ryu_pid}" --component "api=${api_pid}" \
+        --component "telemetry=${telemetry_pid:-0}" --component "probe=${echo_pid:-0}")
+    sleep "${WINDOW_S}"
+    cpu_end_info=$(python3.9 experiments/process_cpu.py \
+        --component "ryu=${ryu_pid}" --component "api=${api_pid}" \
+        --component "telemetry=${telemetry_pid:-0}" --component "probe=${echo_pid:-0}")
+
+    if [ "${MODE}" = "b3" ]; then
         if [ -n "${workload_pid}" ] && kill -0 "${workload_pid}" 2>/dev/null; then
             kill "${workload_pid}" 2>/dev/null || true
             wait "${workload_pid}" 2>/dev/null || true
         fi
         workload_pid=""
+        if [ -n "${telemetry_pid}" ] && kill -0 "${telemetry_pid}" 2>/dev/null; then
+            kill "${telemetry_pid}" 2>/dev/null || true
+            wait "${telemetry_pid}" 2>/dev/null || true
+        fi
+        telemetry_pid=""
     fi
-
-    local cpu_end_info
-    cpu_end_info=$(python3.9 - "${ryu_pid}" <<'PY'
-import sys
-import time
-pid = int(sys.argv[1])
-fields = open(f"/proc/{pid}/stat", encoding="utf-8").read().rsplit(")", 1)[1].split()
-utime = int(fields[11])
-stime = int(fields[12])
-print(f"{utime + stime} {time.perf_counter()}")
-PY
-)
 
     if [ -n "${pcap_pid}" ] && kill -0 "${pcap_pid}" 2>/dev/null; then
         kill "${pcap_pid}" 2>/dev/null || true
@@ -238,6 +232,7 @@ PY
 
     python3.9 - "${MODE}" "${run_idx}" "${cpu_start_info}" "${cpu_end_info}" "${of_packets}" <<'PY'
 import csv
+import json
 import os
 import sys
 import time
@@ -245,33 +240,43 @@ from pathlib import Path
 
 mode = sys.argv[1]
 run_idx = int(sys.argv[2])
-start_ticks_s, clk_s, t0_s = sys.argv[3].split()
-end_ticks_s, t1_s = sys.argv[4].split()
+start = json.loads(sys.argv[3])
+end = json.loads(sys.argv[4])
 of_packets = int(sys.argv[5])
 
-start_ticks = int(start_ticks_s)
-end_ticks = int(end_ticks_s)
-clk = float(clk_s)
-elapsed_s = max(0.001, float(t1_s) - float(t0_s))
-
-cpu_seconds = (end_ticks - start_ticks) / clk
-cpu_pct = (cpu_seconds / elapsed_s) * 100.0
+clk = float(start["clock_ticks_per_s"])
+elapsed_s = max(0.001, float(end["monotonic_s"]) - float(start["monotonic_s"]))
+cpu_pct = {}
+for component in ("ryu", "api", "telemetry", "probe"):
+    delta = max(0, int(end["components"].get(component, 0)) - int(start["components"].get(component, 0)))
+    cpu_pct[component] = ((delta / clk) / elapsed_s) * 100.0
+total_cpu_pct = sum(cpu_pct.values())
 msgs_per_s = of_packets / elapsed_s
 
 out_dir = Path(os.environ.get('E8_RAW_DIR', 'experiments/results/raw'))
 out_dir.mkdir(parents=True, exist_ok=True)
 stamp = time.strftime('%Y%m%d%H%M%S')
-out_path = out_dir / f'e8_overhead_{mode}_{stamp}_{run_idx:02d}.csv'
+out_path = out_dir / f'e8v2_overhead_{mode}_{stamp}_{run_idx:02d}.csv'
 now_ts = int(time.time())
 with out_path.open('w', newline='', encoding='utf-8') as f:
     w = csv.writer(f)
     w.writerow(['run_id', 'timestamp', 'metric', 'value', 'unit'])
     w.writerow([run_idx, now_ts, 'openflow_msgs_per_s', f'{msgs_per_s:.6f}', 'msgs_per_s'])
-    w.writerow([run_idx, now_ts, 'controller_cpu_pct', f'{cpu_pct:.6f}', 'pct'])
+    w.writerow([run_idx, now_ts, 'ryu_cpu_pct', f'{cpu_pct["ryu"]:.6f}', 'pct'])
+    w.writerow([run_idx, now_ts, 'api_cpu_pct', f'{cpu_pct["api"]:.6f}', 'pct'])
+    w.writerow([run_idx, now_ts, 'telemetry_cpu_pct', f'{cpu_pct["telemetry"]:.6f}', 'pct'])
+    w.writerow([run_idx, now_ts, 'probe_cpu_pct', f'{cpu_pct["probe"]:.6f}', 'pct'])
+    w.writerow([run_idx, now_ts, 'control_stack_cpu_pct', f'{total_cpu_pct:.6f}', 'pct'])
     w.writerow([run_idx, now_ts, 'openflow_msgs_total', of_packets, 'count'])
     w.writerow([run_idx, now_ts, 'window_duration_s', f'{elapsed_s:.6f}', 's'])
 
-print(f"E8 {mode.upper()} run {run_idx}: of_msgs_per_s={msgs_per_s:.3f} (total={of_packets}), cpu={cpu_pct:.3f}% (window={elapsed_s:.1f}s) -> {out_path}")
+print(
+    f"E8v2 {mode.upper()} run {run_idx}: of_msgs_per_s={msgs_per_s:.3f} "
+    f"(total={of_packets}), control_stack_cpu={total_cpu_pct:.3f}% "
+    f"[ryu={cpu_pct['ryu']:.3f}, api={cpu_pct['api']:.3f}, "
+    f"telemetry={cpu_pct['telemetry']:.3f}, probe={cpu_pct['probe']:.3f}] "
+    f"(window={elapsed_s:.1f}s) -> {out_path}"
+)
 PY
 }
 

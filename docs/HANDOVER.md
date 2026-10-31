@@ -59,6 +59,7 @@ cd SDN
 - **Objective O8 (E8 control-plane overhead over 60 s window, $n=10$ each)**:
   - `B1` (open-loop): `8.108 msgs/s` (`[8.032, 8.185]`), `0.826%` `ryu-manager` CPU (`[0.789, 0.863]`).
   - `B3` (closed-loop): `9.228 msgs/s` (`[9.129, 9.327]`, $+13.8\%$ higher than `B1`), `0.794%` `ryu-manager` CPU (`[0.768, 0.819]`).
+  - Corrected `E8v2` full-stack CPU (primary): `B1` `0.939%` (`[0.907, 0.971]`); `B3` `5.078%` (`[4.954, 5.201]`). The earlier CPU field measured Ryu alone and is preserved but superseded.
 - **Objective O9 (ST-13 figures & documentation)**:
   - All PNG and PDF figures generated in `experiments/figures/`.
   - SHA-256 manifest written to `experiments/results/MANIFEST.sha256`.
