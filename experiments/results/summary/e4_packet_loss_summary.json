@@ -662,40 +662,51 @@
       ]
     }
   ],
-  "welch_tests": [
+  "statistical_tests": [
     {
       "metric": "packets_lost",
       "group_a": "B2",
       "group_b": "B3",
+      "test_method": "exact two-sided permutation",
       "t_statistic": null,
-      "degrees_of_freedom": 18.0,
-      "p_value_two_sided": 0.0,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
       "mean_diff": 42.0,
-      "note": "zero sample variance in both groups with distinct constant values (deterministic separation)"
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "packets_duplicated",
       "group_a": "B2",
       "group_b": "B3",
-      "t_statistic": 0.0,
-      "degrees_of_freedom": 18.0,
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
       "p_value_two_sided": 1.0,
-      "mean_diff": 0.0
+      "mean_diff": 0.0,
+      "permutation_extreme": 184756,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "packets_reordered",
       "group_a": "B2",
       "group_b": "B3",
+      "test_method": "exact two-sided permutation",
       "t_statistic": null,
-      "degrees_of_freedom": 18.0,
-      "p_value_two_sided": 0.0,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
       "mean_diff": -28.0,
-      "note": "zero sample variance in both groups with distinct constant values (deterministic separation)"
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "packets_sent",
       "group_a": "B2",
       "group_b": "B3",
+      "test_method": "Welch two-sample t",
       "t_statistic": -4.613418799760465,
       "degrees_of_freedom": 16.903872915926243,
       "p_value_two_sided": 0.00025133060950884375,

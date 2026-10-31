@@ -442,11 +442,12 @@
       ]
     }
   ],
-  "welch_tests": [
+  "statistical_tests": [
     {
       "metric": "openflow_msgs_per_s",
       "group_a": "B1",
       "group_b": "B3",
+      "test_method": "Welch two-sample t",
       "t_statistic": -20.236953675586843,
       "degrees_of_freedom": 16.9733940653433,
       "p_value_two_sided": 2.545767200738634e-13,
@@ -456,6 +457,7 @@
       "metric": "controller_cpu_pct",
       "group_a": "B1",
       "group_b": "B3",
+      "test_method": "Welch two-sample t",
       "t_statistic": 1.6429570546950438,
       "degrees_of_freedom": 16.018202583237365,
       "p_value_two_sided": 0.11987394321117463,
@@ -465,6 +467,7 @@
       "metric": "openflow_msgs_total",
       "group_a": "B1",
       "group_b": "B3",
+      "test_method": "Welch two-sample t",
       "t_statistic": -21.3645242618677,
       "degrees_of_freedom": 16.95146644826847,
       "p_value_two_sided": 1.0763706338449091e-13,

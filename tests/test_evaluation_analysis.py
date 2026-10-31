@@ -4,7 +4,9 @@ import csv
 
 import pytest
 
-from experiments.analyze_closed_loop import analyze, read_run
+from experiments.analyze_closed_loop import analyze, read_run, welch_t_test
+from experiments.process_cpu import inclusive_ticks
+from experiments.verify_summaries import verify
 from experiments.scenarios.alternating_trace import replay_trace
 from experiments.scenarios.udp_seq_probe import analyze_window
 
@@ -93,3 +95,30 @@ def test_udp_seq_probe_analyze_window_counts_lost_duplicated_and_reordered(tmp_p
         "packets_duplicated": 1,
         "packets_reordered": 1,
     }
+
+
+def test_process_cpu_includes_reaped_children_and_live_descendants():
+    stats = {
+        10: {"ppid": 1, "self_ticks": 100, "child_ticks": 30},
+        11: {"ppid": 10, "self_ticks": 20, "child_ticks": 4},
+        12: {"ppid": 11, "self_ticks": 5, "child_ticks": 1},
+        99: {"ppid": 1, "self_ticks": 999, "child_ticks": 999},
+    }
+    assert inclusive_ticks(10, stats) == 160
+
+
+def test_zero_variance_groups_use_exact_permutation_test():
+    result = welch_t_test([42.0] * 10, [0.0] * 10)
+    assert result["test_method"] == "exact two-sided permutation"
+    assert result["permutation_extreme"] == 2
+    assert result["permutation_total"] == 184756
+    assert result["p_value_two_sided"] == pytest.approx(2 / 184756)
+
+
+def test_one_zero_variance_group_also_uses_exact_permutation_test():
+    result = welch_t_test([1.0] * 3, [1.0, 2.0, 3.0])
+    assert result["test_method"] == "exact two-sided permutation"
+
+
+def test_published_summaries_match_raw_evaluation_data():
+    assert verify() == []

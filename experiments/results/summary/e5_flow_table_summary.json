@@ -2477,59 +2477,77 @@
       ]
     }
   ],
-  "welch_tests": [
+  "statistical_tests": [
     {
       "metric": "peak_rules_max_switch",
       "group_a": "all_strict",
       "group_b": "all_relaxed",
+      "test_method": "exact two-sided permutation",
       "t_statistic": null,
-      "degrees_of_freedom": 18.0,
-      "p_value_two_sided": 0.0,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
       "mean_diff": 4.0,
-      "note": "zero sample variance in both groups with distinct constant values (deterministic separation)"
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "peak_rules_max_switch",
       "group_a": "all_strict",
       "group_b": "selective",
+      "test_method": "exact two-sided permutation",
       "t_statistic": null,
-      "degrees_of_freedom": 18.0,
-      "p_value_two_sided": 0.0,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
       "mean_diff": 1.0,
-      "note": "zero sample variance in both groups with distinct constant values (deterministic separation)"
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "peak_rules_max_switch",
       "group_a": "selective",
       "group_b": "all_relaxed",
+      "test_method": "exact two-sided permutation",
       "t_statistic": null,
-      "degrees_of_freedom": 18.0,
-      "p_value_two_sided": 0.0,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
       "mean_diff": 3.0,
-      "note": "zero sample variance in both groups with distinct constant values (deterministic separation)"
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "peak_rules_total",
       "group_a": "all_strict",
       "group_b": "all_relaxed",
-      "t_statistic": 42.4516531732612,
-      "degrees_of_freedom": 9.0,
-      "p_value_two_sided": 1.1142134702193968e-11,
-      "mean_diff": 14.5
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
+      "mean_diff": 14.5,
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "peak_rules_total",
       "group_a": "all_strict",
       "group_b": "selective",
-      "t_statistic": 16.50000000000002,
-      "degrees_of_freedom": 9.0,
-      "p_value_two_sided": 4.9172185137457706e-08,
-      "mean_diff": 2.200000000000003
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
+      "mean_diff": 2.200000000000003,
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "peak_rules_total",
       "group_a": "selective",
       "group_b": "all_relaxed",
+      "test_method": "Welch two-sample t",
       "t_statistic": 33.54545454545453,
       "degrees_of_freedom": 11.68061342079603,
       "p_value_two_sided": 5.605752465826497e-13,
@@ -2539,24 +2557,33 @@
       "metric": "packets_lost",
       "group_a": "all_strict",
       "group_b": "all_relaxed",
-      "t_statistic": -75.01441721894315,
-      "degrees_of_freedom": 9.0,
-      "p_value_two_sided": 6.725566183347118e-14,
-      "mean_diff": -56.8
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
+      "mean_diff": -56.8,
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "packets_lost",
       "group_a": "all_strict",
       "group_b": "selective",
-      "t_statistic": -59.8235294117647,
-      "degrees_of_freedom": 9.0,
-      "p_value_two_sided": 5.135233387214082e-13,
-      "mean_diff": -33.9
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
+      "mean_diff": -33.9,
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "packets_lost",
       "group_a": "selective",
       "group_b": "all_relaxed",
+      "test_method": "Welch two-sample t",
       "t_statistic": -24.21356839480579,
       "degrees_of_freedom": 16.67412379887757,
       "p_value_two_sided": 1.98877645950422e-14,

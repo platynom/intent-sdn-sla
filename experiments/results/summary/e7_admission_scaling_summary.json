@@ -552,7 +552,7 @@
       ]
     }
   ],
-  "welch_tests": [],
+  "statistical_tests": [],
   "runs": [
     {
       "group": "k=01",

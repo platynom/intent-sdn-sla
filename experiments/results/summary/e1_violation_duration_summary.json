@@ -222,15 +222,19 @@
       ]
     }
   ],
-  "welch_tests": [
+  "statistical_tests": [
     {
       "metric": "sla_violation_duration_s",
       "group_a": "B1",
       "group_b": "B3",
-      "t_statistic": 194814.34087847912,
-      "degrees_of_freedom": 9.0,
-      "p_value_two_sided": 1.2597446415701408e-44,
-      "mean_diff": 11.9966482
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
+      "mean_diff": 11.9966482,
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     }
   ],
   "runs": [

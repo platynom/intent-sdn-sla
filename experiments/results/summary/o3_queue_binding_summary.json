@@ -442,11 +442,12 @@
       ]
     }
   ],
-  "welch_tests": [
+  "statistical_tests": [
     {
       "metric": "intent_throughput_mbps",
       "group_a": "bound",
       "group_b": "unbound",
+      "test_method": "Welch two-sample t",
       "t_statistic": 48.847369207823654,
       "degrees_of_freedom": 9.000005044968914,
       "p_value_two_sided": 3.1666942418249002e-12,
@@ -456,15 +457,20 @@
       "metric": "intent_loss_pct",
       "group_a": "bound",
       "group_b": "unbound",
-      "t_statistic": -48.84774349138765,
-      "degrees_of_freedom": 9.0,
-      "p_value_two_sided": 3.166514097714805e-12,
-      "mean_diff": -23.6203541
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
+      "mean_diff": -23.6203541,
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "cross_traffic_throughput_mbps",
       "group_a": "bound",
       "group_b": "unbound",
+      "test_method": "Welch two-sample t",
       "t_statistic": -39.98490485410869,
       "degrees_of_freedom": 9.388171049864516,
       "p_value_two_sided": 8.312317895505225e-12,
@@ -474,6 +480,7 @@
       "metric": "cross_traffic_loss_pct",
       "group_a": "bound",
       "group_b": "unbound",
+      "test_method": "Welch two-sample t",
       "t_statistic": 39.92834787343326,
       "degrees_of_freedom": 9.387290120452837,
       "p_value_two_sided": 8.43868726315958e-12,

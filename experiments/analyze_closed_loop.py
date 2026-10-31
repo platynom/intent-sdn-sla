@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import itertools
 import json
 import math
 import statistics
@@ -62,34 +63,45 @@ def _reg_inc_beta(x: float, a: float, b: float) -> float:
 
 
 def welch_t_test(xs: List[float], ys: List[float]) -> Optional[dict]:
-    """Two-sided Welch two-sample t-test with Satterthwaite degrees of freedom."""
+    """Use Welch normally, but an exact permutation test for zero variance."""
     n1, n2 = len(xs), len(ys)
     if n1 < 2 or n2 < 2:
         return None
     m1, m2 = statistics.mean(xs), statistics.mean(ys)
     v1, v2 = statistics.variance(xs), statistics.variance(ys)
-    se2 = (v1 / n1) + (v2 / n2)
-    if se2 <= 0.0:
-        if m1 == m2:
-            return {
-                "t_statistic": 0.0,
-                "degrees_of_freedom": float(n1 + n2 - 2),
-                "p_value_two_sided": 1.0,
-                "mean_diff": 0.0,
-            }
+    if v1 == 0.0 or v2 == 0.0:
+        pooled = tuple(xs) + tuple(ys)
+        observed = abs(m1 - m2)
+        total = math.comb(n1 + n2, n1)
+        extreme = 0
+        total_sum = sum(pooled)
+        tolerance = 1e-12
+        for selected in itertools.combinations(range(n1 + n2), n1):
+            selected_sum = sum(pooled[index] for index in selected)
+            perm_diff = abs(
+                selected_sum / n1
+                - (total_sum - selected_sum) / n2
+            )
+            if perm_diff + tolerance >= observed:
+                extreme += 1
         return {
+            "test_method": "exact two-sided permutation",
             "t_statistic": None,
-            "degrees_of_freedom": float(n1 + n2 - 2),
-            "p_value_two_sided": 0.0,
+            "degrees_of_freedom": None,
+            "p_value_two_sided": extreme / total,
             "mean_diff": m1 - m2,
-            "note": "zero sample variance in both groups with distinct constant values (deterministic separation)",
+            "permutation_extreme": extreme,
+            "permutation_total": total,
+            "note": "used because at least one group has zero sample variance",
         }
+    se2 = (v1 / n1) + (v2 / n2)
     t_stat = (m1 - m2) / math.sqrt(se2)
     denom = ((v1 / n1) ** 2) / (n1 - 1) + ((v2 / n2) ** 2) / (n2 - 1)
     df = (se2 ** 2) / denom if denom > 0 else float(n1 + n2 - 2)
     x = df / (df + t_stat * t_stat)
     p_val = _reg_inc_beta(x, 0.5 * df, 0.5)
     return {
+        "test_method": "Welch two-sample t",
         "t_statistic": t_stat,
         "degrees_of_freedom": df,
         "p_value_two_sided": p_val,
@@ -211,14 +223,14 @@ def analyze(paths: Iterable[Path]) -> dict:
             "ci_method": "two-sided Student t" if n > 1 else None,
         })
 
-    welch_tests = []
+    statistical_tests = []
     for metric in ("detection_latency", "recovery_latency"):
         for left, right in (("B2", "B3"), ("B2_matched_detector", "B3"), ("B2", "B2_matched_detector")):
             xs = values_by_key.get((left, metric), [])
             ys = values_by_key.get((right, metric), [])
             res = welch_t_test(xs, ys)
             if res is not None:
-                welch_tests.append({
+                statistical_tests.append({
                     "metric": metric,
                     "group_a": left,
                     "group_b": right,
@@ -236,7 +248,7 @@ def analyze(paths: Iterable[Path]) -> dict:
             "strict two-phase updates with default detector."
         ),
         "summaries": summaries,
-        "welch_tests": welch_tests,
+        "statistical_tests": statistical_tests,
         "runs": run_records,
         "exclusions": exclusions,
     }

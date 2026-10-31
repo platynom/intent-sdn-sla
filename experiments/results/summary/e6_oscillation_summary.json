@@ -326,42 +326,58 @@
       ]
     }
   ],
-  "welch_tests": [
+  "statistical_tests": [
     {
       "metric": "reroute_count_10min",
       "group_a": "B2",
       "group_b": "B3",
-      "t_statistic": 62.00000000000001,
-      "degrees_of_freedom": 2.0,
-      "p_value_two_sided": 0.00026004421191209103,
-      "mean_diff": 41.333333333333336
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 0.1,
+      "mean_diff": 41.333333333333336,
+      "permutation_extreme": 2,
+      "permutation_total": 20,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "raw_reroute_count",
       "group_a": "B2",
       "group_b": "B3",
-      "t_statistic": 62.00000000000001,
-      "degrees_of_freedom": 2.0,
-      "p_value_two_sided": 0.00026004421191209103,
-      "mean_diff": 41.333333333333336
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 0.1,
+      "mean_diff": 41.333333333333336,
+      "permutation_extreme": 2,
+      "permutation_total": 20,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "violations_emitted",
       "group_a": "B2",
       "group_b": "B3",
-      "t_statistic": 28.999999999999993,
-      "degrees_of_freedom": 2.0,
-      "p_value_two_sided": 0.001186944038478561,
-      "mean_diff": 9.666666666666664
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 0.1,
+      "mean_diff": 9.666666666666664,
+      "permutation_extreme": 2,
+      "permutation_total": 20,
+      "note": "used because at least one group has zero sample variance"
     },
     {
       "metric": "dwell_suppressions",
       "group_a": "B2",
       "group_b": "B3",
-      "t_statistic": -77.00000000000001,
-      "degrees_of_freedom": 2.0,
-      "p_value_two_sided": 0.00016861984775461784,
-      "mean_diff": -25.666666666666668
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 0.1,
+      "mean_diff": -25.666666666666668,
+      "permutation_extreme": 2,
+      "permutation_total": 20,
+      "note": "used because at least one group has zero sample variance"
     }
   ],
   "runs": [
