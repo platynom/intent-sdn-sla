@@ -234,18 +234,142 @@ def summarize_e5(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
     return res
 
 
+def summarize_e6(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    files = list(raw_dir.glob("e6_oscillation_*.csv"))
+    if not files:
+        return None
+
+    def classify(p: Path) -> Optional[str]:
+        if p.name.startswith("e6_oscillation_b2_"):
+            return "B2"
+        if p.name.startswith("e6_oscillation_b3_"):
+            return "B3"
+        return None
+
+    res = summarize_group(files, classify)
+    welch = []
+    for metric in (
+        "reroute_count_10min",
+        "raw_reroute_count",
+        "violations_emitted",
+        "dwell_suppressions",
+    ):
+        xs = res["values_by_key"].get(("B2", metric), [])
+        ys = res["values_by_key"].get(("B3", metric), [])
+        wt = welch_t_test(xs, ys)
+        if wt is not None:
+            welch.append({"metric": metric, "group_a": "B2", "group_b": "B3", **wt})
+    write_summary_files(
+        res["summaries"],
+        welch,
+        res["runs"],
+        summary_dir / "e6_oscillation_summary.json",
+        summary_dir / "e6_oscillation_summary.csv",
+        description="E6 route oscillation (reroutes per 10 min) on Scenario S6 (intents/s6_oscillation_trap.yaml), B2 (hysteresis+dwell OFF) vs B3 (hysteresis+dwell ON)",
+    )
+    return res
+
+
+def summarize_e1(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    files = list(raw_dir.glob("e1_violation_duration_*.csv"))
+    if not files:
+        return None
+
+    def classify(p: Path) -> Optional[str]:
+        if p.name.startswith("e1_violation_duration_b1_"):
+            return "B1"
+        if p.name.startswith("e1_violation_duration_b3_"):
+            return "B3"
+        return None
+
+    res = summarize_group(files, classify)
+    welch = []
+    for metric in ("sla_violation_duration_s",):
+        xs = res["values_by_key"].get(("B1", metric), [])
+        ys = res["values_by_key"].get(("B3", metric), [])
+        wt = welch_t_test(xs, ys)
+        if wt is not None:
+            welch.append({"metric": metric, "group_a": "B1", "group_b": "B3", **wt})
+    write_summary_files(
+        res["summaries"],
+        welch,
+        res["runs"],
+        summary_dir / "e1_violation_duration_summary.json",
+        summary_dir / "e1_violation_duration_summary.csv",
+        description="E1 SLA violation duration (s) from first breach sample to first restored-compliance sample (B1 right-censored at 15 s fault window vs B3 closed-loop)",
+    )
+    return res
+
+
+def summarize_e7(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    files = list(raw_dir.glob("e7_admission_k*.csv"))
+    if not files:
+        return None
+
+    def classify(p: Path) -> Optional[str]:
+        for k in (1, 2, 4, 8, 16):
+            if p.name.startswith(f"e7_admission_k{k:02d}_"):
+                return f"k={k:02d}"
+        return None
+
+    res = summarize_group(files, classify)
+    write_summary_files(
+        res["summaries"],
+        [],
+        res["runs"],
+        summary_dir / "e7_admission_scaling_summary.json",
+        summary_dir / "e7_admission_scaling_summary.csv",
+        description="E7 admission decision latency (ms) vs number of active intents (1, 2, 4, 8, 16)",
+    )
+    return res
+
+
+def summarize_e8(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    files = list(raw_dir.glob("e8_overhead_*.csv"))
+    if not files:
+        return None
+
+    def classify(p: Path) -> Optional[str]:
+        if p.name.startswith("e8_overhead_b1_"):
+            return "B1"
+        if p.name.startswith("e8_overhead_b3_"):
+            return "B3"
+        return None
+
+    res = summarize_group(files, classify)
+    welch = []
+    for metric in ("openflow_msgs_per_s", "controller_cpu_pct", "openflow_msgs_total"):
+        xs = res["values_by_key"].get(("B1", metric), [])
+        ys = res["values_by_key"].get(("B3", metric), [])
+        wt = welch_t_test(xs, ys)
+        if wt is not None:
+            welch.append({"metric": metric, "group_a": "B1", "group_b": "B3", **wt})
+    write_summary_files(
+        res["summaries"],
+        welch,
+        res["runs"],
+        summary_dir / "e8_control_overhead_summary.json",
+        summary_dir / "e8_control_overhead_summary.csv",
+        description="E8 control-plane overhead: OpenFlow message rate (msgs/s) and controller CPU % over a 60 s window (B1 vs B3; B3 has higher overhead as expected)",
+    )
+    return res
+
+
 def main() -> int:
     raw_dir = Path("experiments/results/raw")
     summary_dir = Path("experiments/results/summary")
-    e4 = summarize_e4(raw_dir, summary_dir)
-    if e4 is not None:
-        print(f"E4 summary written ({len(e4['runs'])} runs)")
-    o3 = summarize_o3(raw_dir, summary_dir)
-    if o3 is not None:
-        print(f"O3 summary written ({len(o3['runs'])} runs)")
-    e5 = summarize_e5(raw_dir, summary_dir)
-    if e5 is not None:
-        print(f"E5 summary written ({len(e5['runs'])} runs)")
+    for label, fn in (
+        ("E4", summarize_e4),
+        ("O3", summarize_o3),
+        ("E5", summarize_e5),
+        ("E6", summarize_e6),
+        ("E1", summarize_e1),
+        ("E7", summarize_e7),
+        ("E8", summarize_e8),
+    ):
+        res = fn(raw_dir, summary_dir)
+        if res is not None:
+            print(f"{label} summary written ({len(res['runs'])} runs)")
     return 0
 
 

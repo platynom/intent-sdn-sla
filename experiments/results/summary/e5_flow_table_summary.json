@@ -1,0 +1,3225 @@
+{
+  "description": "E5 flow-table entries and reconfiguration packet loss across all_strict, selective (50/50 strict/relaxed), and all_relaxed modes (citing CCG, Zhou et al., NSDI 2015)",
+  "summaries": [
+    {
+      "group": "all_relaxed",
+      "metric": "packets_lost",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 56.8,
+      "sample_stddev": 2.3944379994757297,
+      "ci95_t_low": 55.087241242906636,
+      "ci95_t_high": 58.51275875709336,
+      "min": 53.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 59.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 56.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 57.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 58.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 57.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 53.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 59.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 53.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 56.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "packets_lost_relaxed_intents",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 56.8,
+      "sample_stddev": 2.3944379994757297,
+      "ci95_t_low": 55.087241242906636,
+      "ci95_t_high": 58.51275875709336,
+      "min": 53.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 59.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 56.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 57.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 58.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 57.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 53.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 59.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 53.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 56.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "packets_lost_strict_intents",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "packets_reordered",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "packets_sent",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 4844.3,
+      "sample_stddev": 111.02557262981253,
+      "ci95_t_low": 4764.882607766561,
+      "ci95_t_high": 4923.71739223344,
+      "min": 4567.0,
+      "max": 4986.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 4777.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 4867.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 4840.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 4902.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 4876.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 4844.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 4567.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 4889.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 4986.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 4895.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "peak_rules_max_switch",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "peak_rules_s1",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "peak_rules_s2",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "peak_rules_s3",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "peak_rules_s4",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "peak_rules_s5",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "peak_rules_s6",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "peak_rules_s7",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "peak_rules_total",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 27.5,
+      "sample_stddev": 1.0801234497346435,
+      "ci95_t_low": 26.727379912246647,
+      "ci95_t_high": 28.272620087753353,
+      "min": 27.0,
+      "max": 30.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 27.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 27.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 27.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 27.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 30.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 27.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 27.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 29.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 27.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 27.0
+        }
+      ]
+    },
+    {
+      "group": "all_relaxed",
+      "metric": "rule_overhead_max_switch",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_relaxed_20261031190244_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190306_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190329_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190351_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190413_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190435_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190458_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190520_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190542_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_relaxed_20261031190604_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "packets_lost",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "packets_lost_relaxed_intents",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "packets_lost_strict_intents",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "packets_reordered",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 27.3,
+      "sample_stddev": 1.0593499054713802,
+      "ci95_t_low": 26.542239378167487,
+      "ci95_t_high": 28.057760621832514,
+      "min": 25.0,
+      "max": 28.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 27.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 27.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 26.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 25.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 28.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "packets_sent",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 4959.0,
+      "sample_stddev": 76.39226255176487,
+      "ci95_t_low": 4904.3560640583055,
+      "ci95_t_high": 5013.6439359416945,
+      "min": 4833.0,
+      "max": 5032.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 4920.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 4849.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 4900.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 5005.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 4833.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 5000.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 5020.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 5003.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 5028.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 5032.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "peak_rules_max_switch",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 10.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 10.0,
+      "ci95_t_high": 10.0,
+      "min": 10.0,
+      "max": 10.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 10.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "peak_rules_s1",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 7.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 7.0,
+      "ci95_t_high": 7.0,
+      "min": 7.0,
+      "max": 7.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 7.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "peak_rules_s2",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "peak_rules_s3",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "peak_rules_s4",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "peak_rules_s5",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "peak_rules_s6",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "peak_rules_s7",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 10.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 10.0,
+      "ci95_t_high": 10.0,
+      "min": 10.0,
+      "max": 10.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 10.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 10.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "peak_rules_total",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 42.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 42.0,
+      "ci95_t_high": 42.0,
+      "min": 42.0,
+      "max": 42.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 42.0
+        }
+      ]
+    },
+    {
+      "group": "all_strict",
+      "metric": "rule_overhead_max_switch",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 4.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 4.0,
+      "ci95_t_high": 4.0,
+      "min": 4.0,
+      "max": 4.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_all_strict_20261031185517_01.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e5_all_strict_20261031185540_02.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e5_all_strict_20261031185602_03.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e5_all_strict_20261031185624_04.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e5_all_strict_20261031185646_05.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e5_all_strict_20261031185709_06.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e5_all_strict_20261031185731_07.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e5_all_strict_20261031185753_08.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e5_all_strict_20261031185815_09.csv",
+          "value": 4.0
+        },
+        {
+          "file": "e5_all_strict_20261031185837_10.csv",
+          "value": 4.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "packets_lost",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 33.9,
+      "sample_stddev": 1.7919573407620815,
+      "ci95_t_low": 32.6182,
+      "ci95_t_high": 35.181799999999996,
+      "min": 31.0,
+      "max": 37.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 31.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 34.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 34.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 32.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 37.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 33.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 33.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 35.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 36.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 34.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "packets_lost_relaxed_intents",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 33.9,
+      "sample_stddev": 1.7919573407620815,
+      "ci95_t_low": 32.6182,
+      "ci95_t_high": 35.181799999999996,
+      "min": 31.0,
+      "max": 37.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 31.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 34.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 34.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 32.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 37.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 33.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 33.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 35.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 36.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 34.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "packets_lost_strict_intents",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "packets_reordered",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 13.7,
+      "sample_stddev": 0.48304589153964794,
+      "ci95_t_low": 13.354473792600329,
+      "ci95_t_high": 14.04552620739967,
+      "min": 13.0,
+      "max": 14.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 14.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 13.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 14.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 14.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 14.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 13.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 14.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 13.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 14.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 14.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "packets_sent",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 4882.0,
+      "sample_stddev": 62.3377895020348,
+      "ci95_t_low": 4837.409329917571,
+      "ci95_t_high": 4926.590670082429,
+      "min": 4729.0,
+      "max": 4940.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 4866.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 4882.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 4938.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 4940.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 4916.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 4729.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 4845.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 4876.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 4904.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 4924.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "peak_rules_max_switch",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 9.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 9.0,
+      "ci95_t_high": 9.0,
+      "min": 9.0,
+      "max": 9.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 9.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "peak_rules_s1",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 8.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 8.0,
+      "ci95_t_high": 8.0,
+      "min": 8.0,
+      "max": 8.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 8.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 8.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "peak_rules_s2",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 7.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 7.0,
+      "ci95_t_high": 7.0,
+      "min": 7.0,
+      "max": 7.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 7.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "peak_rules_s3",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 7.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 7.0,
+      "ci95_t_high": 7.0,
+      "min": 7.0,
+      "max": 7.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 7.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "peak_rules_s4",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 7.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 7.0,
+      "ci95_t_high": 7.0,
+      "min": 7.0,
+      "max": 7.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 7.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "peak_rules_s5",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 7.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 7.0,
+      "ci95_t_high": 7.0,
+      "min": 7.0,
+      "max": 7.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 7.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 7.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "peak_rules_s6",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "peak_rules_s7",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 9.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 9.0,
+      "ci95_t_high": 9.0,
+      "min": 9.0,
+      "max": 9.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 9.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 9.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "peak_rules_total",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 39.8,
+      "sample_stddev": 0.4216370213557839,
+      "ci95_t_low": 39.4984,
+      "ci95_t_high": 40.1016,
+      "min": 39.0,
+      "max": 40.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 39.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 40.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 40.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 40.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 40.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 39.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 40.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 40.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 40.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 40.0
+        }
+      ]
+    },
+    {
+      "group": "selective",
+      "metric": "rule_overhead_max_switch",
+      "unit": "entries",
+      "n_independent_runs": 10,
+      "mean": 3.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 3.0,
+      "ci95_t_high": 3.0,
+      "min": 3.0,
+      "max": 3.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e5_selective_20261031185901_01.csv",
+          "value": 3.0
+        },
+        {
+          "file": "e5_selective_20261031185923_02.csv",
+          "value": 3.0
+        },
+        {
+          "file": "e5_selective_20261031185945_03.csv",
+          "value": 3.0
+        },
+        {
+          "file": "e5_selective_20261031190007_04.csv",
+          "value": 3.0
+        },
+        {
+          "file": "e5_selective_20261031190030_05.csv",
+          "value": 3.0
+        },
+        {
+          "file": "e5_selective_20261031190052_06.csv",
+          "value": 3.0
+        },
+        {
+          "file": "e5_selective_20261031190114_07.csv",
+          "value": 3.0
+        },
+        {
+          "file": "e5_selective_20261031190136_08.csv",
+          "value": 3.0
+        },
+        {
+          "file": "e5_selective_20261031190159_09.csv",
+          "value": 3.0
+        },
+        {
+          "file": "e5_selective_20261031190221_10.csv",
+          "value": 3.0
+        }
+      ]
+    }
+  ],
+  "welch_tests": [
+    {
+      "metric": "peak_rules_max_switch",
+      "group_a": "all_strict",
+      "group_b": "all_relaxed",
+      "t_statistic": 0.0,
+      "degrees_of_freedom": 18.0,
+      "p_value_two_sided": 1.0,
+      "mean_diff": 4.0
+    },
+    {
+      "metric": "peak_rules_max_switch",
+      "group_a": "all_strict",
+      "group_b": "selective",
+      "t_statistic": 0.0,
+      "degrees_of_freedom": 18.0,
+      "p_value_two_sided": 1.0,
+      "mean_diff": 1.0
+    },
+    {
+      "metric": "peak_rules_max_switch",
+      "group_a": "selective",
+      "group_b": "all_relaxed",
+      "t_statistic": 0.0,
+      "degrees_of_freedom": 18.0,
+      "p_value_two_sided": 1.0,
+      "mean_diff": 3.0
+    },
+    {
+      "metric": "peak_rules_total",
+      "group_a": "all_strict",
+      "group_b": "all_relaxed",
+      "t_statistic": 42.4516531732612,
+      "degrees_of_freedom": 9.0,
+      "p_value_two_sided": 1.1142134702193968e-11,
+      "mean_diff": 14.5
+    },
+    {
+      "metric": "peak_rules_total",
+      "group_a": "all_strict",
+      "group_b": "selective",
+      "t_statistic": 16.50000000000002,
+      "degrees_of_freedom": 9.0,
+      "p_value_two_sided": 4.9172185137457706e-08,
+      "mean_diff": 2.200000000000003
+    },
+    {
+      "metric": "peak_rules_total",
+      "group_a": "selective",
+      "group_b": "all_relaxed",
+      "t_statistic": 33.54545454545453,
+      "degrees_of_freedom": 11.68061342079603,
+      "p_value_two_sided": 5.605752465826497e-13,
+      "mean_diff": 12.299999999999997
+    },
+    {
+      "metric": "packets_lost",
+      "group_a": "all_strict",
+      "group_b": "all_relaxed",
+      "t_statistic": -75.01441721894315,
+      "degrees_of_freedom": 9.0,
+      "p_value_two_sided": 6.725566183347118e-14,
+      "mean_diff": -56.8
+    },
+    {
+      "metric": "packets_lost",
+      "group_a": "all_strict",
+      "group_b": "selective",
+      "t_statistic": -59.8235294117647,
+      "degrees_of_freedom": 9.0,
+      "p_value_two_sided": 5.135233387214082e-13,
+      "mean_diff": -33.9
+    },
+    {
+      "metric": "packets_lost",
+      "group_a": "selective",
+      "group_b": "all_relaxed",
+      "t_statistic": -24.21356839480579,
+      "degrees_of_freedom": 16.67412379887757,
+      "p_value_two_sided": 1.98877645950422e-14,
+      "mean_diff": -22.9
+    }
+  ],
+  "runs": [
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190244_01.csv",
+      "run_id": 1,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 27.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 59.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 59.0,
+        "packets_sent": 4777.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190306_02.csv",
+      "run_id": 2,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 27.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 56.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 56.0,
+        "packets_sent": 4867.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190329_03.csv",
+      "run_id": 3,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 27.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 60.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 60.0,
+        "packets_sent": 4840.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190351_04.csv",
+      "run_id": 4,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 27.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 57.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 57.0,
+        "packets_sent": 4902.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190413_05.csv",
+      "run_id": 5,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 30.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 58.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 58.0,
+        "packets_sent": 4876.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190435_06.csv",
+      "run_id": 6,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 27.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 57.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 57.0,
+        "packets_sent": 4844.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190458_07.csv",
+      "run_id": 7,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 27.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 53.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 53.0,
+        "packets_sent": 4567.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190520_08.csv",
+      "run_id": 8,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 29.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 59.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 59.0,
+        "packets_sent": 4889.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190542_09.csv",
+      "run_id": 9,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 27.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 53.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 53.0,
+        "packets_sent": 4986.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_relaxed",
+      "file": "e5_all_relaxed_20261031190604_10.csv",
+      "run_id": 10,
+      "values": {
+        "peak_rules_max_switch": 6.0,
+        "peak_rules_total": 27.0,
+        "rule_overhead_max_switch": 0.0,
+        "peak_rules_s1": 6.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 6.0,
+        "packets_lost": 56.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 56.0,
+        "packets_sent": 4895.0,
+        "packets_reordered": 0.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185517_01.csv",
+      "run_id": 1,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 4920.0,
+        "packets_reordered": 28.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185540_02.csv",
+      "run_id": 2,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 4849.0,
+        "packets_reordered": 27.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185602_03.csv",
+      "run_id": 3,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 4900.0,
+        "packets_reordered": 28.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185624_04.csv",
+      "run_id": 4,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 5005.0,
+        "packets_reordered": 27.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185646_05.csv",
+      "run_id": 5,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 4833.0,
+        "packets_reordered": 26.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185709_06.csv",
+      "run_id": 6,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 5000.0,
+        "packets_reordered": 25.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185731_07.csv",
+      "run_id": 7,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 5020.0,
+        "packets_reordered": 28.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185753_08.csv",
+      "run_id": 8,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 5003.0,
+        "packets_reordered": 28.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185815_09.csv",
+      "run_id": 9,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 5028.0,
+        "packets_reordered": 28.0
+      }
+    },
+    {
+      "group": "all_strict",
+      "file": "e5_all_strict_20261031185837_10.csv",
+      "run_id": 10,
+      "values": {
+        "peak_rules_max_switch": 10.0,
+        "peak_rules_total": 42.0,
+        "rule_overhead_max_switch": 4.0,
+        "peak_rules_s1": 7.0,
+        "peak_rules_s2": 6.0,
+        "peak_rules_s3": 6.0,
+        "peak_rules_s4": 6.0,
+        "peak_rules_s5": 6.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 10.0,
+        "packets_lost": 0.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 0.0,
+        "packets_sent": 5032.0,
+        "packets_reordered": 28.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031185901_01.csv",
+      "run_id": 1,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 39.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 31.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 31.0,
+        "packets_sent": 4866.0,
+        "packets_reordered": 14.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031185923_02.csv",
+      "run_id": 2,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 40.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 34.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 34.0,
+        "packets_sent": 4882.0,
+        "packets_reordered": 13.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031185945_03.csv",
+      "run_id": 3,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 40.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 34.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 34.0,
+        "packets_sent": 4938.0,
+        "packets_reordered": 14.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031190007_04.csv",
+      "run_id": 4,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 40.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 32.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 32.0,
+        "packets_sent": 4940.0,
+        "packets_reordered": 14.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031190030_05.csv",
+      "run_id": 5,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 40.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 37.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 37.0,
+        "packets_sent": 4916.0,
+        "packets_reordered": 14.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031190052_06.csv",
+      "run_id": 6,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 39.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 33.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 33.0,
+        "packets_sent": 4729.0,
+        "packets_reordered": 13.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031190114_07.csv",
+      "run_id": 7,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 40.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 33.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 33.0,
+        "packets_sent": 4845.0,
+        "packets_reordered": 14.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031190136_08.csv",
+      "run_id": 8,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 40.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 35.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 35.0,
+        "packets_sent": 4876.0,
+        "packets_reordered": 13.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031190159_09.csv",
+      "run_id": 9,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 40.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 36.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 36.0,
+        "packets_sent": 4904.0,
+        "packets_reordered": 14.0
+      }
+    },
+    {
+      "group": "selective",
+      "file": "e5_selective_20261031190221_10.csv",
+      "run_id": 10,
+      "values": {
+        "peak_rules_max_switch": 9.0,
+        "peak_rules_total": 40.0,
+        "rule_overhead_max_switch": 3.0,
+        "peak_rules_s1": 8.0,
+        "peak_rules_s2": 7.0,
+        "peak_rules_s3": 7.0,
+        "peak_rules_s4": 7.0,
+        "peak_rules_s5": 7.0,
+        "peak_rules_s6": 1.0,
+        "peak_rules_s7": 9.0,
+        "packets_lost": 34.0,
+        "packets_lost_strict_intents": 0.0,
+        "packets_lost_relaxed_intents": 34.0,
+        "packets_sent": 4924.0,
+        "packets_reordered": 14.0
+      }
+    }
+  ]
+}

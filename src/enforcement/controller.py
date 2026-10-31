@@ -218,6 +218,7 @@ class Team16Controller(BaseApp):
                 latest_violation[event.intent_id] = (event, event_order)
 
         causal_parts = {"measurement", "threshold", "decision", "action"}
+        actionable = []
         for intent_id, (violation, violation_order) in latest_violation.items():
             if violation.id in self._seen_violation_ids:
                 continue
@@ -239,7 +240,13 @@ class Team16Controller(BaseApp):
             if resolved:
                 continue
             self._seen_violation_ids.add(violation.id)
-            self.event_bus.publish(violation)
+            actionable.append(violation)
+        if len(actionable) <= 1 or not RYU_AVAILABLE or hub is None:
+            for v in actionable:
+                self.event_bus.publish(v)
+        else:
+            threads = [hub.spawn(self.event_bus.publish, v) for v in actionable]
+            hub.joinall(threads)
 
     def _dpid_to_sw_name(self, dpid: int) -> str:
         """Convert integer DPID (e.g. 1, 7) to switch name ('s1', 's7')."""
