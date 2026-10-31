@@ -160,12 +160,92 @@ def summarize_e4(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
     return res
 
 
+def summarize_o3(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    files = list(raw_dir.glob("o3_queue_*.csv"))
+    if not files:
+        return None
+
+    def classify(p: Path) -> Optional[str]:
+        if p.name.startswith("o3_queue_bound_"):
+            return "bound"
+        if p.name.startswith("o3_queue_unbound_"):
+            return "unbound"
+        return None
+
+    res = summarize_group(files, classify)
+    welch = []
+    for metric in (
+        "intent_throughput_mbps",
+        "intent_loss_pct",
+        "cross_traffic_throughput_mbps",
+        "cross_traffic_loss_pct",
+    ):
+        xs = res["values_by_key"].get(("bound", metric), [])
+        ys = res["values_by_key"].get(("unbound", metric), [])
+        wt = welch_t_test(xs, ys)
+        if wt is not None:
+            welch.append({"metric": metric, "group_a": "bound", "group_b": "unbound", **wt})
+    write_summary_files(
+        res["summaries"],
+        welch,
+        res["runs"],
+        summary_dir / "o3_queue_binding_summary.json",
+        summary_dir / "o3_queue_binding_summary.csv",
+        description="Objective O3: 20 Mbit/s SLA intent vs competing 150 Mbit/s iperf3 cross-traffic (SET_QUEUE bound vs unbound control)",
+    )
+    return res
+
+
+def summarize_e5(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    files = list(raw_dir.glob("e5_*.csv"))
+    if not files:
+        return None
+
+    def classify(p: Path) -> Optional[str]:
+        if p.name.startswith("e5_all_strict_"):
+            return "all_strict"
+        if p.name.startswith("e5_selective_"):
+            return "selective"
+        if p.name.startswith("e5_all_relaxed_"):
+            return "all_relaxed"
+        return None
+
+    res = summarize_group(files, classify)
+    welch = []
+    for metric in ("peak_rules_max_switch", "peak_rules_total", "packets_lost"):
+        for g1, g2 in (
+            ("all_strict", "all_relaxed"),
+            ("all_strict", "selective"),
+            ("selective", "all_relaxed"),
+        ):
+            xs = res["values_by_key"].get((g1, metric), [])
+            ys = res["values_by_key"].get((g2, metric), [])
+            wt = welch_t_test(xs, ys)
+            if wt is not None:
+                welch.append({"metric": metric, "group_a": g1, "group_b": g2, **wt})
+    write_summary_files(
+        res["summaries"],
+        welch,
+        res["runs"],
+        summary_dir / "e5_flow_table_summary.json",
+        summary_dir / "e5_flow_table_summary.csv",
+        description="E5 flow-table entries and reconfiguration packet loss across all_strict, selective (50/50 strict/relaxed), and all_relaxed modes (citing CCG, Zhou et al., NSDI 2015)",
+    )
+    return res
+
+
 def main() -> int:
     raw_dir = Path("experiments/results/raw")
     summary_dir = Path("experiments/results/summary")
     e4 = summarize_e4(raw_dir, summary_dir)
     if e4 is not None:
         print(f"E4 summary written ({len(e4['runs'])} runs)")
+    o3 = summarize_o3(raw_dir, summary_dir)
+    if o3 is not None:
+        print(f"O3 summary written ({len(o3['runs'])} runs)")
+    e5 = summarize_e5(raw_dir, summary_dir)
+    if e5 is not None:
+        print(f"E5 summary written ({len(e5['runs'])} runs)")
     return 0
 
 

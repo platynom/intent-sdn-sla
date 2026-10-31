@@ -9,6 +9,7 @@ correct match specification (eth_type=0x0800 for IPv4).
 from __future__ import annotations
 
 import hashlib
+import os
 from typing import Any, Dict, List, Tuple
 
 try:
@@ -100,13 +101,16 @@ def rules_for_path(
     intent: IntentRecord,
     port_map: Dict[Tuple[str, str], int],
     priority: int = 100,
+    queue_id: int = 1,
 ) -> List[Dict[str, Any]]:
     """
     Generate the list of flow rule specifications for a given PathPlan.
 
     Computes bidirectional rules (forward along plan.switches, reverse back).
     For each switch on the path:
-      - Forward rule: matches forward traffic, outputs to next switch (or destination host on egress).
+      - Forward rule: matches forward traffic, sets HTB queue on switch-to-switch
+        egress ports when min_bandwidth_mbps is guaranteed, and outputs to next switch
+        (or destination host on egress).
       - Reverse rule: matches reverse traffic, outputs to previous switch (or source host on ingress).
 
     Returns plain dictionaries:
@@ -120,14 +124,27 @@ def rules_for_path(
     if num_switches == 0:
         return rules
 
+    use_queue = (
+        bool(intent.guarantee.min_bandwidth_mbps)
+        and os.environ.get("TEAM16_DISABLE_SET_QUEUE") != "1"
+    )
+
     # 1. Forward direction: src -> dst
     for idx, sw in enumerate(switches):
         if idx < num_switches - 1:
             next_hop = switches[idx + 1]
             out_port = port_map.get((sw, next_hop))
+            if use_queue:
+                forward_actions = [
+                    {"type": "SET_QUEUE", "queue_id": queue_id, "port": out_port},
+                    {"type": "OUTPUT", "port": out_port},
+                ]
+            else:
+                forward_actions = [{"type": "OUTPUT", "port": out_port}]
         else:
             # Egress switch: forward out to destination host port
             out_port = _resolve_ip_to_host_port(intent.match.dst, sw, port_map)
+            forward_actions = [{"type": "OUTPUT", "port": out_port}]
 
         forward_match = {
             "eth_type": 0x0800,
@@ -140,7 +157,7 @@ def rules_for_path(
         rules.append({
             "switch": sw,
             "match": forward_match,
-            "actions": [{"type": "OUTPUT", "port": out_port}],
+            "actions": forward_actions,
             "priority": priority,
             "cookie": cookie,
             "direction": "forward",
@@ -233,6 +250,8 @@ def install(controller: Any, rules: List[Dict[str, Any]]) -> int:
                 action_type = act.get("type")
                 if action_type == "OUTPUT":
                     actions.append(parser.OFPActionOutput(act["port"]))
+                elif action_type == "SET_QUEUE":
+                    actions.append(parser.OFPActionSetQueue(int(act["queue_id"])))
                 elif action_type == "PUSH_VLAN":
                     actions.append(parser.OFPActionPushVlan(ether.ETH_TYPE_8021Q))
                 elif action_type == "SET_VLAN":

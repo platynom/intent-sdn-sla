@@ -97,3 +97,26 @@ def test_two_phase_installs_transit_then_flips_then_drains_and_removes_old(monke
     assert calls[3] == ("barrier",)
     assert calls[4] == ("drain", 0)
     assert ("remove-vlan", flowmod.cookie_for_intent("INT-ST10"), 100) in calls
+
+
+def test_two_phase_versioned_rules_preserve_set_queue_on_ingress_and_transit_hops():
+    """Strict two-phase updates must include SET_QUEUE on forward inter-switch hops."""
+    switches = ("s1", "s2", "s7")
+    ports = _ports(switches)
+    plan = two_phase.with_version(_plan(switches, None), 1)
+    rules = two_phase.versioned_rules(plan, _intent(), ports)
+    forward = {rule["switch"]: rule for rule in rules if rule["direction"] == "forward"}
+    assert forward["s1"]["actions"] == [
+        {"type": "PUSH_VLAN"},
+        {"type": "SET_VLAN", "vlan_id": 101},
+        {"type": "SET_QUEUE", "queue_id": 1, "port": ports[("s1", "s2")]},
+        {"type": "OUTPUT", "port": ports[("s1", "s2")]},
+    ]
+    assert forward["s2"]["actions"] == [
+        {"type": "SET_QUEUE", "queue_id": 1, "port": ports[("s2", "s7")]},
+        {"type": "OUTPUT", "port": ports[("s2", "s7")]},
+    ]
+    assert forward["s7"]["actions"] == [
+        {"type": "POP_VLAN"},
+        {"type": "OUTPUT", "port": ports[("s7", "h2")]},
+    ]

@@ -35,6 +35,7 @@ def ensure_queue(
     """
     min_bps = int(min_mbps * 1_000_000)
     max_bps_clause = f",other-config:max-rate={int(max_mbps * 1_000_000)}" if max_mbps is not None else ""
+    qos_max_bps = int(max_mbps * 1_000_000) if max_mbps is not None else max(min_bps, 100_000_000)
 
     # Check if a QoS record already exists on this port
     # ovs-vsctl get port <port> qos
@@ -72,7 +73,7 @@ def ensure_queue(
             "create",
             "qos",
             "type=linux-htb",
-            f"other-config:max-rate={min_bps * 10}",
+            f"other-config:max-rate={qos_max_bps}",
             f"queues:{queue_id}=@q",
             "--",
             "--id=@q",
