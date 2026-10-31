@@ -367,7 +367,7 @@
         }
       ],
       "mean": 2104.2620419,
-      "sample_stddev": 3.9936944023881997,
+      "sample_stddev": 3.9936944023882,
       "ci95_t_low": 2101.4053235124943,
       "ci95_t_high": 2107.1187602875057,
       "ci_method": "two-sided Student t"
@@ -479,13 +479,14 @@
       "ci_method": "two-sided Student t"
     }
   ],
-  "welch_tests": [
+  "statistical_tests": [
     {
       "metric": "detection_latency",
       "group_a": "B2",
       "group_b": "B3",
       "n_a": 10,
       "n_b": 10,
+      "test_method": "Welch two-sample t",
       "t_statistic": -1053.9485793191425,
       "degrees_of_freedom": 17.751211431449665,
       "p_value_two_sided": 5.013059467116545e-44,
@@ -497,6 +498,7 @@
       "group_b": "B3",
       "n_a": 10,
       "n_b": 10,
+      "test_method": "Welch two-sample t",
       "t_statistic": 2.8455611733238575,
       "degrees_of_freedom": 10.585978399443526,
       "p_value_two_sided": 0.016487706517644408,
@@ -508,6 +510,7 @@
       "group_b": "B2_matched_detector",
       "n_a": 10,
       "n_b": 10,
+      "test_method": "Welch two-sample t",
       "t_statistic": -451.2846580142714,
       "degrees_of_freedom": 11.00237428804842,
       "p_value_two_sided": 7.859156796439164e-25,
@@ -519,9 +522,10 @@
       "group_b": "B3",
       "n_a": 10,
       "n_b": 10,
+      "test_method": "Welch two-sample t",
       "t_statistic": -9.879369663097368,
-      "degrees_of_freedom": 17.57547492360889,
-      "p_value_two_sided": 1.350553874176063e-08,
+      "degrees_of_freedom": 17.575474923608894,
+      "p_value_two_sided": 1.3505538741760634e-08,
       "mean_diff": -339.1798496
     },
     {
@@ -530,6 +534,7 @@
       "group_b": "B3",
       "n_a": 10,
       "n_b": 10,
+      "test_method": "Welch two-sample t",
       "t_statistic": -4.678007790414927,
       "degrees_of_freedom": 16.42039644107788,
       "p_value_two_sided": 0.00023586691112247138,
@@ -541,9 +546,10 @@
       "group_b": "B2_matched_detector",
       "n_a": 10,
       "n_b": 10,
+      "test_method": "Welch two-sample t",
       "t_statistic": -6.43678390237329,
-      "degrees_of_freedom": 17.536485759465553,
-      "p_value_two_sided": 5.289122102665063e-06,
+      "degrees_of_freedom": 17.536485759465556,
+      "p_value_two_sided": 5.289122102665101e-06,
       "mean_diff": -188.3562326
     }
   ],
