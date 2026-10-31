@@ -1,0 +1,10 @@
+run_id,sample_time_s,phase,delay_ms,sla_limit_ms,detector_status,event,event_time_s,dwell_seconds_remaining,reroute_decision_count
+alternating-dwell-v1,0,violation,30.0,20.0,red,sla.violated,0.0,,1
+alternating-dwell-v1,1,recovery,10.0,20.0,green,sla.restored,1.0,,1
+alternating-dwell-v1,2,violation,30.0,20.0,red,violation.suppressed,2.0,8.0,1
+alternating-dwell-v1,3,recovery,10.0,20.0,green,sla.restored,3.0,,1
+alternating-dwell-v1,10,violation,30.0,20.0,red,sla.violated,10.0,,2
+alternating-dwell-v1,11,recovery,10.0,20.0,green,sla.restored,11.0,,2
+alternating-dwell-v1,12,violation,30.0,20.0,red,violation.suppressed,12.0,8.0,2
+alternating-dwell-v1,13,recovery,10.0,20.0,green,sla.restored,13.0,,2
+alternating-dwell-v1,20,violation,30.0,20.0,red,sla.violated,20.0,,3

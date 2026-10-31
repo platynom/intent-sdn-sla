@@ -1,0 +1,328 @@
+{
+  "comparability": "provisional; B2 and B3 have latency-only intents and use the same controlled primary-link delay; detector and update policies differ by definition. B3 currently has one run.",
+  "summaries": [
+    {
+      "baseline": "B2",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "individual_runs": [
+        {
+          "file": "b2_closed_loop_20261025165815.csv",
+          "value": 95.329285
+        },
+        {
+          "file": "b2_closed_loop_20261025165935.csv",
+          "value": 99.695206
+        },
+        {
+          "file": "b2_closed_loop_20261025165958.csv",
+          "value": 94.967604
+        },
+        {
+          "file": "b2_closed_loop_20261025170020.csv",
+          "value": 100.715399
+        },
+        {
+          "file": "b2_closed_loop_20261025170043.csv",
+          "value": 98.270655
+        },
+        {
+          "file": "b2_closed_loop_20261025170105.csv",
+          "value": 110.836029
+        },
+        {
+          "file": "b2_closed_loop_20261025170128.csv",
+          "value": 98.335505
+        },
+        {
+          "file": "b2_closed_loop_20261025170150.csv",
+          "value": 98.421335
+        },
+        {
+          "file": "b2_closed_loop_20261025170213.csv",
+          "value": 101.250887
+        },
+        {
+          "file": "b2_closed_loop_20261025170235.csv",
+          "value": 96.843958
+        }
+      ],
+      "mean": 99.4665863,
+      "sample_stddev": 4.4981253659206635,
+      "ci95_t_low": 96.24904480898154,
+      "ci95_t_high": 102.68412779101847,
+      "ci_method": "two-sided Student t"
+    },
+    {
+      "baseline": "B2",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "individual_runs": [
+        {
+          "file": "b2_closed_loop_20261025165815.csv",
+          "value": 223.438263
+        },
+        {
+          "file": "b2_closed_loop_20261025165935.csv",
+          "value": 215.893984
+        },
+        {
+          "file": "b2_closed_loop_20261025165958.csv",
+          "value": 261.316299
+        },
+        {
+          "file": "b2_closed_loop_20261025170020.csv",
+          "value": 289.880276
+        },
+        {
+          "file": "b2_closed_loop_20261025170043.csv",
+          "value": 440.266609
+        },
+        {
+          "file": "b2_closed_loop_20261025170105.csv",
+          "value": 239.245892
+        },
+        {
+          "file": "b2_closed_loop_20261025170128.csv",
+          "value": 251.626253
+        },
+        {
+          "file": "b2_closed_loop_20261025170150.csv",
+          "value": 277.623415
+        },
+        {
+          "file": "b2_closed_loop_20261025170213.csv",
+          "value": 361.559629
+        },
+        {
+          "file": "b2_closed_loop_20261025170235.csv",
+          "value": 232.698202
+        }
+      ],
+      "mean": 279.3548822,
+      "sample_stddev": 70.5516235563651,
+      "ci95_t_low": 228.88879742362386,
+      "ci95_t_high": 329.82096697637616,
+      "ci_method": "two-sided Student t"
+    },
+    {
+      "baseline": "B2",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "individual_runs": [
+        {
+          "file": "b2_closed_loop_20261025165815.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_closed_loop_20261025165935.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_closed_loop_20261025165958.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_closed_loop_20261025170020.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_closed_loop_20261025170043.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_closed_loop_20261025170105.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_closed_loop_20261025170128.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_closed_loop_20261025170150.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_closed_loop_20261025170213.csv",
+          "value": 1.0
+        },
+        {
+          "file": "b2_closed_loop_20261025170235.csv",
+          "value": 1.0
+        }
+      ],
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "ci_method": "two-sided Student t"
+    },
+    {
+      "baseline": "B3",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 1,
+      "individual_runs": [
+        {
+          "file": "b3_closed_loop_20261025165852.csv",
+          "value": 2097.639799
+        }
+      ],
+      "mean": 2097.639799,
+      "sample_stddev": null,
+      "ci95_t_low": null,
+      "ci95_t_high": null,
+      "ci_method": null
+    },
+    {
+      "baseline": "B3",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 1,
+      "individual_runs": [
+        {
+          "file": "b3_closed_loop_20261025165852.csv",
+          "value": 475.151539
+        }
+      ],
+      "mean": 475.151539,
+      "sample_stddev": null,
+      "ci95_t_low": null,
+      "ci95_t_high": null,
+      "ci_method": null
+    },
+    {
+      "baseline": "B3",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 1,
+      "individual_runs": [
+        {
+          "file": "b3_closed_loop_20261025165852.csv",
+          "value": 1.0
+        }
+      ],
+      "mean": 1.0,
+      "sample_stddev": null,
+      "ci95_t_low": null,
+      "ci95_t_high": null,
+      "ci_method": null
+    }
+  ],
+  "runs": [
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025165815.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 95.329285,
+        "recovery_latency": 223.438263,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025165935.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 99.695206,
+        "recovery_latency": 215.893984,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025165958.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 94.967604,
+        "recovery_latency": 261.316299,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025170020.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 100.715399,
+        "recovery_latency": 289.880276,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025170043.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 98.270655,
+        "recovery_latency": 440.266609,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025170105.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 110.836029,
+        "recovery_latency": 239.245892,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025170128.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 98.335505,
+        "recovery_latency": 251.626253,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025170150.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 98.421335,
+        "recovery_latency": 277.623415,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025170213.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 101.250887,
+        "recovery_latency": 361.559629,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B2",
+      "file": "b2_closed_loop_20261025170235.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 96.843958,
+        "recovery_latency": 232.698202,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "baseline": "B3",
+      "file": "b3_closed_loop_20261025165852.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2097.639799,
+        "recovery_latency": 475.151539,
+        "reroute_count": 1.0
+      }
+    }
+  ],
+  "exclusions": []
+}
