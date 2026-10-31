@@ -1,0 +1,13 @@
+group,metric,n,mean,stdev,ci95_t_low,ci95_t_high,min,max,unit
+B2,packets_duplicated,10,0.000,0.000,0.000,0.000,0.000,0.000,packets
+B2,packets_lost,10,42.000,0.000,42.000,42.000,42.000,42.000,packets
+B2,packets_received,10,4313.100,79.535,4256.208,4369.992,4181.000,4468.000,packets
+B2,packets_reordered,10,0.000,0.000,0.000,0.000,0.000,0.000,packets
+B2,packets_sent,10,4355.100,79.535,4298.208,4411.992,4223.000,4510.000,packets
+B2,window_duration_s,10,4.355,0.080,4.298,4.412,4.223,4.510,s
+B3,packets_duplicated,10,0.000,0.000,0.000,0.000,0.000,0.000,packets
+B3,packets_lost,10,0.000,0.000,0.000,0.000,0.000,0.000,packets
+B3,packets_received,10,4501.600,61.303,4457.750,4545.450,4414.000,4616.000,packets
+B3,packets_reordered,10,28.000,0.000,28.000,28.000,28.000,28.000,packets
+B3,packets_sent,10,4501.600,61.303,4457.750,4545.450,4414.000,4616.000,packets
+B3,window_duration_s,10,4.502,0.061,4.458,4.545,4.414,4.616,s

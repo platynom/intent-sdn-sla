@@ -6,6 +6,7 @@ import pytest
 
 from experiments.analyze_closed_loop import analyze, read_run
 from experiments.scenarios.alternating_trace import replay_trace
+from experiments.scenarios.udp_seq_probe import analyze_window
 
 
 def write_run(path, metrics):
@@ -59,3 +60,36 @@ def test_alternating_trace_records_violation_recovery_and_dwell():
     assert rows[0]["event_time_s"] == 0.0
     assert rows[2]["dwell_seconds_remaining"] == 8.0
     assert rows[-1]["reroute_decision_count"] == 3
+
+
+def test_udp_seq_probe_analyze_window_counts_lost_duplicated_and_reordered(tmp_path):
+    tx_log = tmp_path / "tx.csv"
+    rx_log = tmp_path / "rx.csv"
+    tx_log.write_text(
+        "seq,tx_time\n"
+        "1,9.0\n"
+        "2,10.0\n"
+        "3,10.1\n"
+        "4,10.2\n"
+        "5,10.3\n"
+        "6,15.0\n",
+        encoding="utf-8",
+    )
+    rx_log.write_text(
+        "seq,tx_time,rx_time\n"
+        "1,9.0,9.01\n"
+        "2,10.0,10.01\n"
+        "5,10.3,10.31\n"
+        "4,10.2,10.35\n"
+        "4,10.2,10.36\n"
+        "6,15.0,15.01\n",
+        encoding="utf-8",
+    )
+    stats = analyze_window(tx_log, rx_log, 10.0, 14.0)
+    assert stats == {
+        "packets_sent": 4,
+        "packets_received": 3,
+        "packets_lost": 1,
+        "packets_duplicated": 1,
+        "packets_reordered": 1,
+    }

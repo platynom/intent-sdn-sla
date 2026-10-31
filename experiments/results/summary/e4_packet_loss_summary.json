@@ -1,0 +1,965 @@
+{
+  "description": "E4 packet loss during reconfiguration (1,000 pkt/s UDP stream across [fault_inject - 2 s, path_installed + 2 s])",
+  "summaries": [
+    {
+      "group": "B2",
+      "metric": "packets_duplicated",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b2_reconfig_20261031181406_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181429_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181452_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181515_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181538_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181601_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181624_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181647_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181711_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181734_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "packets_lost",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 42.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 42.0,
+      "ci95_t_high": 42.0,
+      "min": 42.0,
+      "max": 42.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b2_reconfig_20261031181406_01.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181429_02.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181452_03.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181515_04.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181538_05.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181601_06.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181624_07.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181647_08.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181711_09.csv",
+          "value": 42.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181734_10.csv",
+          "value": 42.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "packets_received",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 4313.1,
+      "sample_stddev": 79.53538695309011,
+      "ci95_t_low": 4256.207764522389,
+      "ci95_t_high": 4369.992235477612,
+      "min": 4181.0,
+      "max": 4468.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b2_reconfig_20261031181406_01.csv",
+          "value": 4306.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181429_02.csv",
+          "value": 4278.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181452_03.csv",
+          "value": 4181.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181515_04.csv",
+          "value": 4297.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181538_05.csv",
+          "value": 4323.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181601_06.csv",
+          "value": 4293.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181624_07.csv",
+          "value": 4468.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181647_08.csv",
+          "value": 4256.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181711_09.csv",
+          "value": 4414.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181734_10.csv",
+          "value": 4315.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "packets_reordered",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b2_reconfig_20261031181406_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181429_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181452_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181515_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181538_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181601_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181624_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181647_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181711_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181734_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "packets_sent",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 4355.1,
+      "sample_stddev": 79.53538695309011,
+      "ci95_t_low": 4298.207764522389,
+      "ci95_t_high": 4411.992235477612,
+      "min": 4223.0,
+      "max": 4510.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b2_reconfig_20261031181406_01.csv",
+          "value": 4348.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181429_02.csv",
+          "value": 4320.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181452_03.csv",
+          "value": 4223.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181515_04.csv",
+          "value": 4339.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181538_05.csv",
+          "value": 4365.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181601_06.csv",
+          "value": 4335.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181624_07.csv",
+          "value": 4510.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181647_08.csv",
+          "value": 4298.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181711_09.csv",
+          "value": 4456.0
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181734_10.csv",
+          "value": 4357.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "window_duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 4.3548781000000005,
+      "sample_stddev": 0.07953329004252792,
+      "ci95_t_low": 4.297987364457626,
+      "ci95_t_high": 4.411768835542375,
+      "min": 4.223168,
+      "max": 4.509898,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b2_reconfig_20261031181406_01.csv",
+          "value": 4.347878
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181429_02.csv",
+          "value": 4.319707
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181452_03.csv",
+          "value": 4.223168
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181515_04.csv",
+          "value": 4.339044
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181538_05.csv",
+          "value": 4.364842
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181601_06.csv",
+          "value": 4.334342
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181624_07.csv",
+          "value": 4.509898
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181647_08.csv",
+          "value": 4.297244
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181711_09.csv",
+          "value": 4.455712
+        },
+        {
+          "file": "e4_b2_reconfig_20261031181734_10.csv",
+          "value": 4.356946
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "packets_duplicated",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b3_reconfig_20261031181757_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181820_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181843_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181906_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181929_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181952_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182015_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182038_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182101_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182124_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "packets_lost",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b3_reconfig_20261031181757_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181820_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181843_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181906_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181929_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181952_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182015_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182038_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182101_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182124_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "packets_received",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 4501.6,
+      "sample_stddev": 61.3028909958123,
+      "ci95_t_low": 4457.749600277307,
+      "ci95_t_high": 4545.450399722694,
+      "min": 4414.0,
+      "max": 4616.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b3_reconfig_20261031181757_01.csv",
+          "value": 4455.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181820_02.csv",
+          "value": 4465.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181843_03.csv",
+          "value": 4554.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181906_04.csv",
+          "value": 4495.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181929_05.csv",
+          "value": 4506.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181952_06.csv",
+          "value": 4503.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182015_07.csv",
+          "value": 4616.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182038_08.csv",
+          "value": 4446.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182101_09.csv",
+          "value": 4414.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182124_10.csv",
+          "value": 4562.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "packets_reordered",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 28.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 28.0,
+      "ci95_t_high": 28.0,
+      "min": 28.0,
+      "max": 28.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b3_reconfig_20261031181757_01.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181820_02.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181843_03.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181906_04.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181929_05.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181952_06.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182015_07.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182038_08.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182101_09.csv",
+          "value": 28.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182124_10.csv",
+          "value": 28.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "packets_sent",
+      "unit": "packets",
+      "n_independent_runs": 10,
+      "mean": 4501.6,
+      "sample_stddev": 61.3028909958123,
+      "ci95_t_low": 4457.749600277307,
+      "ci95_t_high": 4545.450399722694,
+      "min": 4414.0,
+      "max": 4616.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b3_reconfig_20261031181757_01.csv",
+          "value": 4455.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181820_02.csv",
+          "value": 4465.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181843_03.csv",
+          "value": 4554.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181906_04.csv",
+          "value": 4495.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181929_05.csv",
+          "value": 4506.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181952_06.csv",
+          "value": 4503.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182015_07.csv",
+          "value": 4616.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182038_08.csv",
+          "value": 4446.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182101_09.csv",
+          "value": 4414.0
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182124_10.csv",
+          "value": 4562.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "window_duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 4.5015155,
+      "sample_stddev": 0.06122389884722753,
+      "ci95_t_low": 4.457721603930464,
+      "ci95_t_high": 4.545309396069536,
+      "min": 4.413925,
+      "max": 4.615549,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e4_b3_reconfig_20261031181757_01.csv",
+          "value": 4.454832
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181820_02.csv",
+          "value": 4.465352
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181843_03.csv",
+          "value": 4.554077
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181906_04.csv",
+          "value": 4.494727
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181929_05.csv",
+          "value": 4.505494
+        },
+        {
+          "file": "e4_b3_reconfig_20261031181952_06.csv",
+          "value": 4.50303
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182015_07.csv",
+          "value": 4.615549
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182038_08.csv",
+          "value": 4.446066
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182101_09.csv",
+          "value": 4.413925
+        },
+        {
+          "file": "e4_b3_reconfig_20261031182124_10.csv",
+          "value": 4.562103
+        }
+      ]
+    }
+  ],
+  "welch_tests": [
+    {
+      "metric": "packets_lost",
+      "group_a": "B2",
+      "group_b": "B3",
+      "t_statistic": 0.0,
+      "degrees_of_freedom": 18.0,
+      "p_value_two_sided": 1.0,
+      "mean_diff": 42.0
+    },
+    {
+      "metric": "packets_duplicated",
+      "group_a": "B2",
+      "group_b": "B3",
+      "t_statistic": 0.0,
+      "degrees_of_freedom": 18.0,
+      "p_value_two_sided": 1.0,
+      "mean_diff": 0.0
+    },
+    {
+      "metric": "packets_reordered",
+      "group_a": "B2",
+      "group_b": "B3",
+      "t_statistic": 0.0,
+      "degrees_of_freedom": 18.0,
+      "p_value_two_sided": 1.0,
+      "mean_diff": -28.0
+    },
+    {
+      "metric": "packets_sent",
+      "group_a": "B2",
+      "group_b": "B3",
+      "t_statistic": -4.613418799760465,
+      "degrees_of_freedom": 16.903872915926243,
+      "p_value_two_sided": 0.00025133060950884375,
+      "mean_diff": -146.5
+    }
+  ],
+  "runs": [
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181406_01.csv",
+      "run_id": 1,
+      "values": {
+        "packets_sent": 4348.0,
+        "packets_received": 4306.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.347878
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181429_02.csv",
+      "run_id": 2,
+      "values": {
+        "packets_sent": 4320.0,
+        "packets_received": 4278.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.319707
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181452_03.csv",
+      "run_id": 3,
+      "values": {
+        "packets_sent": 4223.0,
+        "packets_received": 4181.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.223168
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181515_04.csv",
+      "run_id": 4,
+      "values": {
+        "packets_sent": 4339.0,
+        "packets_received": 4297.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.339044
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181538_05.csv",
+      "run_id": 5,
+      "values": {
+        "packets_sent": 4365.0,
+        "packets_received": 4323.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.364842
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181601_06.csv",
+      "run_id": 6,
+      "values": {
+        "packets_sent": 4335.0,
+        "packets_received": 4293.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.334342
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181624_07.csv",
+      "run_id": 7,
+      "values": {
+        "packets_sent": 4510.0,
+        "packets_received": 4468.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.509898
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181647_08.csv",
+      "run_id": 8,
+      "values": {
+        "packets_sent": 4298.0,
+        "packets_received": 4256.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.297244
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181711_09.csv",
+      "run_id": 9,
+      "values": {
+        "packets_sent": 4456.0,
+        "packets_received": 4414.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.455712
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e4_b2_reconfig_20261031181734_10.csv",
+      "run_id": 10,
+      "values": {
+        "packets_sent": 4357.0,
+        "packets_received": 4315.0,
+        "packets_lost": 42.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 0.0,
+        "window_duration_s": 4.356946
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031181757_01.csv",
+      "run_id": 1,
+      "values": {
+        "packets_sent": 4455.0,
+        "packets_received": 4455.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.454832
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031181820_02.csv",
+      "run_id": 2,
+      "values": {
+        "packets_sent": 4465.0,
+        "packets_received": 4465.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.465352
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031181843_03.csv",
+      "run_id": 3,
+      "values": {
+        "packets_sent": 4554.0,
+        "packets_received": 4554.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.554077
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031181906_04.csv",
+      "run_id": 4,
+      "values": {
+        "packets_sent": 4495.0,
+        "packets_received": 4495.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.494727
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031181929_05.csv",
+      "run_id": 5,
+      "values": {
+        "packets_sent": 4506.0,
+        "packets_received": 4506.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.505494
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031181952_06.csv",
+      "run_id": 6,
+      "values": {
+        "packets_sent": 4503.0,
+        "packets_received": 4503.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.50303
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031182015_07.csv",
+      "run_id": 7,
+      "values": {
+        "packets_sent": 4616.0,
+        "packets_received": 4616.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.615549
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031182038_08.csv",
+      "run_id": 8,
+      "values": {
+        "packets_sent": 4446.0,
+        "packets_received": 4446.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.446066
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031182101_09.csv",
+      "run_id": 9,
+      "values": {
+        "packets_sent": 4414.0,
+        "packets_received": 4414.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.413925
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e4_b3_reconfig_20261031182124_10.csv",
+      "run_id": 10,
+      "values": {
+        "packets_sent": 4562.0,
+        "packets_received": 4562.0,
+        "packets_lost": 0.0,
+        "packets_duplicated": 0.0,
+        "packets_reordered": 28.0,
+        "window_duration_s": 4.562103
+      }
+    }
+  ]
+}
