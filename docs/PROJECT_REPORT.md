@@ -65,7 +65,7 @@ Full tables, Welch two-sample $t$-tests, and figures (`experiments/figures/*.{pn
 | **O3 Intent Throughput** | `bound` vs `unbound` | 10 / 10 | 24.995 vs 19.091 | 0.000 / 0.382 | `[24.995, 24.996]` vs `[18.818, 19.365]` | `Mbits/sec` |
 | **E5 Peak Rules / Switch** | `all_relaxed` / `selective` / `all_strict` | 10 / 10 / 10 | 6.000 / 9.000 / 10.000 | 0.000 / 0.000 / 0.000 | `[6.000, 6.000]` / `[9.000, 9.000]` / `[10.000, 10.000]` | `entries` |
 | **E5 Concurrent Pkts Lost** | `all_relaxed` / `selective` / `all_strict` | 10 / 10 / 10 | 56.800 / 33.900 (0 strict) / 0.000 | 2.394 / 1.792 / 0.000 | `[55.087, 58.513]` / `[32.618, 35.182]` / `[0.000, 0.000]` | `packets` |
-| **E6 Oscillation (10-min S6)** | `B2` vs `B3` | 3 / 3 | 90.000 vs 48.667 | 0.000 / 1.155 | `[90.000, 90.000]` vs `[45.798, 51.535]` | `count/10min` |
+| **E6 Oscillation (10-min S6)** | `B2` vs `B3` | 10 / 10 | 90.000 vs 48.300 | 0.000 / 1.059 | `[90.000, 90.000]` vs `[47.542, 49.058]` | `count/10min` |
 | **E7 Admission Scaling** | `k=1, 2, 4, 8, 16` | 10 each | 47.889, 49.420, 49.665, 51.845, 59.496 | 3.789..8.463 | See `e7_admission_scaling_summary.csv` | `ms` |
 | **E8 OpenFlow Rate (60 s)** | `B1` vs `B3` | 10 / 10 | 8.108 vs 9.228 | 0.107 / 0.138 | `[8.032, 8.185]` vs `[9.129, 9.327]` | `msgs/s` |
 | **E8 Controller CPU (60 s)** | `B1` vs `B3` | 10 / 10 | 0.826 vs 0.794 | 0.052 / 0.036 | `[0.789, 0.863]` vs `[0.768, 0.819]` | `pct` |
@@ -75,7 +75,7 @@ Full tables, Welch two-sample $t$-tests, and figures (`experiments/figures/*.{pn
 1. **Software emulation**: Mininet `TCLink` (`htb` + `netem`) and Open vSwitch 2.17.12 run inside a single Linux container; software flow tables do not exhibit hardware TCAM exhaustion (confirmed by the 2,000-rule OVS flow-limit pilot).
 2. **Fixed topology and inferred links**: The 7-switch topology has only 3 link-disjoint routes between `h1` and `h2`, and links `s3-s7` and `s6-s7` are marked `inferred`.
 3. **Drain window**: The 250 ms two-phase drain window is sized for this emulated topology, not a WAN worst-case flight-time bound.
-4. **Sample size on E6**: Due to the 10-minute (600 s) duration per run, `E6` was evaluated with $n=3$ independent runs per baseline (60 minutes total live execution); all other metrics (`E1`–`E5`, `E7`, `E8`, `O3`, `B0`, `B1`) have $n=10$ independent runs.
+4. **Sample size on E6**: `E6` was evaluated with $n=10$ independent 10-minute runs per baseline (200 minutes total live execution), matching the other metrics' minimum sample size.
 
 ## References
 

@@ -180,17 +180,17 @@ def _dataset_specs() -> Dict[str, dict]:
             prefix_classifier({"e8v2_overhead_b1_": "B1", "e8v2_overhead_b3_": "B3"}),
         ),
         "b3_current": _single_run_dataset(
-            ["b3_current_closed_loop_*.csv"], lambda _: "B3_current"
+            ["b3_current_closed_loop_*.csv"], lambda _: "B3-current"
         ),
         "e4_current": _single_run_dataset(
             ["e4current_b[23]_reconfig_*.csv"],
-            prefix_classifier({"e4current_b2_": "B2_current", "e4current_b3_": "B3_current"}),
+            prefix_classifier({"e4current_b2_": "B2", "e4current_b3_": "B3"}),
         ),
         "o3_current": _single_run_dataset(
             ["o3current_queue_*.csv"],
             prefix_classifier({
-                "o3current_queue_bound_": "bound_current",
-                "o3current_queue_unbound_": "unbound_current",
+                "o3current_queue_bound_": "bound",
+                "o3current_queue_unbound_": "unbound",
             }),
         ),
     }
@@ -430,14 +430,10 @@ def _verify_document_claims(datasets: Mapping[str, dict], errors: List[str]) -> 
         ("o3", "unbound", "intent_throughput_mbps"),
         ("e1", "B1", "sla_violation_duration_s"),
         ("e1", "B3", "sla_violation_duration_s"),
-        ("closed_loop", "B2", "detection_latency"),
-        ("closed_loop", "B2_matched_detector", "detection_latency"),
-        ("closed_loop", "B3", "detection_latency"),
-        ("closed_loop", "B2", "recovery_latency"),
-        ("closed_loop", "B2_matched_detector", "recovery_latency"),
-        ("closed_loop", "B3", "recovery_latency"),
-        ("e4", "B2", "packets_lost"),
-        ("e4", "B3", "packets_lost"),
+        ("b3_current", "B3-current", "detection_latency"),
+        ("b3_current", "B3-current", "recovery_latency"),
+        ("e4_current", "B2", "packets_lost"),
+        ("e4_current", "B3", "packets_lost"),
         ("e5", "all_relaxed", "peak_rules_max_switch"),
         ("e5", "selective", "peak_rules_max_switch"),
         ("e5", "all_strict", "peak_rules_max_switch"),

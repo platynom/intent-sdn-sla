@@ -7,7 +7,7 @@ All live network experiments were executed inside the project's privileged Docke
 - **Container unit & integration test suite**: `270 passed, 11 skipped` (`pytest tests -q`).
 - **Static analysis**: `0` errors (`ruff check src tests topology experiments`).
 - **Live smoke verification**: `s1_single_intent.sh`, `s1_single_intent.sh --st7`, `s9_preemption.sh`, and `s10_two_phase.sh` all pass end-to-end before and after the evaluation changes.
-- **Statistical rigour**: Every reported metric is aggregated across $n = 10$ independent runs ($n = 3$ ten-minute live runs for `E6`, stated explicitly) with sample standard deviation ($s$) and two-sided 95% Student-$t$ confidence intervals ($\bar{x} \pm t_{0.975, n-1} \cdot s/\sqrt{n}$). Every single-run observation is preserved as an immutable CSV in `experiments/results/raw/`.
+- **Statistical rigour**: Every reported metric is aggregated across $n = 10$ independent runs, including ten-minute live runs for `E6`, with sample standard deviation ($s$) and two-sided 95% Student-$t$ confidence intervals ($\bar{x} \pm t_{0.975, n-1} \cdot s/\sqrt{n}$). Every single-run observation is preserved as an immutable CSV in `experiments/results/raw/`.
 
 ---
 
@@ -49,8 +49,8 @@ All live network experiments were executed inside the project's privileged Docke
 | **E5 Peak Flow Rules (Busiest Switch)** | `all_relaxed` (0/4 strict) | 10 | 6.000 | 0.000 | `[6.000, 6.000]` | `entries` | Total fabric peak: $27.500 \pm 0.773$; lost: $56.800$ pkts |
 | **E5 Peak Flow Rules (Busiest Switch)** | `selective` (2/4 strict) | 10 | 9.000 | 0.000 | `[9.000, 9.000]` | `entries` | Total fabric peak: $39.800 \pm 0.302$; strict lost: $0.000$, total lost: $33.900$ pkts |
 | **E5 Peak Flow Rules (Busiest Switch)** | `all_strict` (4/4 strict) | 10 | 10.000 | 0.000 | `[10.000, 10.000]` | `entries` | Total fabric peak: $42.000 \pm 0.000$; lost: $0.000$ pkts |
-| **E6 Reroute Oscillation (10-min S6)** | `B2` (hysteresis+dwell OFF) | 3 | 90.000 | 0.000 | `[90.000, 90.000]` | `count/10min` | 0 dwell suppressions per 10-min run |
-| **E6 Reroute Oscillation (10-min S6)** | `B3` (hysteresis+dwell ON) | 3 | 48.667 | 1.155 | `[45.798, 51.535]` | `count/10min` | $25.667$ dwell suppressions per 10-min run |
+| **E6 Reroute Oscillation (10-min S6)** | `B2` (hysteresis+dwell OFF) | 10 | 90.000 | 0.000 | `[90.000, 90.000]` | `count/10min` | 0 dwell suppressions per 10-min run |
+| **E6 Reroute Oscillation (10-min S6)** | `B3` (hysteresis+dwell ON) | 10 | 48.300 | 1.059 | `[47.542, 49.058]` | `count/10min` | $28.700$ dwell suppressions per 10-min run |
 | **E7 Admission Decision Latency** | `k=01` active intent | 10 | 47.889 | 3.789 | `[45.179, 50.599]` | `ms` | `POST /intent` end-to-end decision time |
 | **E7 Admission Decision Latency** | `k=02` active intents | 10 | 49.420 | 4.427 | `[46.253, 52.587]` | `ms` | `POST /intent` end-to-end decision time |
 | **E7 Admission Decision Latency** | `k=04` active intents | 10 | 49.665 | 2.123 | `[48.146, 51.184]` | `ms` | `POST /intent` end-to-end decision time |
@@ -106,7 +106,7 @@ All figures are saved in both `.png` and `.pdf` formats under `experiments/figur
 - `experiments/figures/e3_recovery_latency.{png,pdf}` — E3 path recovery latency (`B2`, `B2_matched_detector`, `B3`).
 - `experiments/figures/e4_packet_loss.{png,pdf}` — E4 headline packet loss and reordering during reconfiguration (`B2` vs `B3`, citing Reitblatt et al., SIGCOMM 2012).
 - `experiments/figures/e5_rules_vs_loss.{png,pdf}` — E5 peak switch flow-table entries vs reconfiguration packet loss (`all_relaxed`, `selective`, `all_strict`, citing CCG, Zhou et al., NSDI 2015).
-- `experiments/figures/e6_oscillation.{png,pdf}` — E6 live route oscillation over 10-minute runs on Scenario S6 (`B2` vs `B3`, $n=3$).
+- `experiments/figures/e6_oscillation.{png,pdf}` — E6 live route oscillation over 10-minute runs on Scenario S6 (`B2` vs `B3`, $n=10$).
 - `experiments/figures/e7_admission_scaling.{png,pdf}` — E7 admission decision latency scaling curve ($k \in \{1, 2, 4, 8, 16\}$ active intents).
 - `experiments/figures/e8_control_overhead.{png,pdf}` — E8 OpenFlow message rate and controller CPU utilization (`B1` vs `B3`).
 - `experiments/figures/o3_queue_binding.{png,pdf}` — O3 data-plane HTB queue binding (`OFPActionSetQueue:1` vs unbound control under 150 Mbps cross-traffic).

@@ -48,9 +48,9 @@ cd SDN
   - `all_relaxed`: peak `6.000` rules on busiest switch (`27.500` total across fabric), `56.800` packets lost (`[55.087, 58.513]`).
   - `selective` (2 strict + 2 relaxed, citing CCG, Zhou et al., NSDI 2015): peak `9.000` rules on busiest switch (`39.800` total), `33.900` total packets lost (`0.000` lost on strict intents).
   - `all_strict`: peak `10.000` rules on busiest switch (`42.000` total), `0.000` packets lost.
-- **Objective O5 (E6 live route oscillation over 10-minute runs on S6, $n=3$ each)**:
+- **Objective O5 (E6 live route oscillation over 10-minute runs on S6, $n=10$ each)**:
   - `B2` (hysteresis+dwell OFF): `90.000` reroutes/10 min (`[90.000, 90.000]`, `0` dwell suppressions).
-  - `B3` (hysteresis+dwell ON): `48.667` reroutes/10 min (`[45.798, 51.535]`, `25.667` dwell suppressions/10 min).
+  - `B3` (hysteresis+dwell ON): `48.300` reroutes/10 min (`[47.542, 49.058]`, `28.700` dwell suppressions/10 min).
 - **Objective O6 (E1 SLA violation duration, $n=10$ each)**:
   - `B1` (open-loop): `15.000 s` (`[15.000, 15.000]`, right-censored at the 15 s fault window).
   - `B3` (closed-loop): `3.003 s` (`[3.003, 3.003]`, uncensored).
@@ -69,4 +69,4 @@ cd SDN
 1. All experiments run in containerized Mininet + Open vSwitch 2.17.12 on a single laptop, not physical ASIC switch hardware or a 5G RAN.
 2. Topology is fixed at 7 switches and 8 hosts; links `s3-s7` and `s6-s7` are marked `inferred` in `topology/topology_spec.py`.
 3. The 250 ms two-phase drain window is calibrated for this emulated topology, not a general WAN delay bound.
-4. For `E6`, $n=3$ ten-minute live runs per baseline (60 minutes total runtime) were executed; all other metrics have $n=10$ independent runs.
+4. For `E6`, $n=10$ ten-minute live runs per baseline (200 minutes total runtime) were executed.

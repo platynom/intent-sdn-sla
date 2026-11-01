@@ -113,7 +113,7 @@ interface needs agreement from both sides, recorded in `docs/decisions.md`.
 
 ## Evaluation
 
-The project plan (Section 11 of `00_TEAM16_Project_Plan.pdf`) defines four baselines (`B0`–`B3`) and eight metrics (`E1`–`E8`), plus data-plane HTB queue-binding verification (`O3`), with $\ge 10$ independent runs ($n=3$ ten-minute live runs for `E6`) and two-sided 95% Student-$t$ confidence intervals. Complete results, Welch two-sample $t$-tests, and limitations are documented in [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md).
+The project plan (Section 11 of `00_TEAM16_Project_Plan.pdf`) defines four baselines (`B0`–`B3`) and eight metrics (`E1`–`E8`), plus data-plane HTB queue-binding verification (`O3`), with at least 10 independent runs per configuration, including ten-minute live runs for `E6`, and two-sided 95% Student-$t$ confidence intervals. Results, statistical comparisons, and limitations are documented in [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md).
 
 ```bash
 # Closed-loop E2/E3 latency evaluation (B2, B2_matched_detector, B3):
@@ -151,13 +151,13 @@ All subtasks **ST-1 through ST-13** are complete on branch `feat/st-12-eval-comp
 - **Container test suite**: `270 passed, 11 skipped` (`pytest tests -q`), `ruff check` clean (`0` errors).
 - **Live smoke scenarios**: `s1_single_intent.sh`, `s1_single_intent.sh --st7`, `s9_preemption.sh`, and `s10_two_phase.sh` all pass in sequence.
 - **Resolved HTB queue-binding defect (O3)**: Forward inter-switch OpenFlow rules now emit `OFPActionSetQueue(1)` when `min_bandwidth_mbps > 0`. Under 150 Mbit/s competing cross-traffic (`n=10`), the queue-bound 20 Mbit/s SLA intent achieves `24.995 Mbit/s` (`[24.995, 24.996]`, `0.000%` loss), whereas the unbound control drops to `19.091 Mbit/s` (`[18.818, 19.365]`, `23.620%` loss).
-- **Complete E1–E8 evaluation (`n=10` per configuration; `n=3` ten-minute live runs for E6)**:
+- **Complete E1–E8 evaluation (`n=10` per configuration, including ten-minute live runs for E6)**:
   - **E1 Violation duration**: `15.000 s` right-censored (`B1`) vs `3.003 s` (`[3.003, 3.003]`, `B3`).
   - **E2 Detection latency**: current-code `B3` is `2115.940 ms` (`[2108.734, 2123.145]`, n=10). Historical baseline comparisons are retained in the provenance report.
   - **E3 Recovery latency**: current-code `B3` is `537.853 ms` (`[446.416, 629.289]`, n=10). Historical baseline comparisons are retained in the provenance report.
   - **E4 Headline packet loss during reconfiguration (current code)**: `41.000` packets lost (`[39.455, 42.545]`, `B2` relaxed) vs `0.000` (`B3` strict two-phase), with `28.000` packets reordered due to the faster alternate path.
   - **E5 Flow-table entries (4 concurrent intents)**: peak `6.000` rules on busiest switch (`56.800` pkts lost) for `all_relaxed`, `9.000` rules (`33.900` total pkts lost, `0.000` strict pkts lost) for `selective` 50/50 (citing CCG, Zhou et al., NSDI 2015), and `10.000` rules (`0.000` pkts lost) for `all_strict`.
-  - **E6 Route oscillation (10-min live S6)**: `90.000` reroutes/10 min (`B2`) vs `48.667` (`[45.798, 51.535]`, `B3`, with `25.667` dwell suppressions/10 min).
+  - **E6 Route oscillation (10-min live S6)**: `90.000` reroutes/10 min (`B2`) vs `48.300` (`[47.542, 49.058]`, `B3`, with `28.700` dwell suppressions/10 min).
   - **E7 Admission scaling**: `47.889 ms` (`k=1`), `49.420 ms` (`k=2`), `49.665 ms` (`k=4`), `51.845 ms` (`k=8`), `59.496 ms` (`k=16`).
   - **E8 Control-plane overhead (60 s window)**: corrected E8v2 full-control-stack CPU is `0.939%` (`[0.907, 0.971]`, `B1`) vs `5.078%` (`[4.954, 5.201]`, `B3`). The original controller-only CPU result is retained as provenance but superseded because it excluded the telemetry process.
 - See [`docs/HANDOVER.md`](docs/HANDOVER.md), [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md), and [`docs/RESULT_PROVENANCE.md`](docs/RESULT_PROVENANCE.md) for full details.
