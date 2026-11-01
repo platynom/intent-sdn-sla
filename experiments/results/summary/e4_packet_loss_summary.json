@@ -117,7 +117,7 @@
       "unit": "packets",
       "n_independent_runs": 10,
       "mean": 4313.1,
-      "sample_stddev": 79.53538695309011,
+      "sample_stddev": 79.53538695309012,
       "ci95_t_low": 4256.207764522389,
       "ci95_t_high": 4369.992235477612,
       "min": 4181.0,
@@ -227,7 +227,7 @@
       "unit": "packets",
       "n_independent_runs": 10,
       "mean": 4355.1,
-      "sample_stddev": 79.53538695309011,
+      "sample_stddev": 79.53538695309012,
       "ci95_t_low": 4298.207764522389,
       "ci95_t_high": 4411.992235477612,
       "min": 4223.0,
@@ -708,8 +708,8 @@
       "group_b": "B3",
       "test_method": "Welch two-sample t",
       "t_statistic": -4.613418799760465,
-      "degrees_of_freedom": 16.903872915926243,
-      "p_value_two_sided": 0.00025133060950884375,
+      "degrees_of_freedom": 16.903872915926247,
+      "p_value_two_sided": 0.0002513306095088436,
       "mean_diff": -146.5
     }
   ],

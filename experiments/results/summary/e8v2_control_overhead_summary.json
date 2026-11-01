@@ -502,7 +502,7 @@
       "unit": "pct",
       "n_independent_runs": 10,
       "mean": 5.0777811,
-      "sample_stddev": 0.17272883080871124,
+      "sample_stddev": 0.17272883080871126,
       "ci95_t_low": 4.954226922512467,
       "ci95_t_high": 5.201335277487534,
       "min": 4.894827,
@@ -908,9 +908,9 @@
       "group_a": "B1",
       "group_b": "B3",
       "test_method": "Welch two-sample t",
-      "t_statistic": 0.45180629733818656,
-      "degrees_of_freedom": 13.767074131556901,
-      "p_value_two_sided": 0.658444692201055,
+      "t_statistic": 0.4518062973381865,
+      "degrees_of_freedom": 13.767074131556903,
+      "p_value_two_sided": 0.6584446922010547,
       "mean_diff": 0.006630299999999978
     },
     {

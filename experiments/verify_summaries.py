@@ -13,7 +13,6 @@ import csv
 import itertools
 import json
 import math
-import re
 import statistics
 import sys
 from collections import defaultdict
