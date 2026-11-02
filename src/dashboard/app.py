@@ -39,19 +39,20 @@ def _snapshot(conn: Any, intent_id: str) -> Optional[Dict[str, Any]]:
     # Demo samples are tagged by a dedicated audit event. When actual collector
     # rows arrive after that sample window, show only live rows and never mix
     # simulated values into a live telemetry chart.
-    demo_event = conn.execute(
+    measurement_events = conn.execute(
         "SELECT payload_json FROM events WHERE intent_id = ? AND type = ? "
-        "ORDER BY at DESC LIMIT 1",
+        "ORDER BY at DESC",
         (intent_id, "measurement.taken"),
-    ).fetchone()
+    ).fetchall()
     demo_payload = {}
-    if demo_event is not None:
+    for demo_event in measurement_events:
         try:
             candidate = json.loads(demo_event["payload_json"])
             if candidate.get("source") == "demo-simulation" and candidate.get("simulated") is True:
                 demo_payload = candidate
+                break
         except (TypeError, ValueError):
-            demo_payload = {}
+            continue
 
     telemetry_source = "live" if measurements else "none"
     if demo_payload and measurements:
