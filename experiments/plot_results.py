@@ -129,13 +129,17 @@ def plot_e1(summary_dir: Path, out_dir: Path) -> None:
 
 def plot_e2_e3(summary_dir: Path, out_dir: Path) -> None:
     rows = _group_metric_rows(summary_dir / "b2_b3_closed_loop_20261025.csv")
+    current = _group_metric_rows(summary_dir / "b3_current_closed_loop_summary.csv")
+    for (group, metric), row in current.items():
+        if group == "B3-current":
+            rows[("B3", metric)] = row
     if not rows:
         return
     groups = ["B2", "B2_matched_detector", "B3"]
     xlabels = [
-        "B2\n(Relaxed, alpha=1,\nno hysteresis, 1-sample)",
-        "B2 Matched Detector\n(Relaxed, alpha=0.3,\n10% hyst., 3-sample)",
-        "B3 Full System\n(Strict Two-Phase,\n10% hyst., 3-sample)",
+        "B2 historical\n(Relaxed, alpha=1,\nno hysteresis, 1-sample)",
+        "B2 Matched historical\n(Relaxed, alpha=0.3,\n10% hyst., 3-sample)",
+        "B3 current code\n(Strict Two-Phase,\n10% hyst., 3-sample)",
     ]
     colors = ["#c56a27", "#3b7ea1", "#147d79"]
 
@@ -163,7 +167,7 @@ def plot_e2_e3(summary_dir: Path, out_dir: Path) -> None:
 
 
 def plot_e4(summary_dir: Path, out_dir: Path) -> None:
-    rows = _group_metric_rows(summary_dir / "e4_packet_loss_summary.csv")
+    rows = _group_metric_rows(summary_dir / "e4_current_packet_loss_summary.csv")
     if not rows:
         return
     labels = ["B2 (Naive Direct Update,\nRelaxed Consistency)", "B3 (Versioned Two-Phase Update,\nStrict Consistency)"]
@@ -225,7 +229,7 @@ def plot_e5(summary_dir: Path, out_dir: Path) -> None:
         lost_lo.append(llo)
         lost_hi.append(lhi)
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.2, 4.5), constrained_layout=True)
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7.4, 7.6), constrained_layout=True)
     xlabels = [lbl for _, lbl in modes]
     b_sw = ax1.bar(xlabels, rules_m, color=colors, width=0.48)
     ax1.errorbar(xlabels, rules_m, yerr=[rules_lo, rules_hi], fmt="none", ecolor="#243746", capsize=5, linewidth=1.4)
@@ -257,7 +261,7 @@ def plot_e5(summary_dir: Path, out_dir: Path) -> None:
     ax2.set_title("Consistency vs Rule Overhead Trade-Off\n(cites CCG, Zhou et al., NSDI 2015)")
     ax2.set_xlim(min(rules_m) - 1.5, max(rules_m) + 1.5)
     ax2.set_ylim(-4, max(lost_m) * 1.25 + 2)
-    ax2.legend(frameon=False, loc="upper right", fontsize=8.5)
+    ax2.legend(frameon=False, loc="upper right", fontsize=10)
     ax2.spines[["top", "right"]].set_visible(False)
 
     fig.suptitle("E5: Flow-Table Entries vs Reconfiguration Packet Loss (n=10, 95% Student-t CI)", fontsize=11.5)
@@ -266,9 +270,11 @@ def plot_e5(summary_dir: Path, out_dir: Path) -> None:
 
 def plot_e6(summary_dir: Path, out_dir: Path) -> None:
     rows = _group_metric_rows(summary_dir / "e6_oscillation_summary.csv")
+    rows.update(_group_metric_rows(summary_dir / "e6_accounting_summary.csv"))
     if not rows:
         return
-    labels = ["B2 (Hysteresis OFF,\nDwell=0 s, alpha=1.0, k=1)", "B3 (Hysteresis ON 10%,\nDwell=10 s, alpha=0.3, k=3)"]
+    b2_label = "B2 accounting rerun" if (summary_dir / "e6_accounting_summary.csv").exists() else "B2 retained series"
+    labels = [f"{b2_label}\nDwell=0 s, alpha=1.0, k=1", "B3 retained series\nDwell=10 s, alpha=0.3, k=3"]
     means, err_lo, err_hi, n_runs = [], [], [], 3
     for g in ("B2", "B3"):
         m, lo, hi, n = _extract_ci(rows[(g, "reroute_count_10min")])
@@ -314,16 +320,16 @@ def plot_e7(summary_dir: Path, out_dir: Path) -> None:
 
 
 def plot_e8(summary_dir: Path, out_dir: Path) -> None:
-    rows = _group_metric_rows(summary_dir / "e8_control_overhead_summary.csv")
+    rows = _group_metric_rows(summary_dir / "e8v2_control_overhead_summary.csv")
     if not rows:
         return
     labels = ["B1 (Open-Loop)", "B3 (Closed-Loop Full System)"]
     colors = ["#3b7ea1", "#c56a27"]
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10.2, 4.2), constrained_layout=True)
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7.4, 6.5), constrained_layout=True)
     for ax, metric, title, ylabel in (
-        (ax1, "openflow_msgs_per_s", "OpenFlow Message Rate (port 6653)", "OpenFlow Messages / s"),
-        (ax2, "controller_cpu_pct", "Ryu Controller CPU Utilization", "Controller CPU (%)"),
+        (ax1, "openflow_msgs_per_s", "Captured Control Traffic (port 6653)", "TCP PSH Segments / s"),
+        (ax2, "control_stack_cpu_pct", "Inclusive Control Stack CPU Utilization", "Control Stack CPU (%)"),
     ):
         means, err_lo, err_hi = [], [], []
         for g in ("B1", "B3"):
@@ -340,7 +346,7 @@ def plot_e8(summary_dir: Path, out_dir: Path) -> None:
         ax.set_ylim(0, max(m + h for m, h in zip(means, err_hi)) * 1.25)
         ax.spines[["top", "right"]].set_visible(False)
 
-    fig.suptitle("E8: Control-Plane Overhead over 60 s Window — B3 Higher than B1 as Expected (n=10, 95% CI)", fontsize=11)
+    fig.suptitle("E8v2: Captured Control Traffic and Inclusive CPU (60 s, n=10, 95% CI)", fontsize=11)
     _save_both(fig, out_dir / "e8_control_overhead")
 
 

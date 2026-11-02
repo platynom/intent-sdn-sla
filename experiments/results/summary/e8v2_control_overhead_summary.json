@@ -502,7 +502,7 @@
       "unit": "pct",
       "n_independent_runs": 10,
       "mean": 5.0777811,
-      "sample_stddev": 0.17272883080871126,
+      "sample_stddev": 0.17272883080871124,
       "ci95_t_low": 4.954226922512467,
       "ci95_t_high": 5.201335277487534,
       "min": 4.894827,
