@@ -6,15 +6,11 @@ If the two ever disagree, the code is right and this file is stale.
 ## Topology
 
 ```
-            h1  h3                h5                 h7
-              \  |                 |                  |
-            [ s1 ]---------------[ s2 ]-------------[ s3 ]
-              | \                                       |
-              |  \---[ s4 ]---[ s5 ]                    |
-              |        |         |                      |
-            [ s6 ]-----+---------+--------------------[ s7 ]
-              |                                        |  \
-              h6                                      h2   h8
+                  s2 (h5) ---- s3 (h7)
+                 /                    \
+        (h1) s1 ---- s4 (h3) ---- s5 (h4) ---- s7 (h2, h8)
+                 \                         /
+                  -------- s6 (h6) -------
 ```
 
 Seven Open vSwitch instances, eight hosts.
@@ -65,10 +61,13 @@ Between s1 and s7, where the critical pair h1 and h2 live:
 
 The three are **link-disjoint**: no link appears in more than one.
 
-They are also deliberately unequal. Only the northern route satisfies the baseline
-URLLC intent of 20 Mbps and 20 ms; the southern route violates the latency bound
-outright. That asymmetry is what makes re-planning observable — three equivalent paths
-would flatten every metric we intend to measure.
+They are deliberately unequal. In the planner's one-way model, both the northern
+and middle routes satisfy the baseline request of 20 Mbps and 20 ms; the southern
+route exceeds that delay bound. Live UDP echo telemetry measures round-trip delay,
+so it must not be equated with these one-way estimates. The current implementation
+does not convert that latency budget between the two definitions. This is an SLA
+interpretation limitation, not proof of a measured one-way delay guarantee. Unequal
+routes make selection and recovery tradeoffs observable.
 
 ## Why three link-disjoint paths are mandatory
 

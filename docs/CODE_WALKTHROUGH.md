@@ -47,6 +47,8 @@ Purpose: translate a plan into operations on Open vSwitch. `src/enforcement/cont
 
 Input is a plan and intent. Output is OpenFlow 1.3 flow modifications, OVS HTB configuration, barriers, and installation events. Cookies identify an intent's rules. IPv4 matches include Ethernet type 0x0800. Forward inter-switch actions bind reserved traffic to queue 1 with SET_QUEUE. Queue rates use bits per second and their ceilings come from topology capacities.
 
+Queue 1 is shared when multiple intents leave through the same port. The protected-flow bandwidth experiment therefore proves that tested flow's binding under cross-traffic, not independent bandwidth isolation for every concurrent intent.
+
 Strict updates stage a different VLAN version, wait for barriers, flip ingress classification, wait for old packets to drain, and remove old rules. Relaxed updates replace rules directly. `controller.py:256` installs a priority-zero table-miss rule that sends unmatched traffic to the controller.
 
 Design question: why strict and relaxed modes? Strict updates preserve packets in flight but require temporary rules, barriers, and a drain interval. Relaxed updates cost less but can lose packets during replacement. The design follows Reitblatt et al.; selective use follows CCG.
@@ -63,6 +65,8 @@ Purpose: observe the running service and respond to confirmed violations. `src/t
 `controller.py:174` dispatches persisted violations into its process-local bus. `src/telemetry/loop.py:47` implements `ControlLoop.on_violation`: load the intent, check policy/dwell, exclude current path edges, compute an alternative, install it, save the new path, and write a causal audit entry. SQLite crosses the process boundary; a Python event bus alone cannot do that.
 
 Input is probe observations and counter snapshots. Output is stored measurements, detector state, durable events, and potentially a new path. EWMA smooths values; hysteresis separates breach and recovery boundaries; consecutive confirmation and dwell reduce flapping. Low observed traffic alone does not establish that available bandwidth is insufficient: an offered-load test is needed.
+
+The same latency field currently constrains a one-way planning estimate and a round-trip live probe without conversion. Explain these as different quantities; do not claim that this prototype verifies a common one-way latency guarantee.
 
 Design question: why slower detection in B3? Confirmation deliberately waits for sustained evidence instead of reacting to a single sample. That trades reaction time for fewer route changes.
 
