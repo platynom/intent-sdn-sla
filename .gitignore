@@ -12,6 +12,7 @@ venv/
 *.bak
 *.sqlite3
 *.log
+!docs/demo_assets/e6_accounting/*.log
 .pytest_cache/
 .coverage
 htmlcov/
