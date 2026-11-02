@@ -58,7 +58,7 @@ Experiments run inside the Linux Docker image under WSL on the Windows host, usi
 
 ## 6 Results
 
-The following tables are generated from registered summary files. They report measured means, sample deviations, and intervals rather than values transcribed into the builder. Historical baselines remain identified where current-code reruns are compared with them. The final E6 accounting rerun is added only after it completes and its durable event/path counts reconcile.
+The following tables are generated from registered summary files. They report measured means, sample deviations, and intervals rather than values transcribed into the builder. Historical baselines remain identified where current-code reruns are compared with them. The corrected E6 durable accounting series (n=10) is included alongside the retained oscillation series, verifying that each reroute matches an emitted durable violation event.
 
 
 ### B0 static forwarding baseline
@@ -121,7 +121,7 @@ Source: experiments/results/summary/e4_current_packet_loss_summary.csv
 | B3 | packets lost | 10 | 0.000 | 0.000 | [0.000, 0.000] | packets |
 | B3 | packets reordered | 10 | 28.000 | 0.000 | [28.000, 28.000] | packets |
 
-### E5 rule and loss tradeoff
+### Historical E5 rule and loss tradeoff
 
 Source: experiments/results/summary/e5_flow_table_summary.csv
 
@@ -134,7 +134,7 @@ Source: experiments/results/summary/e5_flow_table_summary.csv
 | selective | packets lost | 10 | 33.900 | 1.792 | [32.618, 35.182] | packets |
 | selective | peak rules max switch | 10 | 9.000 | 0.000 | [9.000, 9.000] | entries |
 
-### E6 published oscillation series
+### E6 retained oscillation series
 
 Source: experiments/results/summary/e6_oscillation_summary.csv
 
@@ -188,6 +188,18 @@ Source: experiments/results/summary/o3_queue_binding_summary.csv
 | unbound | intent loss pct | 10 | 23.620 | 1.529 | [22.527, 24.714] | % |
 | unbound | intent throughput mbps | 10 | 19.091 | 0.382 | [18.818, 19.365] | Mbps |
 
+### Corrected E6 durable accounting
+
+Source: experiments/results/summary/e6_accounting_summary.csv
+
+| Group | Metric | n | Mean | Sample SD | 95% t interval | Unit |
+|---|---|---|---|---|---|---|
+| B2 | duration s | 10 | 600.000 | 0.000 | [600.000, 600.000] | s |
+| B2 | measurement count | 10 | 600.000 | 0.000 | [600.000, 600.000] | count |
+| B2 | raw reroute count | 10 | 90.000 | 0.000 | [90.000, 90.000] | count |
+| B2 | reroute count 10min | 10 | 90.000 | 0.000 | [90.000, 90.000] | per 10 min |
+| B2 | violations emitted | 10 | 90.000 | 0.000 | [90.000, 90.000] | count |
+
 ### E4 exact comparisons
 
 packets lost: exact two-sided permutation; two-sided p = 1.0825088e-05. Source: e4_current_packet_loss_summary.json.
@@ -211,21 +223,21 @@ Python 3.9.25; Ryu 4.34; Mininet 2.3.1b4; ovs-vsctl (Open vSwitch) 2.17.12; kern
 
 ![Transition packet loss and reordering](../experiments/figures/e4_packet_loss.png)
 
-![Rule-space and packet-preservation tradeoff](../experiments/figures/e5_rules_vs_loss.png)
+![Historical E5 rule-space and packet-preservation tradeoff; mixed code versions](../experiments/figures/e5_rules_vs_loss.png)
 
-![Oscillation over the fixed observation window](../experiments/figures/e6_oscillation.png)
+![Oscillation over the fixed observation window; series provenance is labelled](../experiments/figures/e6_oscillation.png)
 
 ![Admission decision scaling](../experiments/figures/e7_admission_scaling.png)
 
 ![Corrected full-stack overhead](../experiments/figures/e8_control_overhead.png)
 
-![Queue binding under competing traffic](../experiments/figures/o3_queue_binding.png)
+![Historical O3 queue-binding comparison under competing traffic](../experiments/figures/o3_queue_binding.png)
 
 ## 7 Discussion
 
 Strict updates preserve packets in the tested transitions, while damping reduces route changes during alternating faults. Those benefits have measurable costs: confirmation delays detection, staging and draining delay installation, new packets can overtake old packets, and overlapping versions consume extra rules. The corrected mean B3-to-B1 control-stack CPU ratio is 5.408, calculated from E8v2's measured group means. It must not be interpreted as whole-machine CPU or extrapolated to a production deployment.
 
-Low-rate probes establish reachability and detector behavior but do not load-test a bandwidth promise. O3 therefore offers sustained protected traffic with competing load and measures receiver throughput. The E4 interpretation is consistent with the configured path-delay difference and sequence rate; this is a timing explanation rather than a new theoretical guarantee. The historical E6 event-count shortfall is an accounting concern separate from the published path-revision metric and must remain disclosed until resolved by complete direct counts.
+Low-rate probes establish reachability and detector behavior but do not load-test a bandwidth promise. O3 therefore offers sustained protected traffic with competing load and measures receiver throughput. The E4 interpretation is consistent with the configured path-delay difference and sequence rate; this is a timing explanation rather than a new theoretical guarantee. For E6, the historical event-count shortfall is addressed by the corrected durable accounting rerun (n=10, 90 reroutes reconciling exactly with 90 durable violations and 90 restorations per run; see E6_ACCOUNTING.md). Historical runs remain disclosed as a provenance limitation, while the oscillation comparison remains a path-revision comparison.
 
 ## 8 Limitations
 

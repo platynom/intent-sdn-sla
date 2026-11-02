@@ -116,7 +116,7 @@ Experiments run inside the Linux Docker image under WSL on the Windows host, usi
 
 ## 6 Results
 
-The following tables are generated from registered summary files. They report measured means, sample deviations, and intervals rather than values transcribed into the builder. Historical baselines remain identified where current-code reruns are compared with them. The final E6 accounting rerun is added only after it completes and its durable event/path counts reconcile.
+The following tables are generated from registered summary files. They report measured means, sample deviations, and intervals rather than values transcribed into the builder. Historical baselines remain identified where current-code reruns are compared with them. The corrected E6 durable accounting series (n=10) is included alongside the retained oscillation series, verifying that each reroute matches an emitted durable violation event.
 """
     blocks = [
         ("b0_baseline_summary_20261025.csv", {"throughput", "rtt_avg", "loss"}, "B0 static forwarding baseline"),
@@ -168,7 +168,7 @@ The following tables are generated from registered summary files. They report me
 
 Strict updates preserve packets in the tested transitions, while damping reduces route changes during alternating faults. Those benefits have measurable costs: confirmation delays detection, staging and draining delay installation, new packets can overtake old packets, and overlapping versions consume extra rules. The corrected mean B3-to-B1 control-stack CPU ratio is {ratio:.3f}, calculated from E8v2's measured group means. It must not be interpreted as whole-machine CPU or extrapolated to a production deployment.
 
-Low-rate probes establish reachability and detector behavior but do not load-test a bandwidth promise. O3 therefore offers sustained protected traffic with competing load and measures receiver throughput. The E4 interpretation is consistent with the configured path-delay difference and sequence rate; this is a timing explanation rather than a new theoretical guarantee. The historical E6 event-count shortfall is an accounting concern separate from the published path-revision metric and must remain disclosed until resolved by complete direct counts.
+Low-rate probes establish reachability and detector behavior but do not load-test a bandwidth promise. O3 therefore offers sustained protected traffic with competing load and measures receiver throughput. The E4 interpretation is consistent with the configured path-delay difference and sequence rate; this is a timing explanation rather than a new theoretical guarantee. For E6, the historical event-count shortfall is addressed by the corrected durable accounting rerun (n=10, 90 reroutes reconciling exactly with 90 durable violations and 90 restorations per run; see E6_ACCOUNTING.md). Historical runs remain disclosed as a provenance limitation, while the oscillation comparison remains a path-revision comparison.
 
 ## 8 Limitations
 
