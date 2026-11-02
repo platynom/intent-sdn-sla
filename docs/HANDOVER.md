@@ -57,8 +57,8 @@ cd SDN
 - **Objective O7 (E7 admission decision latency scaling, $n=10$ per point)**:
   - `k=1`: `47.889 ms` (`[45.179, 50.599]`); `k=2`: `49.420 ms` (`[46.253, 52.587]`); `k=4`: `49.665 ms` (`[48.146, 51.184]`); `k=8`: `51.845 ms` (`[50.336, 53.354]`); `k=16`: `59.496 ms` (`[53.442, 65.550]`).
 - **Objective O8 (E8 control-plane overhead over 60 s window, $n=10$ each)**:
-  - `B1` (open-loop): `8.108 msgs/s` (`[8.032, 8.185]`), `0.826%` `ryu-manager` CPU (`[0.789, 0.863]`).
-  - `B3` (closed-loop): `9.228 msgs/s` (`[9.129, 9.327]`, $+13.8\%$ higher than `B1`), `0.794%` `ryu-manager` CPU (`[0.768, 0.819]`).
+  - `B1` (open-loop, E8v2): `8.194 msgs/s` (`[8.142, 8.246]`), `0.939%` full control-stack CPU (`[0.907, 0.971]`).
+  - `B3` (closed-loop, E8v2): `9.323 msgs/s` (`[9.240, 9.407]`, $+13.8\%$ higher than `B1`), `5.078%` full control-stack CPU (`[4.954, 5.201]`; telemetry 4.140 points). E8 v1 Ryu-only values are superseded.
   - Corrected `E8v2` full-stack CPU (primary): `B1` `0.939%` (`[0.907, 0.971]`); `B3` `5.078%` (`[4.954, 5.201]`). The earlier CPU field measured Ryu alone and is preserved but superseded.
 - **Objective O9 (ST-13 figures & documentation)**:
   - All PNG and PDF figures generated in `experiments/figures/`.

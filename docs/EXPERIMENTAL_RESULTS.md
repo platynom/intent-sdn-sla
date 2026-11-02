@@ -56,12 +56,15 @@ All live network experiments were executed inside the project's privileged Docke
 | **E7 Admission Decision Latency** | `k=04` active intents | 10 | 49.665 | 2.123 | `[48.146, 51.184]` | `ms` | `POST /intent` end-to-end decision time |
 | **E7 Admission Decision Latency** | `k=08` active intents | 10 | 51.845 | 2.109 | `[50.336, 53.354]` | `ms` | `POST /intent` end-to-end decision time |
 | **E7 Admission Decision Latency** | `k=16` active intents | 10 | 59.496 | 8.463 | `[53.442, 65.550]` | `ms` | `POST /intent` end-to-end decision time |
-| **E8 Control-Plane OpenFlow Rate** | `B1` (open-loop, 60 s) | 10 | 8.108 | 0.107 | `[8.032, 8.185]` | `msgs/s` | `486.8` total TCP PSH segments on port 6653 |
-| **E8 Control-Plane OpenFlow Rate** | `B3` (closed-loop, 60 s) | 10 | 9.228 | 0.138 | `[9.129, 9.327]` | `msgs/s` | `558.2` total TCP PSH segments on port 6653 |
-| **E8 Ryu Controller CPU %** | `B1` (open-loop, 60 s) | 10 | 0.826 | 0.052 | `[0.789, 0.863]` | `pct` | `/proc/<ryu_pid>/stat` `utime+stime` only |
-| **E8 Ryu Controller CPU %** | `B3` (closed-loop, 60 s) | 10 | 0.794 | 0.036 | `[0.768, 0.819]` | `pct` | Telemetry probe/detector runs out-of-process |
+| **E8 Control-Plane OpenFlow Rate (E8v2)** | `B1` (open-loop, 60 s) | 10 | 8.194 | 0.073 | `[8.142, 8.246]` | `msgs/s` | Port-6653 capture; supersedes E8 v1 (8.108) |
+| **E8 Control-Plane OpenFlow Rate (E8v2)** | `B3` (closed-loop, 60 s) | 10 | 9.323 | 0.117 | `[9.240, 9.407]` | `msgs/s` | Port-6653 capture; supersedes E8 v1 (9.228) |
+| **E8 Control-Stack CPU % (E8v2)** | `B1` (open-loop, 60 s) | 10 | 0.939 | 0.045 | `[0.907, 0.971]` | `pct` | Ryu + API + telemetry + probe processes; supersedes Ryu-only v1 |
+| **E8 Control-Stack CPU % (E8v2)** | `B3` (closed-loop, 60 s) | 10 | 5.078 | 0.173 | `[4.954, 5.201]` | `pct` | Telemetry process accounts for 4.140 percentage points |
 | **E8v2 Full Control-Stack CPU %** | `B1` (open-loop, 60 s) | 10 | 0.939 | 0.045 | `[0.907, 0.971]` | `pct` | Inclusive Ryu + API process-tree CPU |
 | **E8v2 Full Control-Stack CPU %** | `B3` (closed-loop, 60 s) | 10 | 5.078 | 0.173 | `[4.954, 5.201]` | `pct` | Inclusive Ryu + API + telemetry + probe CPU |
+
+> **Open issue (E6 event accounting).** In `B2`, the reroute count (paths installed, exactly 90 per run = 3 breaches × 30 fault cycles) exceeds the persisted `sla.violated` events (mean 78, range 50–90). In `B3` the two agree (final run: 46 reroutes, 46 violation events). The reroute metric is therefore taken from the `paths` table, which matches the fault schedule; the shortfall in recorded `B2` violation events is unexplained and must be checked against the container logs in `/var/log/team16/telemetry-e6-b2-*.log` before the event counts are cited.
+
 
 ---
 
@@ -73,11 +76,11 @@ All live network experiments were executed inside the project's privileged Docke
 | **E2 Detection Latency (ms)** | `B2_matched_detector` vs `B3` | $+12.583\text{ ms}$ | $+2.846$ | $10.59$ | $0.0165$ | Same detector profile ($\sim 2.1\text{ s}$ in both) |
 | **E3 Recovery Time (ms)** | `B2` vs `B3` | $-339.180\text{ ms}$ | $-9.879$ | $17.58$ | $1.35 \times 10^{-8}$ | `B3` slower due to 250 ms drain + barriers |
 | **E3 Recovery Time (ms)** | `B2_matched_detector` vs `B3` | $-150.824\text{ ms}$ | $-4.678$ | $16.42$ | $2.36 \times 10^{-4}$ | Isolates two-phase update overhead ($\sim 151\text{ ms}$) |
-| **E4 Packets Lost (packets)** | `B2` vs `B3` | $+42.000\text{ pkts}$ | $\infty$ ($s_A=s_B=0$) | $18.00$ | $0.0$ (deterministic) | `B2` drops 42 pkts/run; `B3` drops 0 pkts/run |
-| **E4 Packets Reordered (packets)** | `B2` vs `B3` | $-28.000\text{ pkts}$ | $-\infty$ ($s_A=s_B=0$) | $18.00$ | $0.0$ (deterministic) | `B3` delivers all 28 in-flight packets (reordered) |
+| **E4 Packets Lost (packets)** | `B2` vs `B3` (current code) | $+41.000\text{ pkts}$ | n/a (exact test; $s_{B3}=0$) | n/a | $1.08 \times 10^{-5}$ (exact two-sided permutation) | `B2` loses 37–43 pkts/run; `B3` loses 0 in all 10 runs |
+| **E4 Packets Reordered (packets)** | `B2` vs `B3` (current code) | $-28.000\text{ pkts}$ | n/a (exact test; $s_A=s_B=0$) | n/a | $1.08 \times 10^{-5}$ (exact two-sided permutation) | `B3` delivers the 28 in-flight packets out of order instead of dropping them |
 | **O3 Intent Throughput (Mbps)** | `bound` vs `unbound` | $+5.904\text{ Mbps}$ | $+48.847$ | $9.00$ | $3.17 \times 10^{-12}$ | `SET_QUEUE:1` protects 25 Mbps flow from cross-traffic |
-| **E8 OpenFlow Rate (msgs/s)** | `B1` vs `B3` | $-1.120\text{ msgs/s}$ | $-20.237$ | $16.97$ | $2.55 \times 10^{-13}$ | `B3` incurs $+13.8\%$ higher OpenFlow message rate |
-| **E8 Controller CPU (%)** | `B1` vs `B3` | $+0.033\%$ | $+1.643$ | $16.02$ | $0.1199$ | No statistically significant change in `ryu-manager` CPU |
+| **E8v2 OpenFlow Rate (msgs/s)** | `B1` vs `B3` | $-1.129\text{ msgs/s}$ | $-25.896$ | $15.10$ | $6.25 \times 10^{-14}$ | `B3` incurs $+13.8\%$ higher OpenFlow message rate |
+| **E8v2 Control-Stack CPU (%)** | `B1` vs `B3` | $-4.139\%$ | $-73.307$ | $10.23$ | $2.97 \times 10^{-15}$ | `B3` uses $5.4\times$ the CPU of `B1` (Ryu-only CPU difference not significant, $p = 0.658$) |
 
 ---
 
@@ -93,7 +96,7 @@ Current-code reruns and their relationship to historical baselines are recorded 
 
 The scenario applies `40 ms` to `s1-eth2`. The two remaining northern links contribute `2 ms` each, so the degraded northern path is `44 ms` one way. The middle path is `5 + 5 + 5 = 15 ms`; therefore the path-delay gap is `29 ms`. At the configured `1,000 packets/s`, the expected in-flight population is about `44 packets` on the interrupted B2 path and about `29 packets` that can be overtaken after a B3 switchover. The current measurements—B2 mean loss `41.000` packets (range `37`–`43`) and B3 reordering `28.000` packets—are consistent with those bounds after normal sender/scheduler timing. This is an interpretation check, not a fitted model.
 4. **E5 Peak Flow-Table Rule Overhead (`all_strict` uses $66.7\%$ more rules on the busiest switch than `all_relaxed`)**: During a concurrent 4-intent update, `all_strict` peaks at $10.000$ rules on `s7` ($42.000$ total across `s1..s7`) vs $6.000$ rules on `s7` ($27.500$ total) for `all_relaxed`. Selective consistency (`selective`, 2 strict + 2 relaxed, citing CCG, Zhou et al., NSDI 2015) trades intermediate rule count ($9.000$ on `s7`, $39.800$ total) for zero packet loss on strict intents ($0.000$ lost) while allowing loss on relaxed intents ($33.900$ lost).
-5. **E8 Control-Plane OpenFlow Message Rate (`B3` generates $13.8\%$ more OpenFlow messages/s than `B1`)**: Over a 60-second window, `B3` averages $9.228\text{ msgs/s}$ (`[9.129, 9.327]`) vs `B1`'s $8.108\text{ msgs/s}$ (`[8.032, 8.185]`, $p = 2.55 \times 10^{-13}$) due to versioned flow installations, barriers, and old-cookie removals.
+5. **E8 Control-Plane OpenFlow Message Rate (`B3` generates $13.8\%$ more OpenFlow messages/s than `B1`)**: In the corrected E8v2 runs over a 60-second window, `B3` averages $9.323\text{ msgs/s}$ (`[9.240, 9.407]`) vs `B1`'s $8.194\text{ msgs/s}$ (`[8.142, 8.246]`, Welch $p = 6.25 \times 10^{-14}$), due to versioned flow installations, barriers, and old-cookie removals. The original E8 v1 values (`8.108` vs `9.228`) are preserved in the raw data for provenance.
 6. **E8v2 full-stack CPU supersedes the original controller-only CPU field**: the original E8 CPU column measured only `ryu-manager` and excluded the separate telemetry process. The corrected inclusive process-tree measurement is `0.939%` (`[0.907, 0.971]`) for `B1` and `5.078%` (`[4.954, 5.201]`) for `B3`; telemetry accounts for `4.140%` of the B3 mean. Original E8 raw files remain preserved for provenance, while E8v2 is the primary CPU result.
 
 ---

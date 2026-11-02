@@ -41,9 +41,9 @@ docker compose exec -T sdn bash -lc "sed 's/\r$//' experiments/scenarios/e5_flow
 docker compose exec -T sdn bash -lc "sed 's/\r$//' experiments/scenarios/e5_flow_table_entries.sh | bash -s -- --mode selective --runs 10"
 docker compose exec -T sdn bash -lc "sed 's/\r$//' experiments/scenarios/e5_flow_table_entries.sh | bash -s -- --mode all_relaxed --runs 10"
 
-# O5: E6 live route oscillation over 10-minute runs on S6 (n=3 each)
-docker compose exec -T sdn bash -lc "sed 's/\r$//' experiments/scenarios/e6_oscillation.sh | bash -s -- --mode b2 --runs 3 --duration 600"
-docker compose exec -T sdn bash -lc "sed 's/\r$//' experiments/scenarios/e6_oscillation.sh | bash -s -- --mode b3 --runs 3 --duration 600"
+# O5: E6 live route oscillation over 10-minute runs on S6 (n=10 each: 3 initial + 7 additional runs)
+docker compose exec -T sdn bash -lc "sed 's/\r$//' experiments/scenarios/e6_oscillation.sh | bash -s -- --mode b2 --runs 10 --duration 600"
+docker compose exec -T sdn bash -lc "sed 's/\r$//' experiments/scenarios/e6_oscillation.sh | bash -s -- --mode b3 --runs 10 --duration 600"
 
 # O6: E1 SLA violation duration (B1 right-censored vs B3, n=10 each)
 docker compose exec -T sdn bash -lc "sed 's/\r$//' experiments/scenarios/e1_violation_duration.sh | bash -s -- --mode b1 --runs 10"
