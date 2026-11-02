@@ -43,7 +43,7 @@ If none survives, we return the reason rather than installing an unsuitable rout
 
 ## M4 Enforcement
 
-Purpose: translate a plan into operations on Open vSwitch. `src/enforcement/controller.py:54` defines `Team16Controller`. `_sync_intents_from_db` at line 98 polls persisted plans. `install_plan` at line 355 installs a plan; `remove_intent` at line 439 removes its rules. `flowmod.py` contains `cookie_for_intent`, `rules_for_path`, `build_match`, and `install`. `queues.py:23` implements `ensure_queue`. `two_phase.py:105` implements strict installation.
+Purpose: translate a plan into operations on Open vSwitch. `src/enforcement/controller.py:54` defines `Team16Controller`. `_sync_intents_from_db` at line 98 polls persisted plans. `install_plan` at line 355 installs a plan; `remove_intent` at line 439 removes its rules. In `src/enforcement/flowmod.py`, line 38 defines `cookie_for_intent`, line 60 defines `build_match`, line 99 defines `rules_for_path`, and line 196 defines `install`. `queues.py:23` implements `ensure_queue`. `two_phase.py:105` implements strict installation.
 
 Input is a plan and intent. Output is OpenFlow 1.3 flow modifications, OVS HTB configuration, barriers, and installation events. Cookies identify an intent's rules. IPv4 matches include Ethernet type 0x0800. Forward inter-switch actions bind reserved traffic to queue 1 with SET_QUEUE. Queue rates use bits per second and their ceilings come from topology capacities.
 
@@ -58,7 +58,7 @@ Strict updates keep old and new forwarding versions during the transition.
 
 ## M5 Telemetry and control loop
 
-Purpose: observe the running service and respond to confirmed violations. `src/telemetry/runtime.py:51` starts the live collector process. `flow_bytes` reads OVS counters; consecutive byte snapshots produce throughput. The live runtime sends UDP echo probes through host namespaces, so measured delay is round trip. `probes.py` derives jitter and loss observations. `detector.py` implements `ViolationDetector.observe`. `runtime.py:17` persists emitted transitions; `reload_persisted_replan_state` at line 23 refreshes dwell state written by the controller.
+Purpose: observe the running service and respond to confirmed violations. `src/telemetry/runtime.py:51` starts the live collector process. `flow_bytes` reads OVS counters; consecutive byte snapshots produce throughput. The live runtime sends UDP echo probes through host namespaces, so measured delay is round trip. `src/telemetry/probes.py:36` derives jitter/loss observations in `ActiveProbeSource.observation`. `src/telemetry/detector.py:62` implements `ViolationDetector.observe`. `runtime.py:17` persists emitted transitions; `reload_persisted_replan_state` at line 23 refreshes dwell state written by the controller.
 
 `controller.py:174` dispatches persisted violations into its process-local bus. `src/telemetry/loop.py:47` implements `ControlLoop.on_violation`: load the intent, check policy/dwell, exclude current path edges, compute an alternative, install it, save the new path, and write a causal audit entry. SQLite crosses the process boundary; a Python event bus alone cannot do that.
 
@@ -73,11 +73,13 @@ The controller consumes those events and can install a feasible alternative.
 
 ## M6 Dashboard and audit
 
-Purpose: explain current state and past actions. `src/dashboard/app.py:27` builds an intent snapshot, line 103 serves `/api/dashboard`, line 129 serves one intent, and line 143 serves the web page. `src/common/audit.py:86` records the measurement, threshold, decision, and action in a causal chain.
+Purpose: explain current state and past actions. `src/dashboard/app.py:27` builds an intent snapshot, line 104 serves `/api/dashboard`, line 130 serves one intent, and line 144 serves the web page. `src/common/audit.py:86` records the measurement, threshold, decision, and action in a causal chain.
 
 Input is the existing SQLite schema. Output is read-only JSON and an operator view. `scripts/seed_demo_intents.py` posts the shipped application examples and adds illustrative samples only when none already exist. Simulation is identified by an explicit audit payload and dashboard label. When live rows follow the simulation window, the chart selects live rows. These seeded values are demonstration data and are excluded from evaluation CSV aggregation.
 
 Design question: does a computed route mean installed? No. Admission computes a route; the Ryu controller must activate it on a live datapath. The dashboard distinguishes these states.
+
+The installed badge reflects the last persisted controller state; the read-only dashboard does not independently probe switch liveness. A retained badge after scenario cleanup is not a fresh datapath check. Use the scenario's flow dump and packet delivery checks to establish current installation.
 
 Viva explanation:
 The dashboard reads stored intents, measurements, and audit events.
@@ -97,8 +99,8 @@ The experiment runs real packets through virtual hosts and software switches.
 
 ## Trace of the baseline intent
 
-1. Submit `intents/s1_urllc_baseline.yaml` to `POST /intent` (`api.py`). The endpoint parses YAML, calls `validate`, and constructs `IntentRecord.from_document`.
-2. `_admission_for_request` calls `residual_graph`, gathers `tenant_paths`, and calls `assess`. Path computation uses `compute_path` -> `_resolve_ip_to_switch` -> `k_shortest_paths` -> `prune` -> `select_best`.
+1. Submit `intents/s1_urllc_baseline.yaml` to `POST /intent`, handled by `create_intent` at `src/intent_manager/api.py:68`. The endpoint parses YAML, calls `validate`, and constructs `IntentRecord.from_document`.
+2. `_admission_for_request` calls `assess` in the ordinary full-system mode. `assess` builds `residual_graph`, gathers `tenant_paths`, and calls `compute_path`. Path computation uses `_resolve_ip_to_switch` -> `k_shortest_paths` -> `prune` -> `select_best`. The B2 admission ablation deliberately takes a different request path.
 3. M1 calls `db.save_intent` and `db.save_path`; a strict plan is assigned its version with `two_phase.with_version`. The response contains the computed switch path.
 4. Ryu's `_enforcement_loop` calls `_sync_intents_from_db` -> `install_plan`. This configures `ensure_queue`, then calls strict `two_phase.install` or relaxed `rules_for_path` -> flow installation. Ryu marks the intent active and publishes installation evidence.
 5. `runtime.main` probes the hosts, reads `flow_bytes`, calculates counter deltas, calls `db.save_measurement`, refreshes persisted dwell state, and calls `ViolationDetector.observe` -> `persist_confirmed_event` -> `db.save_event`.
@@ -130,3 +132,5 @@ The shell scripts start the required processes, inject a controlled condition, q
 | `s10_two_phase.sh` | Changes a strict path version; checks ingress/version replacement, old-path cleanup, and UDP delivery. |
 
 `analyze_closed_loop.py` handles closed-loop latency families. `summarize_metrics.py` handles the other metric families and keeps current-code reruns distinct. `plot_results.py` creates figures. A summary, chart, or dashboard is evidence only for the source and run that actually produced it.
+
+`experiments/e6_accounting.py:4` provides `counts_for_run`, the complete SQL event count used by the corrected E6 recorder. `watch_e6_accounting.py` is a read-only boundary observer: it saves full event/path records beside each new CSV and checks that they reconcile. It also compares a bounded latest-200-event history page with the complete count. UI pagination is appropriate for displaying recent history, but is not an experiment's total event count. See `docs/E6_ACCOUNTING.md` for the distinction between this demonstrated mechanism and the uncertain historical invocation.
