@@ -4,8 +4,13 @@ set -euo pipefail
 
 LOG_DIR="/var/log/team16"
 mkdir -p "${LOG_DIR}" /var/run/team16
-TEST_DB_DIR=$(mktemp -d /tmp/team16-s10.XXXXXX)
-export TEAM16_DB_PATH="${TEST_DB_DIR}/state.db"
+if [ -z "${TEAM16_DB_PATH:-}" ]; then
+    TEST_DB_DIR=$(mktemp -d /tmp/team16-s10.XXXXXX)
+    export TEAM16_DB_PATH="${TEST_DB_DIR}/state.db"
+    CLEANUP_DB_DIR=1
+else
+    CLEANUP_DB_DIR=0
+fi
 
 clean_mininet() {
     timeout 15s python3.9 /usr/local/bin/mn -c >/dev/null 2>&1 || true
@@ -28,8 +33,10 @@ cleanup() {
         fi
     done
     clean_mininet
-    rm -f "${TEAM16_DB_PATH}" "${TEAM16_DB_PATH}-wal" "${TEAM16_DB_PATH}-shm"
-    rmdir "${TEST_DB_DIR}" 2>/dev/null || true
+    if [ "${CLEANUP_DB_DIR:-0}" -eq 1 ]; then
+        rm -f "${TEAM16_DB_PATH}" "${TEAM16_DB_PATH}-wal" "${TEAM16_DB_PATH}-shm"
+        rmdir "${TEST_DB_DIR}" 2>/dev/null || true
+    fi
 }
 trap cleanup EXIT INT TERM
 
