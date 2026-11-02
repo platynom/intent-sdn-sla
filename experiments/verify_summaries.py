@@ -181,6 +181,9 @@ def _dataset_specs() -> Dict[str, dict]:
         "b3_current": _single_run_dataset(
             ["b3_current_closed_loop_*.csv"], lambda _: "B3-current"
         ),
+        "e6_accounting": _single_run_dataset(
+            ["e6accounting_oscillation_b2_*.csv"], lambda _: "B2"
+        ),
         "e4_current": _single_run_dataset(
             ["e4current_b[23]_reconfig_*.csv"],
             prefix_classifier({"e4current_b2_": "B2", "e4current_b3_": "B3"}),
@@ -197,6 +200,8 @@ def _dataset_specs() -> Dict[str, dict]:
 
 
 SUMMARY_FILES = {
+    "e6_accounting_summary.csv": "e6_accounting",
+    "e6_accounting_summary.json": "e6_accounting",
     "b0_baseline_summary_20261025.csv": "b0",
     "evaluation_20261025161834.csv": "b0",
     "b1_open_loop_20261025.csv": "b1",
@@ -454,6 +459,57 @@ def _verify_document_claims(datasets: Mapping[str, dict], errors: List[str]) -> 
             errors.append(f"README.md missing raw-derived mean {dataset_name}/{group}/{metric}={token}")
 
 
+def _verify_final_report(datasets: Mapping[str, dict], errors: List[str]) -> None:
+    """Recompute the generated report tables directly from their raw families."""
+    report = ROOT / "docs/FINAL_REPORT.md"
+    if not report.exists():
+        return
+    dataset = None
+    for line in report.read_text(encoding="utf-8").splitlines():
+        if line.startswith("Source: experiments/results/summary/"):
+            filename = line.rsplit("/", 1)[-1]
+            name = SUMMARY_FILES.get(filename)
+            if name is None:
+                errors.append(f"FINAL_REPORT.md: unregistered source {filename}")
+                dataset = None
+            else:
+                dataset = datasets[name]
+        elif line.startswith("|") and dataset is not None:
+            cells = [part.strip() for part in line.strip("|").split("|")]
+            if len(cells) != 7 or cells[0] in ("Group", "---"):
+                continue
+            group, metric, n, mean, sd, interval, _unit = cells
+            keys = [key for key in dataset["series"]
+                    if key[0].replace("_", " ") == group
+                    and key[1].replace("_", " ") == metric]
+            if len(keys) != 1:
+                errors.append(f"FINAL_REPORT.md: no unique raw series for {group}/{metric}")
+                continue
+            expected = _stats(dataset["series"][keys[0]])
+            bounds = interval.strip("[]").split(",")
+            for label, actual, wanted in (
+                ("n", n, expected["n"]), ("mean", mean, expected["mean"]),
+                ("SD", sd, expected["sd"]), ("CI low", bounds[0].strip(), expected["low"]),
+                ("CI high", bounds[1].strip(), expected["high"]),
+            ):
+                if not _numeric_close(actual, wanted):
+                    errors.append(f"FINAL_REPORT.md {group}/{metric} {label}: {actual} != {wanted}")
+    text = report.read_text(encoding="utf-8")
+    cpu = datasets["e8v2"]["series"]
+    ratio = statistics.mean(cpu[("B3", "control_stack_cpu_pct")]) / statistics.mean(
+        cpu[("B1", "control_stack_cpu_pct")]
+    )
+    if f"control-stack CPU ratio is {ratio:.3f}" not in text:
+        errors.append("FINAL_REPORT.md: CPU ratio does not match raw E8v2 means")
+    packet_series = datasets["e4_current"]["series"]
+    for metric in ("packets_lost", "packets_reordered"):
+        result = _independent_test(packet_series[("B2", metric)], packet_series[("B3", metric)])
+        claim = (f"{metric.replace('_', ' ')}: {result['test_method']}; "
+                 f"two-sided p = {result['p_value_two_sided']:.8g}")
+        if claim not in text:
+            errors.append(f"FINAL_REPORT.md: {metric} comparison does not match raw E4 samples")
+
+
 def verify() -> List[str]:
     datasets = _dataset_specs()
     errors: List[str] = []
@@ -472,6 +528,7 @@ def verify() -> List[str]:
         else:
             _compare_summary_json(path, dataset, errors)
     _verify_document_claims(datasets, errors)
+    _verify_final_report(datasets, errors)
     return errors
 
 

@@ -12,6 +12,7 @@ import json
 import os
 import subprocess
 import tempfile
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -33,22 +34,39 @@ def main():
     diff_hash = hashlib.sha256(diff).hexdigest()
     records = []
 
-    def run(label, argv, extra_env=None):
+    def run(label, argv, extra_env=None, capture_switch=False):
         process_env = dict(env)
         process_env.update(extra_env or {})
-        result = subprocess.run(argv, env=process_env, stdout=subprocess.PIPE,
-                                stderr=subprocess.STDOUT, text=True, check=False)
+        process = subprocess.Popen(argv, env=process_env, stdout=subprocess.PIPE,
+                                   stderr=subprocess.STDOUT, text=True)
+        if capture_switch:
+            deadline = time.monotonic() + 30
+            while process.poll() is None and time.monotonic() < deadline:
+                flow_argv = ["ovs-ofctl", "-O", "OpenFlow13", "dump-flows", "s1"]
+                flow = subprocess.run(flow_argv, stdout=subprocess.PIPE,
+                                      stderr=subprocess.STDOUT, text=True, check=False)
+                if flow.returncode == 0 and "set_queue:" in flow.stdout:
+                    flow_path = output_dir / f"{stamp}_{label}_flow_dump.txt"
+                    flow_header = (f"Captured UTC: {datetime.now(timezone.utc).isoformat()}\n"
+                                   f"Code revision: {revision}\nCommand argv: {json.dumps(flow_argv)}\n"
+                                   f"Exit status: {flow.returncode}\n\n")
+                    flow_path.write_text(flow_header + flow.stdout, encoding="utf-8")
+                    records.append({"label": f"{label}_flow_dump", "file": str(flow_path.relative_to(ROOT)),
+                                    "exit_status": flow.returncode})
+                    break
+                time.sleep(0.25)
+        stdout, _ = process.communicate()
         path = output_dir / f"{stamp}_{label}.txt"
         header = (f"Captured UTC: {stamp}\nCode revision: {revision}\n"
                   f"Tracked worktree diff SHA-256: {diff_hash}\n"
-                  f"Command argv: {json.dumps(argv)}\nExit status: {result.returncode}\n\n")
-        path.write_text(header + result.stdout, encoding="utf-8")
-        print(header + result.stdout, flush=True)
+                  f"Command argv: {json.dumps(argv)}\nExit status: {process.returncode}\n\n")
+        path.write_text(header + stdout, encoding="utf-8")
+        print(header + stdout, flush=True)
         records.append({"label": label, "file": str(path.relative_to(ROOT)),
-                        "exit_status": result.returncode})
-        if result.returncode:
-            raise SystemExit(result.returncode)
-        return result.stdout
+                        "exit_status": process.returncode})
+        if process.returncode:
+            raise SystemExit(process.returncode)
+        return stdout
 
     if args.phase == "software":
         run("pytest", ["python3.9", "-m", "pytest", "tests", "-q"])
@@ -74,10 +92,15 @@ def main():
             ("st7", "s1_single_intent.sh", "--st7"),
             ("st9", "s9_preemption.sh", ""),
             ("st10", "s10_two_phase.sh", ""),
+            ("b3_demo", "s1_single_intent.sh", "--b3"),
         ):
             database = str(Path(tempfile.mkdtemp(prefix=f"team16-{label}-")) / "state.db")
             command = f"set -o pipefail; sed 's/\\r$//' experiments/scenarios/{path} | bash -s -- {flags}"
-            run(label, ["bash", "-lc", command], {"TEAM16_DB_PATH": database})
+            run(label, ["bash", "-lc", command],
+                {"TEAM16_DB_PATH": database, "TEAM16_RESULT_TAG": "regression_demo_b3"},
+                capture_switch=label == "s1")
+            run(f"{label}_audit", ["python3.9", "scripts/show_demo_audit.py"],
+                {"TEAM16_DB_PATH": database})
     else:
         raw = ROOT / "experiments/results/raw"
         before = set(raw.glob("regression_merge_*.csv"))

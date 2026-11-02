@@ -326,6 +326,23 @@ def summarize_e6(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
     return res
 
 
+def summarize_e6_accounting(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
+    """Keep the corrected, isolated B2 accounting series separate from history."""
+    files = list(raw_dir.glob("e6accounting_oscillation_b2_*.csv"))
+    if not files:
+        return None
+    if len(files) != 10:
+        raise ValueError(f"E6 accounting requires ten completed runs, found {len(files)}")
+    res = summarize_group(files, lambda _path: "B2")
+    write_summary_files(
+        res["summaries"], [], res["runs"],
+        summary_dir / "e6_accounting_summary.json",
+        summary_dir / "e6_accounting_summary.csv",
+        description="Isolated B2 E6 rerun with unbounded direct SQL event accounting and complete telemetry checks",
+    )
+    return res
+
+
 def summarize_e1(raw_dir: Path, summary_dir: Path) -> Optional[dict]:
     files = list(raw_dir.glob("e1_violation_duration_*.csv"))
     if not files:
@@ -466,6 +483,7 @@ def main() -> int:
         ("O3-current", summarize_o3_current),
         ("E5", summarize_e5),
         ("E6", summarize_e6),
+        ("E6-accounting", summarize_e6_accounting),
         ("E1", summarize_e1),
         ("E7", summarize_e7),
         ("E8", summarize_e8),
