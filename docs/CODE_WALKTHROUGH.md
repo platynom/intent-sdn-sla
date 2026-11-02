@@ -64,6 +64,8 @@ Purpose: observe the running service and respond to confirmed violations. `src/t
 
 `controller.py:174` dispatches persisted violations into its process-local bus. `src/telemetry/loop.py:47` implements `ControlLoop.on_violation`: load the intent, check policy/dwell, exclude current path edges, compute an alternative, install it, save the new path, and write a causal audit entry. SQLite crosses the process boundary; a Python event bus alone cannot do that.
 
+That replan uses its topology graph directly rather than calling M2 residual-capacity admission again. The initial admission and the recovery calculation therefore have different resource-accounting scopes. The current single-protected-flow recovery experiments do not prove contention-safe multi-intent recovery.
+
 Input is probe observations and counter snapshots. Output is stored measurements, detector state, durable events, and potentially a new path. EWMA smooths values; hysteresis separates breach and recovery boundaries; consecutive confirmation and dwell reduce flapping. Low observed traffic alone does not establish that available bandwidth is insufficient: an offered-load test is needed.
 
 The same latency field currently constrains a one-way planning estimate and a round-trip live probe without conversion. Explain these as different quantities; do not claim that this prototype verifies a common one-way latency guarantee.
