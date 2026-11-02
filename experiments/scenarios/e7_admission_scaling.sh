@@ -3,6 +3,11 @@
 # vs number of active intents in SQLite (1, 2, 4, 8, 16), n=10 runs per point.
 set -euo pipefail
 
+# Isolate measurement state from the automatically seeded dashboard database.
+if [ -z "${TEAM16_DB_PATH:-}" ]; then
+    export TEAM16_DB_PATH="$(mktemp -d /tmp/team16-e7.XXXXXX)/state.db"
+fi
+
 RUNS=10
 while [[ $# -gt 0 ]]; do
     case "$1" in

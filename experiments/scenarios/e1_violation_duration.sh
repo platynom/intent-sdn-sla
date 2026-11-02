@@ -5,6 +5,11 @@
 # capped at the 15.0 s fault duration (right-censored = 1).
 set -euo pipefail
 
+# Isolate measurement state from the automatically seeded dashboard database.
+if [ -z "${TEAM16_DB_PATH:-}" ]; then
+    export TEAM16_DB_PATH="$(mktemp -d /tmp/team16-e1.XXXXXX)/state.db"
+fi
+
 MODE="b3"
 RUNS=10
 FAULT_WINDOW_S=15

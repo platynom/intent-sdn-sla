@@ -1,9 +1,15 @@
 __pycache__/
 *.py[cod]
 .venv/
+.venv39/
+.final_report_work/
 venv/
 .env
 *.db
+*.db-wal
+*.db-shm
+.fuse_hidden*
+*.bak
 *.sqlite3
 *.log
 .pytest_cache/

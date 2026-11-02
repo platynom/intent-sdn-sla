@@ -3,6 +3,11 @@
 # competing iperf3 cross-traffic on the 100 Mbit/s northern path (s1-s2-s3-s7).
 set -euo pipefail
 
+# Isolate measurement state from the automatically seeded dashboard database.
+if [ -z "${TEAM16_DB_PATH:-}" ]; then
+    export TEAM16_DB_PATH="$(mktemp -d /tmp/team16-o3.XXXXXX)/state.db"
+fi
+
 MODE="bound"
 RUNS=10
 while [[ $# -gt 0 ]]; do

@@ -2,6 +2,11 @@
 # ST-9 live check: a critical reservation displaces a lower-priority intent.
 set -euo pipefail
 
+# Isolate measurement state from the automatically seeded dashboard database.
+if [ -z "${TEAM16_DB_PATH:-}" ]; then
+    export TEAM16_DB_PATH="$(mktemp -d /tmp/team16-s9.XXXXXX)/state.db"
+fi
+
 RYU_PID=""
 API_PID=""
 TOPO_PID=""

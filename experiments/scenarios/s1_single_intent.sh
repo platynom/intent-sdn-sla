@@ -3,6 +3,11 @@
 # Exercises M1, M3, M4 happy path end-to-end.
 set -euo pipefail
 
+# Isolate measurement state from the automatically seeded dashboard database.
+if [ -z "${TEAM16_DB_PATH:-}" ]; then
+    export TEAM16_DB_PATH="$(mktemp -d /tmp/team16-s1.XXXXXX)/state.db"
+fi
+
 ST7_CLOSE_LOOP=0
 B1_OPEN_LOOP=0
 B2_PROFILE=0

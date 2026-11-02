@@ -3,6 +3,11 @@
 # across all_strict, selective (50/50 strict/relaxed), and all_relaxed modes.
 set -euo pipefail
 
+# Isolate measurement state from the automatically seeded dashboard database.
+if [ -z "${TEAM16_DB_PATH:-}" ]; then
+    export TEAM16_DB_PATH="$(mktemp -d /tmp/team16-e5.XXXXXX)/state.db"
+fi
+
 MODE="all_strict"
 RUNS=10
 while [[ $# -gt 0 ]]; do

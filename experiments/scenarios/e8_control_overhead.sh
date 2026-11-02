@@ -6,6 +6,11 @@
 # responder, and their descendants separately, plus their summed total.
 set -euo pipefail
 
+# Isolate measurement state from the automatically seeded dashboard database.
+if [ -z "${TEAM16_DB_PATH:-}" ]; then
+    export TEAM16_DB_PATH="$(mktemp -d /tmp/team16-e8.XXXXXX)/state.db"
+fi
+
 MODE="b1"
 RUNS=10
 WINDOW_S=60
