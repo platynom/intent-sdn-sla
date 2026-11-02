@@ -34,6 +34,9 @@ fi
 
 LOG_DIR="/var/log/team16"
 mkdir -p "${LOG_DIR}" /var/run/team16
+# Keep automatic dashboard seeding out of this measurement process tree.
+E6_DB_DIR=$(mktemp -d /tmp/team16-e6.XXXXXX)
+export TEAM16_DB_PATH="${E6_DB_DIR}/state.db"
 
 clean_mininet() {
     pkill -9 -f "ryu-manager" >/dev/null 2>&1 || true
@@ -271,11 +274,13 @@ PY
         >"${LOG_DIR}/telemetry-e6-${MODE}-${run_idx}.log" 2>&1 &
     telem_pid=$!
 
-    wait "${telem_pid}" || true
+    wait "${telem_pid}"
     telem_pid=""
     if [ -n "${fault_pid}" ] && kill -0 "${fault_pid}" 2>/dev/null; then
         kill "${fault_pid}" 2>/dev/null || true
         wait "${fault_pid}" 2>/dev/null || true
+    elif [ -n "${fault_pid}" ]; then
+        wait "${fault_pid}"
     fi
     fault_pid=""
     sleep 1
@@ -296,10 +301,23 @@ duration_s = float(sys.argv[4])
 
 conn = db.connect()
 reroutes = db.reroute_count(conn, 'INT-006')
-events = [e for e in db.events_for(conn, 'INT-006', limit=10000) if e.at >= run_start]
-violations = sum(1 for e in events if e.type is EventType.SLA_VIOLATED)
-restorations = sum(1 for e in events if e.type is EventType.SLA_RESTORED)
-suppressions = sum(1 for e in events if e.type is EventType.VIOLATION_SUPPRESSED)
+# Count the complete durable run directly. A dashboard history page is bounded
+# and must not be used as an experiment's event-accounting source.
+counts = dict(conn.execute(
+    'SELECT type, COUNT(*) FROM events WHERE intent_id = ? AND at >= ? GROUP BY type',
+    ('INT-006', run_start),
+).fetchall())
+violations = counts.get(EventType.SLA_VIOLATED.value, 0)
+restorations = counts.get(EventType.SLA_RESTORED.value, 0)
+suppressions = counts.get(EventType.VIOLATION_SUPPRESSED.value, 0)
+sample_count = conn.execute(
+    'SELECT COUNT(*) FROM measurements WHERE intent_id = ? AND at >= ?',
+    ('INT-006', run_start),
+).fetchone()[0]
+if sample_count != int(duration_s):
+    raise RuntimeError(f'incomplete telemetry: {sample_count} of {int(duration_s)} samples')
+if mode == 'b2' and reroutes != violations:
+    raise RuntimeError(f'event accounting mismatch: {reroutes} reroutes, {violations} violations')
 conn.close()
 
 reroutes_per_10min = reroutes * (600.0 / duration_s)
@@ -307,7 +325,8 @@ reroutes_per_10min = reroutes * (600.0 / duration_s)
 out_dir = Path(os.environ.get('E6_RAW_DIR', 'experiments/results/raw'))
 out_dir.mkdir(parents=True, exist_ok=True)
 stamp = time.strftime('%Y%m%d%H%M%S')
-out_path = out_dir / f'e6_oscillation_{mode}_{stamp}_{run_idx:02d}.csv'
+prefix = os.environ.get('E6_RESULT_PREFIX', 'e6_oscillation')
+out_path = out_dir / f'{prefix}_{mode}_{stamp}_{run_idx:02d}.csv'
 now_ts = int(time.time())
 with out_path.open('w', newline='', encoding='utf-8') as f:
     w = csv.writer(f)
@@ -318,6 +337,7 @@ with out_path.open('w', newline='', encoding='utf-8') as f:
     w.writerow([run_idx, now_ts, 'restorations_emitted', restorations, 'count'])
     w.writerow([run_idx, now_ts, 'dwell_suppressions', suppressions, 'count'])
     w.writerow([run_idx, now_ts, 'duration_s', f'{duration_s:.1f}', 's'])
+    w.writerow([run_idx, now_ts, 'measurement_count', sample_count, 'count'])
 
 print(f"E6 {mode.upper()} run {run_idx}: reroutes_10min={reroutes_per_10min:.2f} (raw={reroutes}, violations={violations}, restorations={restorations}, suppressions={suppressions}) -> {out_path}")
 PY
@@ -327,3 +347,5 @@ for ((r = 1; r <= RUNS; r++)); do
     echo "=== E6 ${MODE} run ${r}/${RUNS} (duration=${DURATION_S}s) ==="
     run_one "${r}"
 done
+
+echo "E6 durable accounting database retained at ${TEAM16_DB_PATH}"
