@@ -57,7 +57,7 @@ def main():
     graph = build_graph()
 
     show("1. THE NETWORK")
-    print(f"{len(graph.nodes)} switches, {len(LINKS)} links\n")
+    print(f"{len(graph.nodes)} modelled switches, {len(LINKS)} inter-switch links\n")
     for link in LINKS:
         print(f"   {link.name:8s} {link.bw_mbps:6.0f} Mbps   {link.delay_ms:5.1f} ms")
 
@@ -80,7 +80,7 @@ def main():
     print(f"   promise    : {rec.guarantee.min_bandwidth_mbps} Mbps, "
           f"{rec.guarantee.max_latency_ms} ms, {rec.guarantee.max_loss_pct}% loss")
     print(f"   chosen path: {' -> '.join(plan.switches)}")
-    print(f"   delivers   : {plan.bottleneck_mbps} Mbps, {plan.est_latency_ms} ms")
+    print(f"   modelled   : {plan.bottleneck_mbps} Mbps bottleneck, {plan.est_latency_ms} ms one-way delay")
     print(f"   links used : {', '.join(plan.links)}")
     print(f"   computed in: {elapsed_ms:.1f} ms  (budget is 200 ms)")
 
@@ -109,16 +109,16 @@ def main():
     print("   of the five frozen constraint types. Both are caught before the")
     print("   intent reaches the network.")
 
-    show("5. STATE IS PERSISTED")
+    show("5. SQLITE STATE OPERATIONS (IN-MEMORY DEMONSTRATION)")
     conn = dbm.connect(":memory:")
     dbm.init_db(conn)
     dbm.save_intent(conn, rec)
     dbm.save_path(conn, plan)
     dbm.save_path(conn, plan)  # simulate a reroute
     print(f"   schema version : {dbm.schema_version(conn)}")
-    print(f"   intents stored : {len(dbm.active_intents(conn))}")
+    print(f"   intents stored : {conn.execute('SELECT COUNT(*) FROM intents').fetchone()[0]}")
     print(f"   current path   : {' -> '.join(dbm.current_path(conn, 'INT-001').switches)}")
-    print(f"   reroute count  : {dbm.reroute_count(conn, 'INT-001')}  (metric E6)")
+    print(f"   reroute count  : {dbm.reroute_count(conn, 'INT-001')}  (software simulation; not live E6)")
     conn.close()
 
     show("STATUS")

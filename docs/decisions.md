@@ -3,6 +3,14 @@
 Every architectural choice and its reasoning. This file is where viva answers come
 from. Append, never rewrite history.
 
+Compatibility correction (3 November 2026): ADR-001's historical explanation below
+incorrectly attributes removal of `ssl.wrap_socket` to Python 3.10. The removal
+occurred in Python 3.12, as documented in the official [Python release notes](https://docs.python.org/3.12/whatsnew/3.12.html#ssl).
+The evidence for this project's pin is its verified Python 3.9.25 / Ryu 4.34 /
+legacy dependency image. We have not validated every other interpreter and
+dependency combination and do not claim that all Python 3.10+ combinations fail
+for that reason. The original ADR text is retained as the historical record.
+
 ---
 
 ## ADR-001 - SDN controller: Ryu 4.34 on Python 3.9, inside Docker

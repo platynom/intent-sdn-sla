@@ -113,7 +113,9 @@ ruff check src tests topology experiments
 ```
 
 Everything touching Mininet, Open vSwitch or Ryu **must** run inside the container.
-Ryu 4.34 does not work on Python 3.10+; see ADR-001.
+The verified Ryu 4.34 stack is pinned to Python 3.9 inside Docker. See ADR-001
+and its compatibility correction in `docs/decisions.md`; the host interpreter is
+not the runtime used for live-network verification.
 
 ### Branch policy
 
