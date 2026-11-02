@@ -59,6 +59,7 @@ def ensure_queue(
             "set",
             "qos",
             existing_qos,
+            f"other-config:max-rate={qos_max_bps}",
             f"queues:{queue_id}=@q",
             "--",
             "--id=@q",
