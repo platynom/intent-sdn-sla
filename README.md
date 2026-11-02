@@ -1,17 +1,27 @@
 # Intent-Based SDN for 5G SLA Enforcement
 
+[Continue from the latest project checkpoint](README_CONTINUE.md) — read order,
+Python/Docker setup, current status, and next steps for a new contributor.
+
 Write down a service promise. The system installs it on the network, measures whether
 it is being kept, and re-plans automatically when it is not — on one laptop.
 
 ```bash
-git clone https://github.com/5rikanth/SDN.git && cd SDN
+git clone --branch feat/final-integration https://github.com/5rikanth/SDN.git && cd SDN
 docker compose up --build -d          # pinned Mininet + OVS + Ryu
 docker compose exec sdn make demo     # topology, controller, one URLLC intent
 ```
 
-The read-only operator dashboard is available locally at `http://localhost:8080`
-after `docker compose up --build -d`. It reads the shared SQLite database and
-displays intents, current paths, recent measurements and the audit trail.
+The operator dashboard is available locally at `http://localhost:8080`
+after `docker compose up --build -d`. It displays intents, current paths, recent
+measurements and the audit trail. Four realistic application intents—V2X emergency
+telemetry, remote-surgery video, public-safety live video, and smart-grid protection—
+are seeded automatically when Docker Compose starts. No manual intent entry is
+required. The seed job adds 20 clearly labelled illustrative telemetry samples per
+intent only when no samples already exist; these values are simulated, not live network
+measurements. Once real collector readings are available, charts show live readings
+instead of mixing them with demo samples. The internal M1 API is not published to the
+host; the dashboard remains read-only.
 
 ---
 
