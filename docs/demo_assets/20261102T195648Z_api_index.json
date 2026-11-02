@@ -1,0 +1,16 @@
+{
+  "revision": "ce137e90a5888149b41369e864c9976c0b109515",
+  "captured_utc": "20261102T195648Z",
+  "commands": [
+    {
+      "label": "invalid_intent",
+      "file": "docs/demo_assets/20261102T195648Z_invalid_intent.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "dashboard_api",
+      "file": "docs/demo_assets/20261102T195648Z_dashboard_api.txt",
+      "exit_status": 0
+    }
+  ]
+}

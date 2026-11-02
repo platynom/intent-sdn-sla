@@ -1,0 +1,95 @@
+Captured UTC: 20261102T201926Z
+Code revision: d329def1770d56d80129eaaf7edbafa75056bd57
+Tracked worktree diff SHA-256: da8dd14c82ac447e075b0039335673d0d843bc055f6bd21b99d10ea25376d875
+Command argv: ["python3.9", "demo_st4.py"]
+Exit status: 0
+
+
+==============================================================================
+1. THE NETWORK
+==============================================================================
+7 modelled switches, 8 inter-switch links
+
+   s1-s2       100 Mbps     2.0 ms
+   s2-s3       100 Mbps     2.0 ms
+   s3-s7       100 Mbps     2.0 ms
+   s1-s4        50 Mbps     5.0 ms
+   s4-s5        50 Mbps     5.0 ms
+   s5-s7        50 Mbps     5.0 ms
+   s1-s6        40 Mbps    12.0 ms
+   s6-s7        40 Mbps    12.0 ms
+
+   Routes from s1 to s7 (where h1 and h2 live):
+   s1 -> s2 -> s3 -> s7      100 Mbps     6.0 ms
+   s1 -> s4 -> s5 -> s7       50 Mbps    15.0 ms
+   s1 -> s6 -> s7             40 Mbps    24.0 ms
+
+==============================================================================
+2. A VALID INTENT IS ACCEPTED AND COMPILED TO A PATH
+==============================================================================
+intent:
+  id: INT-001
+  tenant: telemedicine-video
+  priority: 1
+  match: {src: 10.0.0.1/32, dst: 10.0.0.2/32, proto: udp, dport: 5001}
+  guarantee: {min_bandwidth_mbps: 20, max_latency_ms: 20, max_loss_pct: 0.5}
+
+   validation : accepted
+   promise    : 20 Mbps, 20 ms, 0.5% loss
+   chosen path: s1 -> s2 -> s3 -> s7
+   modelled   : 100.0 Mbps bottleneck, 6.0 ms one-way delay
+   links used : s1-s2, s2-s3, s3-s7
+   computed in: 0.5 ms  (budget is 200 ms)
+
+==============================================================================
+3. AN IMPOSSIBLE INTENT IS REFUSED, WITH A REASON
+==============================================================================
+intent:
+  id: INT-002
+  tenant: bulk-backup
+  priority: 4
+  match: {src: 10.0.0.7/32, dst: 10.0.0.8/32, proto: tcp, dport: 873}
+  guarantee: {min_bandwidth_mbps: 500, max_latency_ms: 5}
+
+   path found : None
+   why not    :
+     s3-s7                  insufficient bandwidth: 100 < 500
+     s3-s2-s1-s4-s5-s7      exceeds max_latency_ms: 19 > 5
+     s3-s2-s1-s6-s7         exceeds max_latency_ms: 28 > 5
+
+   No silent failure. Every refusal explains itself.
+
+==============================================================================
+4. THE INTENT GRAMMAR IS FROZEN
+==============================================================================
+intent:
+  id: INT-003
+  tenant: rogue
+  priority: 9
+  match: {src: 10.0.0.1/32, dst: 10.0.0.2/32}
+  guarantee: {max_jitter_ms: 5}
+
+   validation : rejected
+     intent.guarantee
+       Additional properties are not allowed ('max_jitter_ms' was unexpected)
+     intent.priority
+       9 is greater than the maximum of 5
+
+   priority 9 is outside the 1-5 scale, and max_jitter_ms is not one
+   of the five frozen constraint types. Both are caught before the
+   intent reaches the network.
+
+==============================================================================
+5. SQLITE STATE OPERATIONS (IN-MEMORY DEMONSTRATION)
+==============================================================================
+   schema version : 1
+   intents stored : 1
+   current path   : s1 -> s2 -> s3 -> s7
+   reroute count  : 1  (software simulation; not live E6)
+
+==============================================================================
+STATUS
+==============================================================================
+   This walkthrough demonstrates the software-only ST-1 through ST-4 path.
+   The current project status and live-network checks are documented in
+   README.md and docs/HANDOVER.md.

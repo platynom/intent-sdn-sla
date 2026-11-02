@@ -1,0 +1,26 @@
+Captured UTC: 20261102T201926Z
+Code revision: d329def1770d56d80129eaaf7edbafa75056bd57
+Tracked worktree diff SHA-256: da8dd14c82ac447e075b0039335673d0d843bc055f6bd21b99d10ea25376d875
+Command argv: ["python3.9", "-m", "pytest", "tests", "-q"]
+Exit status: 0
+
+........................................................................ [ 24%]
+........................................................................ [ 49%]
+............................................................ssssssssss.. [ 73%]
+........................................................s............... [ 98%]
+.....                                                                    [100%]
+=============================== warnings summary ===============================
+../usr/local/lib/python3.9/site-packages/eventlet/patcher.py:1
+  /usr/local/lib/python3.9/site-packages/eventlet/patcher.py:1: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+    import imp
+
+../usr/local/lib/python3.9/site-packages/dns/hash.py:23
+  /usr/local/lib/python3.9/site-packages/dns/hash.py:23: DeprecationWarning: dns.hash module will be removed in future versions. Please use hashlib instead.
+    warnings.warn(
+
+../usr/local/lib/python3.9/site-packages/dns/namedict.py:35
+  /usr/local/lib/python3.9/site-packages/dns/namedict.py:35: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+    class NameDict(collections.MutableMapping):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+282 passed, 11 skipped, 3 warnings in 9.74s

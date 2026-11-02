@@ -1,5 +1,7 @@
 # Continue the Intent SDN SLA project
 
+Current integration: use branch `feat/final-integration` and read `docs/CODE_WALKTHROUGH.md`, `docs/FINAL_REPORT.md`, `docs/DEMO_SCRIPT.md`, and `docs/VIVA_QA.md`. The checkpoint below describes the earlier dashboard branch and is retained as historical context.
+
 This repository contains the complete project source and the latest checkpoint
 from the local feature branch. Start from the branch
 `feat/st-12-evaluation`; do not start from `main` if you need the latest

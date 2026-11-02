@@ -60,6 +60,7 @@ docker compose exec -T sdn bash -lc "sed 's/\r$//' experiments/scenarios/e8_cont
 docker compose exec -T sdn python3.9 experiments/summarize_metrics.py
 docker compose exec -T sdn python3.9 experiments/plot_results.py
 docker compose exec -T sdn python3.9 experiments/verify_summaries.py
+docker compose exec -T sdn python3.9 experiments/artifact_manifest.py verify
 ```
 
 ## Outputs
@@ -69,3 +70,48 @@ docker compose exec -T sdn python3.9 experiments/verify_summaries.py
 - Figures (PNG + PDF): `experiments/figures/*.{png,pdf}`
 - Cryptographic manifest: `experiments/results/MANIFEST.sha256`
 - Evaluation report: `docs/EXPERIMENTAL_RESULTS.md` and `docs/PROJECT_REPORT.md`
+
+## Final integration verification and report
+
+Use `feat/final-integration`. Run one live scenario at a time. Measurement harnesses
+use isolated temporary databases so the dashboard seed job cannot change their
+reservations or traffic-control configuration. Presentation/regression prefixes are
+excluded from the registered headline families.
+
+```bash
+docker compose exec -T sdn python3.9 scripts/verify_final_integration.py software
+docker compose exec -T intent-api python3.9 scripts/verify_final_integration.py api
+docker compose exec -T sdn python3.9 scripts/verify_final_integration.py smoke
+docker compose exec -T sdn python3.9 scripts/verify_final_integration.py regression
+```
+
+The smoke recorder also captures the B3 presentation sequence, a real flow dump,
+and read-only database audit output. Recordings in `docs/demo_assets/` contain
+actual command output with the code revision and capture date.
+
+For a fresh accounting series, use a new prefix; never append new repetitions to
+the retained ten-run family. The final integration series is
+`e6accounting_oscillation_b2_*.csv`, documented in `docs/E6_ACCOUNTING.md`.
+The historical default-prefix family remains immutable.
+
+Report generation is separate from the SDN runtime dependencies:
+
+```powershell
+python -m pip install -r docs/requirements-report.txt
+python docs/build_final_report.py
+powershell -NoProfile -File docs/render_final_report.ps1 -InputDocx docs/FINAL_REPORT.docx -OutputPdf docs/FINAL_REPORT.pdf
+python experiments/verify_summaries.py
+```
+
+PDF export requires Microsoft Word on Windows. The committed retained cover,
+logo, topology image, and provenance JSON make the DOCX build independent of the
+original literature-report file on another machine. Word export updates the page
+fields; review every rendered page after changing content or figures. The final
+report and its Markdown source supersede earlier progress snapshots.
+
+The final manifest hashes CSV/JSON after CRLF-to-LF canonicalization, matching
+Git's cross-platform text representation; it hashes PNG/PDF bytes verbatim.
+This avoids false corruption reports caused solely by Windows checkout line
+endings. It never rewrites raw data. Verify it with
+`python experiments/artifact_manifest.py verify`; regenerate only after reviewing
+new result/summary/figure files with `python experiments/artifact_manifest.py write`.

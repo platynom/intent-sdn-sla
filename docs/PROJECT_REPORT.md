@@ -1,5 +1,7 @@
 # Intent-Based SDN for 5G SLA Enforcement
 
+Historical evaluation snapshot. The final integration report is [FINAL_REPORT.md](FINAL_REPORT.md), with its generated Word/PDF editions. This file preserves earlier literature selections and measurements for provenance; use the final report for the required six-paper review and current conclusions.
+
 ## BTech Project Implementation and Evaluation Report
 
 **Team 16:** Tanmaya Kumar (BL.EN.U4EAC23058), Srikanth Dinesh (BL.EN.U4EAC23056), Dheepak K (BL.EN.U4EAC23072)  
