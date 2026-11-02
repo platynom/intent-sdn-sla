@@ -20,7 +20,7 @@ Suggested preparation groups below identify module responsibilities, not an unve
 
 12. **Why three link-disjoint routes?** They provide alternatives with different modelled capacities and delays, so selection and recovery can be observed. The configured network has seven switches, eight hosts, eight inter-switch links, eight host-access links, and one Ryu SDN controller. These configuration counts do not establish large-network scalability.
 13. **How is a route's bandwidth calculated?** It is the minimum capacity or residual capacity along the route, since the narrowest link constrains the flow.
-14. **How is route latency calculated?** Planning sums configured edge delays. The live UDP echo probe measures round-trip delay, which must not be confused with that one-way model.
+14. **How is route latency calculated?** Planning sums configured edge delays. The live UDP echo probe measures round-trip delay. Both currently use the same latency budget without conversion; disclose that limitation instead of claiming a verified common one-way SLA.
 15. **Why Yen's algorithm?** It supplies several loop-free candidate routes for constraint pruning and deterministic selection using an established method.
 16. **Why might a feasible route be missed?** Candidate enumeration is bounded; the prototype does not exhaustively search every possible route in an arbitrary graph.
 17. **What is SDN?** A control application programs forwarding devices through a controller rather than configuring each switch manually.
