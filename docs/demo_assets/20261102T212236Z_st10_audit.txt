@@ -1,0 +1,12 @@
+Captured UTC: 20261102T212236Z
+Code revision: 23ef6b4d66f0cc7767b92ce0d04a68cfc74bb18d
+Tracked worktree diff SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Command argv: ["python3.9", "scripts/show_demo_audit.py"]
+Exit status: 1
+
+Traceback (most recent call last):
+  File "/app/scripts/show_demo_audit.py", line 25, in <module>
+    main()
+  File "/app/scripts/show_demo_audit.py", line 10, in main
+    conn = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+sqlite3.OperationalError: unable to open database file

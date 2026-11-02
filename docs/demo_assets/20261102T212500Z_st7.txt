@@ -1,0 +1,31 @@
+Captured UTC: 20261102T212500Z
+Code revision: 23ef6b4d66f0cc7767b92ce0d04a68cfc74bb18d
+Tracked worktree diff SHA-256: fe73f421bf80bec464396c0c48063cbed0bfe7ea2d2bc1d3fbe7c93e8a853a02
+Command argv: ["bash", "-lc", "set -o pipefail; sed 's/\\r$//' experiments/scenarios/s1_single_intent.sh | bash -s -- --st7"]
+Exit status: 0
+
+=== [1/6] Starting Ryu Controller ===
+=== [2/6] Starting M1 REST API ===
+=== [3/6] Starting Mininet Topology ===
+=== [4/6] Submitting Intent INT-001 ===
+PASS: Intent submitted successfully (HTTP 201)
+=== [5/6] Verification Checks ===
+PASS: Flow rules with cookie found on s1 (1 rules)
+PASS: 20 Mbps HTB queue attached to s1-eth2
+PASS: Traffic route traverses s2 (northern route s1-s2-s3-s7 verified)
+=== [6/6] Live Telemetry ===
+sample delay_ms=7.425116000376875 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=green event=none event_persisted_at=None
+sample delay_ms=6.2126200000420795 jitter_ms=1.212496000334795 loss_pct=0.0 throughput_mbps=0.0 status=amber event=none event_persisted_at=None
+sample delay_ms=6.320260999927996 jitter_ms=0.10764099988591624 loss_pct=0.0 throughput_mbps=0.00041559335443339476 status=amber event=none event_persisted_at=None
+sample delay_ms=6.21357700038061 jitter_ms=0.10668399954738561 loss_pct=0.0 throughput_mbps=0.00041559533420922507 status=red event=sla.violated event_persisted_at=1793654738.0117002
+sample delay_ms=16.127904999848397 jitter_ms=9.914327999467787 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+PASS: 5 live measurements persisted (4 complete samples)
+=== ST-7: Injecting a confirmed event through the SQLite process boundary ===
+PASS: live telemetry already caused the expected alternate route
+sample delay_ms=15.585674999783805 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=green event=none event_persisted_at=None
+PASS: controller consumed persisted violation and installed s1,s4,s5,s7
+PASS: matching UDP traffic received a probe reply after the reroute
+PASS: reroute count=1; causal audit entries=1
+=== SCENARIO S1: ALL ST-1 THROUGH ST-6 CHECKS PASSED ===
+=== SCENARIO ST-7: LIVE REROUTE CHECK PASSED ===
+*** Cleaning up processes and Mininet state
