@@ -3,6 +3,7 @@ __pycache__/
 .venv/
 .venv39/
 .final_report_work/
+docs/specs/
 venv/
 .env
 *.db
