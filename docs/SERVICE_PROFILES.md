@@ -71,3 +71,69 @@ delay-critical GBR has distinct delay/error handling in clause 5.7.3.5.
 Multiplying PER by 100 converts probability to percent but does not equate these
 metrics. Generated loss bounds are explicitly project proxies. Planning and PDB
 are one-way; live echo probes measure RTT. Profiles do not hide or fix that gap.
+
+## Transport budget derivation
+
+S1 Notes 4/5/13 allocate CN PDB to the UPF terminating N6 <-> 5G-AN segment,
+the segment closest to the transport network represented here. For each profile:
+
+- **A (default):** transport target = CN PDB.
+- **B (comparison only):** transport target = (PDB - CN PDB) * transport_share.
+
+`transport_share` is a configurable fraction in `profiles.yaml`, default **0.5,
+ASSUMPTION (not standardized)**. We reviewed [ITU-T GSTR-TN5G (2018-10),
+section 7.2 / Table 7-2](https://www.itu.int/dms_pub/itu-t/opb/tut/T-TUT-HOME-2018-2-PDF-E.pdf)
+and [RFC 9543 section 5.1.1.1](https://datatracker.ietf.org/doc/html/rfc9543#section-5.1.1.1).
+They discuss interface-dependent latency and network-slice objectives; neither
+provides a universal fraction usable for this mapping. This search does not prove
+that no such allocation exists anywhere. Method B is an explicit sensitivity
+comparison, not a standardized transport allocation of the radio-side budget.
+
+Method A uses the standard's own core-side allocation. Assigning the entire CN
+allocation to this emulated segment is still a project approximation: real CN
+processing and other transport segments may consume part of it. It does not make
+the prototype a standards-compliant 5G network.
+
+Loss target = PER * 100 percent, with the PER/IP-loss caveat above. The eMBB rate
+uses S2's urban-macro downlink target as a project reservation; S2 Note 5 still
+applies. Other positive rates below are openly labelled assumptions. A non-GBR
+mMTC profile deliberately omits a guaranteed minimum rate. Project priorities are
+1 for delay-critical mappings, 2 for eMBB, and 4 for mMTC, not copied from 3GPP
+priorities. Priority 5 would contradict the existing validator's latency rule.
+
+| Profile | 5QI | A ms | B ms at share 0.5 | Loss % proxy | Minimum Mbps | Rate provenance |
+|---|---|---|---|---|---|---|
+| urllc / remote-surgery proxy | 82 | 1 | 4.5 | 0.01 | 20 | ASSUMPTION, not a surgical standard |
+| v2x | 86 | 2 | 1.5 | 0.01 | 10 | ASSUMPTION, not inferred from ITS backhaul |
+| smart_grid / high-voltage protection | 85 | 2 | 1.5 | 0.001 | 1 | ASSUMPTION |
+| embb / live video | 2 | 20 | 65 | 0.1 | 50 | S2 Table 7.1-1, urban-macro DL, Note 5 target |
+| mmtc / buffered sensor traffic | 9 | 20 | 140 | 0.0001 | None | Non-GBR: no minimum requested |
+
+## Feasibility on the unchanged h1 -> h2 topology
+
+These are calculated planning results, not measured SLA compliance. North has
+100 Mbps / 6 ms; middle 50 Mbps / 15 ms; south 40 Mbps / 24 ms, taken from
+`topology/topology_spec.py`. Link-loss estimates are zero in this model. This table
+assumes no existing reservations and checks bandwidth and latency together.
+
+| Profile | North A | Middle A | South A | A finding | B finding |
+|---|---|---|---|---|---|
+| urllc | No | No | No | NO route | NO route |
+| v2x | No | No | No | NO route | NO route |
+| smart_grid | No | No | No | NO route | NO route |
+| embb | Yes | Yes | No | Two routes | Two routes (south lacks bandwidth) |
+| mmtc | Yes | Yes | No | Two routes | ALL routes |
+
+The emulated per-link delays are larger than these selected delay-critical
+transport budgets. Their CN reference allocations are 1-2 ms; this is not a claim
+that every real deployment has the same budget. Keep the topology unchanged and
+show the normal explained refusal. Feasibility is endpoint-dependent: the table
+concerns h1 -> h2, not every pair of adjacent hosts.
+
+## Evaluation scope
+
+Published E1-E8 experiments used illustrative intents sized for the emulated
+topology. They remain evaluations of the enforcement and recovery mechanisms,
+not demonstrations of 3GPP service compliance. Profiles are a front-end layer;
+those experiments are not rerun or relabelled as standards-derived measurements.
+Profile live checks are separate functional evidence under `docs/demo_assets/`.
