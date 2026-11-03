@@ -54,9 +54,19 @@ can be prepared with:
 wsl -d Ubuntu-22.04 -- bash -lc "cd '/mnt/c/Users/Admin/Documents/Software Defined Networks/SDN' && docker compose up -d"
 ```
 
-Publication is pending the requested git push. If access is rejected, preserve the
-integration branch in ../SDN_final_integration.bundle and final documents in a ZIP.
-Do not change main, force-push, or change account permissions.
+Publication is blocked: GitHub rejected `git push -u origin feat/final-integration`
+with HTTP 403, permission denied to the authenticated account `platynom` on
+`5rikanth/SDN`. No PR was opened. The authorized fallback is a complete-history
+bundle at `../SDN_final_integration.bundle` and a timestamped final-documents ZIP
+beside the repository. These external release artifacts are not Git-tracked.
+After the owner grants write access, the exact next command is:
+
+```powershell
+git push -u origin feat/final-integration
+```
+
+Then open a PR into `feat/st-12-evaluation`, never main. Do not force-push or
+change account permissions as a workaround.
 
 ## Remaining scientific limitations
 
