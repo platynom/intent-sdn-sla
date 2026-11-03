@@ -6,7 +6,7 @@ QoS characteristics; it is not a slice type. Application mappings are project po
 
 ## Pinned sources
 
-- [S1: ETSI TS 123 501 V17.9.0 (2023-07), TS 23.501 Release 17](https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/17.09.00_60/ts_123501v170900p.pdf): clauses 5.7.3.4/5.7.3.5, Table 5.7.4-1, printed pages 170-174. Used rows occur on PDF pages 172-173; Notes 4/5/13 on PDF pages 174-175.
+- [S1: ETSI TS 123 501 V17.9.0 (2023-07), TS 23.501 Release 17](https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/17.09.00_60/ts_123501v170900p.pdf): clauses 5.7.3.4/5.7.3.5, Table 5.7.4-1, printed pages 170-174. Used rows occur on PDF pages 172-173; Notes 4/5/13 on PDF page 174.
 - [S2: ETSI TS 122 261 V17.10.0 (2022-05), TS 22.261 Release 17](https://www.etsi.org/deliver/etsi_ts/122200_122299/122261/17.10.00_60/ts_122261v171000p.pdf): Tables 7.1-1 and 7.2.3.2-1.
 - [S3: ITU-R M.2410-0 (11/2017)](https://www.itu.int/dms_pub/itu-r/opb/rep/R-REP-M.2410-2017-PDF-E.pdf): clauses 4.7.1, 4.8, 4.10.
 
@@ -137,3 +137,29 @@ topology. They remain evaluations of the enforcement and recovery mechanisms,
 not demonstrations of 3GPP service compliance. Profiles are a front-end layer;
 those experiments are not rerun or relabelled as standards-derived measurements.
 Profile live checks are separate functional evidence under `docs/demo_assets/`.
+
+## API and checked commands
+
+`GET /profiles` returns the catalogue including citations, assumptions, both
+targets, resource type and the separate project/3GPP priorities. Submit JSON to
+`POST /intent/from-profile` with `service_class`, `intent_id`, `tenant`, and
+`match`; optional fields are `priority`, `consistency`, and `overrides`.
+Overrides are guarantee fields; a null value removes an existing bound and may
+produce a warning. Unknown fields still fail the frozen validator. A looser
+profile override is disclosed, not relabelled as a standard's requirement.
+Normal refusal reasons accompany state `rejected`; HTTP 201 is not activation.
+
+```bash
+docker compose exec -T sdn python3.9 -m experiments.scenarios.profile_live
+docker compose exec -T sdn python3.9 -m scripts.export_profile_catalog
+```
+
+The recorded check installed the northern path for eMBB and mMTC, verified both
+directions' cookie-tagged rules on every path switch, and forwarded matching UDP
+and TCP echo traffic respectively. The existing dashboard API read each active
+profile with telemetry source `none`, rather than inventing measured samples.
+The three delay-critical defaults returned explained latency refusals. Output
+directories are `docs/demo_assets/profile_<class>_<UTC timestamp>/`. Mininet's HTB
+quantum advisories and an initial controller-readiness warning appeared during
+startup; the subsequent rule, forwarding and dashboard assertions all passed.
+These are functional checks, not sustained-rate or clinical-compliance tests.

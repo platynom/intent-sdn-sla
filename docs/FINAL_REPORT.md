@@ -34,6 +34,55 @@ The topology is defined in topology/topology_spec.py and instantiated by topolog
 
 The frozen grammar contains traffic endpoints and protocol, optional destination port, priority, service guarantees, consistency, violation policy, and dwell. Supported guarantee types are minimum bandwidth, maximum latency, maximum loss, isolation from selected tenants, and avoided links. Actions are reroute, degrade, or alert_only. The schema and semantic validator define acceptance; no LLM interprets the request. Application names such as remote surgery label illustrative configurations and do not certify a clinical or standards-compliant service class.
 
+
+### 3.1 Standards-derived service profiles
+
+This front-end layer generates ordinary intents and then invokes the unchanged validation/admission handler. The schema and topology remain unchanged. A 5QI describes QoS characteristics, not a slice type. The following facts come from [S1], TS 23.501 Table 5.7.4-1 and Notes 4/5/13, using the pinned Release 17 extraction. Later releases exist. Application mappings are project policy: remote surgery uses a discrete-automation proxy; high-voltage smart-grid protection is delay-critical, not mMTC. The mMTC example deliberately chooses non-GBR 5QI 9 for delay-tolerant buffered traffic; Release 17 has no dedicated massive-IoT 5QI in this table.
+
+| Profile | 5QI | PDB ms | CN PDB ms | PER | CN note |
+|---|---|---|---|---|---|
+| urllc | 82 | 10 | 1 | 0.0001 | 4 |
+| v2x | 86 | 5 | 2 | 0.0001 | 5 |
+| smart grid | 85 | 5 | 2 | 1e-05 | 5 |
+| embb | 2 | 150 | 20 | 0.001 | 13 |
+| mmtc | 9 | 300 | 20 | 1e-06 | 13 |
+
+The CN PDB covers the UPF terminating N6 to 5G-AN segment, closest to the modelled transport network. Method A uses that allocation as the default transport target. Method B, shown only for comparison, is (PDB - CN PDB) times transport_share. The configurable share defaults to 0.5: ASSUMPTION, not standardized. Our review of [S4] and [S5] found interface-dependent latency guidance and slice objectives, not a universal fraction. Giving this emulator the entire CN budget is also an approximation because CN processing can consume part of it.
+
+| Profile | A ms default | B ms comparison | Loss % proxy | Minimum Mbps |
+|---|---|---|---|---|
+| urllc | 1 | 4.5 | 0.01 | 20 |
+| v2x | 2 | 1.5 | 0.01 | 10 |
+| smart grid | 2 | 1.5 | 0.001 | 1 |
+| embb | 20 | 65 | 0.1 | 50 |
+| mmtc | 20 | 140 | 0.0001 | None (non-GBR) |
+
+Loss percentage is PER times 100, a numerical conversion used as a project IP-loss proxy. PER is a non-congestion link-layer error measure, not IP loss. Late-packet handling also differs by resource type. The broadband rate uses the urban-macro experienced downlink target in [S2] Table 7.1-1; its Note 5 says targets are not strict requirements. Other positive rates are engineering assumptions, not surgical, V2X or protection standards. Non-GBR mMTC requests no minimum rate. Standard priorities are not copied to the project's separate priority scale.
+
+The next table is calculated from the unchanged topology and default method A without existing reservations; it is not measured compliance. No route satisfies any selected delay-critical profile. Their CN reference allocations are smaller than this emulator's per-link delays, so the system must refuse them instead of weakening the targets. For method B, mMTC fits all routes; eMBB still excludes the southern bandwidth bottleneck.
+
+| Profile | North A | Middle A | South A |
+|---|---|---|---|
+| urllc | No | No | No |
+| v2x | No | No | No |
+| smart grid | No | No | No |
+| embb | Yes | Yes | No |
+| mmtc | Yes | Yes | No |
+
+Functional checks under docs/demo_assets/profile_* record explained refusals for the delay-critical defaults and actual installed routes plus matching packet delivery for feasible profiles. These checks do not establish sustained bandwidth, one-way latency, or extremely low loss compliance. The live probe still measures RTT whereas planning and the standard use one-way budgets.
+
+Published E1-E8 results used illustrative intents sized for emulation. They remain evaluations of enforcement and recovery mechanisms; they were not rerun or relabelled as standards-compliant services. The original scenario/demo files now carry an explicit illustrative-values comment.
+
+[S1] ETSI TS 123 501 V17.9.0 (2023-07), 3GPP TS 23.501 Release 17, clauses 5.7.3.4/5.7.3.5 and Table 5.7.4-1, Notes 4/5/13. https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/17.09.00_60/ts_123501v170900p.pdf
+
+[S2] ETSI TS 122 261 V17.10.0 (2022-05), 3GPP TS 22.261 Release 17, Tables 7.1-1 and 7.2.3.2-1. The latter is an ITS infrastructure-backhaul example; its reliability/availability figures are not PER or collision-avoidance targets. https://www.etsi.org/deliver/etsi_ts/122200_122299/122261/17.10.00_60/ts_122261v171000p.pdf
+
+[S3] ITU-R M.2410-0 (11/2017), clauses 4.7.1, 4.8 and 4.10. Its latency/reliability/density requirements concern radio-interface evaluation; they are context only, not transport inputs. https://www.itu.int/dms_pub/itu-r/opb/rep/R-REP-M.2410-2017-PDF-E.pdf
+
+[S4] ITU-T GSTR-TN5G (2018-10), section 7.2 / Table 7-2. https://www.itu.int/dms_pub/itu-t/opb/tut/T-TUT-HOME-2018-2-PDF-E.pdf
+
+[S5] RFC 9543 (2024), section 5.1.1.1. https://datatracker.ietf.org/doc/html/rfc9543#section-5.1.1.1
+
 ## 4 Implementation
 
 M1 parses the request, applies JSON Schema and semantic checks, stores an IntentRecord, and returns a decision with field-specific explanations. A schema rejection is distinct from a valid request rejected by admission.

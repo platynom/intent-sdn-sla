@@ -4,7 +4,7 @@ This guide explains how a structured service request becomes forwarding rules an
 
 ## M1 Intent management
 
-Purpose: accept a machine-readable request and reject malformed or unsupported requests before networking work begins. `src/intent_manager/api.py:67` declares `POST /intent`; `validator.py:173` implements `validate`, and `validator.py:204` implements `validate_yaml`. `schema.json` freezes the accepted fields. `_semantic_checks` at `validator.py:80` checks relationships beyond field types. `IntentRecord.from_document` converts the validated dictionary into the shared model.
+Purpose: accept a machine-readable request and reject malformed or unsupported requests before networking work begins. `src/intent_manager/api.py:69` declares `POST /intent`; `validator.py:173` implements `validate`, and `validator.py:204` implements `validate_yaml`. `schema.json` freezes the accepted fields. `_semantic_checks` at `validator.py:80` checks relationships beyond field types. `IntentRecord.from_document` converts the validated dictionary into the shared model.
 
 Input is YAML text or a JSON document containing `intent`. Output is an admitted or rejected record, a JSON response, SQLite rows, and lifecycle events. Schema errors return HTTP 422. A well-formed request that cannot be admitted can still return HTTP 201 with state `rejected`; HTTP success alone does not prove an installed service.
 
@@ -15,9 +15,36 @@ We accept the required service as structured data.
 We validate its syntax and meaning before attempting admission.
 The API stores the request and returns its decision and computed path.
 
+## Profile input layer (before M1 admission)
+
+`src/intent_manager/profiles.yaml` contains pinned 5QI facts, source versions,
+table/note references, and declared assumptions outside the intent grammar.
+`profiles.py:16` (`list_profiles`) exposes both latency-budget candidates and the
+PER-percentage proxy. `profiles.py:48` (`build_intent`) emits only normal intent fields and runs the
+existing validator. `profiles.py:82` (`check_against_profile`) warns when an override weakens a
+bound, project priority, or strict update policy.
+
+`api.py:256` serves `GET /profiles`. `api.py:262` serves `POST /intent/from-profile`, calls
+`build_intent`, then invokes the unchanged `create_intent` handler through an
+ordinary JSON request. Admission, persistence, refusal reasons, and enforcement
+therefore follow the existing path. A valid but infeasible request still returns
+HTTP 201 with state `rejected`; an unknown class returns 422. Metadata is not
+inserted into `schema.json` or silently attached to a network guarantee.
+
+The default is CN PDB, not the comparison radio-side share. Delay-critical
+defaults are strict; other defaults relaxed. Project priorities are independent
+of 3GPP priority numbers. Non-GBR mMTC requests no minimum rate and uses project
+priority 4 because the existing validator disallows a latency guarantee with
+best-effort priority 5. See `docs/SERVICE_PROFILES.md` for the precise source scope.
+
+Viva explanation:
+We select a cited service reference before creating the ordinary intent.
+The same validator and admission process either accepts it or explains refusal.
+The profile does not turn an emulated network into a certified 5G service.
+
 ## M2 Admission and conflict handling
 
-Purpose: decide whether the network model has enough remaining resources. `src/admission/residual.py:15` implements `residual_graph`; `residual.py:54` gathers tenant paths. `src/admission/feasibility.py:16` implements `assess`. `src/intent_manager/api.py:35` calls admission for each request. It consults persisted active intents and their paths, then records admission and preemption decisions.
+Purpose: decide whether the network model has enough remaining resources. `src/admission/residual.py:15` implements `residual_graph`; `residual.py:54` gathers tenant paths. `src/admission/feasibility.py:16` implements `assess`. `src/intent_manager/api.py:37` calls admission for each request. It consults persisted active intents and their paths, then records admission and preemption decisions.
 
 Input is an intent, topology graph, and reservations. Output is a verdict, explanation, optional candidate path, and optional preemption victim. Priority uses the frozen scale where a smaller number means higher priority. Preemption requires the controller to remove the victim's forwarding rules, not merely mark a database row.
 
@@ -105,7 +132,7 @@ The experiment runs real packets through virtual hosts and software switches.
 
 ## Trace of the baseline intent
 
-1. Submit `intents/s1_urllc_baseline.yaml` to `POST /intent`, handled by `create_intent` at `src/intent_manager/api.py:68`. The endpoint parses YAML, calls `validate`, and constructs `IntentRecord.from_document`.
+1. Submit `intents/s1_urllc_baseline.yaml` to `POST /intent`, handled by `create_intent` at `src/intent_manager/api.py:70`. The endpoint parses YAML, calls `validate`, and constructs `IntentRecord.from_document`.
 2. `_admission_for_request` calls `assess` in the ordinary full-system mode. `assess` builds `residual_graph`, gathers `tenant_paths`, and calls `compute_path`. Path computation uses `_resolve_ip_to_switch` -> `k_shortest_paths` -> `prune` -> `select_best`. The B2 admission ablation deliberately takes a different request path.
 3. M1 calls `db.save_intent` and `db.save_path`; a strict plan is assigned its version with `two_phase.with_version`. The response contains the computed switch path.
 4. Ryu's `_enforcement_loop` calls `_sync_intents_from_db` -> `install_plan`. This configures `ensure_queue`, then calls strict `two_phase.install` or relaxed `rules_for_path` -> flow installation. Ryu marks the intent active and publishes installation evidence.

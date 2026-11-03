@@ -1,5 +1,12 @@
 # Experimental Results and Evaluation Limits
 
+Profile scope: the published E1-E8 series below used illustrative intents sized
+for the emulated topology. The standards-derived catalogue added afterward is a
+front-end input layer; these results remain evidence about enforcement/recovery
+mechanisms and are not relabelled as 3GPP service compliance. E1-E8 were not rerun
+for profiles. Separate functional activation/refusal evidence is stored under
+`docs/demo_assets/profile_*`; method and assumptions are in `SERVICE_PROFILES.md`.
+
 ## 1. Environment and Verification Summary
 
 All live network experiments were executed inside the project's privileged Docker container (`intent-sdn-sla`, Ubuntu 22.04, Python 3.9.25, Ryu 4.34, Open vSwitch 2.17.12, Mininet with `TCLink` HTB + `netem`) on branch `feat/st-12-eval-completion` starting from checkpoint commit `024910099e91bb8a3fbf1021249ce1eea0ea4dcf`.

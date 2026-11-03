@@ -109,6 +109,14 @@ original literature-report file on another machine. Word export updates the page
 fields; review every rendered page after changing content or figures. The final
 report and its Markdown source supersede earlier progress snapshots.
 
+After editing a profile or the topology, first refresh the report's checked input
+with `python -m scripts.export_profile_catalog` in the application environment
+(or run that command through `docker compose exec -T sdn python3.9 -m`). The report
+builder verifies the catalogue, derivation-code and topology hashes before using
+the exported JSON, so the bundled report interpreter needs no YAML/networking
+dependencies. Profile checks use `python3.9 -m experiments.scenarios.profile_live`
+inside `sdn`; these are isolated functional checks, not E1-E8 repetitions.
+
 The final manifest hashes CSV/JSON after CRLF-to-LF canonicalization, matching
 Git's cross-platform text representation; it hashes PNG/PDF bytes verbatim.
 This avoids false corruption reports caused solely by Windows checkout line

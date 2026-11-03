@@ -1,0 +1,272 @@
+{
+  "kind": "standards-derived configuration and calculated feasibility, not measurements",
+  "source_sha256": {
+    "src/intent_manager/profiles.yaml": "a4dc594756c87ced67baadfa9ca49240d52b31610957fce592a8f1d3624b2c48",
+    "src/intent_manager/profiles.py": "c35a9a82037b094ea81e36b1be7a65334bc71a664a988f9442fe270507dd1639",
+    "topology/topology_spec.py": "cb012eb9b3a935aad55914858a5bb6bdd4ccee00cf78000d0bd5bcf82e8599e3"
+  },
+  "profiles": [
+    {
+      "label": "Remote-surgery proxy / discrete automation",
+      "mapping": "Proxy mapping; no dedicated remote-surgery 5QI in this Release 17 table.",
+      "five_qi": 82,
+      "resource_type": "Delay-critical GBR",
+      "standard_priority": 19,
+      "project_priority": 1,
+      "pdb_ms": 10,
+      "cn_pdb_ms": 1,
+      "per": 0.0001,
+      "mdbv_bytes": 255,
+      "min_bandwidth_mbps": 20,
+      "bandwidth_source": {
+        "kind": "assumption",
+        "explanation": "Engineering example, not a surgical standard"
+      },
+      "source": {
+        "spec": "3GPP TS 23.501",
+        "version": "ETSI TS 123 501 V17.9.0 (2023-07), Release 17",
+        "clause": "5.7.4",
+        "table": "5.7.4-1",
+        "url": "https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/17.09.00_60/ts_123501v170900p.pdf",
+        "note": 4
+      },
+      "service_class": "urllc",
+      "transport_share": 0.5,
+      "transport_share_basis": "ASSUMPTION (not standardized)",
+      "transport_target_a_ms": 1,
+      "transport_target_b_ms": 4.5,
+      "max_loss_pct": 0.01,
+      "loss_mapping": "PER times 100 is a project IP-loss proxy, not metric equivalence",
+      "consistency": "strict",
+      "feasibility": {
+        "a": {
+          "north": false,
+          "middle": false,
+          "south": false
+        },
+        "b": {
+          "north": false,
+          "middle": false,
+          "south": false
+        }
+      }
+    },
+    {
+      "label": "Advanced-driving V2X",
+      "mapping": "Collision avoidance and platooning with high automation; not ITS backhaul.",
+      "five_qi": 86,
+      "resource_type": "Delay-critical GBR",
+      "standard_priority": 18,
+      "project_priority": 1,
+      "pdb_ms": 5,
+      "cn_pdb_ms": 2,
+      "per": 0.0001,
+      "mdbv_bytes": 1354,
+      "min_bandwidth_mbps": 10,
+      "bandwidth_source": {
+        "kind": "assumption",
+        "explanation": "Engineering rate; not derived from the ITS-backhaul example"
+      },
+      "source": {
+        "spec": "3GPP TS 23.501",
+        "version": "ETSI TS 123 501 V17.9.0 (2023-07), Release 17",
+        "clause": "5.7.4",
+        "table": "5.7.4-1",
+        "url": "https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/17.09.00_60/ts_123501v170900p.pdf",
+        "note": 5
+      },
+      "service_class": "v2x",
+      "transport_share": 0.5,
+      "transport_share_basis": "ASSUMPTION (not standardized)",
+      "transport_target_a_ms": 2,
+      "transport_target_b_ms": 1.5,
+      "max_loss_pct": 0.01,
+      "loss_mapping": "PER times 100 is a project IP-loss proxy, not metric equivalence",
+      "consistency": "strict",
+      "feasibility": {
+        "a": {
+          "north": false,
+          "middle": false,
+          "south": false
+        },
+        "b": {
+          "north": false,
+          "middle": false,
+          "south": false
+        }
+      }
+    },
+    {
+      "label": "High-voltage smart-grid protection",
+      "mapping": "High-voltage electricity distribution; delay-critical, not mMTC.",
+      "five_qi": 85,
+      "resource_type": "Delay-critical GBR",
+      "standard_priority": 21,
+      "project_priority": 1,
+      "pdb_ms": 5,
+      "cn_pdb_ms": 2,
+      "per": 1e-05,
+      "mdbv_bytes": 255,
+      "min_bandwidth_mbps": 1,
+      "bandwidth_source": {
+        "kind": "assumption",
+        "explanation": "Engineering rate; not a standardized protection rate"
+      },
+      "source": {
+        "spec": "3GPP TS 23.501",
+        "version": "ETSI TS 123 501 V17.9.0 (2023-07), Release 17",
+        "clause": "5.7.4",
+        "table": "5.7.4-1",
+        "url": "https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/17.09.00_60/ts_123501v170900p.pdf",
+        "note": 5
+      },
+      "service_class": "smart_grid",
+      "transport_share": 0.5,
+      "transport_share_basis": "ASSUMPTION (not standardized)",
+      "transport_target_a_ms": 2,
+      "transport_target_b_ms": 1.5,
+      "max_loss_pct": 0.001,
+      "loss_mapping": "PER times 100 is a project IP-loss proxy, not metric equivalence",
+      "consistency": "strict",
+      "feasibility": {
+        "a": {
+          "north": false,
+          "middle": false,
+          "south": false
+        },
+        "b": {
+          "north": false,
+          "middle": false,
+          "south": false
+        }
+      }
+    },
+    {
+      "label": "Conversational live video / broadband example",
+      "mapping": "Project broadband example using conversational-video QoS characteristics.",
+      "five_qi": 2,
+      "resource_type": "GBR",
+      "standard_priority": 40,
+      "project_priority": 2,
+      "pdb_ms": 150,
+      "cn_pdb_ms": 20,
+      "per": 0.001,
+      "mdbv_bytes": null,
+      "min_bandwidth_mbps": 50,
+      "bandwidth_source": {
+        "kind": "standard_example",
+        "spec": "3GPP TS 22.261",
+        "version": "ETSI TS 122 261 V17.10.0 (2022-05), Release 17",
+        "clause": "7.1",
+        "table": "7.1-1",
+        "note": 5,
+        "explanation": "Urban-macro experienced downlink target, not a strict requirement or 5QI-defined rate.",
+        "url": "https://www.etsi.org/deliver/etsi_ts/122200_122299/122261/17.10.00_60/ts_122261v171000p.pdf"
+      },
+      "source": {
+        "spec": "3GPP TS 23.501",
+        "version": "ETSI TS 123 501 V17.9.0 (2023-07), Release 17",
+        "clause": "5.7.4",
+        "table": "5.7.4-1",
+        "url": "https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/17.09.00_60/ts_123501v170900p.pdf",
+        "note": 13
+      },
+      "service_class": "embb",
+      "transport_share": 0.5,
+      "transport_share_basis": "ASSUMPTION (not standardized)",
+      "transport_target_a_ms": 20,
+      "transport_target_b_ms": 65.0,
+      "max_loss_pct": 0.1,
+      "loss_mapping": "PER times 100 is a project IP-loss proxy, not metric equivalence",
+      "consistency": "relaxed",
+      "feasibility": {
+        "a": {
+          "north": true,
+          "middle": true,
+          "south": false
+        },
+        "b": {
+          "north": true,
+          "middle": true,
+          "south": false
+        }
+      }
+    },
+    {
+      "label": "Delay-tolerant buffered sensor traffic",
+      "mapping": "Project choice; no dedicated massive-IoT 5QI in TS 23.501 Release 17.",
+      "five_qi": 9,
+      "resource_type": "Non-GBR",
+      "standard_priority": 90,
+      "project_priority": 4,
+      "pdb_ms": 300,
+      "cn_pdb_ms": 20,
+      "per": 1e-06,
+      "mdbv_bytes": null,
+      "min_bandwidth_mbps": null,
+      "bandwidth_source": {
+        "kind": "none",
+        "explanation": "Non-GBR example deliberately requests no guaranteed minimum rate."
+      },
+      "source": {
+        "spec": "3GPP TS 23.501",
+        "version": "ETSI TS 123 501 V17.9.0 (2023-07), Release 17",
+        "clause": "5.7.4",
+        "table": "5.7.4-1",
+        "url": "https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/17.09.00_60/ts_123501v170900p.pdf",
+        "note": 13
+      },
+      "service_class": "mmtc",
+      "transport_share": 0.5,
+      "transport_share_basis": "ASSUMPTION (not standardized)",
+      "transport_target_a_ms": 20,
+      "transport_target_b_ms": 140.0,
+      "max_loss_pct": 0.0001,
+      "loss_mapping": "PER times 100 is a project IP-loss proxy, not metric equivalence",
+      "consistency": "relaxed",
+      "feasibility": {
+        "a": {
+          "north": true,
+          "middle": true,
+          "south": false
+        },
+        "b": {
+          "north": true,
+          "middle": true,
+          "south": true
+        }
+      }
+    }
+  ],
+  "routes": {
+    "north": {
+      "switches": [
+        "s1",
+        "s2",
+        "s3",
+        "s7"
+      ],
+      "delay_ms": 6.0,
+      "bandwidth_mbps": 100.0
+    },
+    "middle": {
+      "switches": [
+        "s1",
+        "s4",
+        "s5",
+        "s7"
+      ],
+      "delay_ms": 15.0,
+      "bandwidth_mbps": 50.0
+    },
+    "south": {
+      "switches": [
+        "s1",
+        "s6",
+        "s7"
+      ],
+      "delay_ms": 24.0,
+      "bandwidth_mbps": 40.0
+    }
+  }
+}

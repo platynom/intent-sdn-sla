@@ -85,6 +85,30 @@ intent:
   dwell_seconds: 10              # anti-oscillation hold-off
 ```
 
+## Service profiles
+
+`GET /profiles` exposes pinned Release 17 QoS references, source metadata and
+assumptions. `POST /intent/from-profile` generates a normal intent and calls the
+unchanged validation/admission path. The frozen schema and topology are unchanged.
+The default latency target is CN PDB; bandwidth assumptions and the PER/IP-loss
+proxy are disclosed in [SERVICE_PROFILES.md](docs/SERVICE_PROFILES.md).
+
+```bash
+docker compose exec -T intent-api curl -s http://127.0.0.1:8000/profiles
+docker compose exec -T intent-api curl -sS http://127.0.0.1:8000/intent/from-profile \
+  -H 'Content-Type: application/json' --data-binary @- <<'JSON'
+{"service_class":"embb","intent_id":"INT-950","tenant":"profile-video","match":{"src":"10.0.0.1/32","dst":"10.0.0.2/32","proto":"udp","dport":5001}}
+JSON
+```
+
+Classes: `urllc` (remote-surgery proxy), `v2x`, `smart_grid` (high-voltage
+protection), `embb`, `mmtc` (project-selected non-GBR 5QI 9). Optional `overrides`
+contains guarantee fields; looser settings produce warnings. Default delay-critical
+profiles are intentionally infeasible on the h1-to-h2 topology and return explained
+refusals, not weakened budgets. HTTP 201 alone does not prove activation: inspect
+the response state and actual forwarding evidence. Existing demos and E1-E8 use
+illustrative intents; their evaluation scope is unchanged.
+
 ## Repository layout
 
 ```
@@ -159,8 +183,10 @@ docker compose exec -T sdn python3.9 experiments/plot_results.py
 
 ## Status
 
-All subtasks **ST-1 through ST-13** are complete on branch `feat/st-12-eval-completion`:
-- **Container test suite**: `270 passed, 11 skipped` (`pytest tests -q`), `ruff check` clean (`0` errors).
+The evaluated implementation and standards-derived profile layer are integrated on
+branch `feat/final-integration`; the final report is in `docs/FINAL_REPORT.docx/.pdf`.
+- **Current tests**: container `305 passed, 11 skipped`; Windows host `316 passed`. `ruff check src tests topology experiments` exits 0.
+- **Profile functional checks**: eMBB and non-GBR mMTC installed the northern path and forwarded matching traffic; the default delay-critical profiles returned explained refusals. This is not 3GPP service-compliance evidence.
 - **Live smoke scenarios**: `s1_single_intent.sh`, `s1_single_intent.sh --st7`, `s9_preemption.sh`, and `s10_two_phase.sh` all pass in sequence.
 - **Resolved HTB queue-binding defect (O3)**: Forward inter-switch OpenFlow rules now emit `OFPActionSetQueue(1)` when `min_bandwidth_mbps > 0`. Under 150 Mbit/s competing cross-traffic (`n=10`), the queue-bound 20 Mbit/s SLA intent achieves `24.995 Mbit/s` (`[24.995, 24.996]`, `0.000%` loss), whereas the unbound control drops to `19.091 Mbit/s` (`[18.818, 19.365]`, `23.620%` loss).
 - **Complete E1–E8 evaluation (`n=10` per configuration, including ten-minute live runs for E6)**:
