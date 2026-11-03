@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Scenario S8 - one member of the six-intent mixed load, run for 10 minutes.
 # Exercises the whole system for stability, control overhead and rule count.
 intent:

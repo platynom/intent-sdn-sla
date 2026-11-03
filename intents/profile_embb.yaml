@@ -1,0 +1,17 @@
+# Standards-derived project profile embb; see docs/SERVICE_PROFILES.md.
+intent:
+  id: INT-904
+  tenant: profile-embb
+  priority: 2
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+    proto: udp
+    dport: 5001
+  guarantee:
+    max_latency_ms: 20
+    max_loss_pct: 0.1
+    min_bandwidth_mbps: 50
+  consistency: relaxed
+  on_violation: reroute
+  dwell_seconds: 10

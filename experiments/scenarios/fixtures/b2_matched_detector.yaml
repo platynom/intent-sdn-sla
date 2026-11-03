@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Matched-detector B2 closed-loop variant: same latency SLA, trace, and default
 # detector smoothing/hysteresis/dwell as B3, but with relaxed direct updates.
 intent:

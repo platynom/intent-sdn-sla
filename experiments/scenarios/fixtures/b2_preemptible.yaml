@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # B2 admission-ablation baseline: 80 Mbps is individually feasible.
 intent:
   id: INT-921

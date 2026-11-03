@@ -1,0 +1,16 @@
+# Standards-derived project profile mmtc; see docs/SERVICE_PROFILES.md.
+intent:
+  id: INT-905
+  tenant: profile-mmtc
+  priority: 4
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+    proto: tcp
+    dport: 1883
+  guarantee:
+    max_latency_ms: 20
+    max_loss_pct: 0.0001
+  consistency: relaxed
+  on_violation: reroute
+  dwell_seconds: 10

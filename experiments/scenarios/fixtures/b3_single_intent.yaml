@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # B3 comparison variant: same latency SLA and trace as B2, with strict updates
 # and the default detector smoothing, hysteresis, and confirmation settings.
 intent:

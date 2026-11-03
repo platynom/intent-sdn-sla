@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Scenario S7 - IoT traffic must not share a path with public traffic.
 # DEFERRED under the three-member variant. Kept so the grammar stays exercised
 # and so the scenario can be restored without rewriting anything.

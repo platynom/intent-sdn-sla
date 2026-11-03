@@ -1,0 +1,17 @@
+# Standards-derived project profile urllc; see docs/SERVICE_PROFILES.md.
+intent:
+  id: INT-901
+  tenant: profile-urllc
+  priority: 1
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+    proto: udp
+    dport: 5001
+  guarantee:
+    max_latency_ms: 1
+    max_loss_pct: 0.01
+    min_bandwidth_mbps: 20
+  consistency: strict
+  on_violation: reroute
+  dwell_seconds: 10

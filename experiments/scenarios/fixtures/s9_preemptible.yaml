@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Lower-priority reservation used by the ST-9 preemption scenario.
 intent:
   id: INT-901

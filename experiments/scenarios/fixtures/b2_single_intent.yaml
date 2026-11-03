@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # B2 closed-loop variant of S1: relaxed direct updates and no dwell timer.
 intent:
   id: INT-001

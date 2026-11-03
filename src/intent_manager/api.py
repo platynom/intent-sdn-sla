@@ -7,6 +7,7 @@ intent state inspection, and withdrawal.
 
 from __future__ import annotations
 
+import json
 import os
 import sqlite3
 from typing import Any, Dict, List
@@ -23,6 +24,7 @@ from src.common.models import (
 from src.enforcement import two_phase
 from src.admission.feasibility import assess
 from src.intent_manager.validator import validate
+from src.intent_manager.profiles import build_intent, check_against_profile, list_profiles
 from src.pathing.compute import compute_path
 from topology.topology_spec import build_graph
 
@@ -248,3 +250,38 @@ def health(conn: sqlite3.Connection = Depends(get_db)) -> Dict[str, Any]:
     row = conn.execute("SELECT COUNT(*) AS count FROM intents").fetchone()
     count = int(row["count"]) if row else 0
     return {"status": "ok", "intents": count}
+
+
+@app.get("/profiles")
+def service_profiles() -> List[dict]:
+    """Expose pinned source values, assumptions, and transport-budget derivations."""
+    return list_profiles()
+
+
+@app.post("/intent/from-profile", status_code=status.HTTP_201_CREATED)
+async def create_from_profile(request: Request, conn: sqlite3.Connection = Depends(get_db)):
+    """Generate a normal intent, then use the unchanged POST /intent handler."""
+    try:
+        parameters = await request.json()
+        if not isinstance(parameters, dict):
+            raise ValueError("Expected a JSON object containing service_class and intent fields")
+        document = build_intent(**parameters)
+        warnings = check_against_profile(document, parameters["service_class"])
+    except (ValueError, TypeError) as exc:
+        return JSONResponse(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                            content=[{"path": "profile", "message": str(exc)}])
+
+    async def receive():
+        return {"type": "http.request", "body": json.dumps(document).encode("utf-8"),
+                "more_body": False}
+
+    scope = dict(request.scope)
+    scope["headers"] = [(b"content-type", b"application/json")]
+    generated_request = Request(scope, receive)
+    response = await create_intent(generated_request, conn)
+    decision = json.loads(response.body)
+    if response.status_code != status.HTTP_201_CREATED:
+        return response
+    return JSONResponse(status_code=response.status_code,
+                        content={**decision, "intent": document["intent"],
+                                 "service_class": parameters["service_class"], "warnings": warnings})

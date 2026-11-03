@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Higher-priority request that cannot fit until ST-9 evicts INT-901.
 intent:
   id: INT-902

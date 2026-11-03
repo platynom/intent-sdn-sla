@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Scenario S5 - active path fails. Exercises fast re-plan and both update modes.
 # Run once with consistency: strict and once with relaxed to produce metric E4.
 intent:

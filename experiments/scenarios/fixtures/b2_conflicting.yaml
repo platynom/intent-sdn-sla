@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Individually feasible 60 Mbps request; together with INT-B2-901 it exceeds
 # the shared 100 Mbps northbound link, demonstrating the omitted conflict check.
 intent:
