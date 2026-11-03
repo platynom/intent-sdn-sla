@@ -1,0 +1,43 @@
+{
+  "service_class": "smart_grid",
+  "captured_utc": "20261103T132320Z",
+  "kind": "functional, not E1-E8",
+  "source_sha256": {
+    "experiments/scenarios/profile_live.py": "90d1674b9fc629e9a4cb320a0bfb3920edaae5d758cb1806cb8b54558900227b",
+    "src/intent_manager/profiles.yaml": "a4dc594756c87ced67baadfa9ca49240d52b31610957fce592a8f1d3624b2c48",
+    "src/intent_manager/api.py": "f0c9611b31b1af40e79bbdaf7bceed6b650afffd9ac3d16092e74c1411c7debc"
+  },
+  "http_status": 201,
+  "decision": {
+    "id": "INT-920",
+    "tenant": "live-smart-grid",
+    "priority": 1,
+    "state": "rejected",
+    "reasons": {
+      "admission": "Rejected: no path satisfies the requested guarantees. s1-s2-s3-s7: exceeds max_latency_ms: 6 > 2; s1-s4-s5-s7: exceeds max_latency_ms: 15 > 2; s1-s6-s7: exceeds max_latency_ms: 24 > 2"
+    },
+    "intent": {
+      "id": "INT-920",
+      "tenant": "live-smart-grid",
+      "priority": 1,
+      "match": {
+        "src": "10.0.0.1/32",
+        "dst": "10.0.0.2/32",
+        "proto": "udp",
+        "dport": 5001
+      },
+      "guarantee": {
+        "max_latency_ms": 2,
+        "max_loss_pct": 0.001,
+        "min_bandwidth_mbps": 1
+      },
+      "consistency": "strict",
+      "on_violation": "reroute",
+      "dwell_seconds": 10
+    },
+    "service_class": "smart_grid",
+    "warnings": []
+  },
+  "outcome": "explained refusal",
+  "passed": true
+}

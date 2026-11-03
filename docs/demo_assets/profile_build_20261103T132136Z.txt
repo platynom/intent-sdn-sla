@@ -1,0 +1,126 @@
+ Image team16/intent-sdn-sla:dev Building 
+ Image team16/intent-sdn-sla:dev Building 
+ Image team16/intent-sdn-sla:dev Building 
+ Image team16/intent-sdn-sla:dev Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.08kB done
+#1 DONE 0.0s
+
+#2 [dashboard internal] load build definition from Dockerfile
+#2 transferring dockerfile: 3.35kB 0.0s done
+#2 DONE 0.1s
+
+#3 [intent-api internal] load metadata for docker.io/library/ubuntu:22.04
+#3 DONE 1.4s
+
+#4 [seed-demo-intents internal] load .dockerignore
+#4 transferring context: 240B 0.0s done
+#4 DONE 0.1s
+
+#5 [dashboard 1/9] FROM docker.io/library/ubuntu:22.04@sha256:076e7bf82319619f28dd0aa9c02ab34b055ad37100395b4f49a2ffba04fb5e11
+#5 resolve docker.io/library/ubuntu:22.04@sha256:076e7bf82319619f28dd0aa9c02ab34b055ad37100395b4f49a2ffba04fb5e11 0.0s done
+#5 DONE 0.0s
+
+#6 [dashboard internal] load build context
+#6 transferring context: 9.73MB 1.8s done
+#6 DONE 1.8s
+
+#7 [intent-api 2/9] RUN apt-get update && apt-get install -y --no-install-recommends         ca-certificates curl git sudo         openvswitch-switch openvswitch-common         mininet iproute2 iputils-ping net-tools tcpdump iperf3         build-essential pkg-config xz-utils         libssl-dev zlib1g-dev libbz2-dev libreadline-dev         libsqlite3-dev libffi-dev liblzma-dev libgdbm-dev uuid-dev     && curl -fsSLO "https://www.python.org/ftp/python/3.9.25/Python-3.9.25.tar.xz"     && tar -xf "Python-3.9.25.tar.xz"     && cd "Python-3.9.25"     && ./configure --with-ensurepip=install     && make -j"$(nproc)"     && make altinstall     && cd /     && curl -fsSL         "https://github.com/mininet/mininet/archive/88f14e946a05cd0895e1a127bf89da9b3fb1d98b.tar.gz"         -o mininet.tar.gz     && tar -xzf mininet.tar.gz     && python3.9 -m pip install --no-cache-dir --no-deps         "/mininet-88f14e946a05cd0895e1a127bf89da9b3fb1d98b"     && test "$(python3.9 -c 'import mininet.net; print(mininet.net.VERSION)')" = "2.3.1b4"     && rm -rf "mininet-88f14e946a05cd0895e1a127bf89da9b3fb1d98b" mininet.tar.gz     && rm -rf "Python-3.9.25" "Python-3.9.25.tar.xz"     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [intent-api 3/9] RUN python3.9 -m pip install --no-cache-dir         pip==23.0.1 setuptools==58.2.0 wheel==0.38.4     && update-alternatives --install /usr/bin/python python /usr/local/bin/python3.9 1     && sed -i '1s|^#!python$|#!/usr/local/bin/python3.9|' /usr/local/bin/mn     && test "$(head -n 1 /usr/local/bin/mn)" = "#!/usr/local/bin/python3.9"
+#8 CACHED
+
+#9 [intent-api 4/9] COPY requirements.txt /tmp/requirements.txt
+#9 CACHED
+
+#10 [intent-api 5/9] RUN python3.9 -m pip install --no-cache-dir --no-deps --no-build-isolation --no-use-pep517 ryu==4.34     && python3.9 -m pip install --no-cache-dir -r /tmp/requirements.txt
+#10 CACHED
+
+#11 [seed-demo-intents 6/9] WORKDIR /app
+#11 CACHED
+
+#12 [seed-demo-intents 7/9] COPY . /app
+#12 DONE 0.2s
+
+#13 [seed-demo-intents 8/9] COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+#13 DONE 0.1s
+
+#14 [seed-demo-intents 9/9] RUN chmod +x /usr/local/bin/entrypoint.sh
+#14 DONE 0.2s
+
+#15 [intent-api] exporting to image
+#15 exporting layers
+#15 exporting layers 0.6s done
+#15 exporting manifest sha256:3f06dbc6f16251afa39b287c9ea56a46b6803570a68c97d1e3e123e738041202 0.1s done
+#15 exporting config sha256:f212bc6ca3ca9211c1ff5442998d21dc351e596d775702152b4946e1dfad3511
+#15 exporting config sha256:f212bc6ca3ca9211c1ff5442998d21dc351e596d775702152b4946e1dfad3511 0.1s done
+#15 exporting attestation manifest sha256:dba6d122ea32e9f04f007ea5f9f57daabbf6854909264b55a60af6b0abed9d7c
+#15 exporting attestation manifest sha256:dba6d122ea32e9f04f007ea5f9f57daabbf6854909264b55a60af6b0abed9d7c 0.1s done
+#15 exporting manifest list sha256:44be8b3a80b3d686e674756629fc358924855b8a6ccd80c9ed87134edec94881 0.1s done
+#15 naming to docker.io/team16/intent-sdn-sla:dev done
+#15 unpacking to docker.io/team16/intent-sdn-sla:dev
+#15 unpacking to docker.io/team16/intent-sdn-sla:dev 0.3s done
+#15 DONE 1.4s
+
+#16 [sdn] exporting to image
+#16 exporting layers 0.6s done
+#16 exporting manifest sha256:4b22ea46d332a1bdfb6153ef48dafd4b7948c49bd39d1a981d2a5e672b7d27aa 0.1s done
+#16 exporting config sha256:cf80f6e75da129a7a13d94a49a6a0c1e8a64fc9cbe6a6b4f58366875809f842b 0.1s done
+#16 exporting attestation manifest sha256:08b66388207fe4222a339c2874918847b20cd0091eb917cff0627e195cb47df6 0.1s done
+#16 exporting manifest list sha256:9abc403b765c2c9a2b2833a5885e6fcf69f0f5d786636a60ddc216ff7d3bef0b 0.1s done
+#16 naming to docker.io/team16/intent-sdn-sla:dev 0.0s done
+#16 unpacking to docker.io/team16/intent-sdn-sla:dev 0.3s done
+#16 DONE 1.4s
+
+#17 [seed-demo-intents] exporting to image
+#17 exporting layers 0.6s done
+#17 exporting manifest sha256:5df25b06f0e56ebc8a595a53e4216a94496bc7b1238531ee296ff4d6459928f1 0.1s done
+#17 exporting config sha256:cb88a3dd926a51f798bf5a3ccf7a38a9699a019500e8e4152534a8a17a9246cf 0.1s done
+#17 exporting attestation manifest sha256:c99f43652976d6edc39af16b106a05b1ae99a4d7a2b3a5897ff5c56f21c17c01 0.1s done
+#17 exporting manifest list sha256:515d4a47e94d6f392611fe18f360d19221d4f2c2c39d3eb1dcc2d26afe68e70f 0.1s done
+#17 naming to docker.io/team16/intent-sdn-sla:dev 0.0s done
+#17 unpacking to docker.io/team16/intent-sdn-sla:dev 0.3s done
+#17 DONE 1.4s
+
+#18 [dashboard] exporting to image
+#18 exporting layers 0.6s done
+#18 exporting manifest sha256:ca5d965a94ab72ffdb379512fc6ead36032a28a7f719734900882dae6238486a 0.1s done
+#18 exporting config sha256:40c3d9b345435669e95569d38cccc0f05176adac29f98185222cc54bb7034697 0.1s done
+#18 exporting attestation manifest sha256:9fda02cb1c41101f4ad966a3c91176b1a510054eb62894db925c317763ca22f4 0.1s done
+#18 exporting manifest list sha256:2bd7a0b253b8c3f079a2650c46e10d0e60ad85151083a4d2e15234d0a577f6e5 0.1s done
+#18 naming to docker.io/team16/intent-sdn-sla:dev done
+#18 unpacking to docker.io/team16/intent-sdn-sla:dev 0.4s done
+#18 DONE 1.5s
+
+#19 [intent-api] resolving provenance for metadata file
+#19 DONE 0.1s
+
+#20 [seed-demo-intents] resolving provenance for metadata file
+#20 DONE 0.1s
+
+#21 [sdn] resolving provenance for metadata file
+#21 DONE 0.1s
+
+#22 [dashboard] resolving provenance for metadata file
+#22 DONE 0.0s
+ Image team16/intent-sdn-sla:dev Built 
+ Image team16/intent-sdn-sla:dev Built 
+ Image team16/intent-sdn-sla:dev Built 
+ Image team16/intent-sdn-sla:dev Built 
+ Container intent-sdn-sla Recreate 
+ Container intent-sdn-sla Recreated 
+ Container sdn-dashboard-1 Recreate 
+ Container sdn-intent-api-1 Recreate 
+ Container sdn-intent-api-1 Recreated 
+ Container sdn-seed-demo-intents-1 Recreate 
+ Container sdn-dashboard-1 Recreated 
+ Container sdn-seed-demo-intents-1 Recreated 
+ Container intent-sdn-sla Starting 
+ Container intent-sdn-sla Started 
+ Container sdn-dashboard-1 Starting 
+ Container sdn-intent-api-1 Starting 
+ Container sdn-intent-api-1 Started 
+ Container sdn-seed-demo-intents-1 Starting 
+ Container sdn-dashboard-1 Started 
+ Container sdn-seed-demo-intents-1 Started 

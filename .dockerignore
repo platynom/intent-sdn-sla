@@ -3,6 +3,7 @@
 .venv39
 venv
 .final_report_work
+docs/specs
 **/__pycache__
 **/.pytest_cache
 **/.ruff_cache
