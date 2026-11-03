@@ -1,0 +1,7 @@
+Captured UTC: 20261103T133047Z
+Code revision: 17592601f4aecc737db0984e3b661d1e16999c2f
+Tracked worktree diff SHA-256: 14688d35aa5e22ba159432a2c680b4166f7e1264e07ccc14149db08ea210aa60
+Command argv: ["python3.9", "experiments/verify_summaries.py"]
+Exit status: 0
+
+summary verification passed: raw CSVs, summaries, and public result claims agree

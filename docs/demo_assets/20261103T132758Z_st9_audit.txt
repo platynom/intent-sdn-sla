@@ -1,0 +1,85 @@
+Captured UTC: 20261103T132758Z
+Code revision: d5029f2151c164eb7f9334870b492ce6d70b5d89
+Tracked worktree diff SHA-256: 3be13c9142f4c5572b0cf8790faa8cda081ddb2e74ed0620e3fecef3c6973fc9
+Command argv: ["python3.9", "scripts/show_demo_audit.py"]
+Exit status: 0
+
+{
+  "database": "/tmp/team16-st9-aghkg9bb/state.db",
+  "mode": "read-only",
+  "paths": [],
+  "recent_events": [
+    {
+      "id": "be17af5cfdb54dc6acbc741b7d573cd3",
+      "type": "path.installed",
+      "severity": "info",
+      "intent_id": "INT-902",
+      "at": 1793712540.3801682,
+      "message": "INT-902: installed s1 -> s2 -> s3 -> s7 (direct, 8 rules)",
+      "payload_json": "{\"mode\": \"direct\", \"rule_count\": 8, \"switches\": [\"s1\", \"s2\", \"s3\", \"s7\"]}"
+    },
+    {
+      "id": "3565aca942974345be197ad4194f47d8",
+      "type": "intent.preempted",
+      "severity": "info",
+      "intent_id": "INT-901",
+      "at": 1793712540.1842523,
+      "message": "Intent INT-901 was preempted by higher-priority intent INT-902: Admitted by preempting lower-priority intent INT-901 (priority 5) to free residual capacity.",
+      "payload_json": "{\"by_intent_id\": \"INT-902\", \"reason\": \"Admitted by preempting lower-priority intent INT-901 (priority 5) to free residual capacity.\"}"
+    },
+    {
+      "id": "e15fb3253c75448b869af121fff75b18",
+      "type": "admission.decided",
+      "severity": "info",
+      "intent_id": "INT-902",
+      "at": 1793712540.1840487,
+      "message": "Admitted by preempting lower-priority intent INT-901 (priority 5) to free residual capacity.",
+      "payload_json": "{\"preempted_intent_id\": \"INT-901\", \"reason\": \"Admitted by preempting lower-priority intent INT-901 (priority 5) to free residual capacity.\", \"verdict\": \"preempt\"}"
+    },
+    {
+      "id": "5b7795e8803a4b2abb8aa81ff338e885",
+      "type": "path.installed",
+      "severity": "info",
+      "intent_id": "INT-901",
+      "at": 1793712539.3358626,
+      "message": "INT-901: installed s1 -> s2 -> s3 -> s7 (direct, 8 rules)",
+      "payload_json": "{\"mode\": \"direct\", \"rule_count\": 8, \"switches\": [\"s1\", \"s2\", \"s3\", \"s7\"]}"
+    },
+    {
+      "id": "9a90acce00334d7f89ca2aba407faa62",
+      "type": "admission.decided",
+      "severity": "info",
+      "intent_id": "INT-901",
+      "at": 1793712539.1265566,
+      "message": "Admitted: a feasible path is available with residual capacity for tenant telemedicine-video.",
+      "payload_json": "{\"preempted_intent_id\": null, \"reason\": \"Admitted: a feasible path is available with residual capacity for tenant telemedicine-video.\", \"verdict\": \"admit\"}"
+    }
+  ],
+  "complete_event_counts": [
+    {
+      "intent_id": "INT-901",
+      "type": "admission.decided",
+      "count": 1
+    },
+    {
+      "intent_id": "INT-901",
+      "type": "intent.preempted",
+      "count": 1
+    },
+    {
+      "intent_id": "INT-901",
+      "type": "path.installed",
+      "count": 1
+    },
+    {
+      "intent_id": "INT-902",
+      "type": "admission.decided",
+      "count": 1
+    },
+    {
+      "intent_id": "INT-902",
+      "type": "path.installed",
+      "count": 1
+    }
+  ]
+}

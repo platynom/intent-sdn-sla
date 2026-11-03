@@ -1,0 +1,26 @@
+{
+  "revision": "17592601f4aecc737db0984e3b661d1e16999c2f",
+  "captured_utc": "20261103T133047Z",
+  "commands": [
+    {
+      "label": "pytest",
+      "file": "docs/demo_assets/20261103T133047Z_pytest.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "ruff",
+      "file": "docs/demo_assets/20261103T133047Z_ruff.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "summaries",
+      "file": "docs/demo_assets/20261103T133047Z_summaries.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "planning_demo",
+      "file": "docs/demo_assets/20261103T133047Z_planning_demo.txt",
+      "exit_status": 0
+    }
+  ]
+}

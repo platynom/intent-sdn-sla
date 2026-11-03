@@ -1,38 +1,67 @@
-# Final integration checkpoint
+# Final integration and service-profile checkpoint - 3 November 2026
 
-## Completed
+## Current state
 
-- T1: fetched and merged origin/feat/st-12-evaluation at a723800 into feat/final-integration from local 6b050dd. Merge commit 047ea8f. README was the only conflicted file; evaluation status was preserved and dashboard usage was retained.
-- Software verification after merge: 278 passed, 11 skipped, Ruff clean. Fixed dashboard title/read-only metadata in b6d3ecd without altering tests.
-- Dashboard API and browser inspection: four seeded application intents are present and their simulated measurements are explicitly labelled. The existing test demonstrates live-only selection after later real measurements.
-- T4 code walkthrough committed as 2606ae7. T7 forty viva questions committed as 58cd802. T6 demo instructions committed as ce137e9; final smoke recordings and end-to-end command validation remain pending.
-- Final report draft and generator exist. Amrita cover/logo retained; faculty name corrected to the user-specified Navin Kumar. Reference SHA-256: b4437154aa7cef630a9b24a9e8ea4f6a7caf80d7add3121899ff19fde3ccb976. Initial full-page layout review completed; pagination/table refinements and updated figures still require final render review.
+Repository: SDN. Branch: feat/final-integration. This replaces the earlier stale
+checkpoint: the full E6 accounting series and previous evaluation are complete.
+No E1-E8 experiment was rerun for the service-profile layer. Existing raw CSVs,
+topology and schema are unchanged relative to 73e6b57.
 
-## Active work
+## Profile tasks completed
 
-T3 is running ten full B2 E6 repetitions under prefix e6accounting_oscillation. Unified terminal session 39643 holds the live process. Do not restart it while active. The first completed full run produced 90 reroutes, 90 persisted violations, and 90 restorations. Each run requires a complete 600-s measurement window.
+- T1: corrected pinned Release 17 references and service mappings; specs remain
+  ignored, never tracked. Commit e74bc20.
+- T2: documented default CN budget A, assumed-share comparison B, PER/IP-loss
+  distinction, rate assumptions and unchanged-topology feasibility. Commit 1d64f7b.
+- T3: profiles.yaml / profiles.py, GET /profiles, POST /intent/from-profile,
+  generated examples and illustrative-fixture comments; 21 new regression cases.
+  Existing POST /intent handler remains unchanged. Commit d5029f2.
+- T4: isolated real activation/refusal evidence in docs/demo_assets/profile_*.
+  eMBB and mMTC installed s1-s2-s3-s7 and forwarded matching UDP/TCP traffic;
+  URLLC proxy, V2X and high-voltage protection returned explained refusals.
+  Existing dashboard API displayed the active records with no invented telemetry.
+  Commit 1759260. Startup HTB advisories did not fail the assertions.
+- T5: sourced report subsection, checked export for report regeneration, README,
+  code walkthrough, scope statement and six extra viva answers. Report exported
+  with Word and all 16 pages inspected. Commit 01721be.
+- T6 verification: host 316 passed; container 305 passed / 11 skipped; Ruff exit 0;
+  independent summary verifier exit 0; S1, ST-7, ST-9, ST-10 all exit 0.
+  Actual outputs are the 20261103T132758Z / 133047Z / 133114Z demo assets.
+- L1: manifest regenerated and independently checked: 355 artifacts, zero
+  mismatches. CSV/JSON line endings are canonicalized for hashes; raw files were
+  not rewritten.
+- L2: local core.autocrlf override unset. System Git setting remains untouched;
+  .gitattributes still enforces LF for shell scripts. No whole-file CRLF diffs.
 
-The scenario uses an isolated temporary SQLite database exported through TEAM16_DB_PATH. Direct SQL counts replace use of a bounded event-history list. Incomplete telemetry and B2 path/event mismatch now fail the run. A failed preliminary pilot demonstrated actual interference from auto-seeded bandwidth intents overwriting netem configuration when they shared the experiment database; its regression CSV is retained and must not be included in results.
+## Integrity
 
-Historical raw-file audit: only the initial three B2 and initial three B3 files show event shortfalls. The seven later runs of each baseline reconcile exactly. B3's initial shortfalls were also present, contrary to the earlier issue description. The exact historical extraction/runtime cause is not established from retained evidence; report that uncertainty, rather than asserting database loss or a particular old query limit.
+Physical schema SHA-256 stayed:
+7a3a8b25067a3049f9668fb3c96e91f355cbd6d6ddb8e7d3b2b8fa2f53b44573
+Git's LF-normalized baseline SHA-256:
+6181eb5198e39a96b6fee65e28415c792e648cfb22805e3992bffd82df51003e
+The difference is pre-existing Windows checkout line endings, not a schema edit.
+Tests protect the baseline content and original handler. Report source-export
+hashes and visual-QA metadata are in docs/report_assets/.
 
-All other database-backed measurement harnesses now default to separate temporary databases. These edits are awaiting final smoke verification and commit. E6's currently running shell input is an immutable sed-fed snapshot; do not alter or restart its active network.
+## Runtime and remaining publication step
 
-## Remaining gates
-
-1. Finish all ten E6 accounting runs, preserve their logs, recompute e6_accounting_summary and verify equality in every run. Update the historical issue note and report discussion without claiming an unproven historical cause.
-2. Run all four requested live smoke scripts and one E4 B2/B3 regression with separate regression_ output prefixes. Capture real output into docs/demo_assets. No parallel Mininet scenarios.
-3. Re-run final pytest/Ruff and independent verifier, including generated final-report tables. Fix source only for failures.
-4. Rebuild FINAL_REPORT.md/docx after final summaries. Export with docs/render_final_report.ps1, render PDF pages using bundled pypdfium2, and inspect every page. The packaged renderer failed because bundled LibreOffice is absent; Word 16 export is working. Render work lives in .final_report_work and must not be committed.
-5. Finalize demo script commands/fallback recordings, figures, manifest, and README status. Commit task changes separately.
-6. Push feat/final-integration to origin and open a PR into feat/st-12-evaluation if permitted. If rejected, create the requested bundle and report-documents zip. Do not modify main.
-
-## Environment and exact next operations
-
-Repository: SDN, branch feat/final-integration. WSL distribution: Ubuntu-22.04. Docker Engine runs inside WSL; do not assume Windows Docker Desktop works. The existing E6 session can be polled directly. A separate diagnostic command is:
+Docker Engine runs inside WSL Ubuntu-22.04, not Docker Desktop. A temporary hidden
+WSL keepalive was started (Windows PID 7188) after services stopped when the build
+session closed. No running experiment was restarted. The four Compose services
+can be prepared with:
 
 ```powershell
-wsl -d Ubuntu-22.04 -- bash -lc "cd '/mnt/c/Users/Admin/Documents/Software Defined Networks/SDN' && docker compose exec -T sdn bash -lc 'tail -2 /var/log/team16/telemetry-e6-b2-1.log'"
+wsl -d Ubuntu-22.04 -- bash -lc "cd '/mnt/c/Users/Admin/Documents/Software Defined Networks/SDN' && docker compose up -d"
 ```
 
-Runtime capture: docs/report_assets/environment.json. Bundled report Python: C:/Users/Admin/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe. Build with that interpreter and docs/build_final_report.py. Export with PowerShell -File docs/render_final_report.ps1 -InputDocx docs/FINAL_REPORT.docx -OutputPdf docs/FINAL_REPORT.pdf. Existing untracked .fuse_hidden and state.db-wal files predate this integration; preserve them and keep databases out of commits.
+Publication is pending the requested git push. If access is rejected, preserve the
+integration branch in ../SDN_final_integration.bundle and final documents in a ZIP.
+Do not change main, force-push, or change account permissions.
+
+## Remaining scientific limitations
+
+Profiles are project mappings, not 5G/clinical certification. Transport share and
+several rates remain assumptions; PER and IP loss differ; runtime RTT and planning
+one-way budgets differ. Functional profile checks are not sustained-rate or
+extreme-reliability measurements. The existing fixed emulated topology, shared
+queue and recovery resource-accounting limits remain disclosed in the report.

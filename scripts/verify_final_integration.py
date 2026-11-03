@@ -22,6 +22,8 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("phase", choices=("software", "api", "smoke", "regression"))
+    parser.add_argument("--core-only", action="store_true",
+                        help="For smoke: run S1/ST-7/ST-9/ST-10 without repeating the B3 latency fixture")
     args = parser.parse_args()
     os.chdir(ROOT)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -94,6 +96,8 @@ def main():
             ("st10", "s10_two_phase.sh", ""),
             ("b3_demo", "s1_single_intent.sh", "--b3"),
         ):
+            if args.core_only and label == "b3_demo":
+                continue
             database = str(Path(tempfile.mkdtemp(prefix=f"team16-{label}-")) / "state.db")
             command = f"set -o pipefail; sed 's/\\r$//' experiments/scenarios/{path} | bash -s -- {flags}"
             run(label, ["bash", "-lc", command],

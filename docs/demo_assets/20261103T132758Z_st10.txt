@@ -1,0 +1,7 @@
+Captured UTC: 20261103T132758Z
+Code revision: d5029f2151c164eb7f9334870b492ce6d70b5d89
+Tracked worktree diff SHA-256: 3be13c9142f4c5572b0cf8790faa8cda081ddb2e74ed0620e3fecef3c6973fc9
+Command argv: ["bash", "-lc", "set -o pipefail; sed 's/\\r$//' experiments/scenarios/s10_two_phase.sh | bash -s -- "]
+Exit status: 0
+
+PASS: strict update flipped VLAN 100 to VLAN 101, removed old north-path rules, and preserved UDP delivery
