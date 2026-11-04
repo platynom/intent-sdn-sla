@@ -3,6 +3,7 @@ import ast
 import asyncio
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -16,9 +17,8 @@ from src.dashboard import app as dashboard
 ROOT = Path(__file__).resolve().parents[1]
 MATCH = {"src": "10.0.0.1/32", "dst": "10.0.0.2/32", "proto": "udp", "dport": 5001}
 CLASSES = ("urllc", "v2x", "smart_grid", "embb", "mmtc")
-# Computed from 73e6b57: schema bytes normalized to LF; handler via ast.dump.
+# Computed from 73e6b57: schema bytes normalized to LF.
 BASELINE_SCHEMA_SHA256 = "6181eb5198e39a96b6fee65e28415c792e648cfb22805e3992bffd82df51003e"
-BASELINE_HANDLER_AST_SHA256 = "f5e106b2d41e4483014dff4f275e8af07b0142de7b5e08c51111975d33914b8f"
 
 
 def parameters(name):
@@ -160,7 +160,17 @@ def test_schema_sha256_matches_the_untouched_baseline():
 
 def test_original_intent_handler_is_unchanged_from_baseline():
     """The new front end must not alter the already evaluated admission endpoint."""
+    try:
+        before = subprocess.check_output(
+            ["git", "show", "73e6b57:src/intent_manager/api.py"],
+            cwd=ROOT, stderr=subprocess.PIPE,
+        ).decode("utf-8")
+    except (subprocess.CalledProcessError, FileNotFoundError) as exc:
+        pytest.fail(f"full git history required; set fetch-depth: 0 ({exc})")
     after = (ROOT / "src/intent_manager/api.py").read_text(encoding="utf-8")
-    handler = next(node for node in ast.parse(after).body
-                   if isinstance(node, ast.AsyncFunctionDef) and node.name == "create_intent")
-    assert hashlib.sha256(ast.dump(handler).encode("utf-8")).hexdigest() == BASELINE_HANDLER_AST_SHA256
+
+    def handler(source):
+        return next(node for node in ast.parse(source).body
+                    if isinstance(node, ast.AsyncFunctionDef) and node.name == "create_intent")
+
+    assert ast.dump(handler(before), include_attributes=False) == ast.dump(handler(after), include_attributes=False)
