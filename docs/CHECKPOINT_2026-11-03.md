@@ -26,9 +26,14 @@ verification could not run: WSL returned Wsl/Service/CreateInstance/E_UNEXPECTED
 The earlier 305 passed / 11 skipped count below is historical. Actual current
 verification details: docs/demo_assets/parameter_provenance_checks_20261104.json.
 
-Next publication command: `git push -u origin feat/final-integration`. If GitHub
-still denies access, refresh the authorized ../SDN_final_integration.bundle and
-timestamped document/figure ZIP; never change permissions or force-push.
+Publication attempted after commit 00cc46f: GitHub returned HTTP 403, permission
+denied to platynom on 5rikanth/SDN. No branch push or PR succeeded.
+Fallback outputs for this revision are ../SDN_final_integration.bundle and
+../SDN_final_documents_20261104T081110Z.zip. The ZIP includes docs/*.md, the final DOCX/PDF
+and experiments/figures/*; neither includes ignored standards PDFs or databases.
+Next exact command after the owner grants write access:
+`git push -u origin feat/final-integration`, then open a PR into
+`feat/st-12-evaluation`. Never force-push, change permissions, or touch main.
 
 ## Current state
 
