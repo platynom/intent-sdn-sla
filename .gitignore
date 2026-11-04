@@ -24,3 +24,5 @@ experiments/figures/*.pdf
 !experiments/figures/.gitkeep
 .DS_Store
 dist/*.zip
+*.zip
+*.bundle
