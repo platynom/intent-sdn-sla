@@ -1,0 +1,8 @@
+Captured UTC: 20261102T212646Z
+Code revision: 23ef6b4d66f0cc7767b92ce0d04a68cfc74bb18d
+Tracked worktree diff SHA-256: fe73f421bf80bec464396c0c48063cbed0bfe7ea2d2bc1d3fbe7c93e8a853a02
+Command argv: ["bash", "-lc", "set -o pipefail; sed 's/\\r$//' experiments/scenarios/e4_packet_loss.sh | bash -s -- --mode b3 --runs 1"]
+Exit status: 0
+
+=== E4 b3 run 1/1 ===
+E4 B3 run 1: sent=4513 lost=0 dup=0 reord=28 -> experiments/results/raw/regression_merge_b3_reconfig_20261102212731_01.csv

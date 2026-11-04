@@ -1,0 +1,9 @@
+group,metric,n,mean,stdev,ci95_t_low,ci95_t_high,min,max,unit
+bound,cross_traffic_loss_pct,10,50.423,0.044,50.391,50.455,50.362,50.519,pct
+bound,cross_traffic_throughput_mbps,10,74.352,0.066,74.304,74.399,74.207,74.441,Mbps
+bound,intent_loss_pct,10,0.000,0.000,0.000,0.000,0.000,0.000,pct
+bound,intent_throughput_mbps,10,24.995,0.000,24.995,24.996,24.995,24.996,Mbps
+unbound,cross_traffic_loss_pct,10,46.568,0.302,46.352,46.784,46.115,47.248,pct
+unbound,cross_traffic_throughput_mbps,10,80.133,0.452,79.810,80.457,79.115,80.813,Mbps
+unbound,intent_loss_pct,10,23.620,1.529,22.527,24.714,20.780,26.156,pct
+unbound,intent_throughput_mbps,10,19.091,0.382,18.818,19.365,18.458,19.801,Mbps

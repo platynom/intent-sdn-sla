@@ -1,0 +1,59 @@
+{
+  "service_class": "mmtc",
+  "captured_utc": "20261103T132325Z",
+  "kind": "functional, not E1-E8",
+  "source_sha256": {
+    "experiments/scenarios/profile_live.py": "90d1674b9fc629e9a4cb320a0bfb3920edaae5d758cb1806cb8b54558900227b",
+    "src/intent_manager/profiles.yaml": "a4dc594756c87ced67baadfa9ca49240d52b31610957fce592a8f1d3624b2c48",
+    "src/intent_manager/api.py": "f0c9611b31b1af40e79bbdaf7bceed6b650afffd9ac3d16092e74c1411c7debc"
+  },
+  "http_status": 201,
+  "decision": {
+    "id": "INT-920",
+    "tenant": "live-mmtc",
+    "priority": 4,
+    "state": "admitted",
+    "path": [
+      "s1-s2",
+      "s2-s3",
+      "s3-s7"
+    ],
+    "switches": [
+      "s1",
+      "s2",
+      "s3",
+      "s7"
+    ],
+    "est_latency_ms": 6.0,
+    "bottleneck_mbps": 100.0,
+    "intent": {
+      "id": "INT-920",
+      "tenant": "live-mmtc",
+      "priority": 4,
+      "match": {
+        "src": "10.0.0.1/32",
+        "dst": "10.0.0.2/32",
+        "proto": "tcp",
+        "dport": 1883
+      },
+      "guarantee": {
+        "max_latency_ms": 20,
+        "max_loss_pct": 0.0001
+      },
+      "consistency": "relaxed",
+      "on_violation": "reroute",
+      "dwell_seconds": 10
+    },
+    "service_class": "mmtc",
+    "warnings": []
+  },
+  "outcome": "installed and matching packets forwarded",
+  "path": [
+    "s1",
+    "s2",
+    "s3",
+    "s7"
+  ],
+  "dashboard_source": "none",
+  "passed": true
+}

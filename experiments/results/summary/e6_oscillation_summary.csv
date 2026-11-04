@@ -1,0 +1,13 @@
+group,metric,n,mean,stdev,ci95_t_low,ci95_t_high,min,max,unit
+B2,duration_s,10,600.000,0.000,600.000,600.000,600.000,600.000,s
+B2,dwell_suppressions,10,0.000,0.000,0.000,0.000,0.000,0.000,count
+B2,raw_reroute_count,10,90.000,0.000,90.000,90.000,90.000,90.000,count
+B2,reroute_count_10min,10,90.000,0.000,90.000,90.000,90.000,90.000,count_per_10min
+B2,restorations_emitted,10,78.000,19.322,64.179,91.821,50.000,90.000,count
+B2,violations_emitted,10,78.000,19.322,64.179,91.821,50.000,90.000,count
+B3,duration_s,10,600.000,0.000,600.000,600.000,600.000,600.000,s
+B3,dwell_suppressions,10,28.700,2.111,27.190,30.210,25.000,30.000,count
+B3,raw_reroute_count,10,48.300,1.059,47.542,49.058,46.000,50.000,count
+B3,reroute_count_10min,10,48.300,1.059,47.542,49.058,46.000,50.000,count_per_10min
+B3,restorations_emitted,10,57.500,4.035,54.614,60.386,51.000,60.000,count
+B3,violations_emitted,10,45.800,3.882,43.023,48.577,40.000,49.000,count

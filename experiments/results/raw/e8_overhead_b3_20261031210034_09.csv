@@ -1,0 +1,5 @@
+run_id,timestamp,metric,value,unit
+9,1793480434,openflow_msgs_per_s,9.093874,msgs_per_s
+9,1793480434,controller_cpu_pct,0.760579,pct
+9,1793480434,openflow_msgs_total,550,count
+9,1793480434,window_duration_s,60.480275,s

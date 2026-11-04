@@ -1,0 +1,4 @@
+run_id,timestamp,metric,value,unit
+1,1793469962,detection_latency,2106.954336,ms
+1,1793469962,recovery_latency,512.359142,ms
+1,1793469962,reroute_count,1.000000,count

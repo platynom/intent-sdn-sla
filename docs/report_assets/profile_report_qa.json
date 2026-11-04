@@ -1,0 +1,29 @@
+{
+  "captured_utc": "2026-11-04T08:08:55.443078+00:00",
+  "page_count": 18,
+  "visually_reviewed_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "review": "All pages inspected after Word export and Poppler rasterization; no overflowing tables or clipped figures; footer clear of border; cover names/roll numbers/faculty checked.",
+  "sha256": {
+    "docs\\FINAL_REPORT.pdf": "6fd90a07b269c4d1efbd04892b07c078be79ec04ee55316640959de22d6f6bd4",
+    "docs\\FINAL_REPORT.docx": "b32a46a5919a71e0ddc5a40f9311e11c123ca3fe4aee855e69168e815a14799f"
+  }
+}

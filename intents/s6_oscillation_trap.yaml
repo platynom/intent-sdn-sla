@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Scenario S6 - two paths of near-equal quality. Exercises hysteresis + dwell.
 # dwell_seconds: 0 makes the loop flap on purpose. Raise it to show damping.
 intent:

@@ -15,6 +15,7 @@ case where a dependency-injected connection crosses the threadpool boundary.
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 import time
 from pathlib import Path
@@ -122,7 +123,7 @@ def connect(path: Optional[Path] = None) -> sqlite3.Connection:
     stops a 1 Hz writer from raising "database is locked" the moment a human
     refreshes a page.
     """
-    db_path = Path(path) if path is not None else DEFAULT_DB_PATH
+    db_path = Path(path) if path is not None else Path(os.environ.get("TEAM16_DB_PATH", str(DEFAULT_DB_PATH)))
     if str(db_path) != ":memory:":
         db_path.parent.mkdir(parents=True, exist_ok=True)
     # check_same_thread=False because FastAPI dispatches sync endpoints to a

@@ -1,0 +1,1265 @@
+{
+  "description": "E8v2 control-plane overhead over a 60 s window: OpenFlow message rate plus inclusive CPU for Ryu, API, telemetry runtime, active probe responder, and descendants. Supersedes the Ryu-only v1 CPU metric.",
+  "summaries": [
+    {
+      "group": "B1",
+      "metric": "api_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.1964434,
+      "sample_stddev": 0.013117781114875247,
+      "ci95_t_low": 0.1870601566322219,
+      "ci95_t_high": 0.2058266433677781,
+      "min": 0.183132,
+      "max": 0.21642,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b1_20261031212456_01.csv",
+          "value": 0.183155
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212610_02.csv",
+          "value": 0.183154
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212725_03.csv",
+          "value": 0.21642
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212839_04.csv",
+          "value": 0.183144
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212953_05.csv",
+          "value": 0.1997
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213107_06.csv",
+          "value": 0.199753
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213222_07.csv",
+          "value": 0.216405
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213336_08.csv",
+          "value": 0.199773
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213450_09.csv",
+          "value": 0.183132
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213604_10.csv",
+          "value": 0.199798
+        }
+      ]
+    },
+    {
+      "group": "B1",
+      "metric": "control_stack_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.9389352,
+      "sample_stddev": 0.04518080250578409,
+      "ci95_t_low": 0.9066170463617638,
+      "ci95_t_high": 0.9712533536382362,
+      "min": 0.882422,
+      "max": 1.015512,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b1_20261031212456_01.csv",
+          "value": 0.899123
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212610_02.csv",
+          "value": 0.899117
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212725_03.csv",
+          "value": 0.915624
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212839_04.csv",
+          "value": 0.882422
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212953_05.csv",
+          "value": 0.915293
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213107_06.csv",
+          "value": 0.965471
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213222_07.csv",
+          "value": 0.998793
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213336_08.csv",
+          "value": 1.015512
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213450_09.csv",
+          "value": 0.965604
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213604_10.csv",
+          "value": 0.932393
+        }
+      ]
+    },
+    {
+      "group": "B1",
+      "metric": "openflow_msgs_per_s",
+      "unit": "msgs_per_s",
+      "n_independent_runs": 10,
+      "mean": 8.1940574,
+      "sample_stddev": 0.07308998796795352,
+      "ci95_t_low": 8.141775604866707,
+      "ci95_t_high": 8.246339195133293,
+      "min": 8.12327,
+      "max": 8.323273,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b1_20261031212456_01.csv",
+          "value": 8.192008
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212610_02.csv",
+          "value": 8.291861
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212725_03.csv",
+          "value": 8.157373
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212839_04.csv",
+          "value": 8.191539
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212953_05.csv",
+          "value": 8.15443
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213107_06.csv",
+          "value": 8.12327
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213222_07.csv",
+          "value": 8.323273
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213336_08.csv",
+          "value": 8.124093
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213450_09.csv",
+          "value": 8.124393
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213604_10.csv",
+          "value": 8.258334
+        }
+      ]
+    },
+    {
+      "group": "B1",
+      "metric": "openflow_msgs_total",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 492.2,
+      "sample_stddev": 4.366539438350084,
+      "ci95_t_low": 489.076582871277,
+      "ci95_t_high": 495.32341712872295,
+      "min": 488.0,
+      "max": 500.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b1_20261031212456_01.csv",
+          "value": 492.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212610_02.csv",
+          "value": 498.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212725_03.csv",
+          "value": 490.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212839_04.csv",
+          "value": 492.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212953_05.csv",
+          "value": 490.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213107_06.csv",
+          "value": 488.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213222_07.csv",
+          "value": 500.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213336_08.csv",
+          "value": 488.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213450_09.csv",
+          "value": 488.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213604_10.csv",
+          "value": 496.0
+        }
+      ]
+    },
+    {
+      "group": "B1",
+      "metric": "probe_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b1_20261031212456_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212610_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212725_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212839_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212953_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213107_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213222_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213336_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213450_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213604_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B1",
+      "metric": "ryu_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.7424917,
+      "sample_stddev": 0.04091295988925757,
+      "ci95_t_low": 0.7132263649425551,
+      "ci95_t_high": 0.7717570350574449,
+      "min": 0.699203,
+      "max": 0.815739,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b1_20261031212456_01.csv",
+          "value": 0.715968
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212610_02.csv",
+          "value": 0.715964
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212725_03.csv",
+          "value": 0.699203
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212839_04.csv",
+          "value": 0.699278
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212953_05.csv",
+          "value": 0.715593
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213107_06.csv",
+          "value": 0.765718
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213222_07.csv",
+          "value": 0.782388
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213336_08.csv",
+          "value": 0.815739
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213450_09.csv",
+          "value": 0.782472
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213604_10.csv",
+          "value": 0.732594
+        }
+      ]
+    },
+    {
+      "group": "B1",
+      "metric": "telemetry_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b1_20261031212456_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212610_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212725_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212839_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212953_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213107_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213222_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213336_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213450_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213604_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B1",
+      "metric": "window_duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 60.0679454,
+      "sample_stddev": 0.009514045782712985,
+      "ci95_t_low": 60.06113993448646,
+      "ci95_t_high": 60.074750865513536,
+      "min": 60.058533,
+      "max": 60.090035,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b1_20261031212456_01.csv",
+          "value": 60.058533
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212610_02.csv",
+          "value": 60.058891
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212725_03.csv",
+          "value": 60.068355
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212839_04.csv",
+          "value": 60.061976
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031212953_05.csv",
+          "value": 60.090035
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213107_06.csv",
+          "value": 60.074328
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213222_07.csv",
+          "value": 60.072525
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213336_08.csv",
+          "value": 60.068243
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213450_09.csv",
+          "value": 60.066029
+        },
+        {
+          "file": "e8v2_overhead_b1_20261031213604_10.csv",
+          "value": 60.060539
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "api_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.1947874,
+      "sample_stddev": 0.011244694138422206,
+      "ci95_t_low": 0.18674398924531102,
+      "ci95_t_high": 0.20283081075468898,
+      "min": 0.183081,
+      "max": 0.216427,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b3_20261031213727_01.csv",
+          "value": 0.19979
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213841_02.csv",
+          "value": 0.183081
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213955_03.csv",
+          "value": 0.183112
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214110_04.csv",
+          "value": 0.18314
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214224_05.csv",
+          "value": 0.199795
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214338_06.csv",
+          "value": 0.199801
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214452_07.csv",
+          "value": 0.216427
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214607_08.csv",
+          "value": 0.199788
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214721_09.csv",
+          "value": 0.18315
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214836_10.csv",
+          "value": 0.19979
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "control_stack_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 5.0777811,
+      "sample_stddev": 0.17272883080871124,
+      "ci95_t_low": 4.954226922512467,
+      "ci95_t_high": 5.201335277487534,
+      "min": 4.894827,
+      "max": 5.410969,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b3_20261031213727_01.csv",
+          "value": 5.244495
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213841_02.csv",
+          "value": 5.059686
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213955_03.csv",
+          "value": 4.960678
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214110_04.csv",
+          "value": 4.894827
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214224_05.csv",
+          "value": 5.277911
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214338_06.csv",
+          "value": 4.96173
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214452_07.csv",
+          "value": 5.044412
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214607_08.csv",
+          "value": 4.978056
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214721_09.csv",
+          "value": 4.945047
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214836_10.csv",
+          "value": 5.410969
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "openflow_msgs_per_s",
+      "unit": "msgs_per_s",
+      "n_independent_runs": 10,
+      "mean": 9.3231416,
+      "sample_stddev": 0.11691113061942025,
+      "ci95_t_low": 9.239514225720965,
+      "ci95_t_high": 9.406768974279034,
+      "min": 9.188907,
+      "max": 9.523269,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b3_20261031213727_01.csv",
+          "value": 9.390144
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213841_02.csv",
+          "value": 9.220612
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213955_03.csv",
+          "value": 9.188907
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214110_04.csv",
+          "value": 9.523269
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214224_05.csv",
+          "value": 9.323754
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214338_06.csv",
+          "value": 9.324057
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214452_07.csv",
+          "value": 9.189821
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214607_08.csv",
+          "value": 9.32345
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214721_09.csv",
+          "value": 9.257395
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214836_10.csv",
+          "value": 9.490007
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "openflow_msgs_total",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 560.0,
+      "sample_stddev": 6.99205898780101,
+      "ci95_t_low": 554.998529816144,
+      "ci95_t_high": 565.001470183856,
+      "min": 552.0,
+      "max": 572.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b3_20261031213727_01.csv",
+          "value": 564.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213841_02.csv",
+          "value": 554.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213955_03.csv",
+          "value": 552.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214110_04.csv",
+          "value": 572.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214224_05.csv",
+          "value": 560.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214338_06.csv",
+          "value": 560.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214452_07.csv",
+          "value": 552.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214607_08.csv",
+          "value": 560.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214721_09.csv",
+          "value": 556.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214836_10.csv",
+          "value": 570.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "probe_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.0066595000000000005,
+      "sample_stddev": 0.008597377562050212,
+      "ci95_t_low": 0.0005097338708859355,
+      "ci95_t_high": 0.012809266129114066,
+      "min": 0.0,
+      "max": 0.01665,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b3_20261031213727_01.csv",
+          "value": 0.016649
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213841_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213955_03.csv",
+          "value": 0.016647
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214110_04.csv",
+          "value": 0.016649
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214224_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214338_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214452_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214607_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214721_09.csv",
+          "value": 0.01665
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214836_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "ryu_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.7358614,
+      "sample_stddev": 0.021902365809301168,
+      "ci95_t_low": 0.7201944798921682,
+      "ci95_t_high": 0.7515283201078318,
+      "min": 0.699225,
+      "max": 0.76586,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b3_20261031213727_01.csv",
+          "value": 0.749214
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213841_02.csv",
+          "value": 0.76561
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213955_03.csv",
+          "value": 0.715803
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214110_04.csv",
+          "value": 0.732559
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214224_05.csv",
+          "value": 0.732581
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214338_06.csv",
+          "value": 0.732604
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214452_07.csv",
+          "value": 0.699225
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214607_08.csv",
+          "value": 0.715908
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214721_09.csv",
+          "value": 0.74925
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214836_10.csv",
+          "value": 0.76586
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "telemetry_cpu_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 4.1404731,
+      "sample_stddev": 0.16167086584543014,
+      "ci95_t_low": 4.024828764542471,
+      "ci95_t_high": 4.256117435457529,
+      "min": 3.962479,
+      "max": 4.445319,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b3_20261031213727_01.csv",
+          "value": 4.278842
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213841_02.csv",
+          "value": 4.110995
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213955_03.csv",
+          "value": 4.045117
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214110_04.csv",
+          "value": 3.962479
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214224_05.csv",
+          "value": 4.345536
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214338_06.csv",
+          "value": 4.029325
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214452_07.csv",
+          "value": 4.12876
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214607_08.csv",
+          "value": 4.06236
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214721_09.csv",
+          "value": 3.995998
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214836_10.csv",
+          "value": 4.445319
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "window_duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 60.065627,
+      "sample_stddev": 0.007031354745393107,
+      "ci95_t_low": 60.06059742127754,
+      "ci95_t_high": 60.070656578722456,
+      "min": 60.059693,
+      "max": 60.082779,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e8v2_overhead_b3_20261031213727_01.csv",
+          "value": 60.062976
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213841_02.csv",
+          "value": 60.082779
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031213955_03.csv",
+          "value": 60.072434
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214110_04.csv",
+          "value": 60.063411
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214224_05.csv",
+          "value": 60.061642
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214338_06.csv",
+          "value": 60.059693
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214452_07.csv",
+          "value": 60.06646
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214607_08.csv",
+          "value": 60.063603
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214721_09.csv",
+          "value": 60.060094
+        },
+        {
+          "file": "e8v2_overhead_b3_20261031214836_10.csv",
+          "value": 60.063178
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [
+    {
+      "metric": "openflow_msgs_per_s",
+      "group_a": "B1",
+      "group_b": "B3",
+      "test_method": "Welch two-sample t",
+      "t_statistic": -25.89590976873846,
+      "degrees_of_freedom": 15.102922701933664,
+      "p_value_two_sided": 6.254072576707472e-14,
+      "mean_diff": -1.1290841999999994
+    },
+    {
+      "metric": "openflow_msgs_total",
+      "group_a": "B1",
+      "group_b": "B3",
+      "test_method": "Welch two-sample t",
+      "t_statistic": -26.00861405827266,
+      "degrees_of_freedom": 15.093221074559501,
+      "p_value_two_sided": 5.948322065327835e-14,
+      "mean_diff": -67.80000000000001
+    },
+    {
+      "metric": "ryu_cpu_pct",
+      "group_a": "B1",
+      "group_b": "B3",
+      "test_method": "Welch two-sample t",
+      "t_statistic": 0.4518062973381865,
+      "degrees_of_freedom": 13.767074131556903,
+      "p_value_two_sided": 0.6584446922010547,
+      "mean_diff": 0.006630299999999978
+    },
+    {
+      "metric": "api_cpu_pct",
+      "group_a": "B1",
+      "group_b": "B3",
+      "test_method": "Welch two-sample t",
+      "t_statistic": 0.3030917428793212,
+      "degrees_of_freedom": 17.588987859771468,
+      "p_value_two_sided": 0.7653754982305943,
+      "mean_diff": 0.0016559999999999908
+    },
+    {
+      "metric": "telemetry_cpu_pct",
+      "group_a": "B1",
+      "group_b": "B3",
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
+      "mean_diff": -4.1404731,
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
+    },
+    {
+      "metric": "probe_cpu_pct",
+      "group_a": "B1",
+      "group_b": "B3",
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 0.08668730650154799,
+      "mean_diff": -0.0066595000000000005,
+      "permutation_extreme": 16016,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
+    },
+    {
+      "metric": "control_stack_cpu_pct",
+      "group_a": "B1",
+      "group_b": "B3",
+      "test_method": "Welch two-sample t",
+      "t_statistic": -73.30668392972271,
+      "degrees_of_freedom": 10.225807989561936,
+      "p_value_two_sided": 2.9682554695155273e-15,
+      "mean_diff": -4.1388459
+    }
+  ],
+  "runs": [
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031212456_01.csv",
+      "run_id": 1,
+      "values": {
+        "openflow_msgs_per_s": 8.192008,
+        "ryu_cpu_pct": 0.715968,
+        "api_cpu_pct": 0.183155,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 0.899123,
+        "openflow_msgs_total": 492.0,
+        "window_duration_s": 60.058533
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031212610_02.csv",
+      "run_id": 2,
+      "values": {
+        "openflow_msgs_per_s": 8.291861,
+        "ryu_cpu_pct": 0.715964,
+        "api_cpu_pct": 0.183154,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 0.899117,
+        "openflow_msgs_total": 498.0,
+        "window_duration_s": 60.058891
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031212725_03.csv",
+      "run_id": 3,
+      "values": {
+        "openflow_msgs_per_s": 8.157373,
+        "ryu_cpu_pct": 0.699203,
+        "api_cpu_pct": 0.21642,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 0.915624,
+        "openflow_msgs_total": 490.0,
+        "window_duration_s": 60.068355
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031212839_04.csv",
+      "run_id": 4,
+      "values": {
+        "openflow_msgs_per_s": 8.191539,
+        "ryu_cpu_pct": 0.699278,
+        "api_cpu_pct": 0.183144,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 0.882422,
+        "openflow_msgs_total": 492.0,
+        "window_duration_s": 60.061976
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031212953_05.csv",
+      "run_id": 5,
+      "values": {
+        "openflow_msgs_per_s": 8.15443,
+        "ryu_cpu_pct": 0.715593,
+        "api_cpu_pct": 0.1997,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 0.915293,
+        "openflow_msgs_total": 490.0,
+        "window_duration_s": 60.090035
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031213107_06.csv",
+      "run_id": 6,
+      "values": {
+        "openflow_msgs_per_s": 8.12327,
+        "ryu_cpu_pct": 0.765718,
+        "api_cpu_pct": 0.199753,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 0.965471,
+        "openflow_msgs_total": 488.0,
+        "window_duration_s": 60.074328
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031213222_07.csv",
+      "run_id": 7,
+      "values": {
+        "openflow_msgs_per_s": 8.323273,
+        "ryu_cpu_pct": 0.782388,
+        "api_cpu_pct": 0.216405,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 0.998793,
+        "openflow_msgs_total": 500.0,
+        "window_duration_s": 60.072525
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031213336_08.csv",
+      "run_id": 8,
+      "values": {
+        "openflow_msgs_per_s": 8.124093,
+        "ryu_cpu_pct": 0.815739,
+        "api_cpu_pct": 0.199773,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 1.015512,
+        "openflow_msgs_total": 488.0,
+        "window_duration_s": 60.068243
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031213450_09.csv",
+      "run_id": 9,
+      "values": {
+        "openflow_msgs_per_s": 8.124393,
+        "ryu_cpu_pct": 0.782472,
+        "api_cpu_pct": 0.183132,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 0.965604,
+        "openflow_msgs_total": 488.0,
+        "window_duration_s": 60.066029
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e8v2_overhead_b1_20261031213604_10.csv",
+      "run_id": 10,
+      "values": {
+        "openflow_msgs_per_s": 8.258334,
+        "ryu_cpu_pct": 0.732594,
+        "api_cpu_pct": 0.199798,
+        "telemetry_cpu_pct": 0.0,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 0.932393,
+        "openflow_msgs_total": 496.0,
+        "window_duration_s": 60.060539
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031213727_01.csv",
+      "run_id": 1,
+      "values": {
+        "openflow_msgs_per_s": 9.390144,
+        "ryu_cpu_pct": 0.749214,
+        "api_cpu_pct": 0.19979,
+        "telemetry_cpu_pct": 4.278842,
+        "probe_cpu_pct": 0.016649,
+        "control_stack_cpu_pct": 5.244495,
+        "openflow_msgs_total": 564.0,
+        "window_duration_s": 60.062976
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031213841_02.csv",
+      "run_id": 2,
+      "values": {
+        "openflow_msgs_per_s": 9.220612,
+        "ryu_cpu_pct": 0.76561,
+        "api_cpu_pct": 0.183081,
+        "telemetry_cpu_pct": 4.110995,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 5.059686,
+        "openflow_msgs_total": 554.0,
+        "window_duration_s": 60.082779
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031213955_03.csv",
+      "run_id": 3,
+      "values": {
+        "openflow_msgs_per_s": 9.188907,
+        "ryu_cpu_pct": 0.715803,
+        "api_cpu_pct": 0.183112,
+        "telemetry_cpu_pct": 4.045117,
+        "probe_cpu_pct": 0.016647,
+        "control_stack_cpu_pct": 4.960678,
+        "openflow_msgs_total": 552.0,
+        "window_duration_s": 60.072434
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031214110_04.csv",
+      "run_id": 4,
+      "values": {
+        "openflow_msgs_per_s": 9.523269,
+        "ryu_cpu_pct": 0.732559,
+        "api_cpu_pct": 0.18314,
+        "telemetry_cpu_pct": 3.962479,
+        "probe_cpu_pct": 0.016649,
+        "control_stack_cpu_pct": 4.894827,
+        "openflow_msgs_total": 572.0,
+        "window_duration_s": 60.063411
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031214224_05.csv",
+      "run_id": 5,
+      "values": {
+        "openflow_msgs_per_s": 9.323754,
+        "ryu_cpu_pct": 0.732581,
+        "api_cpu_pct": 0.199795,
+        "telemetry_cpu_pct": 4.345536,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 5.277911,
+        "openflow_msgs_total": 560.0,
+        "window_duration_s": 60.061642
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031214338_06.csv",
+      "run_id": 6,
+      "values": {
+        "openflow_msgs_per_s": 9.324057,
+        "ryu_cpu_pct": 0.732604,
+        "api_cpu_pct": 0.199801,
+        "telemetry_cpu_pct": 4.029325,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 4.96173,
+        "openflow_msgs_total": 560.0,
+        "window_duration_s": 60.059693
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031214452_07.csv",
+      "run_id": 7,
+      "values": {
+        "openflow_msgs_per_s": 9.189821,
+        "ryu_cpu_pct": 0.699225,
+        "api_cpu_pct": 0.216427,
+        "telemetry_cpu_pct": 4.12876,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 5.044412,
+        "openflow_msgs_total": 552.0,
+        "window_duration_s": 60.06646
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031214607_08.csv",
+      "run_id": 8,
+      "values": {
+        "openflow_msgs_per_s": 9.32345,
+        "ryu_cpu_pct": 0.715908,
+        "api_cpu_pct": 0.199788,
+        "telemetry_cpu_pct": 4.06236,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 4.978056,
+        "openflow_msgs_total": 560.0,
+        "window_duration_s": 60.063603
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031214721_09.csv",
+      "run_id": 9,
+      "values": {
+        "openflow_msgs_per_s": 9.257395,
+        "ryu_cpu_pct": 0.74925,
+        "api_cpu_pct": 0.18315,
+        "telemetry_cpu_pct": 3.995998,
+        "probe_cpu_pct": 0.01665,
+        "control_stack_cpu_pct": 4.945047,
+        "openflow_msgs_total": 556.0,
+        "window_duration_s": 60.060094
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e8v2_overhead_b3_20261031214836_10.csv",
+      "run_id": 10,
+      "values": {
+        "openflow_msgs_per_s": 9.490007,
+        "ryu_cpu_pct": 0.76586,
+        "api_cpu_pct": 0.19979,
+        "telemetry_cpu_pct": 4.445319,
+        "probe_cpu_pct": 0.0,
+        "control_stack_cpu_pct": 5.410969,
+        "openflow_msgs_total": 570.0,
+        "window_duration_s": 60.063178
+      }
+    }
+  ]
+}

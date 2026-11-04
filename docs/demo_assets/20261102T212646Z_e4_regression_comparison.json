@@ -1,0 +1,38 @@
+[
+  {
+    "file": "regression_merge_b2_reconfig_20261102212708_01.csv",
+    "group": "B2",
+    "metric": "packets_lost",
+    "value": 42.0,
+    "published_min": 37.0,
+    "published_max": 43.0,
+    "within_published_range": true
+  },
+  {
+    "file": "regression_merge_b2_reconfig_20261102212708_01.csv",
+    "group": "B2",
+    "metric": "packets_reordered",
+    "value": 0.0,
+    "published_min": 0.0,
+    "published_max": 0.0,
+    "within_published_range": true
+  },
+  {
+    "file": "regression_merge_b3_reconfig_20261102212731_01.csv",
+    "group": "B3",
+    "metric": "packets_lost",
+    "value": 0.0,
+    "published_min": 0.0,
+    "published_max": 0.0,
+    "within_published_range": true
+  },
+  {
+    "file": "regression_merge_b3_reconfig_20261102212731_01.csv",
+    "group": "B3",
+    "metric": "packets_reordered",
+    "value": 28.0,
+    "published_min": 28.0,
+    "published_max": 28.0,
+    "within_published_range": true
+  }
+]

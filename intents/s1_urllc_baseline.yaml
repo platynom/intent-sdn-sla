@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Scenario S1 - single URLLC intent on an idle network.
 # Exercises M1, M3, M4 happy path. Expected: path installed, SLA green,
 # baseline latency recorded.

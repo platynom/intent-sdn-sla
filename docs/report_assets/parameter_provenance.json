@@ -1,0 +1,89 @@
+{
+  "baseline": "98ddf64",
+  "counts": {
+    "STANDARD": 36,
+    "LITERATURE": 0,
+    "MEASURED": 0,
+    "PROJECT PLAN": 13,
+    "ENGINEERING CHOICE": 509,
+    "ASSUMPTION": 8
+  },
+  "total": 566,
+  "risks": [
+    [
+      "RTT vs one-way",
+      "We compare echo RTT to the same field used for one-way planning; no common one-way compliance conclusion is established."
+    ],
+    [
+      "2/5/12 ms links",
+      "These are stress-test budgets, equivalent to 400/1000/2400 km of fibre if attributed solely to propagation; not measured metro spans."
+    ],
+    [
+      "250 ms drain",
+      "That fixed value is stale documentation; current code computes twice planned one-way delay plus 100 ms, minimum 100 ms."
+    ],
+    [
+      "Detector tuning",
+      "0.3 / 10% / 3 / 10 s is an engineering comparator, not an optimal or standards-mandated setting."
+    ],
+    [
+      "Profile realism",
+      "5QI values have pinned sources, but application mappings, several rates and IP-loss proxies are project assumptions, not certification."
+    ]
+  ],
+  "source_sha256": {
+    "topology/topology_spec.py": "cb012eb9b3a935aad55914858a5bb6bdd4ccee00cf78000d0bd5bcf82e8599e3",
+    "src/intent_manager/profiles.yaml": "a4dc594756c87ced67baadfa9ca49240d52b31610957fce592a8f1d3624b2c48",
+    "intents/demo_010_v2x_safety.yaml": "5af62b296b296db861c2ee1f6f5ed9bd1ae33bab6e0c94a5266ba365c1fe91f4",
+    "intents/demo_011_remote_surgery.yaml": "9b9c445b9130face04c30a897abc06ef6e32b7d6da3bee07942215cf9812eaa7",
+    "intents/demo_012_public_safety_video.yaml": "164b8372fc2644f1d736367918928530199871a42715214a5e9ff9254487266c",
+    "intents/demo_013_smart_grid.yaml": "90b69395f5cfa6277a6ef8ac45dd7a7c1d74a9e31fe8eed530f8f3c947a7cbf2",
+    "intents/profile_embb.yaml": "761381bb219a76a7fec1998304cb7ea42084f8b76444058ca283e891ffc08e13",
+    "intents/profile_mmtc.yaml": "881dfafcd18519a4e87d66e20ccf942d5ef1ab2f60aff08112af9a71c8f776ff",
+    "intents/profile_smart_grid.yaml": "fc6ea8a282f5bc948b60aafaae2f71751140095f2fe6fc7d4d8e0d85447a7d6a",
+    "intents/profile_urllc.yaml": "1cdc75c4e3118887eef1f865884a78e34d16ef71de22d441c03f68488a8290a5",
+    "intents/profile_v2x.yaml": "c4e2c693e0b322c12b0c275be552270704c466dd5a511d9a8f32d6f1307f15c5",
+    "intents/s1_urllc_baseline.yaml": "3d5a8b507be7c7cb7fb85cf4b8c66d958665df531c2e94e731c9922126d8fbf4",
+    "intents/s2_embb_bulk.yaml": "62f418c5f3642abfef7bc51a97642369db8da295c3443109e257774c9bd43ca1",
+    "intents/s3_infeasible.yaml": "8fde0d3c9765c0d631b8199e4c4eb4aab89fe27cb104b37b08d2adcf83c2f8cf",
+    "intents/s4_high_priority_preempt.yaml": "bb6906e42f8de5dfd1cfc9062f6102000b26bb0209573818ad2c1c71c4527a2b",
+    "intents/s5_link_failure.yaml": "f8d83db701122b0cf2b493ce153d695e8063fb65c1e661fab56d481050d108c8",
+    "intents/s6_oscillation_trap.yaml": "989f20c5ed72bf248c989ca34831aa6976e88dfe0519ef1354d91a85f380d3da",
+    "intents/s7_isolation.yaml": "35364a113edbb0cfc9a16da95c310b64e1c9c3f9e0f00b09bc6c0edbc2402d35",
+    "intents/s8_mixed_load.yaml": "9708d6391c51f4db09404de8d6e0af45f5a30ad67dcae164b6496a3dd2cf79c8",
+    "experiments/scenarios/fixtures/b2_conflicting.yaml": "5204d0d949a34de3d39f0814f735639373775a85425b15e8cfea6b509b51899e",
+    "experiments/scenarios/fixtures/b2_matched_detector.yaml": "a4094e5391a55b81ee8e2e31c721f1152ec78eb382557ccfd08d62a669b40576",
+    "experiments/scenarios/fixtures/b2_preemptible.yaml": "aab60545e7b53e0f5daa81a749f49b1dd3f1e5cd09d99d721b256cf1d0b66daf",
+    "experiments/scenarios/fixtures/b2_single_intent.yaml": "98a8d343d8b296acb63e7c410223838e0e88a46b111cc01272d0b65f202aeda3",
+    "experiments/scenarios/fixtures/b3_single_intent.yaml": "69c486045f877912ba721212b95c202f42a27634bc16149d37e21036642a886e",
+    "experiments/scenarios/fixtures/s9_critical.yaml": "0e125287cc8581f42d032752410343789264c32ffad6566fb61f18f6f787521d",
+    "experiments/scenarios/fixtures/s9_preemptible.yaml": "e118e2f9ae79289a753ce4f71277ed5b3bd828a622bf31cdc4c20edd75ef7cb9",
+    "src/common/audit.py": "1d65d0360b26af64011265175c592bb3250e8969c9cf5fd6c113f76982ceaeb5",
+    "src/common/db.py": "ec50a303f17161488f8a1e7b4be7a667ec0e3e9dac3c9a036be8c5b0bd68307d",
+    "src/enforcement/controller.py": "acfeffdc0aaebff867231cac9455bbd2b3f121acd16f9141450754a45b5611f3",
+    "src/enforcement/flowmod.py": "af3a586471b2103dd4cd19ea2f43b924f4deed86503b3fa3d552153a9b276778",
+    "src/enforcement/queues.py": "b667a784b4052a9f64f862ffe66ae5bbd3e7fb5b111b6fc1f3eab34332b87d51",
+    "src/enforcement/two_phase.py": "302eaad63f2ecc9ec737933c69b3c9144362d7083393f53bde5652d59bb28efa",
+    "src/pathing/yen_ksp.py": "926451070b217e1a10bba3178849b198e8c3c4d8f8d20949cffad1644d92b6eb",
+    "src/telemetry/collector.py": "3cf429ce176470ae294a3c4603f0c3efafe865c46c45eb2fe95433e5e4e16ab1",
+    "src/telemetry/detector.py": "205e5c4636fa8c37aa00f43bd019b494aa0a5e4945fd61eb9a73bf2529508317",
+    "src/telemetry/runtime.py": "af5cde5181bf69125a2029645476d2397710219aaefb6fe6030571359b216fec",
+    "experiments/scenarios/b0_baseline.sh": "f3adadd9268b6465423617df072dcb5ef2101d561fa16fbca3ac7a5b630d114a",
+    "experiments/scenarios/b1_open_loop.sh": "f4b677c0d7794730141970663a8deab35e140c9dfad54b43f2dd6635dafca336",
+    "experiments/scenarios/b2_closed_loop.sh": "052913c9d6b1f2638114431d370a486310beac1e67f7e6b36822f5994f364b21",
+    "experiments/scenarios/b2_matched_detector.sh": "60924e057a4b31fea433ee45a7a7a203ad72d219b1bce76260c4680923ceefc0",
+    "experiments/scenarios/b2_no_conflict.sh": "6cc50c743e54b7575001936d1a63b0adb98ea82f3620cc932e2cb4c42670b12d",
+    "experiments/scenarios/b3_closed_loop.sh": "75c721ec2ec3575659c426369a443e56bae360c1ef4e75d92d94a0aec3fa4e31",
+    "experiments/scenarios/e1_violation_duration.sh": "dfeabcd9892e956f324b89c317bb74bc73336d39d1a43c8d32f788a2d345421a",
+    "experiments/scenarios/e4_packet_loss.sh": "9d2bdf0970b1d5ba473120510261de7710b017cece68835832c95005d84b3569",
+    "experiments/scenarios/e5_flow_table_entries.sh": "bd32988c9b19e3c2d2771e572bf45ebea67c5663284a2f09fbbb0148a99ba73f",
+    "experiments/scenarios/e6_oscillation.sh": "22d64a7a8fa6264d2c3cbbe02cfd21ccc6600bdaadc73d274dfde084116428a5",
+    "experiments/scenarios/e7_admission_scaling.sh": "4855db23cce05fe950ba24f45369867a68c533ddde7c474c9b4a0c50fb8c770a",
+    "experiments/scenarios/e8_control_overhead.sh": "50822d9ddaa5b324f84a67c87efe3902cefcfd508deaad93d45e8d59c32d37e1",
+    "experiments/scenarios/o3_queue_binding.sh": "e3eb61eace37b5f150a45b82803176893487a1b2cb7000e2ac3aa7be506a7ede",
+    "experiments/scenarios/s10_two_phase.sh": "bd16dc8af592dce31863e9fff052d0926987304236398606a553a878a5f1f431",
+    "experiments/scenarios/s1_single_intent.sh": "ed1f663cd25bb2e10be09cde43080afe574adc1b5a543e9eeaa25302c18a0cde",
+    "experiments/scenarios/s9_preemption.sh": "2ed24885e16146f2f1fc4dea2d753cfd10980f4ac8f3f37ff219a7219f10e23a",
+    "src/common/models.py": "2fe33a7ade182218708802c20040d4ca01f95bc27919e0ab02e3c0168e17700f"
+  }
+}

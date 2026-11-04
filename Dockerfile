@@ -1,8 +1,8 @@
 # Team 16 - Intent-Based SDN for 5G SLA Enforcement
 # Pinned per ADR-001. Do not bump these versions without a whole-team decision.
 #
-# Why Python 3.9: Ryu 4.34 depends on eventlet, which breaks on Python 3.10+
-# (the `ssl.wrap_socket` removal). Pinning inside the container means the host
+# Why Python 3.9: this is the verified Ryu 4.34 / legacy eventlet combination.
+# ssl.wrap_socket was removed in Python 3.12; see the ADR correction. The host
 # Python is irrelevant. Never pip install ryu on the host.
 FROM ubuntu:22.04
 

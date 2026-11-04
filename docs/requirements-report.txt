@@ -1,0 +1,2 @@
+# Optional report authoring dependency; the SDN runtime does not import it.
+python-docx==1.2.0

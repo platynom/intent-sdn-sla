@@ -1,0 +1,13 @@
+Captured UTC: 20261102T195648Z
+Code revision: ce137e90a5888149b41369e864c9976c0b109515
+Tracked worktree diff SHA-256: ab0a27c6ec83d54702564ee693e231bf20b41b9dd224a5027d8f7198120f05b0
+Command argv: ["curl", "-sS", "-i", "-X", "POST", "http://127.0.0.1:8000/intent", "-H", "Content-Type: text/plain", "--data-binary", "@intents/invalid/bad_sixth_constraint.yaml"]
+Exit status: 0
+
+HTTP/1.1 422 Unprocessable Entity
+date: Mon, 02 Nov 2026 19:56:56 GMT
+server: uvicorn
+content-length: 112
+content-type: application/json
+
+[{"path":"intent.guarantee","message":"Additional properties are not allowed ('max_jitter_ms' was unexpected)"}]

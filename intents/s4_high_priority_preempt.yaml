@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Scenario S4 - priority-1 intent arriving on a full network.
 # Exercises M2 preemption. Expected: a lower-priority intent is demoted and the
 # decision is written to the audit log with its reason.

@@ -1,0 +1,87 @@
+# Profile metadata is outside schema.json; generated documents use its existing fields.
+transport_share: 0.5 # ASSUMPTION, not standardized; used only by comparison method B.
+source_defaults: &qos_source
+  spec: 3GPP TS 23.501
+  version: ETSI TS 123 501 V17.9.0 (2023-07), Release 17
+  clause: 5.7.4
+  table: 5.7.4-1
+  url: https://www.etsi.org/deliver/etsi_ts/123500_123599/123501/17.09.00_60/ts_123501v170900p.pdf
+profiles:
+  urllc:
+    label: Remote-surgery proxy / discrete automation
+    mapping: Proxy mapping; no dedicated remote-surgery 5QI in this Release 17 table.
+    five_qi: 82
+    resource_type: Delay-critical GBR
+    standard_priority: 19
+    project_priority: 1
+    pdb_ms: 10
+    cn_pdb_ms: 1
+    per: 0.0001
+    mdbv_bytes: 255
+    min_bandwidth_mbps: 20
+    bandwidth_source: {kind: assumption, explanation: 'Engineering example, not a surgical standard'}
+    source: {<<: *qos_source, note: 4}
+  v2x:
+    label: Advanced-driving V2X
+    mapping: Collision avoidance and platooning with high automation; not ITS backhaul.
+    five_qi: 86
+    resource_type: Delay-critical GBR
+    standard_priority: 18
+    project_priority: 1
+    pdb_ms: 5
+    cn_pdb_ms: 2
+    per: 0.0001
+    mdbv_bytes: 1354
+    min_bandwidth_mbps: 10
+    bandwidth_source: {kind: assumption, explanation: Engineering rate; not derived from the ITS-backhaul example}
+    source: {<<: *qos_source, note: 5}
+  smart_grid:
+    label: High-voltage smart-grid protection
+    mapping: High-voltage electricity distribution; delay-critical, not mMTC.
+    five_qi: 85
+    resource_type: Delay-critical GBR
+    standard_priority: 21
+    project_priority: 1
+    pdb_ms: 5
+    cn_pdb_ms: 2
+    per: 0.00001
+    mdbv_bytes: 255
+    min_bandwidth_mbps: 1
+    bandwidth_source: {kind: assumption, explanation: Engineering rate; not a standardized protection rate}
+    source: {<<: *qos_source, note: 5}
+  embb:
+    label: Conversational live video / broadband example
+    mapping: Project broadband example using conversational-video QoS characteristics.
+    five_qi: 2
+    resource_type: GBR
+    standard_priority: 40
+    project_priority: 2
+    pdb_ms: 150
+    cn_pdb_ms: 20
+    per: 0.001
+    mdbv_bytes: null
+    min_bandwidth_mbps: 50
+    bandwidth_source:
+      kind: standard_example
+      spec: 3GPP TS 22.261
+      version: ETSI TS 122 261 V17.10.0 (2022-05), Release 17
+      clause: '7.1'
+      table: 7.1-1
+      note: 5
+      explanation: Urban-macro experienced downlink target, not a strict requirement or 5QI-defined rate.
+      url: https://www.etsi.org/deliver/etsi_ts/122200_122299/122261/17.10.00_60/ts_122261v171000p.pdf
+    source: {<<: *qos_source, note: 13}
+  mmtc:
+    label: Delay-tolerant buffered sensor traffic
+    mapping: Project choice; no dedicated massive-IoT 5QI in TS 23.501 Release 17.
+    five_qi: 9
+    resource_type: Non-GBR
+    standard_priority: 90
+    project_priority: 4
+    pdb_ms: 300
+    cn_pdb_ms: 20
+    per: 0.000001
+    mdbv_bytes: null
+    min_bandwidth_mbps: null
+    bandwidth_source: {kind: none, explanation: Non-GBR example deliberately requests no guaranteed minimum rate.}
+    source: {<<: *qos_source, note: 13}

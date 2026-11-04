@@ -14,6 +14,21 @@ from src.telemetry.detector import ViolationDetector
 from src.telemetry.probes import ActiveProbeSource
 
 
+def persist_confirmed_event(conn, event) -> None:
+    """Persist one detector transition when a confirmed event was emitted."""
+    if event is not None:
+        db.save_event(conn, event)
+
+
+def reload_persisted_replan_state(conn, detector: ViolationDetector) -> bool:
+    """Refresh dwell state written by the controller in another process."""
+    latest_intent = db.load_intent(conn, detector.intent.id)
+    if latest_intent is None:
+        return False
+    detector.intent.last_replan_at = latest_intent.last_replan_at
+    return True
+
+
 def flow_bytes(switch: str, cookie: int) -> int:
     """Read byte counters for one intent cookie from one OpenFlow switch."""
     result = subprocess.run(
@@ -41,6 +56,9 @@ def main() -> int:
     parser.add_argument("--switch", default="s1")
     parser.add_argument("--samples", type=int, default=5)
     parser.add_argument("--interval", type=float, default=1.0)
+    parser.add_argument("--ewma-alpha", type=float, default=0.3)
+    parser.add_argument("--hysteresis-pct", type=float, default=0.1)
+    parser.add_argument("--consecutive-required", type=int, default=3)
     args = parser.parse_args()
 
     conn = db.connect()
@@ -48,7 +66,12 @@ def main() -> int:
     intent = db.load_intent(conn, args.intent)
     if intent is None:
         raise SystemExit(f"unknown intent: {args.intent}")
-    detector = ViolationDetector(intent)
+    detector = ViolationDetector(
+        intent,
+        ewma_alpha=args.ewma_alpha,
+        hysteresis_pct=args.hysteresis_pct,
+        consecutive_required=args.consecutive_required,
+    )
     probes = ActiveProbeSource()
     cookie = cookie_for_intent(args.intent)
     previous_bytes = None
@@ -104,8 +127,13 @@ def main() -> int:
             sample.loss_pct,
             sample.throughput_mbps,
         )
+        reload_persisted_replan_state(conn, detector)
         event = detector.observe(sample, now=started)
+        # The detector emits confirmed transitions in-process. Persist them
+        # alongside measurements so ST-7 and the audit view can consume them.
+        persist_confirmed_event(conn, event)
         event_name = event.type.value if event else "none"
+        event_persisted_at = time.time() if event else None
         probe_error = ""
         if probe.delay_ms is None:
             detail = (reply.stdout + reply.stderr).strip().replace("\n", " | ")
@@ -113,7 +141,8 @@ def main() -> int:
         print(
             f"sample delay_ms={sample.delay_ms} jitter_ms={sample.jitter_ms} "
             f"loss_pct={sample.loss_pct} throughput_mbps={sample.throughput_mbps} "
-            f"status={detector.status.value} event={event_name}{probe_error}"
+            f"status={detector.status.value} event={event_name}"
+            f" event_persisted_at={event_persisted_at}{probe_error}"
         )
         previous_bytes, previous_at = current_bytes, started
         elapsed = time.time() - started

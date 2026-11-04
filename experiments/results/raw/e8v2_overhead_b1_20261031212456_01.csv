@@ -1,0 +1,9 @@
+run_id,timestamp,metric,value,unit
+1,1793481896,openflow_msgs_per_s,8.192008,msgs_per_s
+1,1793481896,ryu_cpu_pct,0.715968,pct
+1,1793481896,api_cpu_pct,0.183155,pct
+1,1793481896,telemetry_cpu_pct,0.000000,pct
+1,1793481896,probe_cpu_pct,0.000000,pct
+1,1793481896,control_stack_cpu_pct,0.899123,pct
+1,1793481896,openflow_msgs_total,492,count
+1,1793481896,window_duration_s,60.058533,s

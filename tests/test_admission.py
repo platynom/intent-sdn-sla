@@ -1,0 +1,144 @@
+"""ST-8 residual capacity and explainable admission decisions."""
+
+from __future__ import annotations
+
+import pytest
+
+from src.admission.feasibility import assess
+from src.admission.residual import residual_graph
+from src.common import db as dbm
+from src.common.events import EventType
+from src.common.models import (
+    Guarantee, IntentRecord, IntentState, Match, PathPlan, Verdict,
+)
+from topology.topology_spec import build_graph
+
+
+@pytest.fixture
+def conn():
+    connection = dbm.connect(":memory:")
+    dbm.init_db(connection)
+    yield connection
+    connection.close()
+
+
+def make_intent(identifier, tenant, source, destination, bandwidth):
+    return IntentRecord(
+        id=identifier, tenant=tenant, priority=2,
+        match=Match(src=source, dst=destination, proto="udp"),
+        guarantee=Guarantee(min_bandwidth_mbps=bandwidth),
+    )
+
+
+def test_residual_graph_accounts_for_active_current_paths(conn):
+    active = make_intent("A", "tenant-a", "10.0.0.1/32", "10.0.0.2/32", 80)
+    active.state = IntentState.ACTIVE
+    dbm.save_intent(conn, active)
+    dbm.save_path(conn, PathPlan("A", ("s1", "s2", "s3", "s7"),
+                                 ("s1-s2", "s2-s3", "s3-s7"), 6, 100))
+
+    graph = residual_graph(conn, build_graph())
+    assert graph["s1"]["s2"]["reserved_mbps"] == 80
+    assert graph["s1"]["s2"]["residual_mbps"] == 20
+    assert graph["s1"]["s2"]["bw_mbps"] == 100
+
+
+def test_feasibility_selects_alternative_with_enough_residual_capacity(conn):
+    active = make_intent("A", "tenant-a", "10.0.0.1/32", "10.0.0.2/32", 80)
+    active.state = IntentState.ACTIVE
+    dbm.save_intent(conn, active)
+    dbm.save_path(conn, PathPlan("A", ("s1", "s2", "s3", "s7"),
+                                 ("s1-s2", "s2-s3", "s3-s7"), 6, 100))
+    request = make_intent("B", "tenant-b", "10.0.0.1/32", "10.0.0.2/32", 30)
+
+    decision, plan = assess(conn, request, build_graph())
+    assert decision.verdict is Verdict.ADMIT
+    assert plan is not None
+    assert plan.switches == ("s1", "s4", "s5", "s7")
+
+
+def test_infeasible_decision_has_a_reason(conn):
+    request = make_intent("B", "tenant-b", "10.0.0.1/32", "10.0.0.2/32", 500)
+    decision, plan = assess(conn, request, build_graph())
+    assert decision.verdict is Verdict.REJECT
+    assert plan is None
+    assert "no path satisfies" in decision.reason
+    assert "500" in decision.reason
+
+
+def test_api_persists_admission_decision_event(conn):
+    import asyncio
+    import json
+    from starlette.requests import Request
+    from src.intent_manager import api as api_mod
+
+    body = """intent:
+  id: INT-801
+  tenant: telemedicine-video
+  priority: 1
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+  guarantee:
+    min_bandwidth_mbps: 20
+"""
+    async def receive():
+        return {"type": "http.request", "body": body.encode(), "more_body": False}
+
+    request = Request(
+        {"type": "http", "method": "POST", "path": "/intent",
+         "headers": [(b"content-type", b"text/plain")]},
+        receive,
+    )
+    response = asyncio.run(api_mod.create_intent(request, conn))
+
+    assert response.status_code == 201
+    assert json.loads(response.body)["state"] == "admitted"
+    events = dbm.events_for(conn, "INT-801")
+    assert len(events) == 1
+    assert events[0].type is EventType.ADMISSION_DECIDED
+    assert events[0].payload["verdict"] == "admit"
+
+
+def test_b2_experiment_profile_admits_individually_feasible_conflict(conn, monkeypatch):
+    """The B2 ablation ignores reservations without changing normal admission."""
+    import asyncio
+    import json
+    from starlette.requests import Request
+    from src.intent_manager import api as api_mod
+
+    victim = make_intent("INT-B2-V", "tenant-a", "10.0.0.1/32", "10.0.0.2/32", 80)
+    victim.state = IntentState.ACTIVE
+    dbm.save_intent(conn, victim)
+    dbm.save_path(conn, PathPlan("INT-B2-V", ("s1", "s2", "s3", "s7"),
+                                 ("s1-s2", "s2-s3", "s3-s7"), 6, 100))
+    body = """intent:
+  id: INT-803
+  tenant: tenant-b
+  priority: 1
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+  guarantee:
+    min_bandwidth_mbps: 60
+  consistency: relaxed
+  on_violation: reroute
+  dwell_seconds: 0
+"""
+
+    async def receive():
+        return {"type": "http.request", "body": body.encode(), "more_body": False}
+
+    request = Request(
+        {"type": "http", "method": "POST", "path": "/intent",
+         "headers": [(b"content-type", b"text/plain")]},
+        receive,
+    )
+    monkeypatch.setenv("TEAM16_EXPERIMENT_MODE", "b2")
+    response = asyncio.run(api_mod.create_intent(request, conn))
+
+    assert response.status_code == 201
+    assert json.loads(response.body)["state"] == "admitted"
+    assert dbm.load_intent(conn, "INT-B2-V").state is IntentState.ACTIVE
+    event = dbm.events_for(conn, "INT-803")[0]
+    assert "reservation/conflict checks bypassed" in event.payload["reason"]

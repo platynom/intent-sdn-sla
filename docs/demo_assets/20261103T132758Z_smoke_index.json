@@ -1,0 +1,51 @@
+{
+  "revision": "d5029f2151c164eb7f9334870b492ce6d70b5d89",
+  "captured_utc": "20261103T132758Z",
+  "commands": [
+    {
+      "label": "s1_flow_dump",
+      "file": "docs/demo_assets/20261103T132758Z_s1_flow_dump.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "s1",
+      "file": "docs/demo_assets/20261103T132758Z_s1.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "s1_audit",
+      "file": "docs/demo_assets/20261103T132758Z_s1_audit.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "st7",
+      "file": "docs/demo_assets/20261103T132758Z_st7.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "st7_audit",
+      "file": "docs/demo_assets/20261103T132758Z_st7_audit.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "st9",
+      "file": "docs/demo_assets/20261103T132758Z_st9.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "st9_audit",
+      "file": "docs/demo_assets/20261103T132758Z_st9_audit.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "st10",
+      "file": "docs/demo_assets/20261103T132758Z_st10.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "st10_audit",
+      "file": "docs/demo_assets/20261103T132758Z_st10_audit.txt",
+      "exit_status": 0
+    }
+  ]
+}

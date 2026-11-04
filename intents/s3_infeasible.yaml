@@ -1,3 +1,4 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
 # Scenario S3 - deliberately infeasible fourth intent.
 # Exercises M2 admission control. Expected: REJECT with a stated reason, or a
 # degraded counter-offer. Never a silent failure.

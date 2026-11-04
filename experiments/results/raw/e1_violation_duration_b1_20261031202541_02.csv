@@ -1,0 +1,3 @@
+run_id,timestamp,metric,value,unit
+2,1793478341,sla_violation_duration_s,15.000000,s
+2,1793478341,right_censored,1,flag

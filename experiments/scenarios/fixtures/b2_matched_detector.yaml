@@ -1,0 +1,17 @@
+# Illustrative values sized for the emulated topology; not standards-derived. See docs/SERVICE_PROFILES.md.
+# Matched-detector B2 closed-loop variant: same latency SLA, trace, and default
+# detector smoothing/hysteresis/dwell as B3, but with relaxed direct updates.
+intent:
+  id: INT-001
+  tenant: telemedicine-video
+  priority: 1
+  match:
+    src: 10.0.0.1/32
+    dst: 10.0.0.2/32
+    proto: udp
+    dport: 5001
+  guarantee:
+    max_latency_ms: 35
+  consistency: relaxed
+  on_violation: reroute
+  dwell_seconds: 10

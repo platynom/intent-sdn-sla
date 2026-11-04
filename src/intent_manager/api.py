@@ -7,6 +7,8 @@ intent state inspection, and withdrawal.
 
 from __future__ import annotations
 
+import json
+import os
 import sqlite3
 from typing import Any, Dict, List
 
@@ -16,8 +18,13 @@ from fastapi.responses import JSONResponse
 
 from src.common import db as dbm
 from src.common.events import Event, EventBus, EventType
-from src.common.models import IntentRecord, IntentState, to_dict
+from src.common.models import (
+    AdmissionDecision, Consistency, IntentRecord, IntentState, Verdict, to_dict,
+)
+from src.enforcement import two_phase
+from src.admission.feasibility import assess
 from src.intent_manager.validator import validate
+from src.intent_manager.profiles import build_intent, check_against_profile, list_profiles
 from src.pathing.compute import compute_path
 from topology.topology_spec import build_graph
 
@@ -25,6 +32,29 @@ app = FastAPI(title="M1 Intent Manager API")
 
 # Shared event bus for publishing lifecycle events
 event_bus = EventBus()
+
+
+def _admission_for_request(conn, intent, graph):
+    """Apply production admission, or the explicit ST-12 B2 ablation profile."""
+    if os.environ.get("TEAM16_EXPERIMENT_MODE", "").lower() != "b2":
+        return assess(conn, intent, graph)
+
+    # B2 ignores existing tenant reservations and conflicting admissions, but
+    # still requires this intent's own guarantees to have a feasible topology path.
+    plan, reasons = compute_path(intent, graph)
+    if plan is not None:
+        return AdmissionDecision(
+            intent.id,
+            Verdict.ADMIT,
+            "B2 experiment profile: reservation/conflict checks bypassed; "
+            "the intent has an individually feasible path.",
+        ), plan
+    detail = "; ".join(f"{path}: {reason}" for path, reason in sorted(reasons.items()))
+    return AdmissionDecision(
+        intent.id,
+        Verdict.REJECT,
+        f"B2 experiment profile: no individually feasible path. {detail}".strip(),
+    ), None
 
 
 def get_db():
@@ -94,9 +124,40 @@ async def create_intent(
         )
     )
 
-    # Path computation (M3 first light)
+    # M2 admission uses the persisted active paths to account for reservations.
     graph = build_graph()
-    plan, reasons = compute_path(rec, graph)
+    decision, plan = _admission_for_request(conn, rec, graph)
+    if plan is not None and rec.consistency is Consistency.STRICT:
+        plan = two_phase.with_version(plan, two_phase.next_version())
+    rec.state = IntentState.ADMITTED if decision.admitted else IntentState.REJECTED
+    dbm.save_intent(conn, rec)
+    decision_event = Event(
+        type=EventType.ADMISSION_DECIDED,
+        intent_id=rec.id,
+        message=decision.reason,
+        payload={
+            "verdict": decision.verdict.value,
+            "reason": decision.reason,
+            "preempted_intent_id": decision.preempted_intent_id,
+        },
+    )
+    dbm.save_event(conn, decision_event)
+    event_bus.publish(decision_event)
+
+    if decision.verdict.value == "preempt" and decision.preempted_intent_id:
+        victim = dbm.load_intent(conn, decision.preempted_intent_id)
+        if victim is not None:
+            victim.state = IntentState.PREEMPTED
+            dbm.save_intent(conn, victim)
+            preempted_event = Event(
+                type=EventType.INTENT_PREEMPTED,
+                intent_id=victim.id,
+                message=(f"Intent {victim.id} was preempted by higher-priority "
+                         f"intent {rec.id}: {decision.reason}"),
+                payload={"by_intent_id": rec.id, "reason": decision.reason},
+            )
+            dbm.save_event(conn, preempted_event)
+            event_bus.publish(preempted_event)
 
     response_data: Dict[str, Any] = {
         "id": rec.id,
@@ -104,6 +165,8 @@ async def create_intent(
         "priority": rec.priority,
         "state": rec.state.value,
     }
+    if decision.preempted_intent_id:
+        response_data["preempted_intent_id"] = decision.preempted_intent_id
 
     if plan is not None:
         dbm.save_path(conn, plan)
@@ -121,13 +184,13 @@ async def create_intent(
             )
         )
     else:
-        response_data["reasons"] = reasons
+        response_data["reasons"] = {"admission": decision.reason}
         event_bus.publish(
             Event(
                 type=EventType.PATH_INFEASIBLE,
                 intent_id=rec.id,
                 message=f"No feasible path for {rec.id}",
-                payload={"reasons": reasons},
+                payload={"reasons": response_data["reasons"]},
             )
         )
 
@@ -187,3 +250,38 @@ def health(conn: sqlite3.Connection = Depends(get_db)) -> Dict[str, Any]:
     row = conn.execute("SELECT COUNT(*) AS count FROM intents").fetchone()
     count = int(row["count"]) if row else 0
     return {"status": "ok", "intents": count}
+
+
+@app.get("/profiles")
+def service_profiles() -> List[dict]:
+    """Expose pinned source values, assumptions, and transport-budget derivations."""
+    return list_profiles()
+
+
+@app.post("/intent/from-profile", status_code=status.HTTP_201_CREATED)
+async def create_from_profile(request: Request, conn: sqlite3.Connection = Depends(get_db)):
+    """Generate a normal intent, then use the unchanged POST /intent handler."""
+    try:
+        parameters = await request.json()
+        if not isinstance(parameters, dict):
+            raise ValueError("Expected a JSON object containing service_class and intent fields")
+        document = build_intent(**parameters)
+        warnings = check_against_profile(document, parameters["service_class"])
+    except (ValueError, TypeError) as exc:
+        return JSONResponse(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                            content=[{"path": "profile", "message": str(exc)}])
+
+    async def receive():
+        return {"type": "http.request", "body": json.dumps(document).encode("utf-8"),
+                "more_body": False}
+
+    scope = dict(request.scope)
+    scope["headers"] = [(b"content-type", b"application/json")]
+    generated_request = Request(scope, receive)
+    response = await create_intent(generated_request, conn)
+    decision = json.loads(response.body)
+    if response.status_code != status.HTTP_201_CREATED:
+        return response
+    return JSONResponse(status_code=response.status_code,
+                        content={**decision, "intent": document["intent"],
+                                 "service_class": parameters["service_class"], "warnings": warnings})

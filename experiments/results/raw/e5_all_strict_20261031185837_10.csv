@@ -1,0 +1,16 @@
+run_id,timestamp,metric,value,unit
+10,1793473117,peak_rules_max_switch,10,entries
+10,1793473117,peak_rules_total,42,entries
+10,1793473117,rule_overhead_max_switch,4,entries
+10,1793473117,peak_rules_s1,7,entries
+10,1793473117,peak_rules_s2,6,entries
+10,1793473117,peak_rules_s3,6,entries
+10,1793473117,peak_rules_s4,6,entries
+10,1793473117,peak_rules_s5,6,entries
+10,1793473117,peak_rules_s6,1,entries
+10,1793473117,peak_rules_s7,10,entries
+10,1793473117,packets_lost,0,packets
+10,1793473117,packets_lost_strict_intents,0,packets
+10,1793473117,packets_lost_relaxed_intents,0,packets
+10,1793473117,packets_sent,5032,packets
+10,1793473117,packets_reordered,28,packets

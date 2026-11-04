@@ -1,0 +1,8 @@
+{
+  "captured_utc": "2026-11-02T19:46:12.859687+00:00",
+  "python": "3.9.25",
+  "ryu": "4.34",
+  "mininet": "2.3.1b4",
+  "ovs": "ovs-vsctl (Open vSwitch) 2.17.12",
+  "kernel": "6.18.33.1-microsoft-standard-WSL2"
+}

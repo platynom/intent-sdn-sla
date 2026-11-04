@@ -266,7 +266,7 @@ def test_queue_minimum_mbps_is_converted_to_bits_per_second(monkeypatch):
         return SimpleNamespace(stdout=stdout)
 
     monkeypatch.setattr(queues.subprocess, "run", fake_run)
-    queues.ensure_queue("s1", "s1-eth2", 20)
+    queues.ensure_queue("s1", "s1-eth2", 20, egress_peer="s2")
     assert any("other-config:min-rate=20000000" in argv for argv in calls)
 
 
@@ -280,7 +280,7 @@ def test_ensure_queue_reuses_existing_qos_record(monkeypatch):
         return SimpleNamespace(stdout=stdout)
 
     monkeypatch.setattr(queues.subprocess, "run", fake_run)
-    queues.ensure_queue("s1", "s1-eth2", 20)
+    queues.ensure_queue("s1", "s1-eth2", 20, egress_peer="s2")
     assert calls[1][calls[1].index("qos") + 1] == "qos-existing"
     assert not any(
         left == "create" and right == "qos"
@@ -298,9 +298,22 @@ def test_ensure_queue_creates_qos_when_port_has_none(monkeypatch):
         return SimpleNamespace(stdout="[]\n" if "get" in argv else "")
 
     monkeypatch.setattr(queues.subprocess, "run", fake_run)
-    queues.ensure_queue("s1", "s1-eth2", 20)
+    queues.ensure_queue("s1", "s1-eth2", 20, egress_peer="s2")
     assert "qos=@newqos" in calls[1]
     assert "type=linux-htb" in calls[1]
+
+
+def test_queue_root_ceiling_uses_actual_egress_link_capacity(monkeypatch):
+    """A 100 Mbps default would overstate the 40 Mbps southern link ceiling."""
+    calls = []
+
+    def fake_run(argv, **kwargs):
+        calls.append(argv)
+        return SimpleNamespace(stdout="[]\n" if "get" in argv else "")
+
+    monkeypatch.setattr(queues.subprocess, "run", fake_run)
+    queues.ensure_queue("s1", "s1-eth4", 20, egress_peer="s6")
+    assert "other-config:max-rate=40000000" in calls[1]
 
 
 def test_clear_queues_is_safe_when_nothing_is_configured(monkeypatch):
@@ -518,3 +531,69 @@ def test_single_intent_scenario_registers_cleanup_trap():
     script = SCENARIO.read_text(encoding="utf-8")
     assert "trap " in script
     assert "cleanup" in script
+
+
+def test_forward_switch_to_switch_rules_bind_htb_queue_for_bandwidth_intents():
+    """Bandwidth intents must bind forward inter-switch hops to HTB queue 1 via SET_QUEUE."""
+    switches = ("s1", "s2", "s3", "s7")
+    port_map = make_port_map(switches)
+    rules = flowmod.rules_for_path(make_plan(switches), make_intent(), port_map)
+    forward = {rule["switch"]: rule for rule in rules if rule["direction"] == "forward"}
+    for sw, nxt in (("s1", "s2"), ("s2", "s3"), ("s3", "s7")):
+        assert forward[sw]["actions"] == [
+            {"type": "SET_QUEUE", "queue_id": 1, "port": port_map[(sw, nxt)]},
+            {"type": "OUTPUT", "port": port_map[(sw, nxt)]},
+        ]
+    assert forward["s7"]["actions"] == [{"type": "OUTPUT", "port": port_map[("s7", "h2")]}]
+
+
+def test_latency_only_intent_omits_set_queue_action():
+    """Latency-only intents without an HTB queue must not emit SET_QUEUE actions."""
+    switches = ("s1", "s2", "s7")
+    port_map = make_port_map(switches)
+    intent = IntentRecord(
+        id="INT-LAT-ONLY",
+        tenant="st5-tests",
+        priority=3,
+        match=Match(src="10.0.0.1/32", dst="10.0.0.2/32", proto="udp", dport=5001),
+        guarantee=Guarantee(max_latency_ms=20),
+    )
+    rules = flowmod.rules_for_path(make_plan(switches), intent, port_map)
+    assert all(
+        all(act["type"] != "SET_QUEUE" for act in rule["actions"])
+        for rule in rules
+    )
+
+
+def test_flowmod_install_serializes_set_queue_action_before_output(monkeypatch):
+    """Ryu flow installation must translate SET_QUEUE into OFPActionSetQueue before OFPActionOutput."""
+    monkeypatch.setattr(flowmod, "RYU_AVAILABLE", True)
+    monkeypatch.setattr(flowmod, "ether", SimpleNamespace(ETH_TYPE_IP=0x0800, ETH_TYPE_8021Q=0x8100))
+    monkeypatch.setattr(flowmod, "inet", SimpleNamespace(IPPROTO_TCP=6, IPPROTO_UDP=17, IPPROTO_ICMP=1))
+
+    class QueueCapturingParser(FakeParser):
+        def OFPActionSetQueue(self, queue_id):
+            return {"set_queue": queue_id}
+
+    class QueueCapturingDatapath(FakeDatapath):
+        ofproto_parser = QueueCapturingParser()
+        ofproto = SimpleNamespace(
+            OFPFC_ADD=0,
+            OFPIT_APPLY_ACTIONS=4,
+            OFPVID_PRESENT=0x1000,
+            OFPVID_NONE=0,
+        )
+
+    switches = ("s1", "s7")
+    port_map = make_port_map(switches)
+    rules = flowmod.rules_for_path(make_plan(switches), make_intent(), port_map)
+    dp_s1 = QueueCapturingDatapath()
+    dp_s7 = QueueCapturingDatapath()
+    ctrl = SimpleNamespace(datapaths={"s1": dp_s1, "s7": dp_s7})
+    installed = flowmod.install(ctrl, rules)
+    assert installed == 4
+    s1_forward = dp_s1.sent[0]
+    assert s1_forward["instructions"][0]["actions"] == [
+        {"set_queue": 1},
+        {"port": port_map[("s1", "s7")], "max_len": None},
+    ]

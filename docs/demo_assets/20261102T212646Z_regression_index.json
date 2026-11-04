@@ -1,0 +1,16 @@
+{
+  "revision": "23ef6b4d66f0cc7767b92ce0d04a68cfc74bb18d",
+  "captured_utc": "20261102T212646Z",
+  "commands": [
+    {
+      "label": "e4_b2",
+      "file": "docs/demo_assets/20261102T212646Z_e4_b2.txt",
+      "exit_status": 0
+    },
+    {
+      "label": "e4_b3",
+      "file": "docs/demo_assets/20261102T212646Z_e4_b3.txt",
+      "exit_status": 0
+    }
+  ]
+}

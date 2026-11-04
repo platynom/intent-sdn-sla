@@ -1,0 +1,35 @@
+Captured UTC: 20261102T212500Z
+Code revision: 23ef6b4d66f0cc7767b92ce0d04a68cfc74bb18d
+Tracked worktree diff SHA-256: fe73f421bf80bec464396c0c48063cbed0bfe7ea2d2bc1d3fbe7c93e8a853a02
+Command argv: ["bash", "-lc", "set -o pipefail; sed 's/\\r$//' experiments/scenarios/s1_single_intent.sh | bash -s -- --b3"]
+Exit status: 0
+
+=== [1/6] Starting Ryu Controller ===
+=== [2/6] Starting M1 REST API ===
+=== [3/6] Starting Mininet Topology ===
+PASS: injected 40 ms delay on the primary-only s1-eth2 link
+=== [4/6] Submitting Intent INT-001 ===
+PASS: Intent submitted successfully (HTTP 201)
+=== [5/6] Verification Checks ===
+PASS: Flow rules with cookie found on s1 (1 rules)
+PASS: latency-only experiment intent does not require a bandwidth queue
+PASS: Traffic route traverses s2 (northern route s1-s2-s3-s7 verified)
+=== [6/6] Live Telemetry ===
+sample delay_ms=52.18197400063218 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=amber event=none event_persisted_at=None
+sample delay_ms=50.40581299999758 jitter_ms=1.7761610006346018 loss_pct=0.0 throughput_mbps=0.0 status=amber event=none event_persisted_at=None
+sample delay_ms=50.6046279997463 jitter_ms=0.19881499974871986 loss_pct=0.0 throughput_mbps=0.00041550171146186515 status=red event=sla.violated event_persisted_at=1793654787.941752
+sample delay_ms=32.07708100035234 jitter_ms=18.527546999393962 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+sample delay_ms=31.001375999949232 jitter_ms=1.0757050004031043 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+PASS: 5 live measurements persisted (4 complete samples)
+=== ST-7: Injecting a confirmed event through the SQLite process boundary ===
+PASS: live telemetry already caused the expected alternate route
+PASS: B3 replacement path used strict versioned installation
+sample delay_ms=30.730413000128465 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=green event=none event_persisted_at=None
+PASS: alternate route probe recovered below the 35 ms latency guarantee
+PASS: controller consumed persisted violation and installed s1,s4,s5,s7
+PASS: matching UDP traffic received a probe reply after the reroute
+PASS: reroute count=1; causal audit entries=1
+REGRESSION_DEMO_B3 run metrics written to experiments/results/raw/regression_demo_b3_20261102212633.csv
+=== SCENARIO S1: ALL ST-1 THROUGH ST-6 CHECKS PASSED ===
+=== SCENARIO ST-7: LIVE REROUTE CHECK PASSED ===
+*** Cleaning up processes and Mininet state

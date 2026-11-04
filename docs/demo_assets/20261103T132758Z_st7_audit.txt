@@ -1,0 +1,98 @@
+Captured UTC: 20261103T132758Z
+Code revision: d5029f2151c164eb7f9334870b492ce6d70b5d89
+Tracked worktree diff SHA-256: 3be13c9142f4c5572b0cf8790faa8cda081ddb2e74ed0620e3fecef3c6973fc9
+Command argv: ["python3.9", "scripts/show_demo_audit.py"]
+Exit status: 0
+
+{
+  "database": "/tmp/team16-st7-pif3shp8/state.db",
+  "mode": "read-only",
+  "paths": [
+    {
+      "id": 1,
+      "intent_id": "INT-001",
+      "switches_json": "[\"s1\", \"s2\", \"s3\", \"s7\"]",
+      "links_json": "[\"s1-s2\", \"s2-s3\", \"s3-s7\"]",
+      "est_latency_ms": 6.0,
+      "bottleneck_mbps": 100.0,
+      "version": 0,
+      "computed_at": 1793712516.0451493,
+      "superseded_at": 1793712522.6000504
+    },
+    {
+      "id": 2,
+      "intent_id": "INT-001",
+      "switches_json": "[\"s1\", \"s4\", \"s5\", \"s7\"]",
+      "links_json": "[\"s1-s4\", \"s4-s5\", \"s5-s7\"]",
+      "est_latency_ms": 15.0,
+      "bottleneck_mbps": 50.0,
+      "version": 1,
+      "computed_at": 1793712522.4405885,
+      "superseded_at": null
+    }
+  ],
+  "recent_events": [
+    {
+      "id": "04e4b137b24d41ffaa08d7a3019e2d7f",
+      "type": "path.installed",
+      "severity": "info",
+      "intent_id": "INT-001",
+      "at": 1793712522.600516,
+      "message": "INT-001: measured throughput_mbps=0.00021188355330735014, promised throughput_mbps=20.0, feasible alternative selected, installed s1 -> s4 -> s5 -> s7",
+      "payload_json": "{\"action\": \"installed s1 -> s4 -> s5 -> s7\", \"decision\": \"feasible alternative selected\", \"measurement\": \"throughput_mbps=0.00021188355330735014\", \"threshold\": \"throughput_mbps=20.0\"}"
+    },
+    {
+      "id": "3c4a984155854b048dead70d8f7ea4e5",
+      "type": "path.installed",
+      "severity": "info",
+      "intent_id": "INT-001",
+      "at": 1793712522.5995407,
+      "message": "INT-001: installed s1 -> s4 -> s5 -> s7 (two-phase, 8 rules)",
+      "payload_json": "{\"mode\": \"two-phase\", \"rule_count\": 8, \"switches\": [\"s1\", \"s4\", \"s5\", \"s7\"]}"
+    },
+    {
+      "id": "97c372765b3e4f4bb21040a92f5d81dd",
+      "type": "sla.violated",
+      "severity": "warning",
+      "intent_id": "INT-001",
+      "at": 1793712521.875936,
+      "message": "INT-001: throughput_mbps is 0.000211884, guarantee is 20",
+      "payload_json": "{\"metric\": \"throughput_mbps\", \"observed\": 0.00021188355330735014, \"threshold\": 20.0}"
+    },
+    {
+      "id": "5388f3cf8d8a486ab9c4e1d3203cdb3e",
+      "type": "path.installed",
+      "severity": "info",
+      "intent_id": "INT-001",
+      "at": 1793712516.2142656,
+      "message": "INT-001: installed s1 -> s2 -> s3 -> s7 (two-phase, 8 rules)",
+      "payload_json": "{\"mode\": \"two-phase\", \"rule_count\": 8, \"switches\": [\"s1\", \"s2\", \"s3\", \"s7\"]}"
+    },
+    {
+      "id": "29865379238d4a05a2951588346347ac",
+      "type": "admission.decided",
+      "severity": "info",
+      "intent_id": "INT-001",
+      "at": 1793712516.045241,
+      "message": "Admitted: a feasible path is available with residual capacity for tenant telemedicine-video.",
+      "payload_json": "{\"preempted_intent_id\": null, \"reason\": \"Admitted: a feasible path is available with residual capacity for tenant telemedicine-video.\", \"verdict\": \"admit\"}"
+    }
+  ],
+  "complete_event_counts": [
+    {
+      "intent_id": "INT-001",
+      "type": "admission.decided",
+      "count": 1
+    },
+    {
+      "intent_id": "INT-001",
+      "type": "path.installed",
+      "count": 3
+    },
+    {
+      "intent_id": "INT-001",
+      "type": "sla.violated",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Captured UTC: 2026-11-02T21:22:47.210281+00:00
+Code revision: 23ef6b4d66f0cc7767b92ce0d04a68cfc74bb18d
+Command argv: ["ovs-ofctl", "-O", "OpenFlow13", "dump-flows", "s1"]
+Exit status: 0
+
+OFPST_FLOW reply (OF1.3) (xid=0x2):
+ cookie=0x40006b2decd34ea5, duration=0.020s, table=0, n_packets=0, n_bytes=0, priority=200,udp,vlan_tci=0x0000/0x1fff,nw_src=10.0.0.1,nw_dst=10.0.0.2,tp_dst=5001 actions=push_vlan:0x8100,set_field:4196->vlan_vid,set_queue:1,output:2
+ cookie=0x6b2decd34ea5, duration=0.020s, table=0, n_packets=0, n_bytes=0, priority=100,udp,dl_vlan=100,nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=pop_vlan,output:1
+ cookie=0x0, duration=3.594s, table=0, n_packets=18, n_bytes=1552, priority=0 actions=CONTROLLER:65535

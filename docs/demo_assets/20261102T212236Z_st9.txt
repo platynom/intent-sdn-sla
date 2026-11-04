@@ -1,0 +1,14 @@
+Captured UTC: 20261102T212236Z
+Code revision: 23ef6b4d66f0cc7767b92ce0d04a68cfc74bb18d
+Tracked worktree diff SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Command argv: ["bash", "-lc", "set -o pipefail; sed 's/\\r$//' experiments/scenarios/s9_preemption.sh | bash -s -- "]
+Exit status: 0
+
+=== Starting Ryu and the intent API ===
+=== Starting Mininet topology ===
+=== Reserving 80 Mbps for lower-priority INT-901 ===
+=== Requesting 60 Mbps for higher-priority INT-902 ===
+PASS: critical intent active on s1 -> s2 -> s3 -> s7
+PASS: victim state and persisted intent.preempted event verified
+PASS: victim rules removed before critical intent rules are active
+=== ST-9 LIVE PREEMPTION CHECK PASSED ===

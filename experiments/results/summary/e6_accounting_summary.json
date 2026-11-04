@@ -1,0 +1,533 @@
+{
+  "description": "Isolated B2 E6 rerun with unbounded direct SQL event accounting and complete telemetry checks",
+  "summaries": [
+    {
+      "group": "B2",
+      "metric": "duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6accounting_oscillation_b2_20261102194357_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102195414_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102200430_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102201446_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102202503_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102203520_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102204536_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102205552_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102210609_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102211625_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "dwell_suppressions",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6accounting_oscillation_b2_20261102194357_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102195414_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102200430_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102201446_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102202503_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102203520_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102204536_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102205552_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102210609_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102211625_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "measurement_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6accounting_oscillation_b2_20261102194357_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102195414_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102200430_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102201446_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102202503_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102203520_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102204536_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102205552_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102210609_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102211625_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "raw_reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 90.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 90.0,
+      "ci95_t_high": 90.0,
+      "min": 90.0,
+      "max": 90.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6accounting_oscillation_b2_20261102194357_01.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102195414_02.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102200430_03.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102201446_04.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102202503_05.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102203520_06.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102204536_07.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102205552_08.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102210609_09.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102211625_10.csv",
+          "value": 90.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "reroute_count_10min",
+      "unit": "count_per_10min",
+      "n_independent_runs": 10,
+      "mean": 90.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 90.0,
+      "ci95_t_high": 90.0,
+      "min": 90.0,
+      "max": 90.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6accounting_oscillation_b2_20261102194357_01.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102195414_02.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102200430_03.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102201446_04.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102202503_05.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102203520_06.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102204536_07.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102205552_08.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102210609_09.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102211625_10.csv",
+          "value": 90.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "restorations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 90.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 90.0,
+      "ci95_t_high": 90.0,
+      "min": 90.0,
+      "max": 90.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6accounting_oscillation_b2_20261102194357_01.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102195414_02.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102200430_03.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102201446_04.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102202503_05.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102203520_06.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102204536_07.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102205552_08.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102210609_09.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102211625_10.csv",
+          "value": 90.0
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "violations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 90.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 90.0,
+      "ci95_t_high": 90.0,
+      "min": 90.0,
+      "max": 90.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e6accounting_oscillation_b2_20261102194357_01.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102195414_02.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102200430_03.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102201446_04.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102202503_05.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102203520_06.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102204536_07.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102205552_08.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102210609_09.csv",
+          "value": 90.0
+        },
+        {
+          "file": "e6accounting_oscillation_b2_20261102211625_10.csv",
+          "value": 90.0
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [],
+  "runs": [
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102194357_01.csv",
+      "run_id": 1,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102195414_02.csv",
+      "run_id": 2,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102200430_03.csv",
+      "run_id": 3,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102201446_04.csv",
+      "run_id": 4,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102202503_05.csv",
+      "run_id": 5,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102203520_06.csv",
+      "run_id": 6,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102204536_07.csv",
+      "run_id": 7,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102205552_08.csv",
+      "run_id": 8,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102210609_09.csv",
+      "run_id": 9,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "e6accounting_oscillation_b2_20261102211625_10.csv",
+      "run_id": 10,
+      "values": {
+        "reroute_count_10min": 90.0,
+        "raw_reroute_count": 90.0,
+        "violations_emitted": 90.0,
+        "restorations_emitted": 90.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    }
+  ]
+}

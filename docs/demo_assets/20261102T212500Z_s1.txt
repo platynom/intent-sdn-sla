@@ -1,0 +1,24 @@
+Captured UTC: 20261102T212500Z
+Code revision: 23ef6b4d66f0cc7767b92ce0d04a68cfc74bb18d
+Tracked worktree diff SHA-256: fe73f421bf80bec464396c0c48063cbed0bfe7ea2d2bc1d3fbe7c93e8a853a02
+Command argv: ["bash", "-lc", "set -o pipefail; sed 's/\\r$//' experiments/scenarios/s1_single_intent.sh | bash -s -- "]
+Exit status: 0
+
+=== [1/6] Starting Ryu Controller ===
+=== [2/6] Starting M1 REST API ===
+=== [3/6] Starting Mininet Topology ===
+=== [4/6] Submitting Intent INT-001 ===
+PASS: Intent submitted successfully (HTTP 201)
+=== [5/6] Verification Checks ===
+PASS: Flow rules with cookie found on s1 (1 rules)
+PASS: 20 Mbps HTB queue attached to s1-eth2
+PASS: Traffic route traverses s2 (northern route s1-s2-s3-s7 verified)
+=== [6/6] Live Telemetry ===
+sample delay_ms=7.44475000010425 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=green event=none event_persisted_at=None
+sample delay_ms=6.245126000067103 jitter_ms=1.1996240000371472 loss_pct=0.0 throughput_mbps=0.0 status=amber event=none event_persisted_at=None
+sample delay_ms=6.664683000053628 jitter_ms=0.4195569999865256 loss_pct=0.0 throughput_mbps=0.00041542059267350674 status=amber event=none event_persisted_at=None
+sample delay_ms=6.319322000308603 jitter_ms=0.34536099974502577 loss_pct=0.0 throughput_mbps=0.00041554802272804136 status=red event=sla.violated event_persisted_at=1793654717.7228768
+sample delay_ms=16.019237000364228 jitter_ms=9.699915000055626 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+PASS: 5 live measurements persisted (4 complete samples)
+=== SCENARIO S1: ALL ST-1 THROUGH ST-6 CHECKS PASSED ===
+*** Cleaning up processes and Mininet state

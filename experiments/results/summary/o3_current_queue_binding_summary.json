@@ -1,0 +1,338 @@
+{
+  "description": "Current-code O3 bound queue using topology-derived egress capacity",
+  "summaries": [
+    {
+      "group": "bound",
+      "metric": "cross_traffic_loss_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 50.4972646,
+      "sample_stddev": 0.22458306519969148,
+      "ci95_t_low": 50.336618714953126,
+      "ci95_t_high": 50.65791048504688,
+      "min": 50.381561,
+      "max": 51.034216,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "o3current_queue_bound_20261031215033_01.csv",
+          "value": 50.424815
+        },
+        {
+          "file": "o3current_queue_bound_20261031215052_02.csv",
+          "value": 50.386974
+        },
+        {
+          "file": "o3current_queue_bound_20261031215112_03.csv",
+          "value": 50.389285
+        },
+        {
+          "file": "o3current_queue_bound_20261031215132_04.csv",
+          "value": 50.383873
+        },
+        {
+          "file": "o3current_queue_bound_20261031215151_05.csv",
+          "value": 50.381561
+        },
+        {
+          "file": "o3current_queue_bound_20261031215211_06.csv",
+          "value": 50.383106
+        },
+        {
+          "file": "o3current_queue_bound_20261031215231_07.csv",
+          "value": 50.403967
+        },
+        {
+          "file": "o3current_queue_bound_20261031215250_08.csv",
+          "value": 50.780116
+        },
+        {
+          "file": "o3current_queue_bound_20261031215310_09.csv",
+          "value": 50.404733
+        },
+        {
+          "file": "o3current_queue_bound_20261031215330_10.csv",
+          "value": 51.034216
+        }
+      ]
+    },
+    {
+      "group": "bound",
+      "metric": "cross_traffic_throughput_mbps",
+      "unit": "Mbps",
+      "n_independent_runs": 10,
+      "mean": 74.2399332,
+      "sample_stddev": 0.3367912193629101,
+      "ci95_t_low": 73.9990240136263,
+      "ci95_t_high": 74.4808423863737,
+      "min": 73.435709,
+      "max": 74.414247,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "o3current_queue_bound_20261031215033_01.csv",
+          "value": 74.348188
+        },
+        {
+          "file": "o3current_queue_bound_20261031215052_02.csv",
+          "value": 74.403402
+        },
+        {
+          "file": "o3current_queue_bound_20261031215112_03.csv",
+          "value": 74.402217
+        },
+        {
+          "file": "o3current_queue_bound_20261031215132_04.csv",
+          "value": 74.41132
+        },
+        {
+          "file": "o3current_queue_bound_20261031215151_05.csv",
+          "value": 74.414247
+        },
+        {
+          "file": "o3current_queue_bound_20261031215211_06.csv",
+          "value": 74.411737
+        },
+        {
+          "file": "o3current_queue_bound_20261031215231_07.csv",
+          "value": 74.378454
+        },
+        {
+          "file": "o3current_queue_bound_20261031215250_08.csv",
+          "value": 73.814191
+        },
+        {
+          "file": "o3current_queue_bound_20261031215310_09.csv",
+          "value": 74.379867
+        },
+        {
+          "file": "o3current_queue_bound_20261031215330_10.csv",
+          "value": 73.435709
+        }
+      ]
+    },
+    {
+      "group": "bound",
+      "metric": "intent_loss_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "o3current_queue_bound_20261031215033_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "o3current_queue_bound_20261031215052_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "o3current_queue_bound_20261031215112_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "o3current_queue_bound_20261031215132_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "o3current_queue_bound_20261031215151_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "o3current_queue_bound_20261031215211_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "o3current_queue_bound_20261031215231_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "o3current_queue_bound_20261031215250_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "o3current_queue_bound_20261031215310_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "o3current_queue_bound_20261031215330_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "bound",
+      "metric": "intent_throughput_mbps",
+      "unit": "Mbps",
+      "n_independent_runs": 10,
+      "mean": 24.9954535,
+      "sample_stddev": 0.00013066177711945357,
+      "ci95_t_low": 24.99536003668918,
+      "ci95_t_high": 24.99554696331082,
+      "min": 24.995295,
+      "max": 24.99578,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "o3current_queue_bound_20261031215033_01.csv",
+          "value": 24.99541
+        },
+        {
+          "file": "o3current_queue_bound_20261031215052_02.csv",
+          "value": 24.9954
+        },
+        {
+          "file": "o3current_queue_bound_20261031215112_03.csv",
+          "value": 24.99578
+        },
+        {
+          "file": "o3current_queue_bound_20261031215132_04.csv",
+          "value": 24.99548
+        },
+        {
+          "file": "o3current_queue_bound_20261031215151_05.csv",
+          "value": 24.99536
+        },
+        {
+          "file": "o3current_queue_bound_20261031215211_06.csv",
+          "value": 24.995415
+        },
+        {
+          "file": "o3current_queue_bound_20261031215231_07.csv",
+          "value": 24.995525
+        },
+        {
+          "file": "o3current_queue_bound_20261031215250_08.csv",
+          "value": 24.995295
+        },
+        {
+          "file": "o3current_queue_bound_20261031215310_09.csv",
+          "value": 24.99542
+        },
+        {
+          "file": "o3current_queue_bound_20261031215330_10.csv",
+          "value": 24.99545
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [],
+  "runs": [
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215033_01.csv",
+      "run_id": 1,
+      "values": {
+        "intent_throughput_mbps": 24.99541,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.348188,
+        "cross_traffic_loss_pct": 50.424815
+      }
+    },
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215052_02.csv",
+      "run_id": 2,
+      "values": {
+        "intent_throughput_mbps": 24.9954,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.403402,
+        "cross_traffic_loss_pct": 50.386974
+      }
+    },
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215112_03.csv",
+      "run_id": 3,
+      "values": {
+        "intent_throughput_mbps": 24.99578,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.402217,
+        "cross_traffic_loss_pct": 50.389285
+      }
+    },
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215132_04.csv",
+      "run_id": 4,
+      "values": {
+        "intent_throughput_mbps": 24.99548,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.41132,
+        "cross_traffic_loss_pct": 50.383873
+      }
+    },
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215151_05.csv",
+      "run_id": 5,
+      "values": {
+        "intent_throughput_mbps": 24.99536,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.414247,
+        "cross_traffic_loss_pct": 50.381561
+      }
+    },
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215211_06.csv",
+      "run_id": 6,
+      "values": {
+        "intent_throughput_mbps": 24.995415,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.411737,
+        "cross_traffic_loss_pct": 50.383106
+      }
+    },
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215231_07.csv",
+      "run_id": 7,
+      "values": {
+        "intent_throughput_mbps": 24.995525,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.378454,
+        "cross_traffic_loss_pct": 50.403967
+      }
+    },
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215250_08.csv",
+      "run_id": 8,
+      "values": {
+        "intent_throughput_mbps": 24.995295,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 73.814191,
+        "cross_traffic_loss_pct": 50.780116
+      }
+    },
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215310_09.csv",
+      "run_id": 9,
+      "values": {
+        "intent_throughput_mbps": 24.99542,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.379867,
+        "cross_traffic_loss_pct": 50.404733
+      }
+    },
+    {
+      "group": "bound",
+      "file": "o3current_queue_bound_20261031215330_10.csv",
+      "run_id": 10,
+      "values": {
+        "intent_throughput_mbps": 24.99545,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 73.435709,
+        "cross_traffic_loss_pct": 51.034216
+      }
+    }
+  ]
+}

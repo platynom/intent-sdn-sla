@@ -3,6 +3,14 @@
 Every architectural choice and its reasoning. This file is where viva answers come
 from. Append, never rewrite history.
 
+Compatibility correction (3 November 2026): ADR-001's historical explanation below
+incorrectly attributes removal of `ssl.wrap_socket` to Python 3.10. The removal
+occurred in Python 3.12, as documented in the official [Python release notes](https://docs.python.org/3.12/whatsnew/3.12.html#ssl).
+The evidence for this project's pin is its verified Python 3.9.25 / Ryu 4.34 /
+legacy dependency image. We have not validated every other interpreter and
+dependency combination and do not claim that all Python 3.10+ combinations fail
+for that reason. The original ADR text is retained as the historical record.
+
 ---
 
 ## ADR-001 - SDN controller: Ryu 4.34 on Python 3.9, inside Docker
@@ -88,3 +96,13 @@ planning and should not be presented as though they came from the plan.
 
 **Consequences.** If the pilot shows no measurable difference, E5 is demoted and the
 evaluation leans on E2, E3, E4 and E6, which Mininet represents faithfully.
+
+### Pilot result (25 Oct 2026)
+
+The corrected pilot created 2,000 distinct OpenFlow matches per trial and tested
+the documented OVS bridge `other-config:flow-limit` values 100, 500, 1,000, 2,000
+and 5,000, plus an unlimited control. OVS 2.17.12 retained all 2,000 rules in every
+trial (about 0.29–0.31 seconds per batch). The tested software-switch configuration
+therefore showed no measurable cap effect; this does not establish hardware TCAM
+capacity or behavior. The raw CSV is
+`experiments/results/raw/flow_table_pilot_20261025161825.csv`.

@@ -1,0 +1,422 @@
+{
+  "description": "E1 SLA violation duration (s) from first breach sample to first restored-compliance sample (B1 right-censored at 15 s fault window vs B3 closed-loop)",
+  "summaries": [
+    {
+      "group": "B1",
+      "metric": "right_censored",
+      "unit": "flag",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e1_violation_duration_b1_20261031202511_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202541_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202610_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202640_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202710_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202740_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202809_07.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202839_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202909_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202939_10.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "B1",
+      "metric": "sla_violation_duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 15.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 15.0,
+      "ci95_t_high": 15.0,
+      "min": 15.0,
+      "max": 15.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e1_violation_duration_b1_20261031202511_01.csv",
+          "value": 15.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202541_02.csv",
+          "value": 15.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202610_03.csv",
+          "value": 15.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202640_04.csv",
+          "value": 15.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202710_05.csv",
+          "value": 15.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202740_06.csv",
+          "value": 15.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202809_07.csv",
+          "value": 15.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202839_08.csv",
+          "value": 15.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202909_09.csv",
+          "value": 15.0
+        },
+        {
+          "file": "e1_violation_duration_b1_20261031202939_10.csv",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "right_censored",
+      "unit": "flag",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e1_violation_duration_b3_20261031203002_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203025_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203047_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203110_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203133_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203155_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203218_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203241_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203303_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203326_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "sla_violation_duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 3.0033518,
+      "sample_stddev": 0.0001947327513400222,
+      "ci95_t_low": 3.00321250625958,
+      "ci95_t_high": 3.00349109374042,
+      "min": 3.002933,
+      "max": 3.003607,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "e1_violation_duration_b3_20261031203002_01.csv",
+          "value": 3.003421
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203025_02.csv",
+          "value": 3.003401
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203047_03.csv",
+          "value": 3.003607
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203110_04.csv",
+          "value": 3.003585
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203133_05.csv",
+          "value": 3.003411
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203155_06.csv",
+          "value": 3.003302
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203218_07.csv",
+          "value": 3.003387
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203241_08.csv",
+          "value": 3.003285
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203303_09.csv",
+          "value": 3.002933
+        },
+        {
+          "file": "e1_violation_duration_b3_20261031203326_10.csv",
+          "value": 3.003186
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [
+    {
+      "metric": "sla_violation_duration_s",
+      "group_a": "B1",
+      "group_b": "B3",
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
+      "mean_diff": 11.9966482,
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
+    }
+  ],
+  "runs": [
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202511_01.csv",
+      "run_id": 1,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202541_02.csv",
+      "run_id": 2,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202610_03.csv",
+      "run_id": 3,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202640_04.csv",
+      "run_id": 4,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202710_05.csv",
+      "run_id": 5,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202740_06.csv",
+      "run_id": 6,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202809_07.csv",
+      "run_id": 7,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202839_08.csv",
+      "run_id": 8,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202909_09.csv",
+      "run_id": 9,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B1",
+      "file": "e1_violation_duration_b1_20261031202939_10.csv",
+      "run_id": 10,
+      "values": {
+        "sla_violation_duration_s": 15.0,
+        "right_censored": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203002_01.csv",
+      "run_id": 1,
+      "values": {
+        "sla_violation_duration_s": 3.003421,
+        "right_censored": 0.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203025_02.csv",
+      "run_id": 2,
+      "values": {
+        "sla_violation_duration_s": 3.003401,
+        "right_censored": 0.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203047_03.csv",
+      "run_id": 3,
+      "values": {
+        "sla_violation_duration_s": 3.003607,
+        "right_censored": 0.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203110_04.csv",
+      "run_id": 4,
+      "values": {
+        "sla_violation_duration_s": 3.003585,
+        "right_censored": 0.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203133_05.csv",
+      "run_id": 5,
+      "values": {
+        "sla_violation_duration_s": 3.003411,
+        "right_censored": 0.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203155_06.csv",
+      "run_id": 6,
+      "values": {
+        "sla_violation_duration_s": 3.003302,
+        "right_censored": 0.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203218_07.csv",
+      "run_id": 7,
+      "values": {
+        "sla_violation_duration_s": 3.003387,
+        "right_censored": 0.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203241_08.csv",
+      "run_id": 8,
+      "values": {
+        "sla_violation_duration_s": 3.003285,
+        "right_censored": 0.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203303_09.csv",
+      "run_id": 9,
+      "values": {
+        "sla_violation_duration_s": 3.002933,
+        "right_censored": 0.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "e1_violation_duration_b3_20261031203326_10.csv",
+      "run_id": 10,
+      "values": {
+        "sla_violation_duration_s": 3.003186,
+        "right_censored": 0.0
+      }
+    }
+  ]
+}

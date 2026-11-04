@@ -1,11 +1,19 @@
 __pycache__/
 *.py[cod]
 .venv/
+.venv39/
+.final_report_work/
+docs/specs/
 venv/
 .env
 *.db
+*.db-wal
+*.db-shm
+.fuse_hidden*
+*.bak
 *.sqlite3
 *.log
+!docs/demo_assets/e6_accounting/*.log
 .pytest_cache/
 .coverage
 htmlcov/
@@ -16,3 +24,5 @@ experiments/figures/*.pdf
 !experiments/figures/.gitkeep
 .DS_Store
 dist/*.zip
+*.zip
+*.bundle
