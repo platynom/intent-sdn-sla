@@ -179,7 +179,7 @@ Experiments run inside the Linux Docker image under WSL on the Windows host, usi
 
 The following tables are generated from registered summary files. They report measured means, sample deviations, and intervals rather than values transcribed into the builder. Historical baselines remain identified where current-code reruns are compared with them. The corrected E6 durable accounting series (n=10) is included alongside the retained oscillation series, verifying that each reroute matches an emitted durable violation event.
 """
-    text = text.replace("## 4 Implementation", profile_section() + "## 4 Implementation")
+    text = text.replace("## 4 Implementation", profile_section() + provenance_section() + "## 4 Implementation")
     blocks = [
         ("b0_baseline_summary_20261025.csv", {"throughput", "rtt_avg", "loss"}, "B0 static forwarding baseline"),
         ("b1_open_loop_20261025.csv", {"intent_post_response_latency"}, "B1 API response timing pilot"),
@@ -253,6 +253,43 @@ The project implements a reproducible intent-to-enforcement and measurement loop
 [5] M. Reitblatt, N. Foster, J. Rexford, C. Schlesinger, and D. Walker. Abstractions for Network Update. ACM SIGCOMM, 2012. DOI: 10.1145/2342356.2342427.
 
 [6] W. Zhou, D. Jin, J. Croft, M. Caesar, and P. B. Godfrey. Enforcing Customizable Consistency Properties in Software-Defined Networks. USENIX NSDI, 2015. https://www.usenix.org/conference/nsdi15/technical-sessions/presentation/zhou.
+"""
+    return text
+
+
+def provenance_section():
+    """Summarize the source-located register without changing measured results."""
+    facts = json.loads((ROOT / "docs/report_assets/parameter_provenance.json").read_text(encoding="utf-8"))
+    for relative, expected in facts["source_sha256"].items():
+        actual = hashlib.sha256((ROOT / relative).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        if actual != expected:
+            raise RuntimeError("Parameter register is stale; rerun docs/build_parameter_provenance.py")
+    text = "\n### 3.2 Parameter provenance and realism\n\n"
+    text += (f"The source-located register docs/PARAMETER_PROVENANCE.md records {facts['total']} configured parameter occurrences, including every ordinary scenario/demo intent field, service characteristics, runtime defaults and evaluation workloads. Counts are occurrences, not unique numbers. Papers motivate mechanisms but do not prescribe these numerical constants; configured settings are not measured field data. No experiments or parameters were changed for this audit.\n\n")
+    text += "| Source type | Rows | Basis | Qualification |\n|---|---|---|---|\n"
+    qualifications = {
+        "STANDARD": ("Pinned QoS catalogue", "Mapping remains project policy"),
+        "LITERATURE": ("Concepts only", "No numerical settings attributed"),
+        "MEASURED": ("No configured field data", "Measured results remain separate"),
+        "PROJECT PLAN": ("Specified link budgets", "Not real carrier measurements"),
+        "ENGINEERING CHOICE": ("Runtime and fixtures", "No optimal tuning claimed"),
+        "ASSUMPTION": ("Rates, share, inferred links", "Explicit and revisable"),
+    }
+    for kind, count in facts["counts"].items():
+        basis, caveat = qualifications[kind]
+        text += f"| {kind.replace('_', ' ')} | {count} | {basis} | {caveat} |\n"
+    text += """
+
+The custom UDP echo times send-to-reply at the source (runtime.py); probes.py and collector.py retain round-trip delay. RFC 7679 section 3.4 defines one-way delay; RFC 2681 section 2.4 defines round-trip delay. RFC 5357 sections 3-4 specify TWAMP control/test exchanges; our probe is not TWAMP. On symmetric paths only, RTT is approximately twice one-way delay plus endpoint overhead. Comparing RTT to the same field used for one-way planning effectively halves the permissible one-way budget. For default profile targets 1/2/2/20/20 ms this implies approximately 0.5/1/1/10/10 ms. The three delay-critical profiles remain infeasible. eMBB/mMTC middle-path planning at 15 ms can be feasible while its nominal 30 ms RTT breaches the unchanged 20 ms detector bound. Profile activation tests therefore establish forwarding, not delay compliance.
+
+For E1-E5's 35 ms latency field, a symmetric interpretation is 17.5 ms one-way. B3's 10% band enters above 38.5 ms RTT and recovers below 31.5 ms RTT, after smoothing and confirmation. E6's 22 ms bound has entry/recovery 24.2/19.8 ms RTT, equivalent to 12.1/9.9 ms one-way under symmetry. E1/E2 describe operational RTT-predicate duration/detection, not normalized one-way compliance. E3 control timings, E4 packet counts (synthetically triggered), E5 rule counts and E6 event accounting remain the recorded mechanism results. No numerical findings were recomputed or relabelled as standards compliance.
+
+ITU-T G.114 (05/2003), Annex A.1 Table A.1, gives a provisional optical-fibre planning value of 5 microseconds/km (Note 1). If entirely propagation, our 2/5/12 ms per-link settings imply 400/1000/2400 km; whole routes imply 1200/3000/4800 km. Netem may instead represent queuing, processing or deliberate stress. These are not measured metro spans. An assumed 10-100 km aggregation comparison would yield 0.05-0.5 ms propagation; an authoritative universal typical-span range was not verified. The topology is deliberately unsuitable for the selected 1-2 ms delay-critical transport targets.
+
+ITU-T Y.1541 (12/2011), clause 5.3 Tables 1-2, provides a closest-use comparator, not a normative 5QI mapping: real-time UDP uses class 0 for comparison (mean one-way IPTD 100 ms, IPDV 50 ms, IPLR 0.1%, IPER 0.01%); TCP transaction profiles use class 2 (100 ms, no IPDV objective, same loss/error bounds). Provisional class 6 (clause 5.3.7 Table 3) has 100 ms, 50 ms, IPLR 0.001%, IPER 0.0001%. Our URLLC/V2X delay/loss targets are numerically stricter than class 0; eMBB equals its loss bound; smart-grid equals provisional class 6 loss with stricter delay; mMTC is stricter than class 2 loss/delay. The register compares all scenario/demo/fixture targets individually. Some illustrative loss bounds, including S1's 0.5%, are looser than class 0. Our consecutive-RTT jitter is not Y.1541 quantile-minus-minimum IPDV; IPER is not assessed. The scope, statistics and observation intervals differ, so none establishes Y.1541 conformity.
+
+Detector alpha 0.3, 10% hysteresis, three confirmations and B3's 10 s dwell are engineering settings; B2 uses alpha 1, no band, one confirmation and no dwell. Their numeric optimality is unverified. The previously documented fixed 250 ms drain is not current code: controller.py computes max(100 ms, twice old planned delay plus 100 ms), nominally 112/130/148 ms. Reitblatt et al. [5], section 5 (PDF pp.7-8), motivate versioning and draining, not this number. It is not a proven WAN packet-lifetime bound. E1's 15 s is an analysis censor, not a timed removal of the physical fault; E5's executable poll target is 40 ms despite a stale 20 ms comment. S6 overrides middle egresses to 2.5 ms and deliberately uses fast 0.2 ms resets. The full register gives exact source lines, fault replacement magnitudes, schedules, standards URLs, source hashes and honest unverified items.
+
 """
     return text
 

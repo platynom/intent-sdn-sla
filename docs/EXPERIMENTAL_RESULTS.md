@@ -44,7 +44,7 @@ All live network experiments were executed inside the project's privileged Docke
 | **E2 Detection Latency** | `B3` | 10 | 2104.262 | 3.994 | `[2101.405, 2107.119]` | `ms` | 3-sample confirmation at 1 Hz ($\sim 2.0\text{ s}$) |
 | **E3 Recovery Time** | `B2` | 10 | 279.355 | 70.552 | `[228.889, 329.821]` | `ms` | Event persisted $\to$ new path installed |
 | **E3 Recovery Time** | `B2_matched_detector` | 10 | 467.711 | 59.878 | `[424.880, 510.542]` | `ms` | Direct (`relaxed`) install after 3rd sample |
-| **E3 Recovery Time** | `B3` | 10 | 618.535 | 82.519 | `[559.508, 677.561]` | `ms` | Includes 250 ms two-phase drain + barriers |
+| **E3 Recovery Time** | `B3` | 10 | 618.535 | 82.519 | `[559.508, 677.561]` | `ms` | Includes versioned update/drain + barriers; fixed 250 ms description corrected in PARAMETER_PROVENANCE.md |
 | **E4 Reconfig Packet Loss (Headline)** | `B2` (`relaxed`) | 10 | 42.000 | 0.000 | `[42.000, 42.000]` | `packets` | 1,000 pkt/s UDP stream across switchover |
 | **E4 Reconfig Packet Loss (Headline)** | `B3` (`strict`) | 10 | 0.000 | 0.000 | `[0.000, 0.000]` | `packets` | Zero packets dropped across all 10 runs |
 | **E4 Reconfig Packet Reordering** | `B2` (`relaxed`) | 10 | 0.000 | 0.000 | `[0.000, 0.000]` | `packets` | In-flight packets dropped rather than reordered |
@@ -81,7 +81,7 @@ All live network experiments were executed inside the project's privileged Docke
 |---|---|---:|---:|---:|---:|---|
 | **E2 Detection Latency (ms)** | `B2` vs `B3` | $-2004.795\text{ ms}$ | $-1053.949$ | $17.75$ | $5.01 \times 10^{-44}$ | `B3` adds $2.0\text{ s}$ for 3-sample confirmation at 1 Hz |
 | **E2 Detection Latency (ms)** | `B2_matched_detector` vs `B3` | $+12.583\text{ ms}$ | $+2.846$ | $10.59$ | $0.0165$ | Same detector profile ($\sim 2.1\text{ s}$ in both) |
-| **E3 Recovery Time (ms)** | `B2` vs `B3` | $-339.180\text{ ms}$ | $-9.879$ | $17.58$ | $1.35 \times 10^{-8}$ | `B3` slower due to 250 ms drain + barriers |
+| **E3 Recovery Time (ms)** | `B2` vs `B3` | $-339.180\text{ ms}$ | $-9.879$ | $17.58$ | $1.35 \times 10^{-8}$ | `B3` includes versioned staging/drain + barriers; no fixed 250 ms attribution established |
 | **E3 Recovery Time (ms)** | `B2_matched_detector` vs `B3` | $-150.824\text{ ms}$ | $-4.678$ | $16.42$ | $2.36 \times 10^{-4}$ | Isolates two-phase update overhead ($\sim 151\text{ ms}$) |
 | **E4 Packets Lost (packets)** | `B2` vs `B3` (current code) | $+41.000\text{ pkts}$ | n/a (exact test; $s_{B3}=0$) | n/a | $1.08 \times 10^{-5}$ (exact two-sided permutation) | `B2` loses 37–43 pkts/run; `B3` loses 0 in all 10 runs |
 | **E4 Packets Reordered (packets)** | `B2` vs `B3` (current code) | $-28.000\text{ pkts}$ | n/a (exact test; $s_A=s_B=0$) | n/a | $1.08 \times 10^{-5}$ (exact two-sided permutation) | `B3` delivers the 28 in-flight packets out of order instead of dropping them |

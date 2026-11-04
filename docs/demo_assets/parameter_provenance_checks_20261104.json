@@ -1,0 +1,46 @@
+{
+  "captured_utc": "2026-11-04T08:09:42.591932+00:00",
+  "host_pytest": {
+    "command": "python -m pytest tests -q -o faulthandler_timeout=60",
+    "exit_code": 0,
+    "terminal_summary": "316 passed, 3 warnings in 10.25s",
+    "note": "Sandboxed attempt stalled and was interrupted; complete rerun outside sandbox passed."
+  },
+  "container_pytest": {
+    "exit_code": 1,
+    "output": "Catastrophic failure\nError code: Wsl/Service/CreateInstance/E_UNEXPECTED",
+    "verification": "could not verify; historical 305 passed / 11 skipped is not a fresh run"
+  },
+  "ruff": {
+    "argv": [
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "topology",
+      "experiments"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "summaries": {
+    "argv": [
+      "python",
+      "experiments/verify_summaries.py"
+    ],
+    "exit_code": 0,
+    "stdout": "summary verification passed: raw CSVs, summaries, and public result claims agree\n",
+    "stderr": ""
+  },
+  "manifest": {
+    "argv": [
+      "python",
+      "experiments/artifact_manifest.py",
+      "verify"
+    ],
+    "exit_code": 0,
+    "stdout": "manifest verification passed: 355 artifacts (LF-canonical text; verbatim binaries)\n",
+    "stderr": ""
+  }
+}

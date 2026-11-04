@@ -1,5 +1,35 @@
 # Final integration and service-profile checkpoint - 3 November 2026
 
+## Parameter provenance follow-up - 4 November 2026
+
+Done: PARAMETER_PROVENANCE.md now contains 566 source-located parameter occurrences:
+36 STANDARD, 13 PROJECT PLAN, 509 ENGINEERING CHOICE, 8 ASSUMPTION;
+LITERATURE and MEASURED are both zero because papers motivate mechanisms and
+configured settings are not field measurements. Official Y.1541 (12/2011), G.114
+(05/2003), RFCs 7679/2681/5357 and all six local papers were opened. Source hashes
+are retained in docs/report_assets/parameter_sources.json. Typical metro span
+statistics, optimal detector tuning and general WAN drain sufficiency remain
+NOT VERIFIED. No experiment was rerun; no raw file, runtime parameter, test,
+topology or frozen schema changed.
+
+The report has a provenance/realism subsection, was rebuilt and exported through
+Word, and all 18 pages were visually inspected. Cover identities are unchanged.
+Viva Q&A now has 51 questions. Older fixed-250-ms statements were corrected:
+current code computes max(100 ms, twice old planned delay plus 100 ms). Y.1541
+comparators are interpretive, not compliance mappings. RTT/one-way consequences
+are enumerated without changing numerical results.
+
+Fresh checks: host 316 passed, 3 warnings (10.25 s); Ruff exit 0; summaries exit 0;
+manifest 355 artifacts, zero mismatches. The sandboxed host attempt stalled and
+was interrupted; the complete host rerun outside the sandbox passed. Container
+verification could not run: WSL returned Wsl/Service/CreateInstance/E_UNEXPECTED.
+The earlier 305 passed / 11 skipped count below is historical. Actual current
+verification details: docs/demo_assets/parameter_provenance_checks_20261104.json.
+
+Next publication command: `git push -u origin feat/final-integration`. If GitHub
+still denies access, refresh the authorized ../SDN_final_integration.bundle and
+timestamped document/figure ZIP; never change permissions or force-push.
+
 ## Current state
 
 Repository: SDN. Branch: feat/final-integration. This replaces the earlier stale

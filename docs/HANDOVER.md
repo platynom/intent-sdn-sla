@@ -68,5 +68,5 @@ cd SDN
 
 1. All experiments run in containerized Mininet + Open vSwitch 2.17.12 on a single laptop, not physical ASIC switch hardware or a 5G RAN.
 2. Topology is fixed at 7 switches and 8 hosts; links `s3-s7` and `s6-s7` are marked `inferred` in `topology/topology_spec.py`.
-3. The 250 ms two-phase drain window is calibrated for this emulated topology, not a general WAN delay bound.
+3. Current two-phase drain is max(100 ms, twice old planned one-way delay plus 100 ms); the earlier fixed 250 ms description was stale. This is not a general WAN lifetime bound. See PARAMETER_PROVENANCE.md.
 4. For `E6`, $n=10$ ten-minute live runs per baseline (200 minutes total runtime) were executed.

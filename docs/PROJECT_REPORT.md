@@ -76,7 +76,7 @@ Full tables, Welch two-sample $t$-tests, and figures (`experiments/figures/*.{pn
 
 1. **Software emulation**: Mininet `TCLink` (`htb` + `netem`) and Open vSwitch 2.17.12 run inside a single Linux container; software flow tables do not exhibit hardware TCAM exhaustion (confirmed by the 2,000-rule OVS flow-limit pilot).
 2. **Fixed topology and inferred links**: The 7-switch topology has only 3 link-disjoint routes between `h1` and `h2`, and links `s3-s7` and `s6-s7` are marked `inferred`.
-3. **Drain window**: The 250 ms two-phase drain window is sized for this emulated topology, not a WAN worst-case flight-time bound.
+3. **Drain window**: Current code computes max(100 ms, twice old planned one-way delay plus 100 ms), not a fixed 250 ms. This is an emulation assumption, not a WAN packet-lifetime proof; see PARAMETER_PROVENANCE.md.
 4. **Sample size on E6**: `E6` was evaluated with $n=10$ independent 10-minute runs per baseline (200 minutes total live execution), matching the other metrics' minimum sample size.
 
 ## References
