@@ -1,13 +1,19 @@
 # Intent-Based SDN for 5G SLA Enforcement
 
-[Continue from the latest project checkpoint](README_CONTINUE.md) — read order,
-Python/Docker setup, current status, and next steps for a new contributor.
+This project implements and evaluates an intent-based SDN service-assurance system: an operator submits a structured bandwidth, latency and loss requirement; the system validates it, checks capacity, selects a path, installs OpenFlow rules and HTB queues, measures traffic, and responds to confirmed violations. It runs on a live Mininet/Open vSwitch software datapath in Docker and uses established methods; it is not a physical 5G deployment or a claim of standards compliance.
 
-Write down a service promise. The system installs it on the network, measures whether
-it is being kept, and re-plans automatically when it is not — on one laptop.
+**Final report:** [docs/FINAL_REPORT.pdf](docs/FINAL_REPORT.pdf) (18 pages).
+**Team 16:** Tanmaya Kumar, Srikanth Dinesh, Dheepak K.
+**Design evidence:** [Parameter provenance](docs/PARAMETER_PROVENANCE.md) and [service profiles](docs/SERVICE_PROFILES.md).
+[Contributor checkpoint and setup](README_CONTINUE.md).
+
+### Quick start
+
+Use a Linux Docker engine (WSL2 on Windows). The dashboard is at **http://localhost:8080**; its seeded demo samples are labelled simulated. Live Mininet scenarios run separately inside the SDN container.
 
 ```bash
-git clone --branch feat/final-integration https://github.com/5rikanth/SDN.git && cd SDN
+git clone --branch feat/final-integration https://github.com/platynom/intent-sdn-sla.git
+cd intent-sdn-sla
 docker compose up --build -d          # pinned Mininet + OVS + Ryu
 docker compose exec sdn make demo     # topology, controller, one URLLC intent
 ```
@@ -22,6 +28,21 @@ intent only when no samples already exist; these values are simulated, not live 
 measurements. Once real collector readings are available, charts show live readings
 instead of mixing them with demo samples. The internal M1 API is not published to the
 host; the dashboard remains read-only.
+
+## Headline measurements
+
+Generated from the linked summary CSVs; each row has ten runs. E4 also has exact permutation comparisons. These are emulation results using illustrative evaluation intents; runtime delay is RTT while planning uses one-way delay.
+
+| Measurement | n | Mean | 95% t confidence interval | Unit | Source |
+|---|---|---|---|---|---|
+| Current B3 detection | 10 | 2115.940 | [2108.734, 2123.145] | ms | [b3_current_closed_loop_summary.csv](experiments/results/summary/b3_current_closed_loop_summary.csv) |
+| Current B3 recovery | 10 | 537.853 | [446.416, 629.289] | ms | [b3_current_closed_loop_summary.csv](experiments/results/summary/b3_current_closed_loop_summary.csv) |
+| Current E4 B2 packets lost | 10 | 41.000 | [39.455, 42.545] | packets | [e4_current_packet_loss_summary.csv](experiments/results/summary/e4_current_packet_loss_summary.csv) |
+| Current E4 B3 packets lost | 10 | 0.000 | [0.000, 0.000] | packets | [e4_current_packet_loss_summary.csv](experiments/results/summary/e4_current_packet_loss_summary.csv) |
+| Current E4 B3 packets reordered | 10 | 28.000 | [28.000, 28.000] | packets | [e4_current_packet_loss_summary.csv](experiments/results/summary/e4_current_packet_loss_summary.csv) |
+| Current O3 protected throughput | 10 | 24.995 | [24.995, 24.996] | Mbps | [o3_current_queue_binding_summary.csv](experiments/results/summary/o3_current_queue_binding_summary.csv) |
+
+See [experimental results](docs/EXPERIMENTAL_RESULTS.md) for E1-E8, exact tests, historical/current-code distinctions and limitations.
 
 ---
 
