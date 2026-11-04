@@ -1,5 +1,45 @@
 # Final integration and service-profile checkpoint - 3 November 2026
 
+## Publication to the owner's repository - 4 November 2026
+
+Publication destination is now https://github.com/platynom/intent-sdn-sla, PUBLIC,
+default branch main. The mine remote points there; origin remains unchanged at
+5rikanth/SDN and must not be used for this publication. The older origin-blocker
+entries below are historical and their next-command instructions are superseded.
+
+Published branch: feat/final-integration. Pull request into main:
+https://github.com/platynom/intent-sdn-sla/pull/1
+
+The target's inspected main head was 2eb365f2ce70e2eedd7cebec53c30c1571477bfb,
+also the common ancestor with this branch. Branch protection returned HTTP 404
+(none), and repository rulesets were empty. The PR has no merge conflicts.
+
+Pre-push scan: two local handoff archives were untracked in 0381194; both local
+copies remain. No forbidden artifacts, secret candidates or phone-number
+candidates remain tracked. Largest tracked file and largest historical blob:
+docs/FINAL_REPORT.docx, 2,834,172 bytes; no blob exceeds 50 MB. README presentation
+commit c430c06 adds the report, team, provenance/profile links, target clone URL,
+quick start and six headline rows generated from existing summary CSVs. Summary
+verification exits 0; artifact manifest still verifies 355 entries with no mismatch.
+
+The branch push succeeded. Merge is BLOCKED by CI; no merge commit exists.
+Actual push CI run: https://github.com/platynom/intent-sdn-sla/actions/runs/41834262018
+Lint passed. Unit tests: 1 failed, 305 passed, 10 skipped in 12.00 s.
+Failure: tests/test_profiles.py::test_original_intent_handler_is_unchanged_from_baseline.
+The test executes `git show 73e6b57:src/intent_manager/api.py`; actions/checkout@v4
+uses its default shallow fetch, so Git reports `fatal: invalid object name '73e6b57'`.
+The dependent image-build job was skipped. The local full-history suite previously
+passed 316 tests; that does not replace the failing GitHub check.
+
+Per the publication instruction, leave PR #1 open. Do not weaken/skip the test,
+force-push, rewrite history, modify visibility, add collaborators or merge around
+the failed check. Next work, if authorized: configure the CI checkout to fetch the
+baseline history (for example fetch-depth: 0), rerun CI, then inspect all checks
+before `gh pr merge 1 --repo platynom/intent-sdn-sla --merge`.
+
+Owner-only optional teammate command (not executed):
+`gh api -X PUT repos/platynom/intent-sdn-sla/collaborators/<username> -f permission=push`
+
 ## Parameter provenance follow-up - 4 November 2026
 
 Done: PARAMETER_PROVENANCE.md now contains 566 source-located parameter occurrences:
