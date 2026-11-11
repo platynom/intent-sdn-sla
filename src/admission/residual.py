@@ -25,6 +25,12 @@ def residual_graph(
     ``bw_mbps`` field is retained for PathPlan reporting.
     """
     result = (graph if graph is not None else build_graph()).copy()
+    down = dbm.down_links(conn)
+    for u, v, data in list(result.edges(data=True)):
+        link_name = PathPlan.links_for([u, v])[0]
+        if link_name in down or data.get("up", True) is False:
+            result.remove_edge(u, v)
+
     excluded = set(exclude_intent_ids or ())
     if exclude_intent_id is not None:
         excluded.add(exclude_intent_id)
@@ -32,7 +38,7 @@ def residual_graph(
     for rec in dbm.active_intents(conn):
         if rec.id in excluded:
             continue
-        amount = float(rec.guarantee.min_bandwidth_mbps or 0.0)
+        amount = dbm.effective_min_bandwidth_mbps(conn, rec)
         if amount <= 0:
             continue
         plan = dbm.current_path(conn, rec.id)

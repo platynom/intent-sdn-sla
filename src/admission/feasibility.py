@@ -3,13 +3,23 @@
 from __future__ import annotations
 
 import sqlite3
-from typing import Optional, Tuple
+import time
+from typing import List, Optional, Tuple
 
 import networkx as nx
 
 from src.admission.residual import residual_graph, tenant_paths
 from src.common import db as dbm
-from src.common.models import AdmissionDecision, IntentRecord, PathPlan, Verdict
+from src.common.events import Event, EventBus, EventType, Severity
+from src.common.models import (
+    AdmissionDecision,
+    Consistency,
+    IntentRecord,
+    IntentState,
+    PathPlan,
+    Verdict,
+)
+from src.enforcement import two_phase
 from src.pathing.compute import compute_path
 
 
@@ -58,3 +68,65 @@ def assess(
         intent.id, Verdict.REJECT,
         f"Rejected: no path satisfies the requested guarantees. {detail}".strip(),
     ), None
+
+
+def reconcile_preempted_intents(
+    conn: sqlite3.Connection,
+    graph: Optional[nx.Graph] = None,
+    event_bus: Optional[EventBus] = None,
+) -> List[Tuple[IntentRecord, AdmissionDecision, Optional[PathPlan]]]:
+    """Re-run admission for preempted intents in priority order when capacity frees up (M2)."""
+    rows = conn.execute(
+        "SELECT * FROM intents WHERE state = 'preempted' "
+        "ORDER BY priority ASC, created_at ASC, id ASC"
+    ).fetchall()
+    outcomes: List[Tuple[IntentRecord, AdmissionDecision, Optional[PathPlan]]] = []
+    for row in rows:
+        rec = dbm._row_to_intent(row)
+        available = residual_graph(conn, graph, exclude_intent_ids={rec.id})
+        plan, reasons = compute_path(
+            rec, available, tenant_paths(conn, exclude_intent_ids={rec.id})
+        )
+        if plan is not None:
+            decision = AdmissionDecision(
+                rec.id,
+                Verdict.ADMIT,
+                f"Re-admitted preempted intent {rec.id} after capacity became available.",
+            )
+            if rec.consistency is Consistency.STRICT:
+                old_plan = dbm.current_path(conn, rec.id)
+                plan = two_phase.with_version(plan, two_phase.next_version(old_plan))
+            rec.state = IntentState.ADMITTED
+            rec.updated_at = time.time()
+            rec.current_path = plan
+            dbm.save_intent(conn, rec)
+            dbm.save_path(conn, plan)
+            ev = Event(
+                type=EventType.ADMISSION_DECIDED,
+                intent_id=rec.id,
+                message=decision.reason,
+                payload={"verdict": decision.verdict.value, "reason": decision.reason, "readmitted": True},
+            )
+            dbm.save_event(conn, ev)
+            if event_bus is not None:
+                event_bus.publish(ev)
+            outcomes.append((rec, decision, plan))
+        else:
+            detail = "; ".join(f"{p}: {r}" for p, r in sorted(reasons.items()))
+            decision = AdmissionDecision(
+                rec.id,
+                Verdict.REJECT,
+                f"Re-admission deferred for preempted intent {rec.id}: {detail}".strip(),
+            )
+            ev = Event(
+                type=EventType.ADMISSION_DECIDED,
+                intent_id=rec.id,
+                severity=Severity.WARNING,
+                message=decision.reason,
+                payload={"verdict": decision.verdict.value, "reason": decision.reason, "readmitted": False},
+            )
+            dbm.save_event(conn, ev)
+            if event_bus is not None:
+                event_bus.publish(ev)
+            outcomes.append((rec, decision, None))
+    return outcomes

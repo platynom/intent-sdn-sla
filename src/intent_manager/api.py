@@ -21,8 +21,8 @@ from src.common.events import Event, EventBus, EventType
 from src.common.models import (
     AdmissionDecision, Consistency, IntentRecord, IntentState, Verdict, to_dict,
 )
-from src.enforcement import two_phase
-from src.admission.feasibility import assess
+from src.enforcement import queues, two_phase
+from src.admission.feasibility import assess, reconcile_preempted_intents
 from src.intent_manager.validator import matches_overlap, validate
 from src.intent_manager.profiles import build_intent, check_against_profile, list_profiles
 from src.pathing.compute import compute_path
@@ -198,6 +198,7 @@ async def create_intent(
 
 
 _baseline_create_intent = create_intent
+_MAX_POST_BODY_BYTES = 64 * 1024
 _LIVE_CONFLICT_STATES = (
     IntentState.PENDING.value,
     IntentState.ADMITTED.value,
@@ -206,13 +207,63 @@ _LIVE_CONFLICT_STATES = (
 )
 
 
+def _configured_api_tokens() -> Dict[str, str]:
+    """Parse TEAM16_API_TOKENS ('tenant=token,...') into a token -> tenant lookup."""
+    raw = os.environ.get("TEAM16_API_TOKENS", "").strip()
+    if not raw:
+        return {}
+    token_to_tenant: Dict[str, str] = {}
+    for entry in raw.replace(";", ",").split(","):
+        item = entry.strip()
+        if not item or "=" not in item:
+            continue
+        tenant, token = item.split("=", 1)
+        tenant = tenant.strip()
+        token = token.strip()
+        if tenant and token:
+            token_to_tenant[token] = tenant
+    return token_to_tenant
+
+
+def _authenticate_bearer(request: Request) -> str | None:
+    """Return authenticated tenant when TEAM16_API_TOKENS is set, or raise/return None."""
+    tokens = _configured_api_tokens()
+    if not tokens:
+        return None
+    auth = request.headers.get("authorization", "") if hasattr(request, "headers") else ""
+    if not auth.lower().startswith("bearer "):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Missing Authorization Bearer token.",
+        )
+    token = auth[7:].strip()
+    tenant = tokens.get(token)
+    if tenant is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid Authorization Bearer token.",
+        )
+    return tenant
+
+
 async def _guarded_create_intent(
     request: Request,
     conn: sqlite3.Connection = Depends(get_db),
 ):
-    """Enforce duplicate-ID (D6) and overlapping-match (D5) checks before baseline create_intent."""
-    content_type = request.headers.get("content-type", "")
+    """Enforce body size (P8), Bearer auth (M3), duplicate-ID (D6), and match overlap (D5)."""
     body_bytes = await request.body()
+    if len(body_bytes) > _MAX_POST_BODY_BYTES:
+        return JSONResponse(
+            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            content={"detail": f"Request body exceeds {_MAX_POST_BODY_BYTES} byte (64 KiB) limit."},
+        )
+
+    try:
+        authed_tenant = _authenticate_bearer(request)
+    except HTTPException as exc:
+        return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+
+    content_type = request.headers.get("content-type", "")
     try:
         body_str = body_bytes.decode("utf-8")
     except Exception:
@@ -238,6 +289,16 @@ async def _guarded_create_intent(
         return await _baseline_create_intent(request, conn)
 
     rec = IntentRecord.from_document({"intent": result.intent})
+    if authed_tenant is not None and rec.tenant != authed_tenant:
+        return JSONResponse(
+            status_code=status.HTTP_403_FORBIDDEN,
+            content={
+                "detail": (
+                    f"Authenticated tenant '{authed_tenant}' is not permitted "
+                    f"to create intents for tenant '{rec.tenant}'."
+                )
+            },
+        )
 
     # D6: Reject overwriting any existing intent unless it is withdrawn or rejected.
     existing = dbm.load_intent(conn, rec.id)
@@ -286,7 +347,15 @@ async def _guarded_create_intent(
                     },
                 )
 
-    return await _baseline_create_intent(request, conn)
+    resp = await _baseline_create_intent(request, conn)
+    try:
+        payload = json.loads(resp.body)
+        preempted_victim = payload.get("preempted_intent_id")
+        if preempted_victim:
+            queues.remove_intent_queues(conn, str(preempted_victim), ignore_errors=True)
+    except Exception:
+        pass
+    return resp
 
 
 create_intent = _guarded_create_intent
@@ -323,23 +392,36 @@ def get_intent(intent_id: str, conn: sqlite3.Connection = Depends(get_db)) -> Di
 
 
 @app.delete("/intent/{intent_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_intent(intent_id: str, conn: sqlite3.Connection = Depends(get_db)):
-    """Withdraw an intent. Sets state to WITHDRAWN and emits INTENT_WITHDRAWN."""
+def delete_intent(
+    intent_id: str,
+    request: Request = None,  # type: ignore[assignment]
+    conn: sqlite3.Connection = Depends(get_db),
+):
+    """Withdraw an intent. Sets state to WITHDRAWN, emits INTENT_WITHDRAWN, and triggers M2 re-admission."""
+    authed_tenant = _authenticate_bearer(request) if request is not None else None
     rec = dbm.load_intent(conn, intent_id)
     if rec is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Intent {intent_id} not found")
+    if authed_tenant is not None and rec.tenant != authed_tenant:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=f"Authenticated tenant '{authed_tenant}' cannot withdraw intent owned by '{rec.tenant}'.",
+        )
 
     rec.state = IntentState.WITHDRAWN
     dbm.save_intent(conn, rec)
+    dbm.clear_degraded_rate(conn, intent_id)
+    queues.remove_intent_queues(conn, intent_id, ignore_errors=True)
 
-    event_bus.publish(
-        Event(
-            type=EventType.INTENT_WITHDRAWN,
-            intent_id=intent_id,
-            message=f"Intent {intent_id} withdrawn",
-            payload={"intent_id": intent_id},
-        )
+    withdrawn_event = Event(
+        type=EventType.INTENT_WITHDRAWN,
+        intent_id=intent_id,
+        message=f"Intent {intent_id} withdrawn",
+        payload={"intent_id": intent_id},
     )
+    dbm.save_event(conn, withdrawn_event)
+    event_bus.publish(withdrawn_event)
+    reconcile_preempted_intents(conn, build_graph(), event_bus)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
@@ -375,7 +457,12 @@ async def create_from_profile(request: Request, conn: sqlite3.Connection = Depen
                 "more_body": False}
 
     scope = dict(request.scope)
-    scope["headers"] = [(b"content-type", b"application/json")]
+    preserved_headers = [
+        (k, v)
+        for k, v in request.scope.get("headers", [])
+        if k.lower() not in (b"content-type", b"content-length")
+    ]
+    scope["headers"] = [(b"content-type", b"application/json"), *preserved_headers]
     generated_request = Request(scope, receive)
     response = await create_intent(generated_request, conn)
     decision = json.loads(response.body)
