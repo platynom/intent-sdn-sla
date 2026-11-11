@@ -222,3 +222,60 @@ def validate_file(path: str | Path) -> ValidationResult:
             ok=False, errors=[ValidationError("(file)", str(exc), "schema")]
         )
     return validate_yaml(text)
+
+
+def _match_tuple(match_obj: Any) -> tuple[str, str, str, int | None]:
+    if isinstance(match_obj, dict):
+        return (
+            str(match_obj["src"]),
+            str(match_obj["dst"]),
+            str(match_obj.get("proto", "any")).lower(),
+            int(match_obj["dport"]) if match_obj.get("dport") is not None else None,
+        )
+    return (
+        str(match_obj.src),
+        str(match_obj.dst),
+        str(match_obj.proto).lower(),
+        int(match_obj.dport) if match_obj.dport is not None else None,
+    )
+
+
+def _flow_tuples(match_obj: Any) -> tuple[
+    tuple[ipaddress.IPv4Network, ipaddress.IPv4Network, str, int | None, int | None],
+    tuple[ipaddress.IPv4Network, ipaddress.IPv4Network, str, int | None, int | None],
+]:
+    src_str, dst_str, proto, dport = _match_tuple(match_obj)
+    src_net = ipaddress.ip_network(src_str, strict=False)
+    dst_net = ipaddress.ip_network(dst_str, strict=False)
+    forward = (src_net, dst_net, proto, None, dport)
+    reverse = (dst_net, src_net, proto, dport, None)
+    return forward, reverse
+
+
+def _directional_overlap(
+    a: tuple[ipaddress.IPv4Network, ipaddress.IPv4Network, str, int | None, int | None],
+    b: tuple[ipaddress.IPv4Network, ipaddress.IPv4Network, str, int | None, int | None],
+) -> bool:
+    src_a, dst_a, proto_a, sport_a, dport_a = a
+    src_b, dst_b, proto_b, sport_b, dport_b = b
+    if not src_a.overlaps(src_b) or not dst_a.overlaps(dst_b):
+        return False
+    if proto_a != "any" and proto_b != "any" and proto_a != proto_b:
+        return False
+    if sport_a is not None and sport_b is not None and sport_a != sport_b:
+        return False
+    if dport_a is not None and dport_b is not None and dport_a != dport_b:
+        return False
+    return True
+
+
+def matches_overlap(first: Any, second: Any) -> bool:
+    """Return True if two Match specs produce overlapping forward or reverse flow matches."""
+    f1, r1 = _flow_tuples(first)
+    f2, r2 = _flow_tuples(second)
+    return (
+        _directional_overlap(f1, f2)
+        or _directional_overlap(r1, r2)
+        or _directional_overlap(f1, r2)
+        or _directional_overlap(r1, f2)
+    )

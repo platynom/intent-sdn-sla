@@ -23,7 +23,7 @@ from src.common.models import (
 )
 from src.enforcement import two_phase
 from src.admission.feasibility import assess
-from src.intent_manager.validator import validate
+from src.intent_manager.validator import matches_overlap, validate
 from src.intent_manager.profiles import build_intent, check_against_profile, list_profiles
 from src.pathing.compute import compute_path
 from topology.topology_spec import build_graph
@@ -195,6 +195,105 @@ async def create_intent(
         )
 
     return JSONResponse(status_code=status.HTTP_201_CREATED, content=response_data)
+
+
+_baseline_create_intent = create_intent
+_LIVE_CONFLICT_STATES = (
+    IntentState.PENDING.value,
+    IntentState.ADMITTED.value,
+    IntentState.ACTIVE.value,
+    IntentState.DEGRADED.value,
+)
+
+
+async def _guarded_create_intent(
+    request: Request,
+    conn: sqlite3.Connection = Depends(get_db),
+):
+    """Enforce duplicate-ID (D6) and overlapping-match (D5) checks before baseline create_intent."""
+    content_type = request.headers.get("content-type", "")
+    body_bytes = await request.body()
+    try:
+        body_str = body_bytes.decode("utf-8")
+    except Exception:
+        return await _baseline_create_intent(request, conn)
+
+    doc: Any = None
+    if "application/json" in content_type:
+        try:
+            doc = await request.json()
+        except Exception:
+            try:
+                doc = yaml.safe_load(body_str)
+            except Exception:
+                doc = body_str
+    else:
+        try:
+            doc = yaml.safe_load(body_str)
+        except Exception:
+            return await _baseline_create_intent(request, conn)
+
+    result = validate(doc)
+    if not result.ok:
+        return await _baseline_create_intent(request, conn)
+
+    rec = IntentRecord.from_document({"intent": result.intent})
+
+    # D6: Reject overwriting any existing intent unless it is withdrawn or rejected.
+    existing = dbm.load_intent(conn, rec.id)
+    if existing is not None:
+        if existing.state not in (IntentState.WITHDRAWN, IntentState.REJECTED):
+            return JSONResponse(
+                status_code=status.HTTP_409_CONFLICT,
+                content={
+                    "detail": (
+                        f"Intent {rec.id} already exists in state '{existing.state.value}'; "
+                        "updating a live intent is not supported."
+                    )
+                },
+            )
+        # Clear any old path rows so a re-created withdrawn/rejected intent never self-conflicts.
+        conn.execute("DELETE FROM paths WHERE intent_id = ?", (rec.id,))
+        conn.commit()
+
+    # D5: Reject identical or overlapping forward/reverse flow match with live intents.
+    if os.environ.get("TEAM16_EXPERIMENT_MODE", "").lower() != "b2":
+        placeholders = ",".join("?" for _ in _LIVE_CONFLICT_STATES)
+        rows = conn.execute(
+            f"SELECT * FROM intents WHERE id != ? AND state IN ({placeholders}) ORDER BY created_at ASC",
+            (rec.id, *_LIVE_CONFLICT_STATES),
+        ).fetchall()
+        overlapping = [
+            dbm._row_to_intent(row)
+            for row in rows
+            if matches_overlap(rec.match, dbm._row_to_intent(row).match)
+        ]
+        if overlapping:
+            preempted_id = None
+            if len(overlapping) == 1 and overlapping[0].priority > rec.priority:
+                decision, _ = assess(conn, rec, build_graph())
+                if decision.verdict is Verdict.PREEMPT:
+                    preempted_id = decision.preempted_intent_id
+            conflict = next((item for item in overlapping if item.id != preempted_id), None)
+            if conflict is not None:
+                return JSONResponse(
+                    status_code=status.HTTP_409_CONFLICT,
+                    content={
+                        "detail": (
+                            f"Intent {rec.id} match overlaps with existing intent {conflict.id} "
+                            f"(state={conflict.state.value})."
+                        )
+                    },
+                )
+
+    return await _baseline_create_intent(request, conn)
+
+
+create_intent = _guarded_create_intent
+for _route in app.router.routes:
+    if getattr(_route, "path", None) == "/intent" and "POST" in getattr(_route, "methods", set()):
+        _route.endpoint = _guarded_create_intent
+        _route.dependant.call = _guarded_create_intent
 
 
 @app.get("/intents")

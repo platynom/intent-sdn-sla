@@ -17,8 +17,10 @@ def assess(
     conn: sqlite3.Connection, intent: IntentRecord, graph: Optional[nx.Graph] = None
 ) -> Tuple[AdmissionDecision, Optional[PathPlan]]:
     """Return ADMIT plus a feasible plan, or REJECT with specific reasons."""
-    available = residual_graph(conn, graph)
-    plan, reasons = compute_path(intent, available, tenant_paths(conn))
+    available = residual_graph(conn, graph, exclude_intent_ids={intent.id})
+    plan, reasons = compute_path(
+        intent, available, tenant_paths(conn, exclude_intent_ids={intent.id})
+    )
     if plan is not None:
         return AdmissionDecision(
             intent.id, Verdict.ADMIT,
@@ -31,17 +33,17 @@ def assess(
     # AdmissionDecision interface, which records one preempted intent.
     victims = sorted(
         (candidate for candidate in dbm.active_intents(conn)
-         if candidate.priority > intent.priority),
+         if candidate.id != intent.id and candidate.priority > intent.priority),
         key=lambda candidate: (-candidate.priority, -candidate.created_at, candidate.id),
     )
     for victim in victims:
         candidate_graph = residual_graph(
-            conn, graph, exclude_intent_ids={victim.id}
+            conn, graph, exclude_intent_ids={intent.id, victim.id}
         )
         candidate_plan, _ = compute_path(
             intent,
             candidate_graph,
-            tenant_paths(conn, exclude_intent_ids={victim.id}),
+            tenant_paths(conn, exclude_intent_ids={intent.id, victim.id}),
         )
         if candidate_plan is not None:
             return AdmissionDecision(
