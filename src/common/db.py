@@ -14,7 +14,6 @@ case where a dependency-injected connection crosses the threadpool boundary.
 
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 import sqlite3
