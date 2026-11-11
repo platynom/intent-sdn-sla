@@ -102,6 +102,7 @@ def rules_for_path(
     port_map: Dict[Tuple[str, str], int],
     priority: int = 100,
     queue_id: int = 1,
+    queue_ids: Dict[str, int] | None = None,
 ) -> List[Dict[str, Any]]:
     """
     Generate the list of flow rule specifications for a given PathPlan.
@@ -134,9 +135,10 @@ def rules_for_path(
         if idx < num_switches - 1:
             next_hop = switches[idx + 1]
             out_port = port_map.get((sw, next_hop))
+            hop_queue_id = int(queue_ids.get(sw, queue_id)) if queue_ids else queue_id
             if use_queue:
                 forward_actions = [
-                    {"type": "SET_QUEUE", "queue_id": queue_id, "port": out_port},
+                    {"type": "SET_QUEUE", "queue_id": hop_queue_id, "port": out_port},
                     {"type": "OUTPUT", "port": out_port},
                 ]
             else:
