@@ -542,17 +542,27 @@ def allocate_queue_id(
         conn.commit()
         return qid
 
-    used = {
+    port_used = {
         int(row["queue_id"])
         for row in conn.execute(
             "SELECT queue_id FROM intent_queues WHERE switch = ? AND port = ?",
             (switch, port),
         ).fetchall()
     }
-    digest = hashlib.sha256(intent_id.encode("utf-8")).digest()
-    candidate = (int.from_bytes(digest[:4], "big") % 60000) + 1
-    while candidate in used:
-        candidate = (candidate % 60000) + 1
+    intent_existing = conn.execute(
+        "SELECT queue_id FROM intent_queues WHERE intent_id = ? ORDER BY queue_id ASC LIMIT 1",
+        (intent_id,),
+    ).fetchone()
+    if intent_existing is not None and int(intent_existing["queue_id"]) not in port_used:
+        candidate = int(intent_existing["queue_id"])
+    else:
+        global_used = {
+            int(row["queue_id"])
+            for row in conn.execute("SELECT DISTINCT queue_id FROM intent_queues").fetchall()
+        } | port_used
+        candidate = 1
+        while candidate in global_used:
+            candidate += 1
 
     conn.execute(
         "INSERT INTO intent_queues (intent_id, switch, port, queue_id, min_bps, max_bps, updated_at) "

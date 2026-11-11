@@ -43,25 +43,30 @@ case "${ACTION}" in
         ;;
     delay)
         [ -n "${VALUE}" ] || { echo "usage: $0 ${A} ${B} delay MS"; exit 2; }
-        PARENT=$(netem_parent "${IF_A}")
-        [ -n "${PARENT}" ] || { echo "FAIL: no netem qdisc on ${IF_A}"; exit 1; }
-        if [ ! -f "${STATE_DIR}/delay-${IF_A}" ]; then
-            tc qdisc show dev "${IF_A}" | grep -o 'delay [0-9.]*[mu]*s' | head -n1 | awk '{print $2}' \
-                > "${STATE_DIR}/delay-${IF_A}"
+        TARGET_IF="${IF_A}"
+        PARENT=$(netem_parent "${TARGET_IF}")
+        if [ -z "${PARENT}" ]; then
+            TARGET_IF="${IF_B}"
+            PARENT=$(netem_parent "${TARGET_IF}")
         fi
-        tc qdisc change dev "${IF_A}" parent "${PARENT}" netem delay "${VALUE}ms"
-        echo "FAULT: ${A}->${B} delay set to ${VALUE} ms on ${IF_A} (was $(cat "${STATE_DIR}/delay-${IF_A}"))"
+        [ -n "${PARENT}" ] || { echo "FAIL: no netem qdisc on ${IF_A} or ${IF_B}"; exit 1; }
+        if [ ! -f "${STATE_DIR}/delay-${TARGET_IF}" ]; then
+            tc qdisc show dev "${TARGET_IF}" | grep -o 'delay [0-9.]*[mu]*s' | head -n1 | awk '{print $2}' \
+                > "${STATE_DIR}/delay-${TARGET_IF}"
+        fi
+        tc qdisc change dev "${TARGET_IF}" parent "${PARENT}" netem delay "${VALUE}ms"
+        echo "FAULT: ${A}-${B} delay set to ${VALUE} ms on ${TARGET_IF} (was $(cat "${STATE_DIR}/delay-${TARGET_IF}"))"
         ;;
     clear)
-        PARENT=$(netem_parent "${IF_A}")
-        ORIGINAL=$(cat "${STATE_DIR}/delay-${IF_A}" 2>/dev/null || true)
-        if [ -n "${PARENT}" ] && [ -n "${ORIGINAL}" ]; then
-            tc qdisc change dev "${IF_A}" parent "${PARENT}" netem delay "${ORIGINAL}"
-            rm -f "${STATE_DIR}/delay-${IF_A}"
-            echo "RESTORED: ${A}->${B} delay back to ${ORIGINAL}"
-        else
-            echo "Nothing to clear on ${IF_A}"
-        fi
+        for TARGET_IF in "${IF_A}" "${IF_B}"; do
+            PARENT=$(netem_parent "${TARGET_IF}")
+            ORIGINAL=$(cat "${STATE_DIR}/delay-${TARGET_IF}" 2>/dev/null || true)
+            if [ -n "${PARENT}" ] && [ -n "${ORIGINAL}" ]; then
+                tc qdisc change dev "${TARGET_IF}" parent "${PARENT}" netem delay "${ORIGINAL}"
+                rm -f "${STATE_DIR}/delay-${TARGET_IF}"
+                echo "RESTORED: ${A}-${B} delay back to ${ORIGINAL} on ${TARGET_IF}"
+            fi
+        done
         ;;
     *)
         echo "usage: $0 A B down|up|delay MS|clear"

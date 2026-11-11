@@ -60,6 +60,7 @@ def _admission_for_request(conn, intent, graph):
 def get_db():
     """Dependency that supplies a database connection per request."""
     conn = dbm.connect()
+    dbm.init_db(conn)
     try:
         yield conn
     finally:
