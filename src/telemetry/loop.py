@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import inspect
 from typing import Optional, Set
 
+from src.admission.residual import residual_graph, tenant_paths
 from src.common import db
 from src.common.events import Event, EventBus, EventType, Severity
 from src.common.models import Consistency, IntentState, OnViolation
@@ -84,10 +86,16 @@ class ControlLoop:
                 EventType.VIOLATION_SUPPRESSED,
             )
 
-        candidate_graph = self.graph.copy()
+        candidate_graph = residual_graph(
+            self.conn, self.graph, exclude_intent_ids={intent.id}
+        )
         if current is not None:
             candidate_graph.remove_edges_from(zip(current.switches, current.switches[1:]))
-        new_plan, reasons = compute_path(intent, candidate_graph)
+        t_paths = tenant_paths(self.conn, exclude_intent_ids={intent.id})
+        if len(inspect.signature(compute_path).parameters) >= 3:
+            new_plan, reasons = compute_path(intent, candidate_graph, t_paths)
+        else:
+            new_plan, reasons = compute_path(intent, candidate_graph)
         if new_plan is None:
             self._processed_event_ids.add(event.id)
             detail = "; ".join(str(value) for value in reasons.values())

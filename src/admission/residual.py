@@ -51,16 +51,28 @@ def residual_graph(
     return result
 
 
+class TenantPaths(Dict[str, List[List[str]]]):
+    """Dictionary of active paths by tenant, plus reverse-isolation constraints."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.isolated_by: Dict[str, Dict[str, List[List[str]]]] = {}
+
+
 def tenant_paths(
     conn: sqlite3.Connection, exclude_intent_ids: Optional[Iterable[str]] = None
-) -> Dict[str, List[List[str]]]:
-    """Current paths keyed by tenant for isolation checks."""
-    result: Dict[str, List[List[str]]] = {}
+) -> TenantPaths:
+    """Current paths keyed by tenant for forward and reverse isolation checks."""
+    result = TenantPaths()
     excluded = set(exclude_intent_ids or ())
     for rec in dbm.active_intents(conn):
         if rec.id in excluded:
             continue
         plan = dbm.current_path(conn, rec.id)
         if plan:
-            result.setdefault(rec.tenant, []).append(list(plan.switches))
+            switches = list(plan.switches)
+            result.setdefault(rec.tenant, []).append(switches)
+            for isolated_tenant in rec.guarantee.isolate_from:
+                protected_map = result.isolated_by.setdefault(isolated_tenant, {})
+                protected_map.setdefault(rec.tenant, []).append(switches)
     return result
