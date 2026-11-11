@@ -172,13 +172,18 @@ def rules_for_path(
             # Ingress switch for forward is egress for reverse: output to source host port
             out_port = _resolve_ip_to_host_port(intent.match.src, sw, port_map)
 
-        # Reverse match swaps src and dst; if dport was specified for UDP/TCP, reverse matches sport or any
+        # Reverse match swaps src and dst. Replies are sent *from* the service
+        # port, so the forward dport becomes the reverse sport. Without it, two
+        # intents between the same host pair (different ports) would install
+        # identical reverse matches at equal priority and OVS would steer one
+        # intent's replies onto the other intent's path.
         reverse_match = {
             "eth_type": 0x0800,
             "src": intent.match.dst,
             "dst": intent.match.src,
             "proto": intent.match.proto,
-            "dport": None,  # Reverse direction reply traffic
+            "dport": None,
+            "sport": intent.match.dport,
         }
 
         rules.append({
@@ -231,10 +236,14 @@ def install(controller: Any, rules: List[Dict[str, Any]]) -> int:
                 match_kwargs["ip_proto"] = inet.IPPROTO_TCP
                 if match_dict.get("dport") is not None:
                     match_kwargs["tcp_dst"] = match_dict["dport"]
+                if match_dict.get("sport") is not None:
+                    match_kwargs["tcp_src"] = match_dict["sport"]
             elif proto == "udp":
                 match_kwargs["ip_proto"] = inet.IPPROTO_UDP
                 if match_dict.get("dport") is not None:
                     match_kwargs["udp_dst"] = match_dict["dport"]
+                if match_dict.get("sport") is not None:
+                    match_kwargs["udp_src"] = match_dict["sport"]
             elif proto == "icmp":
                 match_kwargs["ip_proto"] = inet.IPPROTO_ICMP
 

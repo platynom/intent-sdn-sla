@@ -201,6 +201,59 @@ def test_reverse_rules_swap_source_and_destination():
     assert all(rule["match"]["dst"] == "10.0.0.1/32" for rule in reverse)
 
 
+def test_reverse_rules_match_the_service_port_as_source():
+    """Two intents between one host pair must not share reverse rules.
+
+    Without a source-port match, the reply rules of INT-001 (udp/5001) and
+    INT-010 (udp/5601), both h2 -> h1, are identical at equal priority, so OVS
+    returns one intent's replies over the other intent's path.
+    """
+    switches = ("s1", "s7")
+    rules = flowmod.rules_for_path(make_plan(switches), make_intent(dport=5001), make_port_map(switches))
+    reverse = [rule for rule in rules if rule["direction"] == "reverse"]
+    assert all(rule["match"]["sport"] == 5001 for rule in reverse)
+    assert all(rule["match"]["dport"] is None for rule in reverse)
+    other = flowmod.rules_for_path(
+        make_plan(switches), make_intent("INT-OTHER", dport=5601), make_port_map(switches)
+    )
+    other_reverse = [rule["match"] for rule in other if rule["direction"] == "reverse"]
+    assert all(rule["match"] not in other_reverse for rule in reverse)
+
+
+def test_reverse_rules_without_port_still_match_any_source_port():
+    """Port-less intents keep the previous any-port reverse behaviour."""
+    switches = ("s1", "s7")
+    rules = flowmod.rules_for_path(make_plan(switches), make_intent(dport=None), make_port_map(switches))
+    reverse = [rule for rule in rules if rule["direction"] == "reverse"]
+    assert all(rule["match"]["sport"] is None for rule in reverse)
+
+
+@pytest.mark.parametrize("proto,field", [("udp", "udp_src"), ("tcp", "tcp_src")])
+def test_flowmod_install_translates_reverse_source_port(monkeypatch, proto, field):
+    """The reverse sport must reach the OpenFlow match, not just the rule dict."""
+    monkeypatch.setattr(flowmod, "RYU_AVAILABLE", True)
+    monkeypatch.setattr(flowmod, "ether", SimpleNamespace(ETH_TYPE_IP=0x0800, ETH_TYPE_8021Q=0x8100))
+    monkeypatch.setattr(flowmod, "inet", SimpleNamespace(IPPROTO_TCP=6, IPPROTO_UDP=17, IPPROTO_ICMP=1))
+
+    class Parser(FakeParser):
+        def OFPActionSetQueue(self, queue_id):
+            return {"set_queue": queue_id}
+
+    class Datapath(FakeDatapath):
+        ofproto_parser = Parser()
+        ofproto = SimpleNamespace(OFPFC_ADD=0, OFPIT_APPLY_ACTIONS=4, OFPVID_PRESENT=0x1000, OFPVID_NONE=0)
+
+    switches = ("s1", "s7")
+    rules = flowmod.rules_for_path(make_plan(switches), make_intent(proto=proto, dport=5001), make_port_map(switches))
+    reverse_rules = [rule for rule in rules if rule["direction"] == "reverse"]
+    dp = Datapath()
+    ctrl = SimpleNamespace(datapaths={"s1": dp, "s7": dp})
+    assert flowmod.install(ctrl, reverse_rules) == len(reverse_rules)
+    for message in dp.sent:
+        assert message["match"][field] == 5001
+        assert f"{proto}_dst" not in message["match"]
+
+
 def test_build_match_always_sets_ipv4_eth_type(fake_ryu_match):
     """OVS will never match IP protocol fields unless eth_type explicitly selects IPv4."""
     match = flowmod.build_match(fake_ryu_match, make_intent(proto="any", dport=None))
