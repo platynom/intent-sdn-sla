@@ -19,6 +19,8 @@ def prune(
     guarantee: Guarantee,
     graph: nx.Graph,
     tenant_paths: Optional[Dict[str, List[List[str]]]] = None,
+    tenant: Optional[str] = None,
+    reverse_isolated_paths: Optional[Dict[str, List[List[str]]]] = None,
 ) -> Tuple[List[List[str]], Dict[str, str]]:
     """
     Filter candidate paths by guarantee constraints in strict order:
@@ -77,17 +79,17 @@ def prune(
                 )
                 continue
 
-        # 4. isolate_from
+        # 4. isolate_from (forward: this intent isolates from other tenants)
         if guarantee.isolate_from and tenant_paths:
             conflict_tenant = None
             conflict_link = None
-            for tenant in guarantee.isolate_from:
-                other_paths = tenant_paths.get(tenant, [])
+            for other_tenant in guarantee.isolate_from:
+                other_paths = tenant_paths.get(other_tenant, [])
                 for op in other_paths:
                     op_links = set(PathPlan.links_for(op))
                     shared = canonical_links & op_links
                     if shared:
-                        conflict_tenant = tenant
+                        conflict_tenant = other_tenant
                         conflict_link = sorted(shared)[0]
                         break
                 if conflict_tenant:
@@ -96,6 +98,33 @@ def prune(
             if conflict_tenant:
                 reasons[path_key] = (
                     f"shares link {conflict_link} with isolated tenant {conflict_tenant}"
+                )
+                continue
+
+        # 5. reverse isolation (active tenants whose isolate_from lists this intent's tenant)
+        protected_by = reverse_isolated_paths
+        if protected_by is None and tenant is not None and tenant_paths is not None:
+            isolated_by = getattr(tenant_paths, "isolated_by", None)
+            if isinstance(isolated_by, dict):
+                protected_by = isolated_by.get(tenant)
+
+        if protected_by:
+            conflict_protected = None
+            conflict_link = None
+            for protected_tenant, protected_paths in protected_by.items():
+                for pp in protected_paths:
+                    pp_links = set(PathPlan.links_for(pp))
+                    shared = canonical_links & pp_links
+                    if shared:
+                        conflict_protected = protected_tenant
+                        conflict_link = sorted(shared)[0]
+                        break
+                if conflict_protected:
+                    break
+
+            if conflict_protected:
+                reasons[path_key] = (
+                    f"shares link {conflict_link} with protected tenant {conflict_protected}"
                 )
                 continue
 

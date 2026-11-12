@@ -206,10 +206,10 @@ docker compose exec -T sdn python3.9 experiments/plot_results.py
 
 The evaluated implementation and standards-derived profile layer are integrated on
 branch `feat/final-integration`; the final report is in `docs/FINAL_REPORT.docx/.pdf`.
-- **Current tests**: container `305 passed, 11 skipped`; Windows host `316 passed`. `ruff check src tests topology experiments` exits 0.
+- **Current tests**: container `336 passed, 1 skipped`; Windows host `337 passed`. `ruff check src tests topology experiments` exits 0.
 - **Profile functional checks**: eMBB and non-GBR mMTC installed the northern path and forwarded matching traffic; the default delay-critical profiles returned explained refusals. This is not 3GPP service-compliance evidence.
 - **Live smoke scenarios**: `s1_single_intent.sh`, `s1_single_intent.sh --st7`, `s9_preemption.sh`, and `s10_two_phase.sh` all pass in sequence.
-- **Resolved HTB queue-binding defect (O3)**: Forward inter-switch OpenFlow rules now emit `OFPActionSetQueue(1)` when `min_bandwidth_mbps > 0`. Under 150 Mbit/s competing cross-traffic (`n=10`), the queue-bound 20 Mbit/s SLA intent achieves `24.995 Mbit/s` (`[24.995, 24.996]`, `0.000%` loss), whereas the unbound control drops to `19.091 Mbit/s` (`[18.818, 19.365]`, `23.620%` loss).
+- **Resolved HTB queue-binding defect (O3)**: Forward inter-switch OpenFlow rules emit `OFPActionSetQueue(queue_id)` when `min_bandwidth_mbps > 0`, using deterministic per-intent queue IDs starting at `1`. Under 150 Mbit/s competing cross-traffic (`n=10`), the queue-bound 20 Mbit/s SLA intent achieves `24.995 Mbit/s` (`[24.995, 24.996]`, `0.000%` loss), whereas the unbound control drops to `19.091 Mbit/s` (`[18.818, 19.365]`, `23.620%` loss).
 - **Complete E1–E8 evaluation (`n=10` per configuration, including ten-minute live runs for E6)**:
   - **E1 Violation duration**: `15.000 s` right-censored (`B1`) vs `3.003 s` (`[3.003, 3.003]`, `B3`).
   - **E2 Detection latency**: current-code `B3` is `2115.940 ms` (`[2108.734, 2123.145]`, n=10). Historical baseline comparisons are retained in the provenance report.
@@ -219,11 +219,19 @@ branch `feat/final-integration`; the final report is in `docs/FINAL_REPORT.docx/
   - **E6 Route oscillation (10-min live S6)**: `90.000` reroutes/10 min (`B2`) vs `48.300` (`[47.542, 49.058]`, `B3`, with `28.700` dwell suppressions/10 min).
   - **E7 Admission scaling**: `47.889 ms` (`k=1`), `49.420 ms` (`k=2`), `49.665 ms` (`k=4`), `51.845 ms` (`k=8`), `59.496 ms` (`k=16`).
   - **E8 Control-plane overhead (60 s window)**: corrected E8v2 full-control-stack CPU is `0.939%` (`[0.907, 0.971]`, `B1`) vs `5.078%` (`[4.954, 5.201]`, `B3`). The original controller-only CPU result is retained as provenance but superseded because it excluded the telemetry process.
-- See [`docs/HANDOVER.md`](docs/HANDOVER.md), [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md), and [`docs/RESULT_PROVENANCE.md`](docs/RESULT_PROVENANCE.md) for full details.
+- See [`docs/HANDOVER.md`](docs/HANDOVER.md), [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md), [`docs/RESULT_PROVENANCE.md`](docs/RESULT_PROVENANCE.md), and [`docs/AUDIT_FIXES_2026-11.md`](docs/AUDIT_FIXES_2026-11.md) for full details.
 
 **Resolved ST-7 defect.** Confirmed violation events are persisted to SQLite for
 the controller and audit log to consume. The live ST-7 scenario verified
 the persisted event, reroute, causal audit entry and post-reroute UDP delivery.
+
+## Known limitations
+
+- **Single-victim preemption only:** Admission preemption (`M2`) displaces at most a single lower-priority active intent when doing so makes a candidate path feasible; multi-victim eviction sets are intentionally rejected.
+- **No TLS on the OpenFlow control channel:** Switch-to-controller communication between Open vSwitch and Ryu runs over plain local TCP (`127.0.0.1:6653`) inside the container without mutual TLS.
+- **Privileged host-network container in `docker-compose.yml`:** The `sdn` service requires `privileged: true` and `network_mode: host` so Mininet and Open vSwitch can create kernel network namespaces, veth pairs, and `tc` qdiscs.
+- **Emulated 7-switch / 8-host topology only:** All functional and quantitative evaluations run on the fixed 7-switch / 8-host Mininet/OVS software datapath (`Team16Topo`) and are not hardware-validated on physical ASIC switches.
+- **Published figures predate the audit fixes:** E1 to E8 were measured at commit `cf25af2`. An `n=3` recheck on the fixed code reproduced them except B2 recovery latency (about 451 ms against the published 279 ms); see section 4.1 of [`docs/AUDIT_FIXES_2026-11.md`](docs/AUDIT_FIXES_2026-11.md).
 
 ## Licence
 

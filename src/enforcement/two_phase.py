@@ -40,6 +40,7 @@ def versioned_rules(
     plan: PathPlan,
     intent: IntentRecord,
     port_map: Dict[Tuple[str, str], int],
+    queue_ids: Optional[Dict[str, int]] = None,
 ) -> List[Dict[str, Any]]:
     """Build tagged transit/egress rules and untagged ingress classifiers."""
     if plan.version not in (0, 1):
@@ -47,7 +48,7 @@ def versioned_rules(
     tag = _tag(plan.version)
     classifier_cookie = flowmod.cookie_for_version(intent.id, plan.version)
     transit_cookie = flowmod.cookie_for_intent(intent.id)
-    generated = flowmod.rules_for_path(plan, intent, port_map)
+    generated = flowmod.rules_for_path(plan, intent, port_map, queue_ids=queue_ids)
     out: List[Dict[str, Any]] = []
     sequences = {
         "forward": list(plan.switches),
@@ -86,10 +87,13 @@ def versioned_rules(
     return out
 
 
-def _send_barriers(controller: Any) -> None:
-    """Queue one barrier per datapath to order phases on each OpenFlow channel."""
+def _send_barriers(controller: Any, switches: Optional[List[str]] = None) -> None:
+    """Queue one barrier per datapath and wait for reply when supported."""
     if hasattr(controller, "barrier_all"):
-        controller.barrier_all()
+        try:
+            controller.barrier_all(switches=switches)
+        except TypeError:
+            controller.barrier_all()
 
 
 def _remove_version(controller: Any, intent_id: str, version: int) -> int:
@@ -107,6 +111,7 @@ def install(
     plan: PathPlan,
     intent: IntentRecord,
     old_plan: Optional[PathPlan] = None,
+    queue_ids: Optional[Dict[str, int]] = None,
 ) -> int:
     """Install one strict version and remove the previous version after flip.
 
@@ -114,9 +119,12 @@ def install(
     every required new rule was sent successfully. An initial path has no old
     version to clean up.
     """
-    rules = versioned_rules(plan, intent, controller.port_map)
+    rules = versioned_rules(plan, intent, controller.port_map, queue_ids=queue_ids)
     classifiers = [rule for rule in rules if rule["priority"] == 200]
     forwarding = [rule for rule in rules if rule["priority"] != 200]
+    involved_switches = list(dict.fromkeys(
+        list(plan.switches) + (list(old_plan.switches) if old_plan else [])
+    ))
     staged = 0
     flip_started = False
     try:
@@ -128,20 +136,23 @@ def install(
 
         # OpenFlow preserves message order on each datapath connection. The
         # barrier separates complete staging from the ingress classifier flip.
-        _send_barriers(controller)
+        _send_barriers(controller, switches=list(plan.switches))
         flip_started = True
         flipped = flowmod.install(controller, classifiers)
         if flipped != len(classifiers):
             raise RuntimeError(
                 f"updated {flipped} of {len(classifiers)} ingress classifiers"
             )
-        _send_barriers(controller)
+        _send_barriers(controller, switches=involved_switches)
     except Exception:
         if old_plan is not None and old_plan.version in (0, 1) and flip_started:
-            old_rules = versioned_rules(old_plan, intent, controller.port_map)
+            old_rules = versioned_rules(old_plan, intent, controller.port_map, queue_ids=queue_ids)
             old_classifiers = [r for r in old_rules if r["priority"] == 200]
             flowmod.install(controller, old_classifiers)
-            _send_barriers(controller)
+            try:
+                _send_barriers(controller, switches=list(old_plan.switches))
+            except Exception:
+                pass
         elif old_plan is None and flip_started:
             flowmod.remove(controller, flowmod.cookie_for_version(intent.id, plan.version))
         # Staged rules have not been selected by ingress yet, so it is safe to

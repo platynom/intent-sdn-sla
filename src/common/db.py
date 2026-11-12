@@ -19,7 +19,7 @@ import os
 import sqlite3
 import time
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
 from .events import Event, EventType, Severity
 from .models import (
@@ -112,6 +112,39 @@ CREATE TABLE IF NOT EXISTS events (
 CREATE INDEX IF NOT EXISTS idx_events_at     ON events(at);
 CREATE INDEX IF NOT EXISTS idx_events_intent ON events(intent_id, at);
 CREATE INDEX IF NOT EXISTS idx_events_type   ON events(type);
+
+CREATE TABLE IF NOT EXISTS intent_queues (
+    intent_id  TEXT    NOT NULL,
+    switch     TEXT    NOT NULL,
+    port       TEXT    NOT NULL,
+    queue_id   INTEGER NOT NULL,
+    min_bps    INTEGER NOT NULL,
+    max_bps    INTEGER NOT NULL,
+    updated_at REAL    NOT NULL,
+    PRIMARY KEY (intent_id, switch, port),
+    UNIQUE (switch, port, queue_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_intent_queues_port ON intent_queues(switch, port);
+
+CREATE TRIGGER IF NOT EXISTS trg_intents_delete_queues
+AFTER DELETE ON intents
+BEGIN
+    DELETE FROM intent_queues WHERE intent_id = OLD.id;
+END;
+
+CREATE TABLE IF NOT EXISTS link_states (
+    link       TEXT PRIMARY KEY,
+    up         INTEGER NOT NULL,
+    updated_at REAL    NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS degraded_rates (
+    intent_id          TEXT PRIMARY KEY REFERENCES intents(id) ON DELETE CASCADE,
+    original_min_mbps  REAL NOT NULL,
+    effective_min_mbps REAL NOT NULL,
+    updated_at         REAL NOT NULL
+);
 """
 
 
@@ -344,6 +377,7 @@ def save_measurement(
         "throughput_mbps) VALUES (?,?,?,?,?,?)",
         (intent_id, at, delay_ms, jitter_ms, loss_pct, throughput_mbps),
     )
+    prune_retention(conn)
     conn.commit()
 
 
@@ -361,6 +395,7 @@ def save_event(conn: sqlite3.Connection, event: Event) -> None:
             json.dumps(event.payload, sort_keys=True),
         ),
     )
+    prune_retention(conn)
     conn.commit()
 
 
@@ -398,3 +433,240 @@ def measurements_for(
         "SELECT * FROM measurements WHERE intent_id = ? AND at >= ? ORDER BY at ASC",
         (intent_id, since),
     ).fetchall()
+
+
+# --------------------------------------------------------------------------- #
+# Retention, Per-intent Queues, Link State, and Degraded Rates
+# --------------------------------------------------------------------------- #
+
+
+def prune_retention(conn: sqlite3.Connection) -> None:
+    """Prune old measurements and events when retention env vars are explicitly set."""
+    max_rows_raw = os.environ.get("TEAM16_RETENTION_MAX_ROWS") or os.environ.get(
+        "TEAM16_RETENTION_ROWS"
+    )
+    max_sec_raw = os.environ.get("TEAM16_RETENTION_SECONDS")
+    if not max_rows_raw and not max_sec_raw:
+        return
+
+    if max_sec_raw:
+        try:
+            max_sec = float(max_sec_raw)
+        except ValueError:
+            max_sec = 0.0
+        if max_sec > 0:
+            cutoff = time.time() - max_sec
+            conn.execute("DELETE FROM measurements WHERE at < ?", (cutoff,))
+            conn.execute("DELETE FROM events WHERE at < ?", (cutoff,))
+
+    if max_rows_raw:
+        try:
+            max_rows = int(max_rows_raw)
+        except ValueError:
+            max_rows = 0
+        if max_rows > 0:
+            conn.execute(
+                "DELETE FROM measurements WHERE id NOT IN ("
+                "SELECT id FROM measurements ORDER BY at DESC, id DESC LIMIT ?"
+                ")",
+                (max_rows,),
+            )
+            conn.execute(
+                "DELETE FROM events WHERE rowid NOT IN ("
+                "SELECT rowid FROM events ORDER BY at DESC, rowid DESC LIMIT ?"
+                ")",
+                (max_rows,),
+            )
+
+
+def _ensure_aux_tables(conn: sqlite3.Connection) -> None:
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS intent_queues (
+            intent_id  TEXT    NOT NULL,
+            switch     TEXT    NOT NULL,
+            port       TEXT    NOT NULL,
+            queue_id   INTEGER NOT NULL,
+            min_bps    INTEGER NOT NULL,
+            max_bps    INTEGER NOT NULL,
+            updated_at REAL    NOT NULL,
+            PRIMARY KEY (intent_id, switch, port),
+            UNIQUE (switch, port, queue_id)
+        )
+        """
+    )
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS link_states (
+            link       TEXT PRIMARY KEY,
+            up         INTEGER NOT NULL,
+            updated_at REAL    NOT NULL
+        )
+        """
+    )
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS degraded_rates (
+            intent_id          TEXT PRIMARY KEY REFERENCES intents(id) ON DELETE CASCADE,
+            original_min_mbps  REAL NOT NULL,
+            effective_min_mbps REAL NOT NULL,
+            updated_at         REAL NOT NULL
+        )
+        """
+    )
+
+
+def allocate_queue_id(
+    conn: sqlite3.Connection,
+    intent_id: str,
+    switch: str,
+    port: str,
+    min_bps: int = 0,
+    max_bps: int = 0,
+) -> int:
+    """Allocate or retrieve a deterministic, collision-checked queue ID per intent and egress port."""
+    _ensure_aux_tables(conn)
+    now = time.time()
+    existing = conn.execute(
+        "SELECT queue_id FROM intent_queues WHERE intent_id = ? AND switch = ? AND port = ?",
+        (intent_id, switch, port),
+    ).fetchone()
+    if existing is not None:
+        qid = int(existing["queue_id"])
+        conn.execute(
+            "UPDATE intent_queues SET min_bps = ?, max_bps = ?, updated_at = ? "
+            "WHERE intent_id = ? AND switch = ? AND port = ?",
+            (int(min_bps), int(max_bps), now, intent_id, switch, port),
+        )
+        conn.commit()
+        return qid
+
+    port_used = {
+        int(row["queue_id"])
+        for row in conn.execute(
+            "SELECT queue_id FROM intent_queues WHERE switch = ? AND port = ?",
+            (switch, port),
+        ).fetchall()
+    }
+    intent_existing = conn.execute(
+        "SELECT queue_id FROM intent_queues WHERE intent_id = ? ORDER BY queue_id ASC LIMIT 1",
+        (intent_id,),
+    ).fetchone()
+    if intent_existing is not None and int(intent_existing["queue_id"]) not in port_used:
+        candidate = int(intent_existing["queue_id"])
+    else:
+        global_used = {
+            int(row["queue_id"])
+            for row in conn.execute("SELECT DISTINCT queue_id FROM intent_queues").fetchall()
+        } | port_used
+        candidate = 1
+        while candidate in global_used:
+            candidate += 1
+
+    conn.execute(
+        "INSERT INTO intent_queues (intent_id, switch, port, queue_id, min_bps, max_bps, updated_at) "
+        "VALUES (?,?,?,?,?,?,?)",
+        (intent_id, switch, port, candidate, int(min_bps), int(max_bps), now),
+    )
+    conn.commit()
+    return candidate
+
+
+def intent_queues_for(conn: sqlite3.Connection, intent_id: str) -> List[Dict[str, Any]]:
+    """Return all persisted queue allocations for an intent."""
+    _ensure_aux_tables(conn)
+    rows = conn.execute(
+        "SELECT intent_id, switch, port, queue_id, min_bps, max_bps, updated_at "
+        "FROM intent_queues WHERE intent_id = ? ORDER BY switch, port",
+        (intent_id,),
+    ).fetchall()
+    return [dict(r) for r in rows]
+
+
+def delete_intent_queues(
+    conn: sqlite3.Connection,
+    intent_id: str,
+    keep_ports: Optional[Iterable[Tuple[str, str]]] = None,
+) -> List[Dict[str, Any]]:
+    """Delete queue rows for intent_id (except keep_ports) and return the deleted rows."""
+    _ensure_aux_tables(conn)
+    keep = set(keep_ports or ())
+    current = intent_queues_for(conn, intent_id)
+    removed = [row for row in current if (row["switch"], row["port"]) not in keep]
+    for row in removed:
+        conn.execute(
+            "DELETE FROM intent_queues WHERE intent_id = ? AND switch = ? AND port = ?",
+            (intent_id, row["switch"], row["port"]),
+        )
+    if removed:
+        conn.commit()
+    return removed
+
+
+def set_link_state(conn: sqlite3.Connection, link: str, up: bool) -> None:
+    """Persist link operational state so admission and reroute never select a down link."""
+    _ensure_aux_tables(conn)
+    conn.execute(
+        "INSERT OR REPLACE INTO link_states (link, up, updated_at) VALUES (?, ?, ?)",
+        (link, 1 if up else 0, time.time()),
+    )
+    conn.commit()
+
+
+def down_links(conn: sqlite3.Connection) -> Set[str]:
+    """Return canonical link names currently marked down in SQLite."""
+    try:
+        rows = conn.execute("SELECT link FROM link_states WHERE up = 0").fetchall()
+        return {str(r["link"]) for r in rows}
+    except sqlite3.OperationalError:
+        return set()
+
+
+def set_degraded_rate(
+    conn: sqlite3.Connection,
+    intent_id: str,
+    original_min_mbps: float,
+    effective_min_mbps: float,
+) -> None:
+    """Record a degraded bandwidth reservation for an intent."""
+    _ensure_aux_tables(conn)
+    conn.execute(
+        "INSERT OR REPLACE INTO degraded_rates "
+        "(intent_id, original_min_mbps, effective_min_mbps, updated_at) VALUES (?, ?, ?, ?)",
+        (intent_id, float(original_min_mbps), float(effective_min_mbps), time.time()),
+    )
+    conn.commit()
+
+
+def clear_degraded_rate(
+    conn: sqlite3.Connection, intent_id: str
+) -> Optional[Tuple[float, float]]:
+    """Remove degraded rate record and return (original_min_mbps, effective_min_mbps) if present."""
+    _ensure_aux_tables(conn)
+    row = conn.execute(
+        "SELECT original_min_mbps, effective_min_mbps FROM degraded_rates WHERE intent_id = ?",
+        (intent_id,),
+    ).fetchone()
+    if row is None:
+        return None
+    conn.execute("DELETE FROM degraded_rates WHERE intent_id = ?", (intent_id,))
+    conn.commit()
+    return float(row["original_min_mbps"]), float(row["effective_min_mbps"])
+
+
+def effective_min_bandwidth_mbps(conn: sqlite3.Connection, rec: IntentRecord) -> float:
+    """Return the active bandwidth reservation for an intent, accounting for M1 degradation."""
+    base = float(rec.guarantee.min_bandwidth_mbps or 0.0)
+    if base <= 0.0 or rec.state is not IntentState.DEGRADED:
+        return base
+    try:
+        row = conn.execute(
+            "SELECT effective_min_mbps FROM degraded_rates WHERE intent_id = ?",
+            (rec.id,),
+        ).fetchone()
+        if row is not None:
+            return float(row["effective_min_mbps"])
+    except sqlite3.OperationalError:
+        pass
+    factor = float(os.environ.get("TEAM16_DEGRADE_FACTOR", "0.5"))
+    return round(base * factor, 6)

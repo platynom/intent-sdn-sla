@@ -25,6 +25,12 @@ def residual_graph(
     ``bw_mbps`` field is retained for PathPlan reporting.
     """
     result = (graph if graph is not None else build_graph()).copy()
+    down = dbm.down_links(conn)
+    for u, v, data in list(result.edges(data=True)):
+        link_name = PathPlan.links_for([u, v])[0]
+        if link_name in down or data.get("up", True) is False:
+            result.remove_edge(u, v)
+
     excluded = set(exclude_intent_ids or ())
     if exclude_intent_id is not None:
         excluded.add(exclude_intent_id)
@@ -32,7 +38,7 @@ def residual_graph(
     for rec in dbm.active_intents(conn):
         if rec.id in excluded:
             continue
-        amount = float(rec.guarantee.min_bandwidth_mbps or 0.0)
+        amount = dbm.effective_min_bandwidth_mbps(conn, rec)
         if amount <= 0:
             continue
         plan = dbm.current_path(conn, rec.id)
@@ -51,16 +57,28 @@ def residual_graph(
     return result
 
 
+class TenantPaths(Dict[str, List[List[str]]]):
+    """Dictionary of active paths by tenant, plus reverse-isolation constraints."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.isolated_by: Dict[str, Dict[str, List[List[str]]]] = {}
+
+
 def tenant_paths(
     conn: sqlite3.Connection, exclude_intent_ids: Optional[Iterable[str]] = None
-) -> Dict[str, List[List[str]]]:
-    """Current paths keyed by tenant for isolation checks."""
-    result: Dict[str, List[List[str]]] = {}
+) -> TenantPaths:
+    """Current paths keyed by tenant for forward and reverse isolation checks."""
+    result = TenantPaths()
     excluded = set(exclude_intent_ids or ())
     for rec in dbm.active_intents(conn):
         if rec.id in excluded:
             continue
         plan = dbm.current_path(conn, rec.id)
         if plan:
-            result.setdefault(rec.tenant, []).append(list(plan.switches))
+            switches = list(plan.switches)
+            result.setdefault(rec.tenant, []).append(switches)
+            for isolated_tenant in rec.guarantee.isolate_from:
+                protected_map = result.isolated_by.setdefault(isolated_tenant, {})
+                protected_map.setdefault(rec.tenant, []).append(switches)
     return result

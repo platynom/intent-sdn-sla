@@ -65,6 +65,7 @@ def compute_path(
         guarantee=intent.guarantee,
         graph=graph,
         tenant_paths=tenant_paths,
+        tenant=intent.tenant,
     )
 
     best_switches = select_best(surviving, graph)

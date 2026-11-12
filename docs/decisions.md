@@ -106,3 +106,68 @@ trial (about 0.29–0.31 seconds per batch). The tested software-switch configur
 therefore showed no measurable cap effect; this does not establish hardware TCAM
 capacity or behavior. The raw CSV is
 `experiments/results/raw/flow_table_pilot_20261025161825.csv`.
+
+---
+
+## ADR-004 - Per-intent HTB queue allocation per egress port
+
+**Date:** 11 Nov 2026 (Audit P1/P2) **Status:** Accepted **Decision owner:** whole team
+
+**Context.** Initially, `ensure_queue` hardcoded `queues:1` on every switch egress port
+and overwrote the port's root QoS `max-rate` with the latest intent's bandwidth. When
+two bandwidth-guaranteed intents traversed the same inter-switch link, the second
+intent overwrote the first intent's HTB queue entry and capped the shared root QoS.
+
+**Decision.** Allocate a deterministic, collision-checked `queue_id` per `(intent_id, switch, port)`
+persisted in SQLite (`intent_queues` table, starting at `1` so single-intent scenarios
+bind `set_queue:1`, and assigning distinct integers `2, 3, ...` to additional intents).
+Keep the port's root `linux-htb` QoS `max-rate` at the physical link capacity
+(`link_capacity_mbps`) while setting each intent's `min-rate` and `max-rate` on its
+own `Queue` record. Pass `queue_ids` into `rules_for_path` and `two_phase.versioned_rules`,
+raise `QueueConfigurationError` on `ovs-vsctl` failure, and remove an intent's queues
+when it is withdrawn, preempted, or moved off a port.
+
+**Consequences.** Concurrent bandwidth-guaranteed intents sharing a link receive
+independent HTB minimum-rate queues without capping the link root or clobbering one
+another's shaping configuration.
+
+---
+
+## ADR-005 - Bidirectional tenant isolation on admission and reroute
+
+**Date:** 11 Nov 2026 (Audit D3/D4) **Status:** Accepted **Decision owner:** whole team
+
+**Context.** Previously, `tenant_paths` only collected active intents by tenant name,
+and `prune` only checked the incoming intent's `isolate_from` list. If an already-active
+intent of tenant `alpha` declared `isolate_from: [beta]` and a new intent from tenant
+`beta` had `isolate_from: []`, `beta` was admitted onto `alpha`'s links. Furthermore,
+closed-loop reroute did not pass `tenant_paths` into `compute_path`, allowing a
+rerouted intent to violate isolation.
+
+**Decision.** Extend `tenant_paths(conn)` to return both `by_tenant` (active links per
+tenant) and `isolated_links_for` (active links belonging to any active intent whose
+`isolate_from` includes a given tenant). Update `prune()` and `compute_path()` to enforce
+both directions (`guarantee.isolate_from` and `isolated_links_for[intent_tenant]`), and
+pass `tenant_paths(self.conn)` during closed-loop reroute in `ControlLoop.on_violation`.
+
+**Consequences.** Isolation is symmetric and preserved across both initial admission
+and closed-loop recovery.
+
+---
+
+## ADR-006 - Closed-loop reroute uses residual-capacity admission graph
+
+**Date:** 11 Nov 2026 (Audit D2) **Status:** Accepted **Decision owner:** whole team
+
+**Context.** `ControlLoop.on_violation` previously computed alternate paths on a
+copy of `self.graph` (physical link capacities) after removing only the violating
+intent's current links. It ignored bandwidth already reserved by other admitted or
+active intents on alternate paths, allowing a reroute to oversubscribe a link.
+
+**Decision.** Build the reroute planning graph from `residual_graph(self.conn, self.graph, exclude_intent_id=intent.id)`
+before removing the violating path's links, and pass `tenant_paths(self.conn)` and
+`intent.tenant` to `compute_path`. Exclude `exclude_intent_id` from `residual_graph`
+so the rerouting intent does not subtract its own prior reservation.
+
+**Consequences.** Closed-loop reroutes obey the exact same residual-capacity and
+bidirectional isolation invariants as initial M2 admission.
