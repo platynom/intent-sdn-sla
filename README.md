@@ -231,6 +231,7 @@ the persisted event, reroute, causal audit entry and post-reroute UDP delivery.
 - **No TLS on the OpenFlow control channel:** Switch-to-controller communication between Open vSwitch and Ryu runs over plain local TCP (`127.0.0.1:6653`) inside the container without mutual TLS.
 - **Privileged host-network container in `docker-compose.yml`:** The `sdn` service requires `privileged: true` and `network_mode: host` so Mininet and Open vSwitch can create kernel network namespaces, veth pairs, and `tc` qdiscs.
 - **Emulated 7-switch / 8-host topology only:** All functional and quantitative evaluations run on the fixed 7-switch / 8-host Mininet/OVS software datapath (`Team16Topo`) and are not hardware-validated on physical ASIC switches.
+- **Published figures predate the audit fixes:** E1 to E8 were measured at commit `cf25af2`. An `n=3` recheck on the fixed code reproduced them except B2 recovery latency (about 451 ms against the published 279 ms); see section 4.1 of [`docs/AUDIT_FIXES_2026-11.md`](docs/AUDIT_FIXES_2026-11.md).
 
 ## Licence
 

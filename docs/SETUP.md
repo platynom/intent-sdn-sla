@@ -29,13 +29,16 @@ python experiments/artifact_manifest.py verify
 
 The controller, API, and telemetry processes support the following configuration environment variables:
 
-| Environment Variable | Default | Module | Description |
+| Environment variable | Default | Read in | Effect |
 |---|---|---|---|
-| `TEAM16_DB_PATH` | `state.db` | `src/common/db.py` | Path to the SQLite state database shared by M1–M6. Set to a scratch path (e.g. `/tmp/live_demo.db`) for isolated live runs so historical `state.db` is untouched. |
-| `TEAM16_API_TOKENS` | *(unset / empty)* | `src/intent_manager/api.py` | Comma-separated list of bearer tokens (or `tenant:token` pairs, e.g. `hospital-a:tok-1,factory-b:tok-2`). When unset or empty, authentication is disabled so existing experiment scripts run unchanged. When set, mutating endpoints (`POST /intent`, `DELETE /intent/{id}`, `POST /profiles/{name}/instantiate`) require `Authorization: Bearer <token>`; missing/invalid tokens return `401 Unauthorized`, and tenant mismatches return `403 Forbidden`. |
-| `TEAM16_MAX_BODY_BYTES` | `65536` (64 KiB) | `src/intent_manager/api.py` | Maximum HTTP request body size accepted by the API middleware before returning `413 Content Too Large`. |
-| `TEAM16_DEGRADE_FACTOR` | `0.5` | `src/telemetry/loop.py`, `src/enforcement/controller.py` | Multiplier in `(0, 1]` applied to an intent's `min_bandwidth_mbps` HTB queue floor when `action_on_violation` is `DEGRADE` (or when `REROUTE_OR_DEGRADE` finds no feasible alternate path). |
-| `TEAM16_RETENTION_MAX_ROWS` | `50000` | `src/common/db.py` | Maximum rows retained per high-volume telemetry table (`measurements`, `events`, `audit_log`) before `prune_old_records` trims the oldest entries. |
-| `TEAM16_RETENTION_MAX_SECONDS` | `604800` (7 days) | `src/common/db.py` | Maximum age in seconds for rows in `measurements`, `events`, and `audit_log` when `prune_old_records` executes during telemetry collection. |
-| `TEAM16_TABLE_MISS_METER` | `1` | `src/enforcement/controller.py` | Installs OpenFlow 1.3 meter 1 (`100 pktps` `DROP` band) on the priority-0 table-miss rule so unmatched packet floods cannot saturate the controller with `OFPPacketIn` messages. Set to `0` to install a direct drop-by-default table-miss rule on switches without meter support. |
-| `TEAM16_ADMISSION_MODE` | `full` | `src/intent_manager/api.py` | Admission policy mode (`full` uses M2 residual-capacity + bidirectional tenant isolation + single-victim preemption; `b2_no_conflict` is used by the B2 ablation script). |
+| `TEAM16_DB_PATH` | `experiments/results/state.db` | `src/common/db.py` | Path of the SQLite state database shared by the API, controller, telemetry and dashboard. Point it at a scratch file for isolated runs. |
+| `TEAM16_API_TOKENS` | unset (access control off) | `src/intent_manager/api.py` | `tenant=token` pairs separated by commas or semicolons, e.g. `hospital-a=tok-1,factory-b=tok-2`. When set, creating and withdrawing intents requires `Authorization: Bearer <token>`; a missing or unknown token returns 401 and acting on another tenant's intent returns 403. Never commit a real token. |
+| `TEAM16_DEGRADE_FACTOR` | `0.5` | `src/telemetry/loop.py`, `src/common/db.py` | Fraction of `min_bandwidth_mbps` kept when an intent with `on_violation: degrade` is degraded. |
+| `TEAM16_RETENTION_MAX_ROWS` (alias `TEAM16_RETENTION_ROWS`) | unset (no pruning) | `src/common/db.py` | When set, `prune_retention()` keeps at most this many newest rows in `measurements` and `events`. |
+| `TEAM16_RETENTION_SECONDS` | unset (no pruning) | `src/common/db.py` | When set, `prune_retention()` deletes `measurements` and `events` rows older than this many seconds. |
+| `TEAM16_TABLE_MISS_METER` | `1` | `src/enforcement/controller.py` | Binds the table-miss rule to OpenFlow meter 1 (drop band, 50 packets/s, burst 10) when the switch supports meters. Any other value leaves packet-in unmetered. |
+| `TEAM16_BARRIER_TIMEOUT_S` | `2.0` | `src/enforcement/controller.py` | Seconds to wait for each barrier reply during a two-phase update before failing closed. |
+| `TEAM16_EXPERIMENT_MODE` | unset | `src/intent_manager/api.py` | `b2` selects the B2 ablation: reservation, conflict and match-overlap checks are bypassed. Experiments only. |
+| `TEAM16_DISABLE_SET_QUEUE` | unset | `src/enforcement/flowmod.py` | `1` omits the `SET_QUEUE` action (the O3 unbound control). Experiments only. |
+
+The request body limit for `POST /intent` is fixed at 64 KiB (HTTP 413 beyond it) and is not configurable.
