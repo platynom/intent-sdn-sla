@@ -123,10 +123,11 @@ net.stop()
 
     # Prepare S6 intent payload from intents/s6_oscillation_trap.yaml
     local s6_payload="/tmp/s6_${MODE}.yaml"
+    local dwell_s="${TEAM16_E6_DWELL_S:-10}"
     if [ "${MODE}" = "b2" ]; then
         cp intents/s6_oscillation_trap.yaml "${s6_payload}"
     else
-        sed -e 's/dwell_seconds: 0/dwell_seconds: 10/' \
+        sed -e "s/dwell_seconds: 0/dwell_seconds: ${dwell_s}/" \
             -e 's/consistency: relaxed/consistency: strict/' \
             intents/s6_oscillation_trap.yaml > "${s6_payload}"
     fi

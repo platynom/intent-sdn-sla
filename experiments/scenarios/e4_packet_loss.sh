@@ -47,6 +47,10 @@ clean_mininet() {
 
 run_one() {
     local run_idx="$1"
+    local rate="${E4_RATE:-1000}"
+    local fault_dev="${E4_FAULT_DEV:-s1-eth2}"
+    local expected_initial="${E4_EXPECTED_INITIAL:-s1,s2,s3,s7}"
+    local expected_alt="${E4_EXPECTED_ALT:-s1,s4,s5,s7}"
     local ryu_pid="" api_pid="" topo_pid="" rx_pid="" tx_pid=""
     cleanup_one() {
         for pid in "${tx_pid}" "${rx_pid}" "${topo_pid}" "${api_pid}" "${ryu_pid}"; do
@@ -79,9 +83,15 @@ conn.close()
     local intent_file="experiments/scenarios/fixtures/b2_single_intent.yaml"
     if [ "${MODE}" = "b3" ]; then
         intent_file="experiments/scenarios/fixtures/b3_single_intent.yaml"
+        if [ -n "${E4_INTENT_FILE:-}" ]; then
+            intent_file="${E4_INTENT_FILE}"
+        fi
         python3.9 -m uvicorn src.intent_manager.api:app \
             --host 127.0.0.1 --port 8000 >"${LOG_DIR}/api-e4.log" 2>&1 &
     else
+        if [ -n "${E4_INTENT_FILE:-}" ]; then
+            intent_file="${E4_INTENT_FILE}"
+        fi
         TEAM16_EXPERIMENT_MODE=b2 python3.9 -m uvicorn src.intent_manager.api:app \
             --host 127.0.0.1 --port 8000 >"${LOG_DIR}/api-e4.log" 2>&1 &
     fi
@@ -110,13 +120,13 @@ net.stop()
     sleep 4
 
     local netem_parent
-    netem_parent=$(sudo tc qdisc show dev s1-eth2 \
+    netem_parent=$(sudo tc qdisc show dev "${fault_dev}" \
         | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") {print $(i+1); exit}}')
     if [ -z "${netem_parent}" ]; then
-        echo "FAIL: no primary-path netem qdisc found on s1-eth2"
+        echo "FAIL: no primary-path netem qdisc found on ${fault_dev}"
         exit 1
     fi
-    sudo tc qdisc change dev s1-eth2 parent "${netem_parent}" netem delay 40ms
+    sudo tc qdisc change dev "${fault_dev}" parent "${netem_parent}" netem delay 40ms
 
     local http_code
     http_code=$(curl -s -o /tmp/e4_post.json -w "%{http_code}" -X POST \
@@ -128,6 +138,18 @@ net.stop()
     fi
     sleep 2
 
+    local initial_route
+    initial_route=$(python3.9 -c "
+from src.common import db
+conn = db.connect()
+p = db.current_path(conn, 'INT-001')
+print(','.join(p.switches) if p else '')
+conn.close()")
+    if [ "${initial_route}" != "${expected_initial}" ]; then
+        echo "FAIL: initial route mismatch (${initial_route} != ${expected_initial})"
+        exit 1
+    fi
+
     local h1_pid h2_pid
     h1_pid=$(cat /var/run/team16/h1.pid)
     h2_pid=$(cat /var/run/team16/h2.pid)
@@ -136,13 +158,13 @@ net.stop()
     local rx_log="/tmp/e4_rx_${MODE}_${run_idx}.csv"
     rm -f "${tx_log}" "${rx_log}"
 
-    # Start receiver and 1,000 pkt/s sender on port 5001 (matched by INT-001)
+    # Start receiver and sequenced UDP sender on port 5001 (matched by INT-001)
     mnexec -da "${h2_pid}" python3.9 experiments/scenarios/udp_seq_probe.py recv \
         --bind 10.0.0.2 --port 5001 --duration 9.0 --out "${rx_log}" &
     rx_pid=$!
     sleep 0.3
     mnexec -da "${h1_pid}" python3.9 experiments/scenarios/udp_seq_probe.py send \
-        --dst 10.0.0.2 --port 5001 --rate 1000 --size 64 --duration 8.0 --out "${tx_log}" &
+        --dst 10.0.0.2 --port 5001 --rate "${rate}" --size 64 --duration 8.0 --out "${tx_log}" &
     tx_pid=$!
 
     # Wait 2.5 seconds so [fault_inject - 2 s] is fully inside the steady stream
@@ -168,13 +190,13 @@ conn = db.connect()
 p = db.current_path(conn, 'INT-001')
 print(','.join(p.switches) if p else '')
 conn.close()")
-        if [ "${alt_route}" = "s1,s4,s5,s7" ]; then
+        if [ "${alt_route}" = "${expected_alt}" ]; then
             break
         fi
         sleep 0.2
     done
-    if [ "${alt_route}" != "s1,s4,s5,s7" ]; then
-        echo "FAIL: alternate route not installed (${alt_route})"
+    if [ "${alt_route}" != "${expected_alt}" ]; then
+        echo "FAIL: alternate route not installed (${alt_route}, expected ${expected_alt})"
         exit 1
     fi
 
