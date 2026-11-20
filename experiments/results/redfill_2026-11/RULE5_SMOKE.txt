@@ -1,0 +1,32 @@
+=== B3 strict closed-loop run 1/1 ===
+=== [1/6] Starting Ryu Controller ===
+=== [2/6] Starting M1 REST API ===
+=== [3/6] Starting Mininet Topology ===
+PASS: injected 40 ms delay on the primary-only s1-eth2 link
+=== [4/6] Submitting Intent INT-001 ===
+PASS: Intent submitted successfully (HTTP 201)
+=== [5/6] Verification Checks ===
+PASS: Flow rules with cookie found on s1 (1 rules)
+PASS: latency-only experiment intent does not require a bandwidth queue
+PASS: Traffic route traverses s2 (northern route s1-s2-s3-s7 verified)
+=== [6/6] Live Telemetry ===
+sample delay_ms=51.07612699998754 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=amber event=none event_persisted_at=None
+sample delay_ms=50.656023999863464 jitter_ms=0.4201030001240724 loss_pct=0.0 throughput_mbps=0.0 status=amber event=none event_persisted_at=None
+sample delay_ms=50.44435499985411 jitter_ms=0.2116690000093513 loss_pct=0.0 throughput_mbps=0.0004155677180400351 status=red event=sla.violated event_persisted_at=1795018576.3538356
+sample delay_ms=30.921561000013753 jitter_ms=19.52279399984036 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+sample delay_ms=30.419668000149613 jitter_ms=0.5018929998641397 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+PASS: 5 live measurements persisted (4 complete samples)
+=== ST-7: Injecting a confirmed event through the SQLite process boundary ===
+PASS: live telemetry already caused the expected alternate route
+PASS: B3 replacement path used strict versioned installation
+sample delay_ms=30.399263999925097 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=green event=none event_persisted_at=None
+PASS: alternate route probe recovered below the 35 ms latency guarantee
+PASS: controller consumed persisted violation and installed s1,s4,s5,s7
+PASS: matching UDP traffic received a probe reply after the reroute
+PASS: reroute count=1; causal audit entries=1
+REDFILL_SMOKE_B3 run metrics written to experiments/results/raw/redfill_smoke_b3_20261118161621.csv
+=== SCENARIO S1: ALL ST-1 THROUGH ST-6 CHECKS PASSED ===
+=== SCENARIO ST-7: LIVE REROUTE CHECK PASSED ===
+*** Cleaning up processes and Mininet state
+B3 closed-loop runs completed: 1
+Raw per-run results: experiments/results/raw/b3_closed_loop_*.csv
