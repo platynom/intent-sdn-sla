@@ -3,7 +3,7 @@
 - **Branch:** `exp/red-items-2026-11` (branched from `main` at `75f2d2e18eddc84bc7046077dd9dea7c83f3726e`, `Merge pull request #2 from platynom/fix/audit-2026-11`)
 - **Environment:** Ubuntu 22.04 WSL2 (`Linux DESKTOP-7Q6OT1V 6.18.33.1-microsoft-standard-WSL2`), Docker `29.6.1`, Docker Compose `v5.3.1`, image `team16/intent-sdn-sla:dev` (`Python 3.9.25`), recorded in `experiments/results/redfill_2026-11/BASELINE.txt`
 - **Terminology convention:** Every value below is explicitly labelled **measured**, **predicted**, or **configured** and cites its source CSV(s) under `experiments/results/redfill_2026-11/`.
-- **Data provenance disclosure:** All E9–E16 runs executed against build `75f2d2e` inside the `sdn` container (with E14 comparing `cf25af2` vs. `75f2d2e`). Specifically, E9 (`b2`, `b2matched`, `b3`, `o3`) and E10 (`150` runs) executed on `75f2d2e` with live telemetry violation confirmation (equivalent to `TEAM16_WAIT_FOR_LIVE_VIOLATION=1` in E10). No `src/` files or `src/intent_manager/schema.json` were modified, and no historical files under `experiments/results/raw/`, `experiments/results/summary/`, `experiments/figures/`, or `experiments/results/MANIFEST.sha256` were touched.
+- **Data provenance disclosure:** All E9–E16 runs executed against build `75f2d2e` inside the `sdn` container (with E14 comparing `cf25af2` vs. `75f2d2e`). All 50 E9 runs completed by `2026-11-18 16:08:33 UTC` (last raw file `redfill_e9_b3_20261118160833.csv`), before the temporary live-telemetry edit to `experiments/scenarios/s1_single_intent.sh` (`2026-11-18 16:08:51`–`16:09:12 UTC`) used for E10's 150 runs (`s1_single_intent.sh` was subsequently parameterized behind `TEAM16_WAIT_FOR_LIVE_VIOLATION`, defaulting to `0`, verified by `smoke2`). No `src/` files or `src/intent_manager/schema.json` were modified, and no historical files under `experiments/results/raw/`, `experiments/results/summary/`, `experiments/figures/`, or `experiments/results/MANIFEST.sha256` were touched.
 
 ---
 
@@ -14,7 +14,7 @@
 - **Page:** p. 3 (Section IV-A, Setup, and Table I)
 - **Exact red text:** `[rerun B2 on the current build]`
 - **Replacement text (LaTeX-ready):**
-  > All rows of Table~I were measured on the current build (`75f2d2e`), where contention-safe residual repair (Section~III) adds per-intent residual-capacity, bidirectional isolation, and barrier/error confirmation checks to every reroute. Under this common build, B2 immediate ($k=1$) measured $101.1\text{ ms}$ [$96.3, 105.9$] detection and $458.1\text{ ms}$ [$421.1, 495.1$] recovery; matched-detector B2 ($k=3$) measured $2096.3\text{ ms}$ [$2091.9, 2100.7$] detection and $454.5\text{ ms}$ [$414.2, 494.8$] recovery; and B3 damped ($k=3$) measured $2094.7\text{ ms}$ [$2092.4, 2097.0$] detection and $628.5\text{ ms}$ [$601.0, 656.1$] recovery. Thus, two-phase staging, barriers, and drain add $174.0\text{ ms}$ to recovery latency ($p = 5.27\times 10^{-7}$, Welch's $t$-test against matched-detector B2).
+  > All rows of Table~I were measured on the current build (`75f2d2e`), where contention-safe residual repair (Section~III) performs per-intent residual-capacity, bidirectional isolation, and barrier/error confirmation checks on every reroute. Under this common build, B2 immediate ($k=1$) measured $101.1\text{ ms}$ [$96.3, 105.9$] detection and $458.1\text{ ms}$ [$421.1, 495.1$] recovery; matched-detector B2 ($k=3$) measured $2096.3\text{ ms}$ [$2091.9, 2100.7$] detection and $454.5\text{ ms}$ [$414.2, 494.8$] recovery; and B3 damped ($k=3$) measured $2094.7\text{ ms}$ [$2092.4, 2097.0$] detection and $628.5\text{ ms}$ [$601.0, 656.1$] recovery. Thus, strict B3 recovery is $174.0\text{ ms}$ slower than matched-detector B2 on `75f2d2e` ($p = 5.27\times 10^{-7}$, Welch's $t$-test). Relative to the earlier draft build, both B2 ($458.1$ vs.\ $279.4\text{ ms}$) and B3 ($628.5$ vs.\ $537.9\text{ ms}$) increased; the exact per-change cause has not been isolated experimentally (waiting for barrier replies added in `P3` is the most likely contributor, not proven in isolation).
 
   Full replacement **Table I** (LaTeX-ready, **measured** at $n=10$):
   ```latex
@@ -73,7 +73,7 @@
 - **Page:** p. 7 (Section 5.1, Setup, and Table 2)
 - **Exact red text:** `[rerun B2 on the current build]`
 - **Replacement text (LaTeX-ready):**
-  > Same replacement data as **C1**: on commit `75f2d2e` ($n=10$ per row), **measured** B2 immediate ($k=1$) is $101.1\text{ ms}$ [$96.3, 105.9$] detection and $458.1\text{ ms}$ [$421.1, 495.1$] recovery; matched-detector B2 ($k=3$) is $2096.3\text{ ms}$ [$2091.9, 2100.7$] detection and $454.5\text{ ms}$ [$414.2, 494.8$] recovery; and B3 damped ($k=3$) is $2094.7\text{ ms}$ [$2092.4, 2097.0$] detection and $628.5\text{ ms}$ [$601.0, 656.1$] recovery (Table~2 updated identically to Conference Table~I above; recovery difference between B2 matched and B3 is $174.0\text{ ms}$, $p = 5.27\times 10^{-7}$). In addition, same-build O3 **measured** $18.737\text{ Mbit/s}$ [$18.039, 19.435$] ($25.038\%$ [$22.245, 27.832$] loss) unbound vs. $24.995\text{ Mbit/s}$ [$24.995, 24.996$] ($0.000\%$ loss, $74.400\text{ Mbit/s}$ cross-traffic) bound ($p = 8.05\times 10^{-9}$ Welch $t$-test for intent throughput; $p = 1.08\times 10^{-5}$ exact permutation test for loss).
+  > Same replacement data as **C1**: on commit `75f2d2e` ($n=10$ per row), **measured** B2 immediate ($k=1$) is $101.1\text{ ms}$ [$96.3, 105.9$] detection and $458.1\text{ ms}$ [$421.1, 495.1$] recovery; matched-detector B2 ($k=3$) is $2096.3\text{ ms}$ [$2091.9, 2100.7$] detection and $454.5\text{ ms}$ [$414.2, 494.8$] recovery; and B3 damped ($k=3$) is $2094.7\text{ ms}$ [$2092.4, 2097.0$] detection and $628.5\text{ ms}$ [$601.0, 656.1$] recovery (Table~2 updated identically to Conference Table~I above; recovery difference between B2 matched and B3 on `75f2d2e` is $174.0\text{ ms}$, $p = 5.27\times 10^{-7}$; the cause of the recovery increase relative to the earlier draft build—`458.1` vs.\ `279.4 ms` for B2 and `628.5` vs.\ `537.9 ms` for B3—has not been isolated experimentally, with barrier-reply wait in `P3` the most likely contributor). In addition, same-build O3 **measured** $18.737\text{ Mbit/s}$ [$18.039, 19.435$] ($25.038\%$ [$22.245, 27.832$] loss) unbound vs. $24.995\text{ Mbit/s}$ [$24.995, 24.996$] ($0.000\%$ loss, $74.400\text{ Mbit/s}$ cross-traffic) bound ($p = 8.05\times 10^{-9}$ Welch $t$-test for intent throughput; $p = 1.08\times 10^{-5}$ exact permutation test for loss).
 - **Source CSV(s):** `experiments/results/redfill_2026-11/E9/summary.csv`, `experiments/results/redfill_2026-11/E9/welch_tests.csv`, `experiments/results/redfill_2026-11/E9/raw/redfill_e9_*.csv`
 
 ---
@@ -95,7 +95,7 @@
 - **Page:** p. 11 (Section 6.1, Table 5, row E9)
 - **Exact red text:** `[result]`
 - **Replacement text (LaTeX-ready):**
-  > On `75f2d2e`, B2 recovered in $458.1$ [$421.1, 495.1$]\,ms, matched B2 in $454.5$ [$414.2, 494.8$]\,ms, and B3 in $628.5$ [$601.0, 656.1$]\,ms ($+174.0\text{ ms}$, $p=5.27\times 10^{-7}$); O3 unbound achieved $18.74$ [$18.04, 19.44$]\,Mbit/s ($25.0\%$ loss).
+  > On `75f2d2e`, B2 recovered in $458.1$ [$421.1, 495.1$]\,ms, matched B2 in $454.5$ [$414.2, 494.8$]\,ms, and B3 in $628.5$ [$601.0, 656.1$]\,ms ($+174.0\text{ ms}$ difference on `75f2d2e`, $p=5.27\times 10^{-7}$; shift vs.\ earlier build not isolated, barrier wait in `P3` likely); O3 unbound achieved $18.74$ [$18.04, 19.44$]\,Mbit/s ($25.0\%$ loss).
 - **Source CSV(s):** `experiments/results/redfill_2026-11/E9/summary.csv`, `experiments/results/redfill_2026-11/E9/welch_tests.csv`
 
 #### `J6` — Row `E10`
@@ -111,7 +111,7 @@
 - **Page:** p. 11 (Section 6.1, Table 5, row E11)
 - **Exact red text:** `[result]`
 - **Replacement text (LaTeX-ready):**
-  > Reroutes fell from $60.0$ [$60.0, 60.0$] at $\delta=0\text{ s}$ to $49.2$ [$45.5, 52.9$] ($\delta=10\text{ s}$), $30.0$ [$30.0, 30.0$] ($\delta=20\text{ s}$), and $19.4$ [$18.7, 20.1$] ($\delta=30\text{ s}$), within $-0.8\%$ to $+10.5\%$ of Eq.~(10) using effective B3 confirmable count $N_f=60$ (strict bound held in all 50 runs).
+  > Reroutes fell from $60.0$ [$60.0, 60.0$] at $\delta=0\text{ s}$ to $49.2$ [$45.5, 52.9$] ($\delta=10\text{ s}$), $30.0$ [$30.0, 30.0$] ($\delta=20\text{ s}$), and $19.4$ [$18.7, 20.1$] ($\delta=30\text{ s}$), within $-0.8\%$ to $+10.5\%$ of Eq.~(10) using effective B3 confirmable count $N_f=60$ (derived from the `experiments/scenarios/e6_oscillation.sh` schedule lines~224--259, where Phase~5 at lines~248--250 lasts $1.5\text{ s}$, vs.\ $4.2\text{ s}$ and $3.0\text{ s}$ in Phases~1 and~3; not measured per phase; strict bound held in all 50 runs).
 - **Source CSV(s):** `experiments/results/redfill_2026-11/E11/model_comparison.csv`, `experiments/results/redfill_2026-11/E11/summary.csv`
 
 #### `J8` — Row `E12`
@@ -151,7 +151,7 @@
 - **Page:** p. 11 (Section 6.1, Table 5, row E16)
 - **Exact red text:** `[result]`
 - **Replacement text (LaTeX-ready):**
-  > On archived Geant2012 (40 nodes, 61 links, configured $100\text{ Mbit/s}$, $0.05\text{ ms}$ delay floor, 3 fallback $1\text{ ms}$ links), mean admission latency grew from $3.78$ [$2.73, 4.83$]\,ms ($k=1$) to $11.06$ [$8.76, 13.36$]\,ms ($k=64$) vs.\ $0.94$--$7.32\text{ ms}$ on Team16 7-switch; software rule-count proxy reached $76$ rules/switch ($152$ under strict $2\times$ overlap); hardware/P4 TCAM \textsc{not run} (not available).
+  > On archived Geant2012 (40 nodes, 61 links, configured $100\text{ Mbit/s}$, $0.05\text{ ms}$ delay floor, 3 fallback $1\text{ ms}$ links; SHA-256 `8487b2fb...d4786e` from `prateekshyap/CPP-in-SDN`), mean admission latency grew from $3.78$ [$2.73, 4.83$]\,ms ($k=1$) to $11.06$ [$8.76, 13.36$]\,ms ($k=64$) vs.\ $0.94$--$7.32\text{ ms}$ on Team16 7-switch; software rule-count proxy reached $76$ rules/switch ($152$ under strict $2\times$ overlap); hardware/P4 TCAM \textsc{not run} (not available).
 - **Source CSV(s):** `experiments/results/redfill_2026-11/E16/model_comparison.csv`, `experiments/results/redfill_2026-11/E16/summary.csv`
 
 ---
@@ -182,10 +182,10 @@ Between baseline commit `cf25af2` (`Merge pull request #1 from platynom/feat/fin
    - **Out-of-date draft figure:** Draft Sec. IV-C (Conference p. 4) / Sec. 5.3 (Journal p. 9) reports `70 ms` (`537.9 - 467.7 ms`) between relaxed and strict recovery across two different builds (`cf25af2` vs later B3).
    - **Codebase state & source CSV:** Same-build E9 on `75f2d2e` (`E9/summary.csv`, `E9/welch_tests.csv`) measures `454.517 ms` (`B2_matched_detector`) vs `628.510 ms` (`B3`), giving a **measured** strict-minus-relaxed difference of **$173.993\text{ ms}$ ($174.0\text{ ms}$, $p = 5.27\times 10^{-7}$)**.
    - **Replacement text (LaTeX-ready):**
-     > Measured on the same build (`75f2d2e`, E9), recovery rose from $454.5$ [$414.2, 494.8$]\,ms for matched-detector relaxed replacement to $628.5$ [$601.0, 656.1$]\,ms for strict two-phase update, a $174.0\text{ ms}$ overhead ($p=5.27\times 10^{-7}$) for staging, barrier synchronization (`P3`), and drain.
+     > Measured on the same build (`75f2d2e`, E9), recovery was $454.5$ [$414.2, 494.8$]\,ms for matched-detector relaxed replacement vs.\ $628.5$ [$601.0, 656.1$]\,ms for strict two-phase update, a $174.0\text{ ms}$ difference ($p=5.27\times 10^{-7}$); both B2 (`458.1` vs.\ `279.4 ms`) and B3 (`628.5` vs.\ `537.9 ms`) also shifted upward from the earlier draft build, and the per-change cause has not been isolated experimentally (barrier-reply wait in `P3` is the most likely contributor, not proven in isolation).
 
 5. **Alternating-Fault Confirmable Transitions on S6 (`N_f = 60` vs. `N_f = 90` in Draft Sec. 5.3 / Eq. 10 & Fig. 4b)**
-   - **Clarification:** `s6` runs 30 macro-cycles of 20 s each in 600 s, creating 90 raw `tc` fault/restoration transitions (`B2` immediate $k=1$ reacts to all 90), but each macro-cycle contains a brief 1.5 s single-sample spike that B3's EWMA ($\alpha=0.3, h=0.1, k=3$) naturally filters out, leaving **$N_f = 60$ confirmable transitions**. Both predictions (`N_f = 90` and `N_f = 60`) are reported in Section C (E11).
+   - **Clarification (derived from script schedule, not measured per phase):** Inspection of `experiments/scenarios/e6_oscillation.sh` (lines 224–259) shows `s6` runs 30 macro-cycles of 20 s each in 600 s, creating 90 raw `tc` fault/restoration transitions (`B2` immediate $k=1$ reacts to all 90): Phase 1 (lines 226–228) holds `+30 ms` for `4.2 s`, Phase 3 (lines 238–240) holds `+45 ms` for `3.0 s`, and Phase 5 (lines 248–250) holds `+18 ms` for only `1.5 s`. Because B3's detector requires $k=3$ consecutive breaches at 1 Hz sampling, Phase 5 spans at most 1–2 samples and is filtered out, leaving **$N_f = 60$ confirmable transitions** ($30 \times 2$). Both predictions (`N_f = 90` and `N_f = 60`) are reported in Section C (E11).
 
 ---
 
@@ -245,7 +245,7 @@ All 150 runs executed live in Mininet with `TEAM16_WAIT_FOR_LIVE_VIOLATION` skip
 ---
 
 ### E11 — Dwell Sweep ($\delta \in \{0, 5, 10, 20, 30\}\text{ s}$ on S6, $T=600\text{ s}$, 50 runs)
-Predictions shown for both $N_f = 90$ (paper Eq. 10 using all raw `tc` transitions) and $N_f = 60$ (effective B3-confirmable transitions, since B3 filters the 1.5 s single-sample spike in each 20 s macro-cycle), with $T_{\text{det}} = 2.1\text{ s}$. Source CSVs: `experiments/results/redfill_2026-11/E11/model_comparison.csv`, `E11/summary.csv`.
+Predictions shown for both $N_f = 90$ (paper Eq. 10 using all raw `tc` transitions) and $N_f = 60$ (effective B3-confirmable transitions, derived from `experiments/scenarios/e6_oscillation.sh` lines 224–259 because Phase 5 at lines 248–250 lasts $1.5\text{ s}$ vs.\ $4.2\text{ s}$ and $3.0\text{ s}$ in Phases 1 and 3—not measured per phase), with $T_{\text{det}} = 2.1\text{ s}$. Source CSVs: `experiments/results/redfill_2026-11/E11/model_comparison.csv`, `E11/summary.csv`.
 
 | Configured $\delta$ (s) | $n$ | Measured Reroutes/10m | SD | Measured 95% CI | Max Run | Measured Dwell Suppressions Mean [CI] (`E11/summary.csv`) | Pred. Eq. (10) ($N_f=90$) | Err ($N_f=90$) | Pred. Eq. (10) ($N_f=60$) | Err ($N_f=60$) | Strict Bound ($\lfloor T/\delta\rfloor+1$ / $N_f$) Held? |
 |---:|---:|---:|---:|---|---:|---|---:|---:|---:|---:|---|
@@ -338,9 +338,9 @@ Source CSV: `experiments/results/redfill_2026-11/E14/summary.csv`.
 ---
 
 ### E16 — Larger Topology Scaling (Geant2012 vs. Team16 7-Switch, 140 control-plane runs)
-- **Topology provenance:** Direct `http://www.topology-zoo.org/files/Geant2012.graphml` download failed (`curl: (56) Recv failure: Connection reset by peer`, logged in `FAILURES.md`); the exact archived `Geant2012.graphml` was retrieved into `experiments/results/redfill_2026-11/E16/Geant2012.graphml` from `https://raw.githubusercontent.com/prateekshyap/CPP-in-SDN/master/Geant2012.graphml`.
+- **Topology provenance:** Direct `http://www.topology-zoo.org/files/Geant2012.graphml` download failed (`curl: (56) Recv failure: Connection reset by peer`, logged in `FAILURES.md`); the archived `Geant2012.graphml` was retrieved into `experiments/results/redfill_2026-11/E16/Geant2012.graphml` from `https://raw.githubusercontent.com/prateekshyap/CPP-in-SDN/master/Geant2012.graphml` (SHA-256 `8487b2fb091d53f1317035162df0d8ef436c9e1d10727e26865b0ecd89d4786e`).
 - **Configured topology properties:** Team16 7-switch = `7` nodes, `8` undirected links. Geant2012 = `40` nodes, `61` simple undirected links, `bw_mbps = 100.0` (configured assumption), `delay_ms = max(0.05, dist_km * 0.005)` (`0.05 ms` minimum link-delay floor applied in `experiments/e16_topology_zoo.py` line 63 for short hops), with `3` edges missing coordinates using the configured `1.0 ms` fallback (`fallback_1ms_edges=3`).
-- **Hardware / P4 disclosure:** No hardware or P4 switch was available; TCAM usage was not measured. Rule counts are from the software model.
+- **Hardware / P4 disclosure:** No hardware or P4 switch was available; TCAM usage was **NOT RUN** (not measured). Reported rule counts are from the software model only.
 - Source CSVs: `experiments/results/redfill_2026-11/E16/model_comparison.csv`, `E16/summary.csv`.
 
 | Topology | Active $k$ | $n$ | Measured Admission Latency Mean (ms) | SD (ms) | Measured 95% CI (ms) | Max Rules/Switch Mean (SD) | Max Observed Rules/Switch | Max Strict ($2\times$) Overlap | Total Rules Mean |
@@ -385,8 +385,8 @@ Source CSV: `experiments/results/redfill_2026-11/E14/summary.csv`.
 - **`J1` (`[Corresponding author and funding acknowledgement, if any.]`):** Marked `TEAM DECISION REQUIRED` with default funding text `"This work received no external funding."` and author selection left to the team.
 - **`J2` (`[citation once accepted]`):** Left as-is until the conference paper is accepted.
 - **`E14b` (Secondary live Mininet contention check):** `NOT RUN` after 2 failed attempts (logged below). Primary Proposition~6 evidence is the 80-run control-plane experiment `E14a` (`experiments/e14_contention.py`). As noted in Section C (`E14`), this uncovered a genuine infrastructure finding in `src/enforcement/queues.py` (`ovs-vsctl set port ... qos=...` replaces Mininet's `netem` qdisc when `min_bandwidth_mbps > 0`), leaving `src/` untouched.
-- **`E16` Hardware / P4 TCAM & `www.topology-zoo.org` direct download:** No hardware or P4 switch was available, so TCAM usage is `NOT RUN` (rule counts are from the software model). Direct `http://www.topology-zoo.org/files/Geant2012.graphml` reset the connection, so the identical Topology Zoo `Geant2012.graphml` was fetched from the archived GitHub mirror `prateekshyap/CPP-in-SDN`, with a `0.05 ms` minimum link-delay floor applied in `experiments/e16_topology_zoo.py` line~63.
-- **E10 live-violation collection flag (`TEAM16_WAIT_FOR_LIVE_VIOLATION`):** All 150 runs of E10 bypassed the synthetic SQLite injection helper in `s1_single_intent.sh` so that real telemetry confirmed every breach at the configured $(k, \Delta t)$. Subsequently, `s1_single_intent.sh` was guarded with `TEAM16_WAIT_FOR_LIVE_VIOLATION` defaulting to `0` (`smoke2` verified unchanged default behavior).
+- **`E16` Hardware / P4 TCAM & `www.topology-zoo.org` direct download:** No hardware or P4 switch was available, so TCAM usage is `NOT RUN` (rule counts are from the software model only). Direct `http://www.topology-zoo.org/files/Geant2012.graphml` reset the connection, so the archived Topology Zoo `Geant2012.graphml` (`40` nodes, `61` links, SHA-256 `8487b2fb091d53f1317035162df0d8ef436c9e1d10727e26865b0ecd89d4786e`) was fetched from `prateekshyap/CPP-in-SDN`, with configured `bw_mbps = 100.0`, `delay_ms = max(0.05, dist_km * 0.005)` (`0.05 ms` floor in `experiments/e16_topology_zoo.py` line~63), and `3` `fallback_1ms_edges`.
+- **E10 live-violation collection flag (`TEAM16_WAIT_FOR_LIVE_VIOLATION`):** After E9 finished (`2026-11-18 16:08:33 UTC`), `experiments/scenarios/s1_single_intent.sh` was temporarily edited (`2026-11-18 16:08:51`–`16:09:12 UTC`) to bypass the synthetic SQLite injection helper so all 150 runs of E10 confirmed every breach from real telemetry at $(k, \Delta t)$. Subsequently, `s1_single_intent.sh` was guarded with `TEAM16_WAIT_FOR_LIVE_VIOLATION` defaulting to `0` (`smoke2` verified unchanged default behavior).
 - **E11 `d20` filename indexing on resume:** After the host shutdown during `d20` run 2, the remaining 9 runs restarted filename suffixes at `_01` (distinct timestamps) alongside pre-shutdown `_01`, totaling $n=10$ valid 600 s runs.
 - **E15 shared-clock caveat & replaced run:** `scripts/owd_probe.py` is TWAMP-Light-style shared-clock measurement valid only across same-kernel Mininet namespaces (not RFC 5357 TWAMP). Defective run `redfill_e15_middle_healthy_20261119133024_07.csv` (`rtt_ms = 98738.36 ms`) was excluded to `E15/excluded/` and replaced.
 
@@ -415,17 +415,18 @@ Three existing scenario scripts were edited strictly to add environment-variable
 
 ## Section F — Email Draft to Dr. Navin Kumar
 
-Subject: Team 16 IBN Paper Red Items and Extension Experiments (E9–E16) on `main` (`75f2d2e`)
+To: Dr. Navin Kumar
+Cc: Srikanth Dinesh, Dheepak K
+Subject: Team 16 - data for the red items in both drafts
 
 Dear Dr. Navin Kumar,
 
-We have completed the validation programme (E9–E16) on the current `main` build (`75f2d2e`) in Docker/Mininet and attached `docs/RED_ITEMS_RESPONSE_2026-11.md` with LaTeX-ready replacements for all red items in both drafts.
-Same-build reruns (E9) supply the updated Table I/II B2 latencies alongside B3 and O3, while E4 code inspection plus E12 confirm the $29\text{ ms}$ nominal $\Delta D$ between north and middle paths ($28\text{ ms}$ measured at $1000\text{ pkt/s}$).
-E10 verifies $T_{\text{det}} = (k-1)\Delta t + t_0$ across 15 settings ($\hat{t}_0 = 97.6\text{ ms}$, $R^2=0.99996$), and E11 confirms Eq. (10) once accounting for B3's effective $N_f=60$ confirmable transitions ($0$–$10.5\%$ agreement).
-E12 validates $\lambda T_{\text{gap}}$ loss and $\lambda\Delta D$ reordering across all three path pairs up to $4000\text{ pkt/s}$, and E13 shows false confirmations falling from $76.8$/run (`naive`) to $0/5990$ windows by $k=2$.
-E14 confirms zero over-committed links under Algorithm 2 on `main` vs. 3 over-committed links per run on `cf25af2` (live E14b was not run because OVS HTB queues replace Mininet `netem` qdiscs).
-E15 validates shared-clock one-way delay against $\text{RTT}/2$ (exposing up to $-19.0\text{ ms}$ asymmetric underestimation), and E16 benchmarks Geant2012 control-plane scaling ($3.8$–$11.1\text{ ms}$; hardware/P4 TCAM not run).
-Section B of the attached document also updates three draft statements resolved by audit fixes D2 and P1 on `main`, and flags the remaining editorial choices (`J1` author/funding and `J2` citation).
+Please find attached the summary report covering all measured data for the red items in both the conference and extended journal drafts, measured on the current main build (commit 75f2d2e on github.com/platynom/intent-sdn-sla) in our Docker/Mininet testbed.
+Same-build reruns (E9) supply the updated Table I and Table 2 B2, matched-B2, and B3 latencies alongside O3 bound and unbound throughput and loss, while code inspection plus E12 confirm the 29 ms nominal delay difference (28 ms measured at 1000 pkt/s).
+E10 verifies the linear detection-delay law across 15 settings, E11 confirms the Eq. (10) dwell bound across 50 runs under B3's effective 60 confirmable transitions per 600 s, and E12 validates loss and reordering across all three path pairs up to 4000 pkt/s.
+E13 confirms EWMA plus k >= 2 hysteresis cuts synthetic false confirmations from 76.8/run to zero across 5990 windows, and E14 shows zero over-committed links under concurrent control-plane recovery on 75f2d2e versus all 3 middle-path links over-committed on cf25af2.
+E15 exposes up to 19.02 ms asymmetric underestimation by RTT/2 against shared-clock one-way delay; live multi-intent E14b did not run because OVS HTB replaces root netem, and E16 software-modeled Geant2012 scaling to 64 intents since no hardware/P4 switch was available for TCAM measurement.
+Please let us know if you would like any additional runs or clarifications for either manuscript.
 
-Warm regards,
-Team 16
+Sincerely,
+Tanmaya Kumar, Srikanth Dinesh and Dheepak K (Team 16)
