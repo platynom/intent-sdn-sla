@@ -1,0 +1,6 @@
+dwell_s,n,reroutes_mean,reroutes_sd,reroutes_ci95_low,reroutes_ci95_high,reroutes_max,violations_mean,suppressions_mean,eq10_pred_nf90,pct_error_nf90,eq10_pred_nf60,pct_error_nf60,strict_bound_unbounded,strict_bound_nf90,strict_bound_held_nf90,strict_bound_nf60,strict_bound_held_nf60
+0,10,60.000,0.000,60.000,60.000,60.000,60.000,0.000,90.000,-33.33,60.000,+0.00,90,90,True,60,True
+5,10,59.900,0.316,59.674,60.126,60.000,59.900,0.000,84.507,-29.12,60.000,-0.17,121,90,True,60,True
+10,10,49.200,5.203,45.479,52.921,56.000,49.200,28.000,49.587,-0.78,49.587,-0.78,61,61,True,60,True
+20,10,30.000,0.000,30.000,30.000,30.000,30.000,35.800,27.149,+10.50,27.149,+10.50,31,31,True,31,True
+30,10,19.400,0.966,18.709,20.091,20.000,19.400,46.700,18.692,+3.79,18.692,+3.79,21,21,True,21,True
