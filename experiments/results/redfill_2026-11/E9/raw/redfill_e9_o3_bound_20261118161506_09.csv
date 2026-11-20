@@ -1,0 +1,5 @@
+run_id,timestamp,metric,value,unit
+9,1795018506,intent_throughput_mbps,24.995365,Mbps
+9,1795018506,intent_loss_pct,0.000000,pct
+9,1795018506,cross_traffic_throughput_mbps,74.430613,Mbps
+9,1795018506,cross_traffic_loss_pct,50.370748,pct
