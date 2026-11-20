@@ -1,0 +1,2628 @@
+{
+  "description": "E13: False confirmations per window under normal netem jitter",
+  "summaries": [
+    {
+      "group": "k1",
+      "metric": "empirical_rate",
+      "unit": "rate",
+      "n_independent_runs": 10,
+      "mean": 0.001833333,
+      "sample_stddev": 0.001834173915042773,
+      "ci95_t_low": 0.0005213351801735655,
+      "ci95_t_high": 0.003145330819826434,
+      "min": 0.0,
+      "max": 0.005,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+          "value": 0.00333333
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+          "value": 0.00333333
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+          "value": 0.005
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+          "value": 0.00333333
+        }
+      ]
+    },
+    {
+      "group": "k1",
+      "metric": "false_confirmations",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.1,
+      "sample_stddev": 1.1005049346146119,
+      "ci95_t_low": 0.31280088922814464,
+      "ci95_t_high": 1.8871991107718555,
+      "min": 0.0,
+      "max": 3.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "group": "k1",
+      "metric": "jitter_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "k1",
+      "metric": "k_required",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k1",
+      "metric": "q1_raw_gt20",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.159,
+      "sample_stddev": 0.01931224923126195,
+      "ci95_t_low": 0.14518580894671074,
+      "ci95_t_high": 0.17281419105328927,
+      "min": 0.13,
+      "max": 0.18666667,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+          "value": 0.14333333
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+          "value": 0.18666667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+          "value": 0.185
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+          "value": 0.15
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+          "value": 0.17333333
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+          "value": 0.165
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+          "value": 0.15833333
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+          "value": 0.16166667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+          "value": 0.13
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+          "value": 0.13666667
+        }
+      ]
+    },
+    {
+      "group": "k1",
+      "metric": "q1_raw_gt22",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.096333334,
+      "sample_stddev": 0.011621604583121324,
+      "ci95_t_low": 0.08802031648792591,
+      "ci95_t_high": 0.1046463515120741,
+      "min": 0.07666667,
+      "max": 0.11333333,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+          "value": 0.085
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+          "value": 0.11333333
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+          "value": 0.095
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+          "value": 0.10166667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+          "value": 0.11
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+          "value": 0.105
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+          "value": 0.09833333
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+          "value": 0.09166667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+          "value": 0.08666667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+          "value": 0.07666667
+        }
+      ]
+    },
+    {
+      "group": "k1",
+      "metric": "q_alpha_gt22",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.002166667,
+      "sample_stddev": 0.0023635610035050926,
+      "ci95_t_low": 0.00047599478064661005,
+      "ci95_t_high": 0.00385733921935339,
+      "min": 0.0,
+      "max": 0.00666667,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+          "value": 0.005
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+          "value": 0.00333333
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+          "value": 0.00666667
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+          "value": 0.00333333
+        }
+      ]
+    },
+    {
+      "group": "k1",
+      "metric": "samples_collected",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "k1",
+      "metric": "windows",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "k2",
+      "metric": "empirical_rate",
+      "unit": "rate",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "k2",
+      "metric": "false_confirmations",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "k2",
+      "metric": "jitter_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "k2",
+      "metric": "k_required",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 2.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 2.0,
+      "ci95_t_high": 2.0,
+      "min": 2.0,
+      "max": 2.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+          "value": 2.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+          "value": 2.0
+        }
+      ]
+    },
+    {
+      "group": "k2",
+      "metric": "q1_raw_gt20",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.155166667,
+      "sample_stddev": 0.013686299083119625,
+      "ci95_t_low": 0.14537675863238114,
+      "ci95_t_high": 0.16495657536761887,
+      "min": 0.12666667,
+      "max": 0.17166667,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+          "value": 0.17166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+          "value": 0.145
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+          "value": 0.16833333
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+          "value": 0.155
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+          "value": 0.14166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+          "value": 0.15833333
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+          "value": 0.16
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+          "value": 0.16333333
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+          "value": 0.16166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+          "value": 0.12666667
+        }
+      ]
+    },
+    {
+      "group": "k2",
+      "metric": "q1_raw_gt22",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.08800000200000001,
+      "sample_stddev": 0.012952906637908468,
+      "ci95_t_low": 0.0787346945338021,
+      "ci95_t_high": 0.09726530946619792,
+      "min": 0.07,
+      "max": 0.11166667,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+          "value": 0.09666667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+          "value": 0.07666667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+          "value": 0.09166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+          "value": 0.07
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+          "value": 0.09666667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+          "value": 0.085
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+          "value": 0.095
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+          "value": 0.085
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+          "value": 0.11166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+          "value": 0.07166667
+        }
+      ]
+    },
+    {
+      "group": "k2",
+      "metric": "q_alpha_gt22",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.001333335,
+      "sample_stddev": 0.0010540925533920951,
+      "ci95_t_low": 0.000579334999998115,
+      "ci95_t_high": 0.002087335000001885,
+      "min": 0.0,
+      "max": 0.00333333,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+          "value": 0.00333333
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "k2",
+      "metric": "samples_collected",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "k2",
+      "metric": "windows",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 599.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 599.0,
+      "ci95_t_high": 599.0,
+      "min": 599.0,
+      "max": 599.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+          "value": 599.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+          "value": 599.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+          "value": 599.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+          "value": 599.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+          "value": 599.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+          "value": 599.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+          "value": 599.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+          "value": 599.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+          "value": 599.0
+        },
+        {
+          "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+          "value": 599.0
+        }
+      ]
+    },
+    {
+      "group": "k3",
+      "metric": "empirical_rate",
+      "unit": "rate",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "k3",
+      "metric": "false_confirmations",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "k3",
+      "metric": "jitter_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "k3",
+      "metric": "k_required",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 3.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 3.0,
+      "ci95_t_high": 3.0,
+      "min": 3.0,
+      "max": 3.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+          "value": 3.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "group": "k3",
+      "metric": "q1_raw_gt20",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.1295,
+      "sample_stddev": 0.023148073913955205,
+      "ci95_t_low": 0.11294201590742711,
+      "ci95_t_high": 0.1460579840925729,
+      "min": 0.10166667,
+      "max": 0.17333333,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+          "value": 0.125
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+          "value": 0.15166667
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+          "value": 0.135
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+          "value": 0.115
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+          "value": 0.10333333
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+          "value": 0.15
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+          "value": 0.17333333
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+          "value": 0.12666667
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+          "value": 0.11333333
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+          "value": 0.10166667
+        }
+      ]
+    },
+    {
+      "group": "k3",
+      "metric": "q1_raw_gt22",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.075,
+      "sample_stddev": 0.01594744497512306,
+      "ci95_t_low": 0.06359267768036295,
+      "ci95_t_high": 0.08640732231963705,
+      "min": 0.055,
+      "max": 0.09833333,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+          "value": 0.08166667
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+          "value": 0.08666667
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+          "value": 0.07833333
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+          "value": 0.06
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+          "value": 0.055
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+          "value": 0.09833333
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+          "value": 0.09666667
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+          "value": 0.07333333
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+          "value": 0.06166667
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+          "value": 0.05833333
+        }
+      ]
+    },
+    {
+      "group": "k3",
+      "metric": "q_alpha_gt22",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.000333334,
+      "sample_stddev": 0.0007027297743830444,
+      "ci95_t_low": -0.00016933367199999994,
+      "ci95_t_high": 0.000836001672,
+      "min": 0.0,
+      "max": 0.00166667,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+          "value": 0.00166667
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "k3",
+      "metric": "samples_collected",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "k3",
+      "metric": "windows",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 598.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 598.0,
+      "ci95_t_high": 598.0,
+      "min": 598.0,
+      "max": 598.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+          "value": 598.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+          "value": 598.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+          "value": 598.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+          "value": 598.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+          "value": 598.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+          "value": 598.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+          "value": 598.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+          "value": 598.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+          "value": 598.0
+        },
+        {
+          "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+          "value": 598.0
+        }
+      ]
+    },
+    {
+      "group": "naive",
+      "metric": "empirical_rate",
+      "unit": "rate",
+      "n_independent_runs": 10,
+      "mean": 0.128000001,
+      "sample_stddev": 0.020333635140443996,
+      "ci95_t_low": 0.11345520524502026,
+      "ci95_t_high": 0.14254479675497975,
+      "min": 0.09666667,
+      "max": 0.155,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+          "value": 0.11166667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+          "value": 0.10666667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+          "value": 0.09666667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+          "value": 0.12166667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+          "value": 0.13333333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+          "value": 0.12
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+          "value": 0.14833333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+          "value": 0.155
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+          "value": 0.155
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+          "value": 0.13166667
+        }
+      ]
+    },
+    {
+      "group": "naive",
+      "metric": "false_confirmations",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 76.8,
+      "sample_stddev": 12.200182148002726,
+      "ci95_t_low": 68.07312178611389,
+      "ci95_t_high": 85.5268782138861,
+      "min": 58.0,
+      "max": 93.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+          "value": 67.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+          "value": 64.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+          "value": 58.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+          "value": 73.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+          "value": 80.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+          "value": 72.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+          "value": 89.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+          "value": 93.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+          "value": 93.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+          "value": 79.0
+        }
+      ]
+    },
+    {
+      "group": "naive",
+      "metric": "jitter_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "naive",
+      "metric": "k_required",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "naive",
+      "metric": "q1_raw_gt20",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.147166667,
+      "sample_stddev": 0.021943388489362066,
+      "ci95_t_low": 0.13147040307348126,
+      "ci95_t_high": 0.16286293092651874,
+      "min": 0.11666667,
+      "max": 0.18333333,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+          "value": 0.125
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+          "value": 0.12833333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+          "value": 0.11666667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+          "value": 0.13666667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+          "value": 0.15
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+          "value": 0.14166667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+          "value": 0.165
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+          "value": 0.175
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+          "value": 0.18333333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+          "value": 0.15
+        }
+      ]
+    },
+    {
+      "group": "naive",
+      "metric": "q1_raw_gt22",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.087166667,
+      "sample_stddev": 0.015773277906825024,
+      "ci95_t_low": 0.07588392763949159,
+      "ci95_t_high": 0.09844940636050842,
+      "min": 0.065,
+      "max": 0.115,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+          "value": 0.07666667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+          "value": 0.075
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+          "value": 0.065
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+          "value": 0.08333333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+          "value": 0.08833333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+          "value": 0.08166667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+          "value": 0.115
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+          "value": 0.09333333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+          "value": 0.11166667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+          "value": 0.08166667
+        }
+      ]
+    },
+    {
+      "group": "naive",
+      "metric": "q_alpha_gt22",
+      "unit": "prob",
+      "n_independent_runs": 10,
+      "mean": 0.002333332,
+      "sample_stddev": 0.0022498284159553146,
+      "ci95_t_low": 0.000724013520161027,
+      "ci95_t_high": 0.003942650479838973,
+      "min": 0.0,
+      "max": 0.00666667,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+          "value": 0.00333333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+          "value": 0.00333333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+          "value": 0.00333333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+          "value": 0.00666667
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+          "value": 0.00333333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+          "value": 0.00333333
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "naive",
+      "metric": "samples_collected",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "naive",
+      "metric": "windows",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+          "value": 600.0
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [],
+  "runs": [
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119085636_01.csv",
+      "run_id": 1,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 600.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.085,
+        "q1_raw_gt20": 0.14333333,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119085924_02.csv",
+      "run_id": 2,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 600.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.11333333,
+        "q1_raw_gt20": 0.18666667,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119090213_03.csv",
+      "run_id": 3,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 600.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.095,
+        "q1_raw_gt20": 0.185,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119090501_04.csv",
+      "run_id": 4,
+      "values": {
+        "false_confirmations": 1.0,
+        "windows": 600.0,
+        "empirical_rate": 0.00166667,
+        "q1_raw_gt22": 0.10166667,
+        "q1_raw_gt20": 0.15,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119090750_05.csv",
+      "run_id": 5,
+      "values": {
+        "false_confirmations": 2.0,
+        "windows": 600.0,
+        "empirical_rate": 0.00333333,
+        "q1_raw_gt22": 0.11,
+        "q1_raw_gt20": 0.17333333,
+        "q_alpha_gt22": 0.005,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119091039_06.csv",
+      "run_id": 6,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 600.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.105,
+        "q1_raw_gt20": 0.165,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119091328_07.csv",
+      "run_id": 7,
+      "values": {
+        "false_confirmations": 2.0,
+        "windows": 600.0,
+        "empirical_rate": 0.00333333,
+        "q1_raw_gt22": 0.09833333,
+        "q1_raw_gt20": 0.15833333,
+        "q_alpha_gt22": 0.00333333,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119091616_08.csv",
+      "run_id": 8,
+      "values": {
+        "false_confirmations": 1.0,
+        "windows": 600.0,
+        "empirical_rate": 0.00166667,
+        "q1_raw_gt22": 0.09166667,
+        "q1_raw_gt20": 0.16166667,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119091907_09.csv",
+      "run_id": 9,
+      "values": {
+        "false_confirmations": 3.0,
+        "windows": 600.0,
+        "empirical_rate": 0.005,
+        "q1_raw_gt22": 0.08666667,
+        "q1_raw_gt20": 0.13,
+        "q_alpha_gt22": 0.00666667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k1",
+      "file": "redfill_e13_k1_j6_20261119092157_10.csv",
+      "run_id": 10,
+      "values": {
+        "false_confirmations": 2.0,
+        "windows": 600.0,
+        "empirical_rate": 0.00333333,
+        "q1_raw_gt22": 0.07666667,
+        "q1_raw_gt20": 0.13666667,
+        "q_alpha_gt22": 0.00333333,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119092449_01.csv",
+      "run_id": 1,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.09666667,
+        "q1_raw_gt20": 0.17166667,
+        "q_alpha_gt22": 0.00333333,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119092738_02.csv",
+      "run_id": 2,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.07666667,
+        "q1_raw_gt20": 0.145,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119093027_03.csv",
+      "run_id": 3,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.09166667,
+        "q1_raw_gt20": 0.16833333,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119093316_04.csv",
+      "run_id": 4,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.07,
+        "q1_raw_gt20": 0.155,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119093604_05.csv",
+      "run_id": 5,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.09666667,
+        "q1_raw_gt20": 0.14166667,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119093856_06.csv",
+      "run_id": 6,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.085,
+        "q1_raw_gt20": 0.15833333,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119094145_07.csv",
+      "run_id": 7,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.095,
+        "q1_raw_gt20": 0.16,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119094433_08.csv",
+      "run_id": 8,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.085,
+        "q1_raw_gt20": 0.16333333,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119094722_09.csv",
+      "run_id": 9,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.11166667,
+        "q1_raw_gt20": 0.16166667,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k2",
+      "file": "redfill_e13_k2_j6_20261119095009_10.csv",
+      "run_id": 10,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 599.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.07166667,
+        "q1_raw_gt20": 0.12666667,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 2.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119095255_01.csv",
+      "run_id": 1,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.08166667,
+        "q1_raw_gt20": 0.125,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119095540_02.csv",
+      "run_id": 2,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.08666667,
+        "q1_raw_gt20": 0.15166667,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119095824_03.csv",
+      "run_id": 3,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.07833333,
+        "q1_raw_gt20": 0.135,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119100107_04.csv",
+      "run_id": 4,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.06,
+        "q1_raw_gt20": 0.115,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119100351_05.csv",
+      "run_id": 5,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.055,
+        "q1_raw_gt20": 0.10333333,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119100636_06.csv",
+      "run_id": 6,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.09833333,
+        "q1_raw_gt20": 0.15,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119100925_07.csv",
+      "run_id": 7,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.09666667,
+        "q1_raw_gt20": 0.17333333,
+        "q_alpha_gt22": 0.00166667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119101214_08.csv",
+      "run_id": 8,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.07333333,
+        "q1_raw_gt20": 0.12666667,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119101501_09.csv",
+      "run_id": 9,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.06166667,
+        "q1_raw_gt20": 0.11333333,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "k3",
+      "file": "redfill_e13_k3_j6_20261119101745_10.csv",
+      "run_id": 10,
+      "values": {
+        "false_confirmations": 0.0,
+        "windows": 598.0,
+        "empirical_rate": 0.0,
+        "q1_raw_gt22": 0.05833333,
+        "q1_raw_gt20": 0.10166667,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 3.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119082848_01.csv",
+      "run_id": 1,
+      "values": {
+        "false_confirmations": 67.0,
+        "windows": 600.0,
+        "empirical_rate": 0.11166667,
+        "q1_raw_gt22": 0.07666667,
+        "q1_raw_gt20": 0.125,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119083132_02.csv",
+      "run_id": 2,
+      "values": {
+        "false_confirmations": 64.0,
+        "windows": 600.0,
+        "empirical_rate": 0.10666667,
+        "q1_raw_gt22": 0.075,
+        "q1_raw_gt20": 0.12833333,
+        "q_alpha_gt22": 0.00333333,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119083416_03.csv",
+      "run_id": 3,
+      "values": {
+        "false_confirmations": 58.0,
+        "windows": 600.0,
+        "empirical_rate": 0.09666667,
+        "q1_raw_gt22": 0.065,
+        "q1_raw_gt20": 0.11666667,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119083700_04.csv",
+      "run_id": 4,
+      "values": {
+        "false_confirmations": 73.0,
+        "windows": 600.0,
+        "empirical_rate": 0.12166667,
+        "q1_raw_gt22": 0.08333333,
+        "q1_raw_gt20": 0.13666667,
+        "q_alpha_gt22": 0.00333333,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119083945_05.csv",
+      "run_id": 5,
+      "values": {
+        "false_confirmations": 80.0,
+        "windows": 600.0,
+        "empirical_rate": 0.13333333,
+        "q1_raw_gt22": 0.08833333,
+        "q1_raw_gt20": 0.15,
+        "q_alpha_gt22": 0.00333333,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119084234_06.csv",
+      "run_id": 6,
+      "values": {
+        "false_confirmations": 72.0,
+        "windows": 600.0,
+        "empirical_rate": 0.12,
+        "q1_raw_gt22": 0.08166667,
+        "q1_raw_gt20": 0.14166667,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119084524_07.csv",
+      "run_id": 7,
+      "values": {
+        "false_confirmations": 89.0,
+        "windows": 600.0,
+        "empirical_rate": 0.14833333,
+        "q1_raw_gt22": 0.115,
+        "q1_raw_gt20": 0.165,
+        "q_alpha_gt22": 0.00666667,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119084812_08.csv",
+      "run_id": 8,
+      "values": {
+        "false_confirmations": 93.0,
+        "windows": 600.0,
+        "empirical_rate": 0.155,
+        "q1_raw_gt22": 0.09333333,
+        "q1_raw_gt20": 0.175,
+        "q_alpha_gt22": 0.00333333,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119085100_09.csv",
+      "run_id": 9,
+      "values": {
+        "false_confirmations": 93.0,
+        "windows": 600.0,
+        "empirical_rate": 0.155,
+        "q1_raw_gt22": 0.11166667,
+        "q1_raw_gt20": 0.18333333,
+        "q_alpha_gt22": 0.00333333,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    },
+    {
+      "group": "naive",
+      "file": "redfill_e13_naive_j6_20261119085348_10.csv",
+      "run_id": 10,
+      "values": {
+        "false_confirmations": 79.0,
+        "windows": 600.0,
+        "empirical_rate": 0.13166667,
+        "q1_raw_gt22": 0.08166667,
+        "q1_raw_gt20": 0.15,
+        "q_alpha_gt22": 0.0,
+        "samples_collected": 600.0,
+        "jitter_ms": 6.0,
+        "k_required": 1.0
+      }
+    }
+  ]
+}
