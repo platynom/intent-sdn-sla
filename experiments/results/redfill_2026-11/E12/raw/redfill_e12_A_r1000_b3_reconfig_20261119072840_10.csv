@@ -1,0 +1,7 @@
+run_id,timestamp,metric,value,unit
+10,1795073320,packets_sent,4340,packets
+10,1795073320,packets_received,4340,packets
+10,1795073320,packets_lost,0,packets
+10,1795073320,packets_duplicated,0,packets
+10,1795073320,packets_reordered,28,packets
+10,1795073320,window_duration_s,4.340601,s

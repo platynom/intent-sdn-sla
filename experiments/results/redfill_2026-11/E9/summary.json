@@ -1,0 +1,1587 @@
+{
+  "description": "E9: Same-build rerun of Table I (B2, B2-matched, B3) and O3 (unbound, bound) on commit 75f2d2e",
+  "summaries": [
+    {
+      "group": "B2",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 101.0950088,
+      "sample_stddev": 6.690245159348442,
+      "ci95_t_low": 96.30942822272698,
+      "ci95_t_high": 105.88058937727303,
+      "min": 90.804815,
+      "max": 112.807751,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_b2_20261118155654.csv",
+          "value": 101.004362
+        },
+        {
+          "file": "redfill_e9_b2_20261118155717.csv",
+          "value": 104.874372
+        },
+        {
+          "file": "redfill_e9_b2_20261118155740.csv",
+          "value": 108.43277
+        },
+        {
+          "file": "redfill_e9_b2_20261118155803.csv",
+          "value": 112.807751
+        },
+        {
+          "file": "redfill_e9_b2_20261118155826.csv",
+          "value": 101.539373
+        },
+        {
+          "file": "redfill_e9_b2_20261118155848.csv",
+          "value": 96.515894
+        },
+        {
+          "file": "redfill_e9_b2_20261118155910.csv",
+          "value": 95.211983
+        },
+        {
+          "file": "redfill_e9_b2_20261118155933.csv",
+          "value": 95.824003
+        },
+        {
+          "file": "redfill_e9_b2_20261118155955.csv",
+          "value": 103.934765
+        },
+        {
+          "file": "redfill_e9_b2_20261118160017.csv",
+          "value": 90.804815
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 458.0821991,
+      "sample_stddev": 51.740458277187,
+      "ci95_t_low": 421.07187641481073,
+      "ci95_t_high": 495.0925217851893,
+      "min": 398.857355,
+      "max": 549.504042,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_b2_20261118155654.csv",
+          "value": 438.994169
+        },
+        {
+          "file": "redfill_e9_b2_20261118155717.csv",
+          "value": 406.051397
+        },
+        {
+          "file": "redfill_e9_b2_20261118155740.csv",
+          "value": 485.6112
+        },
+        {
+          "file": "redfill_e9_b2_20261118155803.csv",
+          "value": 428.057194
+        },
+        {
+          "file": "redfill_e9_b2_20261118155826.csv",
+          "value": 442.477942
+        },
+        {
+          "file": "redfill_e9_b2_20261118155848.csv",
+          "value": 413.343191
+        },
+        {
+          "file": "redfill_e9_b2_20261118155910.csv",
+          "value": 549.504042
+        },
+        {
+          "file": "redfill_e9_b2_20261118155933.csv",
+          "value": 515.066147
+        },
+        {
+          "file": "redfill_e9_b2_20261118155955.csv",
+          "value": 398.857355
+        },
+        {
+          "file": "redfill_e9_b2_20261118160017.csv",
+          "value": 502.859354
+        }
+      ]
+    },
+    {
+      "group": "B2",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_b2_20261118155654.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2_20261118155717.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2_20261118155740.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2_20261118155803.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2_20261118155826.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2_20261118155848.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2_20261118155910.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2_20261118155933.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2_20261118155955.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2_20261118160017.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "B2_matched_detector",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 2096.3005305,
+      "sample_stddev": 6.121174578602829,
+      "ci95_t_low": 2091.9220102102727,
+      "ci95_t_high": 2100.6790507897276,
+      "min": 2090.77549,
+      "max": 2111.464977,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_b2matched_20261118160125.csv",
+          "value": 2091.160059
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160148.csv",
+          "value": 2090.77549
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160210.csv",
+          "value": 2111.464977
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160233.csv",
+          "value": 2098.103285
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160255.csv",
+          "value": 2094.074488
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160318.csv",
+          "value": 2097.478867
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160340.csv",
+          "value": 2091.428995
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160403.csv",
+          "value": 2093.301535
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160425.csv",
+          "value": 2099.119663
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160448.csv",
+          "value": 2096.097946
+        }
+      ]
+    },
+    {
+      "group": "B2_matched_detector",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 454.5174599,
+      "sample_stddev": 56.371942526407544,
+      "ci95_t_low": 414.1942031534864,
+      "ci95_t_high": 494.8407166465136,
+      "min": 356.842995,
+      "max": 545.281172,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_b2matched_20261118160125.csv",
+          "value": 516.4814
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160148.csv",
+          "value": 356.842995
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160210.csv",
+          "value": 425.642967
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160233.csv",
+          "value": 545.281172
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160255.csv",
+          "value": 454.493046
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160318.csv",
+          "value": 458.049774
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160340.csv",
+          "value": 482.352972
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160403.csv",
+          "value": 481.474161
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160425.csv",
+          "value": 435.367584
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160448.csv",
+          "value": 389.188528
+        }
+      ]
+    },
+    {
+      "group": "B2_matched_detector",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_b2matched_20261118160125.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160148.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160210.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160233.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160255.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160318.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160340.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160403.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160425.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b2matched_20261118160448.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 2094.7216033,
+      "sample_stddev": 3.1779602719007447,
+      "ci95_t_low": 2092.4483854148075,
+      "ci95_t_high": 2096.9948211851924,
+      "min": 2092.206001,
+      "max": 2102.083683,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_b3_20261118160511.csv",
+          "value": 2092.59963
+        },
+        {
+          "file": "redfill_e9_b3_20261118160533.csv",
+          "value": 2093.805313
+        },
+        {
+          "file": "redfill_e9_b3_20261118160555.csv",
+          "value": 2092.424393
+        },
+        {
+          "file": "redfill_e9_b3_20261118160618.csv",
+          "value": 2094.593763
+        },
+        {
+          "file": "redfill_e9_b3_20261118160641.csv",
+          "value": 2093.931198
+        },
+        {
+          "file": "redfill_e9_b3_20261118160703.csv",
+          "value": 2098.674059
+        },
+        {
+          "file": "redfill_e9_b3_20261118160726.csv",
+          "value": 2093.099117
+        },
+        {
+          "file": "redfill_e9_b3_20261118160748.csv",
+          "value": 2093.798876
+        },
+        {
+          "file": "redfill_e9_b3_20261118160811.csv",
+          "value": 2092.206001
+        },
+        {
+          "file": "redfill_e9_b3_20261118160833.csv",
+          "value": 2102.083683
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 628.510356,
+      "sample_stddev": 38.52425461492509,
+      "ci95_t_low": 600.9536790400392,
+      "ci95_t_high": 656.0670329599608,
+      "min": 571.933508,
+      "max": 669.665813,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_b3_20261118160511.csv",
+          "value": 669.665813
+        },
+        {
+          "file": "redfill_e9_b3_20261118160533.csv",
+          "value": 571.933508
+        },
+        {
+          "file": "redfill_e9_b3_20261118160555.csv",
+          "value": 640.427113
+        },
+        {
+          "file": "redfill_e9_b3_20261118160618.csv",
+          "value": 655.692577
+        },
+        {
+          "file": "redfill_e9_b3_20261118160641.csv",
+          "value": 588.017702
+        },
+        {
+          "file": "redfill_e9_b3_20261118160703.csv",
+          "value": 618.07704
+        },
+        {
+          "file": "redfill_e9_b3_20261118160726.csv",
+          "value": 667.179585
+        },
+        {
+          "file": "redfill_e9_b3_20261118160748.csv",
+          "value": 637.304783
+        },
+        {
+          "file": "redfill_e9_b3_20261118160811.csv",
+          "value": 663.435936
+        },
+        {
+          "file": "redfill_e9_b3_20261118160833.csv",
+          "value": 573.369503
+        }
+      ]
+    },
+    {
+      "group": "B3",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_b3_20261118160511.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b3_20261118160533.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b3_20261118160555.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b3_20261118160618.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b3_20261118160641.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b3_20261118160703.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b3_20261118160726.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b3_20261118160748.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b3_20261118160811.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e9_b3_20261118160833.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "O3_bound",
+      "metric": "cross_traffic_loss_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 50.3905977,
+      "sample_stddev": 0.01617673915122134,
+      "ci95_t_low": 50.37902636190374,
+      "ci95_t_high": 50.40216903809626,
+      "min": 50.370748,
+      "max": 50.430215,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_o3_bound_20261118161230_01.csv",
+          "value": 50.396243
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161250_02.csv",
+          "value": 50.376149
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161309_03.csv",
+          "value": 50.381561
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161329_04.csv",
+          "value": 50.394698
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161348_05.csv",
+          "value": 50.386196
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161408_06.csv",
+          "value": 50.430215
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161427_07.csv",
+          "value": 50.392375
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161447_08.csv",
+          "value": 50.392375
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161506_09.csv",
+          "value": 50.370748
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161526_10.csv",
+          "value": 50.385417
+        }
+      ]
+    },
+    {
+      "group": "O3_bound",
+      "metric": "cross_traffic_throughput_mbps",
+      "unit": "Mbps",
+      "n_independent_runs": 10,
+      "mean": 74.4002757,
+      "sample_stddev": 0.024824462272566693,
+      "ci95_t_low": 74.38251858323324,
+      "ci95_t_high": 74.41803281676675,
+      "min": 74.340494,
+      "max": 74.430613,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_o3_bound_20261118161230_01.csv",
+          "value": 74.389666
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161250_02.csv",
+          "value": 74.42341
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161309_03.csv",
+          "value": 74.414143
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161329_04.csv",
+          "value": 74.392474
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161348_05.csv",
+          "value": 74.407207
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161408_06.csv",
+          "value": 74.340494
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161427_07.csv",
+          "value": 74.397033
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161447_08.csv",
+          "value": 74.398074
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161506_09.csv",
+          "value": 74.430613
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161526_10.csv",
+          "value": 74.409643
+        }
+      ]
+    },
+    {
+      "group": "O3_bound",
+      "metric": "intent_loss_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_o3_bound_20261118161230_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161250_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161309_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161329_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161348_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161408_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161427_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161447_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161506_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161526_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "O3_bound",
+      "metric": "intent_throughput_mbps",
+      "unit": "Mbps",
+      "n_independent_runs": 10,
+      "mean": 24.995458499999998,
+      "sample_stddev": 6.79889696938375e-05,
+      "ci95_t_low": 24.995409867,
+      "ci95_t_high": 24.995507132999997,
+      "min": 24.99533,
+      "max": 24.995525,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_o3_bound_20261118161230_01.csv",
+          "value": 24.995425
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161250_02.csv",
+          "value": 24.99548
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161309_03.csv",
+          "value": 24.995525
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161329_04.csv",
+          "value": 24.99544
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161348_05.csv",
+          "value": 24.99548
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161408_06.csv",
+          "value": 24.99533
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161427_07.csv",
+          "value": 24.995495
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161447_08.csv",
+          "value": 24.99552
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161506_09.csv",
+          "value": 24.995365
+        },
+        {
+          "file": "redfill_e9_o3_bound_20261118161526_10.csv",
+          "value": 24.995525
+        }
+      ]
+    },
+    {
+      "group": "O3_unbound",
+      "metric": "cross_traffic_loss_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 46.2276271,
+      "sample_stddev": 0.6450485229406212,
+      "ci95_t_low": 45.76621924284998,
+      "ci95_t_high": 46.68903495715002,
+      "min": 44.583134,
+      "max": 46.889531,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_o3_unbound_20261118160914_01.csv",
+          "value": 46.18902
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118160934_02.csv",
+          "value": 46.810746
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118160953_03.csv",
+          "value": 46.604566
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161013_04.csv",
+          "value": 46.424654
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161032_05.csv",
+          "value": 46.343498
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161052_06.csv",
+          "value": 46.889531
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161111_07.csv",
+          "value": 46.316407
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161131_08.csv",
+          "value": 44.583134
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161151_09.csv",
+          "value": 46.040009
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161210_10.csv",
+          "value": 46.074706
+        }
+      ]
+    },
+    {
+      "group": "O3_unbound",
+      "metric": "cross_traffic_throughput_mbps",
+      "unit": "Mbps",
+      "n_independent_runs": 10,
+      "mean": 80.6435526,
+      "sample_stddev": 0.9674313298716144,
+      "ci95_t_low": 79.95154199772637,
+      "ci95_t_high": 81.33556320227365,
+      "min": 79.649656,
+      "max": 83.108821,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_o3_unbound_20261118160914_01.csv",
+          "value": 80.701797
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118160934_02.csv",
+          "value": 79.767332
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118160953_03.csv",
+          "value": 80.078366
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161013_04.csv",
+          "value": 80.349811
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161032_05.csv",
+          "value": 80.470347
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161052_06.csv",
+          "value": 79.649656
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161111_07.csv",
+          "value": 80.509313
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161131_08.csv",
+          "value": 83.108821
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161151_09.csv",
+          "value": 80.927089
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161210_10.csv",
+          "value": 80.872994
+        }
+      ]
+    },
+    {
+      "group": "O3_unbound",
+      "metric": "intent_loss_pct",
+      "unit": "pct",
+      "n_independent_runs": 10,
+      "mean": 25.0384651,
+      "sample_stddev": 3.905459594530896,
+      "ci95_t_low": 22.244861706438886,
+      "ci95_t_high": 27.832068493561113,
+      "min": 21.002873,
+      "max": 34.99861,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_o3_unbound_20261118160914_01.csv",
+          "value": 25.081101
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118160934_02.csv",
+          "value": 21.503383
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118160953_03.csv",
+          "value": 22.893688
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161013_04.csv",
+          "value": 23.690796
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161032_05.csv",
+          "value": 24.228381
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161052_06.csv",
+          "value": 21.002873
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161111_07.csv",
+          "value": 24.830846
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161131_08.csv",
+          "value": 34.99861
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161151_09.csv",
+          "value": 26.147002
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161210_10.csv",
+          "value": 26.007971
+        }
+      ]
+    },
+    {
+      "group": "O3_unbound",
+      "metric": "intent_throughput_mbps",
+      "unit": "Mbps",
+      "n_independent_runs": 10,
+      "mean": 18.7369349,
+      "sample_stddev": 0.9761763728314268,
+      "ci95_t_low": 18.038668905474044,
+      "ci95_t_high": 19.43520089452596,
+      "min": 16.247354,
+      "max": 19.745565,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e9_o3_unbound_20261118160914_01.csv",
+          "value": 18.726324
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118160934_02.csv",
+          "value": 19.620575
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118160953_03.csv",
+          "value": 19.273016
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161013_04.csv",
+          "value": 19.073837
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161032_05.csv",
+          "value": 18.939393
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161052_06.csv",
+          "value": 19.745565
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161111_07.csv",
+          "value": 18.788718
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161131_08.csv",
+          "value": 16.247354
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161151_09.csv",
+          "value": 18.459845
+        },
+        {
+          "file": "redfill_e9_o3_unbound_20261118161210_10.csv",
+          "value": 18.494722
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [
+    {
+      "metric": "detection_latency",
+      "group_a": "B2",
+      "group_b": "B3",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "Welch two-sample t",
+      "t_statistic": -851.1784506657489,
+      "degrees_of_freedom": 12.864726337307898,
+      "p_value_two_sided": 6.038320107916457e-32,
+      "mean_diff": -1993.6265945
+    },
+    {
+      "metric": "detection_latency",
+      "group_a": "B2_matched_detector",
+      "group_b": "B3",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "Welch two-sample t",
+      "t_statistic": 0.7239418830281181,
+      "degrees_of_freedom": 13.523145569844118,
+      "p_value_two_sided": 0.48143829408403127,
+      "mean_diff": 1.5789272000001802
+    },
+    {
+      "metric": "detection_latency",
+      "group_a": "B2",
+      "group_b": "B2_matched_detector",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "Welch two-sample t",
+      "t_statistic": -695.7886752472274,
+      "degrees_of_freedom": 17.85960311765421,
+      "p_value_two_sided": 4.822158873406016e-41,
+      "mean_diff": -1995.2055217000002
+    },
+    {
+      "metric": "recovery_latency",
+      "group_a": "B2",
+      "group_b": "B3",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "Welch two-sample t",
+      "t_statistic": -8.354729751244587,
+      "degrees_of_freedom": 16.632954146602366,
+      "p_value_two_sided": 2.3642291090606184e-07,
+      "mean_diff": -170.42815689999998
+    },
+    {
+      "metric": "recovery_latency",
+      "group_a": "B2_matched_detector",
+      "group_b": "B3",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "Welch two-sample t",
+      "t_statistic": -8.05841043985407,
+      "degrees_of_freedom": 15.901234771766934,
+      "p_value_two_sided": 5.26666288241852e-07,
+      "mean_diff": -173.9928961
+    },
+    {
+      "metric": "recovery_latency",
+      "group_a": "B2",
+      "group_b": "B2_matched_detector",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "Welch two-sample t",
+      "t_statistic": 0.14732250652129772,
+      "degrees_of_freedom": 17.869303373576617,
+      "p_value_two_sided": 0.8845269672311502,
+      "mean_diff": 3.5647392000000195
+    },
+    {
+      "metric": "intent_throughput_mbps",
+      "group_a": "O3_bound",
+      "group_b": "O3_unbound",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "Welch two-sample t",
+      "t_statistic": 20.274194160743054,
+      "degrees_of_freedom": 9.000000087315803,
+      "p_value_two_sided": 8.051770696108065e-09,
+      "mean_diff": 6.258523599999997
+    },
+    {
+      "metric": "intent_loss_pct",
+      "group_a": "O3_bound",
+      "group_b": "O3_unbound",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "exact two-sided permutation",
+      "t_statistic": null,
+      "degrees_of_freedom": null,
+      "p_value_two_sided": 1.082508822446903e-05,
+      "mean_diff": -25.0384651,
+      "permutation_extreme": 2,
+      "permutation_total": 184756,
+      "note": "used because at least one group has zero sample variance"
+    },
+    {
+      "metric": "cross_traffic_throughput_mbps",
+      "group_a": "O3_bound",
+      "group_b": "O3_unbound",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "Welch two-sample t",
+      "t_statistic": -20.40090891794109,
+      "degrees_of_freedom": 9.011852002139877,
+      "p_value_two_sided": 7.487628387062298e-09,
+      "mean_diff": -6.243276900000012
+    },
+    {
+      "metric": "cross_traffic_loss_pct",
+      "group_a": "O3_bound",
+      "group_b": "O3_unbound",
+      "n_a": 10,
+      "n_b": 10,
+      "test_method": "Welch two-sample t",
+      "t_statistic": 20.402079372287922,
+      "degrees_of_freedom": 9.011320602160692,
+      "p_value_two_sided": 7.48975657257395e-09,
+      "mean_diff": 4.162970600000001
+    }
+  ],
+  "runs": [
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118155654.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 101.004362,
+        "recovery_latency": 438.994169,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118155717.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 104.874372,
+        "recovery_latency": 406.051397,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118155740.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 108.43277,
+        "recovery_latency": 485.6112,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118155803.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 112.807751,
+        "recovery_latency": 428.057194,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118155826.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 101.539373,
+        "recovery_latency": 442.477942,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118155848.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 96.515894,
+        "recovery_latency": 413.343191,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118155910.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 95.211983,
+        "recovery_latency": 549.504042,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118155933.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 95.824003,
+        "recovery_latency": 515.066147,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118155955.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 103.934765,
+        "recovery_latency": 398.857355,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2",
+      "file": "redfill_e9_b2_20261118160017.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 90.804815,
+        "recovery_latency": 502.859354,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160125.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2091.160059,
+        "recovery_latency": 516.4814,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160148.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2090.77549,
+        "recovery_latency": 356.842995,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160210.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2111.464977,
+        "recovery_latency": 425.642967,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160233.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2098.103285,
+        "recovery_latency": 545.281172,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160255.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2094.074488,
+        "recovery_latency": 454.493046,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160318.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2097.478867,
+        "recovery_latency": 458.049774,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160340.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2091.428995,
+        "recovery_latency": 482.352972,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160403.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2093.301535,
+        "recovery_latency": 481.474161,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160425.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2099.119663,
+        "recovery_latency": 435.367584,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B2_matched_detector",
+      "file": "redfill_e9_b2matched_20261118160448.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2096.097946,
+        "recovery_latency": 389.188528,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160511.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2092.59963,
+        "recovery_latency": 669.665813,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160533.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2093.805313,
+        "recovery_latency": 571.933508,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160555.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2092.424393,
+        "recovery_latency": 640.427113,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160618.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2094.593763,
+        "recovery_latency": 655.692577,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160641.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2093.931198,
+        "recovery_latency": 588.017702,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160703.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2098.674059,
+        "recovery_latency": 618.07704,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160726.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2093.099117,
+        "recovery_latency": 667.179585,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160748.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2093.798876,
+        "recovery_latency": 637.304783,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160811.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2092.206001,
+        "recovery_latency": 663.435936,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "B3",
+      "file": "redfill_e9_b3_20261118160833.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2102.083683,
+        "recovery_latency": 573.369503,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161230_01.csv",
+      "run_id": 1,
+      "values": {
+        "intent_throughput_mbps": 24.995425,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.389666,
+        "cross_traffic_loss_pct": 50.396243
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161250_02.csv",
+      "run_id": 2,
+      "values": {
+        "intent_throughput_mbps": 24.99548,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.42341,
+        "cross_traffic_loss_pct": 50.376149
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161309_03.csv",
+      "run_id": 3,
+      "values": {
+        "intent_throughput_mbps": 24.995525,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.414143,
+        "cross_traffic_loss_pct": 50.381561
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161329_04.csv",
+      "run_id": 4,
+      "values": {
+        "intent_throughput_mbps": 24.99544,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.392474,
+        "cross_traffic_loss_pct": 50.394698
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161348_05.csv",
+      "run_id": 5,
+      "values": {
+        "intent_throughput_mbps": 24.99548,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.407207,
+        "cross_traffic_loss_pct": 50.386196
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161408_06.csv",
+      "run_id": 6,
+      "values": {
+        "intent_throughput_mbps": 24.99533,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.340494,
+        "cross_traffic_loss_pct": 50.430215
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161427_07.csv",
+      "run_id": 7,
+      "values": {
+        "intent_throughput_mbps": 24.995495,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.397033,
+        "cross_traffic_loss_pct": 50.392375
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161447_08.csv",
+      "run_id": 8,
+      "values": {
+        "intent_throughput_mbps": 24.99552,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.398074,
+        "cross_traffic_loss_pct": 50.392375
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161506_09.csv",
+      "run_id": 9,
+      "values": {
+        "intent_throughput_mbps": 24.995365,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.430613,
+        "cross_traffic_loss_pct": 50.370748
+      }
+    },
+    {
+      "group": "O3_bound",
+      "file": "redfill_e9_o3_bound_20261118161526_10.csv",
+      "run_id": 10,
+      "values": {
+        "intent_throughput_mbps": 24.995525,
+        "intent_loss_pct": 0.0,
+        "cross_traffic_throughput_mbps": 74.409643,
+        "cross_traffic_loss_pct": 50.385417
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118160914_01.csv",
+      "run_id": 1,
+      "values": {
+        "intent_throughput_mbps": 18.726324,
+        "intent_loss_pct": 25.081101,
+        "cross_traffic_throughput_mbps": 80.701797,
+        "cross_traffic_loss_pct": 46.18902
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118160934_02.csv",
+      "run_id": 2,
+      "values": {
+        "intent_throughput_mbps": 19.620575,
+        "intent_loss_pct": 21.503383,
+        "cross_traffic_throughput_mbps": 79.767332,
+        "cross_traffic_loss_pct": 46.810746
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118160953_03.csv",
+      "run_id": 3,
+      "values": {
+        "intent_throughput_mbps": 19.273016,
+        "intent_loss_pct": 22.893688,
+        "cross_traffic_throughput_mbps": 80.078366,
+        "cross_traffic_loss_pct": 46.604566
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118161013_04.csv",
+      "run_id": 4,
+      "values": {
+        "intent_throughput_mbps": 19.073837,
+        "intent_loss_pct": 23.690796,
+        "cross_traffic_throughput_mbps": 80.349811,
+        "cross_traffic_loss_pct": 46.424654
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118161032_05.csv",
+      "run_id": 5,
+      "values": {
+        "intent_throughput_mbps": 18.939393,
+        "intent_loss_pct": 24.228381,
+        "cross_traffic_throughput_mbps": 80.470347,
+        "cross_traffic_loss_pct": 46.343498
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118161052_06.csv",
+      "run_id": 6,
+      "values": {
+        "intent_throughput_mbps": 19.745565,
+        "intent_loss_pct": 21.002873,
+        "cross_traffic_throughput_mbps": 79.649656,
+        "cross_traffic_loss_pct": 46.889531
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118161111_07.csv",
+      "run_id": 7,
+      "values": {
+        "intent_throughput_mbps": 18.788718,
+        "intent_loss_pct": 24.830846,
+        "cross_traffic_throughput_mbps": 80.509313,
+        "cross_traffic_loss_pct": 46.316407
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118161131_08.csv",
+      "run_id": 8,
+      "values": {
+        "intent_throughput_mbps": 16.247354,
+        "intent_loss_pct": 34.99861,
+        "cross_traffic_throughput_mbps": 83.108821,
+        "cross_traffic_loss_pct": 44.583134
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118161151_09.csv",
+      "run_id": 9,
+      "values": {
+        "intent_throughput_mbps": 18.459845,
+        "intent_loss_pct": 26.147002,
+        "cross_traffic_throughput_mbps": 80.927089,
+        "cross_traffic_loss_pct": 46.040009
+      }
+    },
+    {
+      "group": "O3_unbound",
+      "file": "redfill_e9_o3_unbound_20261118161210_10.csv",
+      "run_id": 10,
+      "values": {
+        "intent_throughput_mbps": 18.494722,
+        "intent_loss_pct": 26.007971,
+        "cross_traffic_throughput_mbps": 80.872994,
+        "cross_traffic_loss_pct": 46.074706
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+=== GIT ===
+75f2d2e18eddc84bc7046077dd9dea7c83f3726e
+75f2d2e Merge pull request #2 from platynom/fix/audit-2026-11
+exp/red-items-2026-11
+
+=== DOCKER & ENV ===
+Docker version 29.6.1, build 8900f1d
+Docker Compose version v5.3.1
+Linux DESKTOP-7Q6OT1V 6.18.33.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Fri Jun  5 01:12:21 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Python 3.9.25
+
+=== PYTEST ===
+........................................................................ [ 21%]
+........................................................................ [ 42%]
+........................................................................ [ 64%]
+...........ssssssssss................................................... [ 85%]
+............................s....................                        [100%]
+=============================== warnings summary ===============================
+../usr/local/lib/python3.9/site-packages/eventlet/patcher.py:1
+  /usr/local/lib/python3.9/site-packages/eventlet/patcher.py:1: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+    import imp
+
+../usr/local/lib/python3.9/site-packages/dns/hash.py:23
+  /usr/local/lib/python3.9/site-packages/dns/hash.py:23: DeprecationWarning: dns.hash module will be removed in future versions. Please use hashlib instead.
+    warnings.warn(
+
+../usr/local/lib/python3.9/site-packages/dns/namedict.py:35
+  /usr/local/lib/python3.9/site-packages/dns/namedict.py:35: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+    class NameDict(collections.MutableMapping):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+326 passed, 11 skipped, 3 warnings in 11.00s
+
+=== VERIFY SUMMARIES ===
+summary verification passed: raw CSVs, summaries, and public result claims agree
+
+=== ARTIFACT MANIFEST ===
+manifest verification passed: 355 artifacts (LF-canonical text; verbatim binaries)

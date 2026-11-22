@@ -1,0 +1,10 @@
+run_id,timestamp,metric,value,unit
+3,1795082304,false_confirmations,0,count
+3,1795082304,windows,598,count
+3,1795082304,empirical_rate,0.00000000,rate
+3,1795082304,q1_raw_gt22,0.07833333,prob
+3,1795082304,q1_raw_gt20,0.13500000,prob
+3,1795082304,q_alpha_gt22,0.00000000,prob
+3,1795082304,samples_collected,600,count
+3,1795082304,jitter_ms,6.000,ms
+3,1795082304,k_required,3,count

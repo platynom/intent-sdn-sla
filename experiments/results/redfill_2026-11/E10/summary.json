@@ -1,0 +1,3983 @@
+{
+  "description": "E10: Detection delay sweep K in {1..5}, dt in {0.25, 0.5, 1.0} s",
+  "summaries": [
+    {
+      "group": "k=1_dt=0.25",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 96.7254877,
+      "sample_stddev": 3.1723878768409732,
+      "ci95_t_low": 94.4562557891525,
+      "ci95_t_high": 98.99471961084751,
+      "min": 93.411207,
+      "max": 104.328156,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161753.csv",
+          "value": 98.838806
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161812.csv",
+          "value": 93.626261
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161831.csv",
+          "value": 95.702648
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161849.csv",
+          "value": 94.501495
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161908.csv",
+          "value": 104.328156
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161927.csv",
+          "value": 96.050024
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161946.csv",
+          "value": 93.411207
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118162004.csv",
+          "value": 97.341537
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118162023.csv",
+          "value": 96.059561
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118162042.csv",
+          "value": 97.395182
+        }
+      ]
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 606.1005355,
+      "sample_stddev": 30.551792538604598,
+      "ci95_t_low": 584.2466181186136,
+      "ci95_t_high": 627.9544528813864,
+      "min": 564.743996,
+      "max": 669.297457,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161753.csv",
+          "value": 608.498573
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161812.csv",
+          "value": 616.557837
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161831.csv",
+          "value": 640.205622
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161849.csv",
+          "value": 586.499214
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161908.csv",
+          "value": 598.021984
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161927.csv",
+          "value": 592.265844
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161946.csv",
+          "value": 669.297457
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118162004.csv",
+          "value": 564.743996
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118162023.csv",
+          "value": 578.225613
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118162042.csv",
+          "value": 606.689215
+        }
+      ]
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161753.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161812.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161831.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161849.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161908.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161927.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118161946.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118162004.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118162023.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p25_20261118162042.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 94.5377348,
+      "sample_stddev": 9.611018578606936,
+      "ci95_t_low": 87.6629039467057,
+      "ci95_t_high": 101.4125656532943,
+      "min": 88.280439,
+      "max": 116.8437,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163342.csv",
+          "value": 89.463472
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163402.csv",
+          "value": 89.235067
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163421.csv",
+          "value": 107.305765
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163441.csv",
+          "value": 116.8437
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163501.csv",
+          "value": 90.48605
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163520.csv",
+          "value": 88.836908
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163540.csv",
+          "value": 90.116262
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163559.csv",
+          "value": 92.707157
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163619.csv",
+          "value": 88.280439
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163638.csv",
+          "value": 92.102528
+        }
+      ]
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 623.1328249000001,
+      "sample_stddev": 29.96005230341292,
+      "ci95_t_low": 601.7021835733584,
+      "ci95_t_high": 644.5634662266417,
+      "min": 583.711624,
+      "max": 688.940048,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163342.csv",
+          "value": 614.269495
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163402.csv",
+          "value": 583.711624
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163421.csv",
+          "value": 626.849413
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163441.csv",
+          "value": 608.968496
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163501.csv",
+          "value": 688.940048
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163520.csv",
+          "value": 607.529879
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163540.csv",
+          "value": 622.493029
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163559.csv",
+          "value": 613.297462
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163619.csv",
+          "value": 606.369734
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163638.csv",
+          "value": 658.899069
+        }
+      ]
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163342.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163402.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163421.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163441.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163501.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163520.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163540.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163559.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163619.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt0p5_20261118163638.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 95.2462195,
+      "sample_stddev": 7.060770090388163,
+      "ci95_t_low": 90.19559976928109,
+      "ci95_t_high": 100.2968392307189,
+      "min": 88.930368,
+      "max": 111.714363,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165105.csv",
+          "value": 89.87999
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165127.csv",
+          "value": 94.889879
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165150.csv",
+          "value": 97.774267
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165212.csv",
+          "value": 101.099253
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165235.csv",
+          "value": 96.455097
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165257.csv",
+          "value": 111.714363
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165319.csv",
+          "value": 90.684175
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165341.csv",
+          "value": 88.930368
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165403.csv",
+          "value": 91.235399
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165426.csv",
+          "value": 89.799404
+        }
+      ]
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 580.4569483,
+      "sample_stddev": 73.54263374487302,
+      "ci95_t_low": 527.851372380381,
+      "ci95_t_high": 633.062524219619,
+      "min": 458.79817,
+      "max": 653.558016,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165105.csv",
+          "value": 653.558016
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165127.csv",
+          "value": 621.006727
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165150.csv",
+          "value": 459.278822
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165212.csv",
+          "value": 458.79817
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165235.csv",
+          "value": 524.947166
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165257.csv",
+          "value": 591.644049
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165319.csv",
+          "value": 652.696133
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165341.csv",
+          "value": 603.292465
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165403.csv",
+          "value": 629.193068
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165426.csv",
+          "value": 610.154867
+        }
+      ]
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165105.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165127.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165150.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165212.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165235.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165257.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165319.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165341.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165403.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k1_dt1p0_20261118165426.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 345.2346086,
+      "sample_stddev": 6.052590755143183,
+      "ci95_t_low": 340.9051468134582,
+      "ci95_t_high": 349.5640703865418,
+      "min": 337.477922,
+      "max": 359.87854,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162101.csv",
+          "value": 346.67182
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162120.csv",
+          "value": 345.14451
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162139.csv",
+          "value": 337.477922
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162157.csv",
+          "value": 343.042135
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162216.csv",
+          "value": 359.87854
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162234.csv",
+          "value": 340.246916
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162253.csv",
+          "value": 345.453024
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162311.csv",
+          "value": 343.468666
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162330.csv",
+          "value": 342.315197
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162349.csv",
+          "value": 348.647356
+        }
+      ]
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 380.9762717,
+      "sample_stddev": 27.71389732675315,
+      "ci95_t_low": 361.15232121559575,
+      "ci95_t_high": 400.8002221844042,
+      "min": 355.472803,
+      "max": 448.310852,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162101.csv",
+          "value": 363.805532
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162120.csv",
+          "value": 366.046906
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162139.csv",
+          "value": 448.310852
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162157.csv",
+          "value": 355.472803
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162216.csv",
+          "value": 385.528803
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162234.csv",
+          "value": 361.235857
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162253.csv",
+          "value": 370.845795
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162311.csv",
+          "value": 367.636204
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162330.csv",
+          "value": 402.548313
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162349.csv",
+          "value": 388.331652
+        }
+      ]
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162101.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162120.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162139.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162157.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162216.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162234.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162253.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162311.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162330.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p25_20261118162349.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 594.0772773,
+      "sample_stddev": 3.3576666234929697,
+      "ci95_t_low": 591.6755141664183,
+      "ci95_t_high": 596.4790404335816,
+      "min": 589.645863,
+      "max": 600.326777,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163659.csv",
+          "value": 594.144106
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163719.csv",
+          "value": 595.048904
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163739.csv",
+          "value": 597.996235
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163759.csv",
+          "value": 591.200352
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163819.csv",
+          "value": 589.645863
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163840.csv",
+          "value": 591.804266
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163900.csv",
+          "value": 592.479944
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163920.csv",
+          "value": 600.326777
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163940.csv",
+          "value": 596.351147
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118164000.csv",
+          "value": 591.775179
+        }
+      ]
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 622.6875307,
+      "sample_stddev": 41.04153526575725,
+      "ci95_t_low": 593.3302247491368,
+      "ci95_t_high": 652.0448366508632,
+      "min": 556.065798,
+      "max": 699.81575,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163659.csv",
+          "value": 609.469414
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163719.csv",
+          "value": 590.688944
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163739.csv",
+          "value": 601.330996
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163759.csv",
+          "value": 645.613194
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163819.csv",
+          "value": 654.634476
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163840.csv",
+          "value": 556.065798
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163900.csv",
+          "value": 592.32235
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163920.csv",
+          "value": 699.81575
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163940.csv",
+          "value": 647.170305
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118164000.csv",
+          "value": 629.76408
+        }
+      ]
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163659.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163719.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163739.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163759.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163819.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163840.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163900.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163920.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118163940.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt0p5_20261118164000.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 1094.0346003,
+      "sample_stddev": 4.978268514809789,
+      "ci95_t_low": 1090.473608954319,
+      "ci95_t_high": 1097.595591645681,
+      "min": 1088.962793,
+      "max": 1105.686903,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165449.csv",
+          "value": 1095.193148
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165513.csv",
+          "value": 1091.127157
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165536.csv",
+          "value": 1098.996878
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165559.csv",
+          "value": 1090.02018
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165622.csv",
+          "value": 1088.962793
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165645.csv",
+          "value": 1092.321873
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165708.csv",
+          "value": 1093.104124
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165731.csv",
+          "value": 1093.538046
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165755.csv",
+          "value": 1105.686903
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165818.csv",
+          "value": 1091.394901
+        }
+      ]
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 600.4049301,
+      "sample_stddev": 44.141346382943915,
+      "ci95_t_low": 568.8303069175112,
+      "ci95_t_high": 631.9795532824888,
+      "min": 530.279875,
+      "max": 675.816536,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165449.csv",
+          "value": 530.279875
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165513.csv",
+          "value": 573.394299
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165536.csv",
+          "value": 557.89566
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165559.csv",
+          "value": 675.816536
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165622.csv",
+          "value": 603.573084
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165645.csv",
+          "value": 571.421862
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165708.csv",
+          "value": 645.235538
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165731.csv",
+          "value": 636.958122
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165755.csv",
+          "value": 613.725185
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165818.csv",
+          "value": 595.74914
+        }
+      ]
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165449.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165513.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165536.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165559.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165622.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165645.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165708.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165731.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165755.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k2_dt1p0_20261118165818.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 596.0358858,
+      "sample_stddev": 8.26781875510501,
+      "ci95_t_low": 590.1218554605351,
+      "ci95_t_high": 601.9499161394648,
+      "min": 589.293003,
+      "max": 613.532782,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162408.csv",
+          "value": 601.409435
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162427.csv",
+          "value": 594.615936
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162445.csv",
+          "value": 590.595007
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162504.csv",
+          "value": 592.56649
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162523.csv",
+          "value": 591.4464
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162542.csv",
+          "value": 589.293003
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162601.csv",
+          "value": 590.574503
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162620.csv",
+          "value": 606.260061
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162638.csv",
+          "value": 613.532782
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162657.csv",
+          "value": 590.065241
+        }
+      ]
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 613.1636859,
+      "sample_stddev": 15.924960254879174,
+      "ci95_t_low": 601.7724470627948,
+      "ci95_t_high": 624.5549247372053,
+      "min": 583.095789,
+      "max": 632.316351,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162408.csv",
+          "value": 606.483698
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162427.csv",
+          "value": 631.014824
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162445.csv",
+          "value": 621.819973
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162504.csv",
+          "value": 629.244566
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162523.csv",
+          "value": 604.018688
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162542.csv",
+          "value": 583.095789
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162601.csv",
+          "value": 632.316351
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162620.csv",
+          "value": 605.728388
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162638.csv",
+          "value": 600.57807
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162657.csv",
+          "value": 617.336512
+        }
+      ]
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162408.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162427.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162445.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162504.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162523.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162542.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162601.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162620.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162638.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p25_20261118162657.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 1099.1924288,
+      "sample_stddev": 8.267149724051501,
+      "ci95_t_low": 1093.2788770232694,
+      "ci95_t_high": 1105.1059805767306,
+      "min": 1089.740038,
+      "max": 1119.506598,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164022.csv",
+          "value": 1098.617554
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164042.csv",
+          "value": 1094.902754
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164103.csv",
+          "value": 1119.506598
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164124.csv",
+          "value": 1093.679428
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164144.csv",
+          "value": 1098.132849
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164205.csv",
+          "value": 1094.890833
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164226.csv",
+          "value": 1089.740038
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164247.csv",
+          "value": 1098.064423
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164308.csv",
+          "value": 1098.656178
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164329.csv",
+          "value": 1105.733633
+        }
+      ]
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 619.1001655,
+      "sample_stddev": 40.23498256600873,
+      "ci95_t_low": 590.3197925078746,
+      "ci95_t_high": 647.8805384921254,
+      "min": 558.836699,
+      "max": 709.249735,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164022.csv",
+          "value": 631.912708
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164042.csv",
+          "value": 622.935534
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164103.csv",
+          "value": 634.274006
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164124.csv",
+          "value": 558.836699
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164144.csv",
+          "value": 626.785517
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164205.csv",
+          "value": 587.612391
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164226.csv",
+          "value": 584.069967
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164247.csv",
+          "value": 709.249735
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164308.csv",
+          "value": 609.911919
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164329.csv",
+          "value": 625.413179
+        }
+      ]
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164022.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164042.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164103.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164124.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164144.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164205.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164226.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164247.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164308.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt0p5_20261118164329.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 2098.5601187,
+      "sample_stddev": 7.290707543931428,
+      "ci95_t_low": 2093.3450230516646,
+      "ci95_t_high": 2103.775214348336,
+      "min": 2091.519833,
+      "max": 2111.953497,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165842.csv",
+          "value": 2110.173702
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165907.csv",
+          "value": 2095.012188
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165931.csv",
+          "value": 2103.357077
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165955.csv",
+          "value": 2095.049381
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170020.csv",
+          "value": 2091.519833
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170044.csv",
+          "value": 2094.143391
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170108.csv",
+          "value": 2096.544504
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170132.csv",
+          "value": 2111.953497
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170156.csv",
+          "value": 2094.125509
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170220.csv",
+          "value": 2093.722105
+        }
+      ]
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 584.7865342,
+      "sample_stddev": 112.88776646726976,
+      "ci95_t_low": 504.03710129429885,
+      "ci95_t_high": 665.5359671057012,
+      "min": 307.528019,
+      "max": 653.840542,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165842.csv",
+          "value": 632.760286
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165907.csv",
+          "value": 457.219839
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165931.csv",
+          "value": 307.528019
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165955.csv",
+          "value": 651.237249
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170020.csv",
+          "value": 617.797375
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170044.csv",
+          "value": 634.845495
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170108.csv",
+          "value": 632.862806
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170132.csv",
+          "value": 636.468172
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170156.csv",
+          "value": 653.840542
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170220.csv",
+          "value": 623.305559
+        }
+      ]
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165842.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165907.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165931.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118165955.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170020.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170044.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170108.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170132.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170156.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k3_dt1p0_20261118170220.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 849.5395185,
+      "sample_stddev": 7.248253345265657,
+      "ci95_t_low": 844.354790645926,
+      "ci95_t_high": 854.724246354074,
+      "min": 838.86385,
+      "max": 861.395359,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162717.csv",
+          "value": 859.644413
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162736.csv",
+          "value": 850.578785
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162755.csv",
+          "value": 838.86385
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162814.csv",
+          "value": 845.079899
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162833.csv",
+          "value": 849.629641
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162852.csv",
+          "value": 861.395359
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162911.csv",
+          "value": 850.997448
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162930.csv",
+          "value": 842.571974
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162949.csv",
+          "value": 843.758583
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118163009.csv",
+          "value": 852.875233
+        }
+      ]
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 364.5709991,
+      "sample_stddev": 19.96761594248638,
+      "ci95_t_low": 350.2880195151209,
+      "ci95_t_high": 378.8539786848791,
+      "min": 337.159634,
+      "max": 395.058393,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162717.csv",
+          "value": 337.159634
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162736.csv",
+          "value": 380.510807
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162755.csv",
+          "value": 346.024752
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162814.csv",
+          "value": 395.058393
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162833.csv",
+          "value": 358.502865
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162852.csv",
+          "value": 355.622053
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162911.csv",
+          "value": 356.583595
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162930.csv",
+          "value": 347.264528
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162949.csv",
+          "value": 388.708353
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118163009.csv",
+          "value": 380.275011
+        }
+      ]
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162717.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162736.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162755.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162814.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162833.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162852.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162911.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162930.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118162949.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p25_20261118163009.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 1602.3811579,
+      "sample_stddev": 9.515500975118483,
+      "ci95_t_low": 1595.5746514768507,
+      "ci95_t_high": 1609.1876643231494,
+      "min": 1592.862368,
+      "max": 1617.861986,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164351.csv",
+          "value": 1616.303921
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164412.csv",
+          "value": 1592.862368
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164434.csv",
+          "value": 1598.203659
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164455.csv",
+          "value": 1594.796658
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164517.csv",
+          "value": 1617.861986
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164538.csv",
+          "value": 1597.883463
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164600.csv",
+          "value": 1598.453522
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164621.csv",
+          "value": 1613.428354
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164643.csv",
+          "value": 1597.455978
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164704.csv",
+          "value": 1596.56167
+        }
+      ]
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 609.0546369,
+      "sample_stddev": 54.02785720207108,
+      "ci95_t_low": 570.4081212791745,
+      "ci95_t_high": 647.7011525208255,
+      "min": 548.801184,
+      "max": 695.072889,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164351.csv",
+          "value": 675.203562
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164412.csv",
+          "value": 558.216095
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164434.csv",
+          "value": 571.681499
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164455.csv",
+          "value": 695.072889
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164517.csv",
+          "value": 569.491863
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164538.csv",
+          "value": 675.990105
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164600.csv",
+          "value": 587.330818
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164621.csv",
+          "value": 617.092609
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164643.csv",
+          "value": 591.665745
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164704.csv",
+          "value": 548.801184
+        }
+      ]
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164351.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164412.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164434.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164455.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164517.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164538.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164600.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164621.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164643.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt0p5_20261118164704.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 3100.0122786,
+      "sample_stddev": 6.228994835122736,
+      "ci95_t_low": 3095.5566337037526,
+      "ci95_t_high": 3104.4679234962477,
+      "min": 3092.172623,
+      "max": 3110.274553,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170246.csv",
+          "value": 3097.844601
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170311.csv",
+          "value": 3096.77577
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170336.csv",
+          "value": 3095.625401
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170401.csv",
+          "value": 3107.128382
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170426.csv",
+          "value": 3092.172623
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170451.csv",
+          "value": 3094.080925
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170516.csv",
+          "value": 3096.369743
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170542.csv",
+          "value": 3104.357481
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170607.csv",
+          "value": 3110.274553
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170632.csv",
+          "value": 3105.493307
+        }
+      ]
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 627.7909041,
+      "sample_stddev": 27.269555267673002,
+      "ci95_t_low": 608.2847946927092,
+      "ci95_t_high": 647.2970135072909,
+      "min": 583.063126,
+      "max": 661.346674,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170246.csv",
+          "value": 628.627062
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170311.csv",
+          "value": 651.769161
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170336.csv",
+          "value": 627.230167
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170401.csv",
+          "value": 612.694502
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170426.csv",
+          "value": 583.858013
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170451.csv",
+          "value": 661.346674
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170516.csv",
+          "value": 642.588854
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170542.csv",
+          "value": 651.365519
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170607.csv",
+          "value": 635.365963
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170632.csv",
+          "value": 583.063126
+        }
+      ]
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170246.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170311.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170336.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170401.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170426.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170451.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170516.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170542.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170607.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k4_dt1p0_20261118170632.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 1099.2772818,
+      "sample_stddev": 7.748955341604834,
+      "ci95_t_low": 1093.7343981995205,
+      "ci95_t_high": 1104.8201654004797,
+      "min": 1089.919567,
+      "max": 1113.178968,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163029.csv",
+          "value": 1100.575447
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163048.csv",
+          "value": 1092.508793
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163107.csv",
+          "value": 1089.919567
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163126.csv",
+          "value": 1113.178968
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163146.csv",
+          "value": 1103.609324
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163205.csv",
+          "value": 1091.155291
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163225.csv",
+          "value": 1103.727818
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163244.csv",
+          "value": 1098.549604
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163303.csv",
+          "value": 1092.475653
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163323.csv",
+          "value": 1107.072353
+        }
+      ]
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 607.2976352000001,
+      "sample_stddev": 31.7266855875478,
+      "ci95_t_low": 584.6033083535675,
+      "ci95_t_high": 629.9919620464326,
+      "min": 547.374964,
+      "max": 647.135973,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163029.csv",
+          "value": 599.729061
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163048.csv",
+          "value": 609.042645
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163107.csv",
+          "value": 621.398211
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163126.csv",
+          "value": 547.374964
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163146.csv",
+          "value": 647.135973
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163205.csv",
+          "value": 562.861681
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163225.csv",
+          "value": 630.302668
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163244.csv",
+          "value": 609.288931
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163303.csv",
+          "value": 605.224609
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163323.csv",
+          "value": 640.617609
+        }
+      ]
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163029.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163048.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163107.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163126.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163146.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163205.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163225.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163244.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163303.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p25_20261118163323.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 2098.3180523,
+      "sample_stddev": 6.340387069799593,
+      "ci95_t_low": 2093.782727735514,
+      "ci95_t_high": 2102.853376864486,
+      "min": 2091.051102,
+      "max": 2107.492924,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164726.csv",
+          "value": 2092.497587
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164748.csv",
+          "value": 2094.348431
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164810.csv",
+          "value": 2093.851089
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164832.csv",
+          "value": 2092.35239
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164854.csv",
+          "value": 2107.492924
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164915.csv",
+          "value": 2106.443405
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164937.csv",
+          "value": 2098.50049
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164959.csv",
+          "value": 2091.051102
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118165021.csv",
+          "value": 2101.995945
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118165042.csv",
+          "value": 2104.64716
+        }
+      ]
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 619.0434693,
+      "sample_stddev": 57.95922692742736,
+      "ci95_t_low": 577.5848165823066,
+      "ci95_t_high": 660.5021220176933,
+      "min": 474.825382,
+      "max": 686.695337,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164726.csv",
+          "value": 641.365528
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164748.csv",
+          "value": 626.294374
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164810.csv",
+          "value": 601.398468
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164832.csv",
+          "value": 474.825382
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164854.csv",
+          "value": 686.695337
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164915.csv",
+          "value": 634.610415
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164937.csv",
+          "value": 619.489908
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164959.csv",
+          "value": 599.459171
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118165021.csv",
+          "value": 675.98772
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118165042.csv",
+          "value": 630.30839
+        }
+      ]
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164726.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164748.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164810.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164832.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164854.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164915.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164937.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118164959.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118165021.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt0p5_20261118165042.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "metric": "detection_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 4100.5806684,
+      "sample_stddev": 6.14769067313277,
+      "ci95_t_low": 4096.183180956761,
+      "ci95_t_high": 4104.978155843239,
+      "min": 4092.200756,
+      "max": 4110.63242,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170658.csv",
+          "value": 4104.243517
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170725.csv",
+          "value": 4101.888895
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170751.csv",
+          "value": 4108.965158
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170817.csv",
+          "value": 4092.200756
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170843.csv",
+          "value": 4096.576452
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170909.csv",
+          "value": 4097.323656
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170935.csv",
+          "value": 4101.392746
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118171001.csv",
+          "value": 4093.179941
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118171027.csv",
+          "value": 4099.403143
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118171053.csv",
+          "value": 4110.63242
+        }
+      ]
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "metric": "recovery_latency",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 641.5267229,
+      "sample_stddev": 16.33416383740191,
+      "ci95_t_low": 629.8427777911965,
+      "ci95_t_high": 653.2106680088035,
+      "min": 612.630844,
+      "max": 668.549776,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170658.csv",
+          "value": 630.560398
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170725.csv",
+          "value": 637.011528
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170751.csv",
+          "value": 648.306131
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170817.csv",
+          "value": 612.630844
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170843.csv",
+          "value": 625.866175
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170909.csv",
+          "value": 668.549776
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170935.csv",
+          "value": 651.832104
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118171001.csv",
+          "value": 656.593084
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118171027.csv",
+          "value": 636.017323
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118171053.csv",
+          "value": 647.899866
+        }
+      ]
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "metric": "reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170658.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170725.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170751.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170817.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170843.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170909.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118170935.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118171001.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118171027.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e10_k5_dt1p0_20261118171053.csv",
+          "value": 1.0
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [],
+  "runs": [
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118161753.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 98.838806,
+        "recovery_latency": 608.498573,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118161812.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 93.626261,
+        "recovery_latency": 616.557837,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118161831.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 95.702648,
+        "recovery_latency": 640.205622,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118161849.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 94.501495,
+        "recovery_latency": 586.499214,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118161908.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 104.328156,
+        "recovery_latency": 598.021984,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118161927.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 96.050024,
+        "recovery_latency": 592.265844,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118161946.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 93.411207,
+        "recovery_latency": 669.297457,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118162004.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 97.341537,
+        "recovery_latency": 564.743996,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118162023.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 96.059561,
+        "recovery_latency": 578.225613,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.25",
+      "file": "redfill_e10_k1_dt0p25_20261118162042.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 97.395182,
+        "recovery_latency": 606.689215,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163342.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 89.463472,
+        "recovery_latency": 614.269495,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163402.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 89.235067,
+        "recovery_latency": 583.711624,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163421.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 107.305765,
+        "recovery_latency": 626.849413,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163441.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 116.8437,
+        "recovery_latency": 608.968496,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163501.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 90.48605,
+        "recovery_latency": 688.940048,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163520.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 88.836908,
+        "recovery_latency": 607.529879,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163540.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 90.116262,
+        "recovery_latency": 622.493029,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163559.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 92.707157,
+        "recovery_latency": 613.297462,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163619.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 88.280439,
+        "recovery_latency": 606.369734,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=0.5",
+      "file": "redfill_e10_k1_dt0p5_20261118163638.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 92.102528,
+        "recovery_latency": 658.899069,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165105.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 89.87999,
+        "recovery_latency": 653.558016,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165127.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 94.889879,
+        "recovery_latency": 621.006727,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165150.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 97.774267,
+        "recovery_latency": 459.278822,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165212.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 101.099253,
+        "recovery_latency": 458.79817,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165235.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 96.455097,
+        "recovery_latency": 524.947166,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165257.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 111.714363,
+        "recovery_latency": 591.644049,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165319.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 90.684175,
+        "recovery_latency": 652.696133,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165341.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 88.930368,
+        "recovery_latency": 603.292465,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165403.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 91.235399,
+        "recovery_latency": 629.193068,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=1_dt=1.0",
+      "file": "redfill_e10_k1_dt1p0_20261118165426.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 89.799404,
+        "recovery_latency": 610.154867,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162101.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 346.67182,
+        "recovery_latency": 363.805532,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162120.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 345.14451,
+        "recovery_latency": 366.046906,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162139.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 337.477922,
+        "recovery_latency": 448.310852,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162157.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 343.042135,
+        "recovery_latency": 355.472803,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162216.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 359.87854,
+        "recovery_latency": 385.528803,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162234.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 340.246916,
+        "recovery_latency": 361.235857,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162253.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 345.453024,
+        "recovery_latency": 370.845795,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162311.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 343.468666,
+        "recovery_latency": 367.636204,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162330.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 342.315197,
+        "recovery_latency": 402.548313,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.25",
+      "file": "redfill_e10_k2_dt0p25_20261118162349.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 348.647356,
+        "recovery_latency": 388.331652,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118163659.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 594.144106,
+        "recovery_latency": 609.469414,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118163719.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 595.048904,
+        "recovery_latency": 590.688944,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118163739.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 597.996235,
+        "recovery_latency": 601.330996,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118163759.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 591.200352,
+        "recovery_latency": 645.613194,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118163819.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 589.645863,
+        "recovery_latency": 654.634476,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118163840.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 591.804266,
+        "recovery_latency": 556.065798,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118163900.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 592.479944,
+        "recovery_latency": 592.32235,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118163920.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 600.326777,
+        "recovery_latency": 699.81575,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118163940.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 596.351147,
+        "recovery_latency": 647.170305,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=0.5",
+      "file": "redfill_e10_k2_dt0p5_20261118164000.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 591.775179,
+        "recovery_latency": 629.76408,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165449.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1095.193148,
+        "recovery_latency": 530.279875,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165513.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1091.127157,
+        "recovery_latency": 573.394299,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165536.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1098.996878,
+        "recovery_latency": 557.89566,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165559.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1090.02018,
+        "recovery_latency": 675.816536,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165622.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1088.962793,
+        "recovery_latency": 603.573084,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165645.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1092.321873,
+        "recovery_latency": 571.421862,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165708.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1093.104124,
+        "recovery_latency": 645.235538,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165731.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1093.538046,
+        "recovery_latency": 636.958122,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165755.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1105.686903,
+        "recovery_latency": 613.725185,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=2_dt=1.0",
+      "file": "redfill_e10_k2_dt1p0_20261118165818.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1091.394901,
+        "recovery_latency": 595.74914,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162408.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 601.409435,
+        "recovery_latency": 606.483698,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162427.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 594.615936,
+        "recovery_latency": 631.014824,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162445.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 590.595007,
+        "recovery_latency": 621.819973,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162504.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 592.56649,
+        "recovery_latency": 629.244566,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162523.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 591.4464,
+        "recovery_latency": 604.018688,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162542.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 589.293003,
+        "recovery_latency": 583.095789,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162601.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 590.574503,
+        "recovery_latency": 632.316351,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162620.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 606.260061,
+        "recovery_latency": 605.728388,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162638.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 613.532782,
+        "recovery_latency": 600.57807,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.25",
+      "file": "redfill_e10_k3_dt0p25_20261118162657.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 590.065241,
+        "recovery_latency": 617.336512,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164022.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1098.617554,
+        "recovery_latency": 631.912708,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164042.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1094.902754,
+        "recovery_latency": 622.935534,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164103.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1119.506598,
+        "recovery_latency": 634.274006,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164124.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1093.679428,
+        "recovery_latency": 558.836699,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164144.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1098.132849,
+        "recovery_latency": 626.785517,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164205.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1094.890833,
+        "recovery_latency": 587.612391,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164226.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1089.740038,
+        "recovery_latency": 584.069967,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164247.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1098.064423,
+        "recovery_latency": 709.249735,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164308.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1098.656178,
+        "recovery_latency": 609.911919,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=0.5",
+      "file": "redfill_e10_k3_dt0p5_20261118164329.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1105.733633,
+        "recovery_latency": 625.413179,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118165842.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2110.173702,
+        "recovery_latency": 632.760286,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118165907.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2095.012188,
+        "recovery_latency": 457.219839,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118165931.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2103.357077,
+        "recovery_latency": 307.528019,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118165955.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2095.049381,
+        "recovery_latency": 651.237249,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118170020.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2091.519833,
+        "recovery_latency": 617.797375,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118170044.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2094.143391,
+        "recovery_latency": 634.845495,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118170108.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2096.544504,
+        "recovery_latency": 632.862806,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118170132.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2111.953497,
+        "recovery_latency": 636.468172,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118170156.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2094.125509,
+        "recovery_latency": 653.840542,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=3_dt=1.0",
+      "file": "redfill_e10_k3_dt1p0_20261118170220.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2093.722105,
+        "recovery_latency": 623.305559,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118162717.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 859.644413,
+        "recovery_latency": 337.159634,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118162736.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 850.578785,
+        "recovery_latency": 380.510807,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118162755.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 838.86385,
+        "recovery_latency": 346.024752,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118162814.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 845.079899,
+        "recovery_latency": 395.058393,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118162833.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 849.629641,
+        "recovery_latency": 358.502865,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118162852.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 861.395359,
+        "recovery_latency": 355.622053,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118162911.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 850.997448,
+        "recovery_latency": 356.583595,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118162930.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 842.571974,
+        "recovery_latency": 347.264528,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118162949.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 843.758583,
+        "recovery_latency": 388.708353,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.25",
+      "file": "redfill_e10_k4_dt0p25_20261118163009.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 852.875233,
+        "recovery_latency": 380.275011,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164351.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1616.303921,
+        "recovery_latency": 675.203562,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164412.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1592.862368,
+        "recovery_latency": 558.216095,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164434.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1598.203659,
+        "recovery_latency": 571.681499,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164455.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1594.796658,
+        "recovery_latency": 695.072889,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164517.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1617.861986,
+        "recovery_latency": 569.491863,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164538.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1597.883463,
+        "recovery_latency": 675.990105,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164600.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1598.453522,
+        "recovery_latency": 587.330818,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164621.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1613.428354,
+        "recovery_latency": 617.092609,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164643.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1597.455978,
+        "recovery_latency": 591.665745,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=0.5",
+      "file": "redfill_e10_k4_dt0p5_20261118164704.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1596.56167,
+        "recovery_latency": 548.801184,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170246.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3097.844601,
+        "recovery_latency": 628.627062,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170311.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3096.77577,
+        "recovery_latency": 651.769161,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170336.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3095.625401,
+        "recovery_latency": 627.230167,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170401.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3107.128382,
+        "recovery_latency": 612.694502,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170426.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3092.172623,
+        "recovery_latency": 583.858013,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170451.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3094.080925,
+        "recovery_latency": 661.346674,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170516.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3096.369743,
+        "recovery_latency": 642.588854,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170542.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3104.357481,
+        "recovery_latency": 651.365519,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170607.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3110.274553,
+        "recovery_latency": 635.365963,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=4_dt=1.0",
+      "file": "redfill_e10_k4_dt1p0_20261118170632.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 3105.493307,
+        "recovery_latency": 583.063126,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163029.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1100.575447,
+        "recovery_latency": 599.729061,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163048.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1092.508793,
+        "recovery_latency": 609.042645,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163107.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1089.919567,
+        "recovery_latency": 621.398211,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163126.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1113.178968,
+        "recovery_latency": 547.374964,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163146.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1103.609324,
+        "recovery_latency": 647.135973,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163205.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1091.155291,
+        "recovery_latency": 562.861681,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163225.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1103.727818,
+        "recovery_latency": 630.302668,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163244.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1098.549604,
+        "recovery_latency": 609.288931,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163303.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1092.475653,
+        "recovery_latency": 605.224609,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.25",
+      "file": "redfill_e10_k5_dt0p25_20261118163323.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 1107.072353,
+        "recovery_latency": 640.617609,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118164726.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2092.497587,
+        "recovery_latency": 641.365528,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118164748.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2094.348431,
+        "recovery_latency": 626.294374,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118164810.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2093.851089,
+        "recovery_latency": 601.398468,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118164832.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2092.35239,
+        "recovery_latency": 474.825382,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118164854.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2107.492924,
+        "recovery_latency": 686.695337,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118164915.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2106.443405,
+        "recovery_latency": 634.610415,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118164937.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2098.50049,
+        "recovery_latency": 619.489908,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118164959.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2091.051102,
+        "recovery_latency": 599.459171,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118165021.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2101.995945,
+        "recovery_latency": 675.98772,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=0.5",
+      "file": "redfill_e10_k5_dt0p5_20261118165042.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 2104.64716,
+        "recovery_latency": 630.30839,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118170658.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4104.243517,
+        "recovery_latency": 630.560398,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118170725.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4101.888895,
+        "recovery_latency": 637.011528,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118170751.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4108.965158,
+        "recovery_latency": 648.306131,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118170817.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4092.200756,
+        "recovery_latency": 612.630844,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118170843.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4096.576452,
+        "recovery_latency": 625.866175,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118170909.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4097.323656,
+        "recovery_latency": 668.549776,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118170935.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4101.392746,
+        "recovery_latency": 651.832104,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118171001.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4093.179941,
+        "recovery_latency": 656.593084,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118171027.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4099.403143,
+        "recovery_latency": 636.017323,
+        "reroute_count": 1.0
+      }
+    },
+    {
+      "group": "k=5_dt=1.0",
+      "file": "redfill_e10_k5_dt1p0_20261118171053.csv",
+      "run_id": 1,
+      "values": {
+        "detection_latency": 4110.63242,
+        "recovery_latency": 647.899866,
+        "reroute_count": 1.0
+      }
+    }
+  ]
+}

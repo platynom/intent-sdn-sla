@@ -1,0 +1,9 @@
+run_id,timestamp,metric,value,unit
+5,1795095561,forward_owd_ms,24.981263,ms
+5,1795095561,reverse_owd_ms,24.914685,ms
+5,1795095561,rtt_ms,49.895948,ms
+5,1795095561,half_rtt_ms,24.947974,ms
+5,1795095561,rtt_half_error_ms,-0.033289,ms
+5,1795095561,planned_owd_ms,24.000000,ms
+5,1795095561,owd_compliant_35ms,1,flag
+5,1795095561,probes_received,100,count

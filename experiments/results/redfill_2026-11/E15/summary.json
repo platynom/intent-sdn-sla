@@ -1,0 +1,3548 @@
+{
+  "description": "E15: Shared-clock TWAMP-Light-style forward OWD vs. RTT/2 across 3 routes x 2 conditions",
+  "summaries": [
+    {
+      "group": "middle_fault",
+      "metric": "forward_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 51.0684475,
+      "sample_stddev": 0.15880850473045385,
+      "ci95_t_low": 50.95485063207627,
+      "ci95_t_high": 51.18204436792372,
+      "min": 50.791864,
+      "max": 51.370646,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_fault_20261119133220_01.csv",
+          "value": 51.095762
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133250_02.csv",
+          "value": 51.046198
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133320_03.csv",
+          "value": 50.978083
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133350_04.csv",
+          "value": 51.001725
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133420_05.csv",
+          "value": 51.151349
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133450_06.csv",
+          "value": 51.01883
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133521_07.csv",
+          "value": 50.989252
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133550_08.csv",
+          "value": 51.240766
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133621_09.csv",
+          "value": 50.791864
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133650_10.csv",
+          "value": 51.370646
+        }
+      ]
+    },
+    {
+      "group": "middle_fault",
+      "metric": "half_rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 33.5571492,
+      "sample_stddev": 0.1384281600685197,
+      "ci95_t_low": 33.4581305394886,
+      "ci95_t_high": 33.656167860511395,
+      "min": 33.253144,
+      "max": 33.791778,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_fault_20261119133220_01.csv",
+          "value": 33.58677
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133250_02.csv",
+          "value": 33.524166
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133320_03.csv",
+          "value": 33.526804
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133350_04.csv",
+          "value": 33.652054
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133420_05.csv",
+          "value": 33.576318
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133450_06.csv",
+          "value": 33.589842
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133521_07.csv",
+          "value": 33.462137
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133550_08.csv",
+          "value": 33.608479
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133621_09.csv",
+          "value": 33.253144
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133650_10.csv",
+          "value": 33.791778
+        }
+      ]
+    },
+    {
+      "group": "middle_fault",
+      "metric": "owd_compliant_35ms",
+      "unit": "flag",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_fault_20261119133220_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133250_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133320_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133350_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133420_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133450_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133521_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133550_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133621_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133650_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "middle_fault",
+      "metric": "planned_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 50.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 50.0,
+      "ci95_t_high": 50.0,
+      "min": 50.0,
+      "max": 50.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_fault_20261119133220_01.csv",
+          "value": 50.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133250_02.csv",
+          "value": 50.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133320_03.csv",
+          "value": 50.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133350_04.csv",
+          "value": 50.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133420_05.csv",
+          "value": 50.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133450_06.csv",
+          "value": 50.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133521_07.csv",
+          "value": 50.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133550_08.csv",
+          "value": 50.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133621_09.csv",
+          "value": 50.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133650_10.csv",
+          "value": 50.0
+        }
+      ]
+    },
+    {
+      "group": "middle_fault",
+      "metric": "probes_received",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 100.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 100.0,
+      "ci95_t_high": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_fault_20261119133220_01.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133250_02.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133320_03.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133350_04.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133420_05.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133450_06.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133521_07.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133550_08.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133621_09.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133650_10.csv",
+          "value": 100.0
+        }
+      ]
+    },
+    {
+      "group": "middle_fault",
+      "metric": "reverse_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 16.0458506,
+      "sample_stddev": 0.16320401047305433,
+      "ci95_t_low": 15.929109595141373,
+      "ci95_t_high": 16.16259160485863,
+      "min": 15.714423,
+      "max": 16.302383,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_fault_20261119133220_01.csv",
+          "value": 16.077779
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133250_02.csv",
+          "value": 16.002133
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133320_03.csv",
+          "value": 16.075525
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133350_04.csv",
+          "value": 16.302383
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133420_05.csv",
+          "value": 16.001286
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133450_06.csv",
+          "value": 16.160854
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133521_07.csv",
+          "value": 15.935022
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133550_08.csv",
+          "value": 15.976192
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133621_09.csv",
+          "value": 15.714423
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133650_10.csv",
+          "value": 16.212909
+        }
+      ]
+    },
+    {
+      "group": "middle_fault",
+      "metric": "rtt_half_error_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": -17.5112985,
+      "sample_stddev": 0.08225255006550122,
+      "ci95_t_low": -17.57013434183378,
+      "ci95_t_high": -17.45246265816622,
+      "min": -17.632287,
+      "max": -17.349671,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_fault_20261119133220_01.csv",
+          "value": -17.508991
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133250_02.csv",
+          "value": -17.522033
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133320_03.csv",
+          "value": -17.451279
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133350_04.csv",
+          "value": -17.349671
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133420_05.csv",
+          "value": -17.575031
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133450_06.csv",
+          "value": -17.428988
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133521_07.csv",
+          "value": -17.527115
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133550_08.csv",
+          "value": -17.632287
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133621_09.csv",
+          "value": -17.538721
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133650_10.csv",
+          "value": -17.578869
+        }
+      ]
+    },
+    {
+      "group": "middle_fault",
+      "metric": "rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 67.11429820000001,
+      "sample_stddev": 0.2768566509211745,
+      "ci95_t_low": 66.91626064236493,
+      "ci95_t_high": 67.31233575763508,
+      "min": 66.506287,
+      "max": 67.583556,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_fault_20261119133220_01.csv",
+          "value": 67.173541
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133250_02.csv",
+          "value": 67.048331
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133320_03.csv",
+          "value": 67.053609
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133350_04.csv",
+          "value": 67.304108
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133420_05.csv",
+          "value": 67.152635
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133450_06.csv",
+          "value": 67.179684
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133521_07.csv",
+          "value": 66.924273
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133550_08.csv",
+          "value": 67.216958
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133621_09.csv",
+          "value": 66.506287
+        },
+        {
+          "file": "redfill_e15_middle_fault_20261119133650_10.csv",
+          "value": 67.583556
+        }
+      ]
+    },
+    {
+      "group": "middle_healthy",
+      "metric": "forward_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 15.8238494,
+      "sample_stddev": 0.25448403792650276,
+      "ci95_t_low": 15.6418151336734,
+      "ci95_t_high": 16.0058836663266,
+      "min": 15.404124,
+      "max": 16.130139,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_healthy_20261119104253_01.csv",
+          "value": 16.130139
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104323_02.csv",
+          "value": 16.058783
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104353_03.csv",
+          "value": 15.734564
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104423_04.csv",
+          "value": 16.018224
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104453_05.csv",
+          "value": 16.013659
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104523_06.csv",
+          "value": 15.981736
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133051_08.csv",
+          "value": 15.565545
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133119_09.csv",
+          "value": 15.534843
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133146_10.csv",
+          "value": 15.796877
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261120053502_01.csv",
+          "value": 15.404124
+        }
+      ]
+    },
+    {
+      "group": "middle_healthy",
+      "metric": "half_rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 15.813001,
+      "sample_stddev": 0.2576169344696803,
+      "ci95_t_low": 15.628725750198125,
+      "ci95_t_high": 15.997276249801875,
+      "min": 15.384673,
+      "max": 16.076476,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_healthy_20261119104253_01.csv",
+          "value": 16.076476
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104323_02.csv",
+          "value": 16.04386
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104353_03.csv",
+          "value": 15.709099
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104423_04.csv",
+          "value": 16.000677
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104453_05.csv",
+          "value": 16.032492
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104523_06.csv",
+          "value": 16.025872
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133051_08.csv",
+          "value": 15.537092
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133119_09.csv",
+          "value": 15.540312
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133146_10.csv",
+          "value": 15.779457
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261120053502_01.csv",
+          "value": 15.384673
+        }
+      ]
+    },
+    {
+      "group": "middle_healthy",
+      "metric": "owd_compliant_35ms",
+      "unit": "flag",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_healthy_20261119104253_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104323_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104353_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104423_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104453_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104523_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133051_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133119_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133146_10.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261120053502_01.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "middle_healthy",
+      "metric": "planned_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 15.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 15.0,
+      "ci95_t_high": 15.0,
+      "min": 15.0,
+      "max": 15.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_healthy_20261119104253_01.csv",
+          "value": 15.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104323_02.csv",
+          "value": 15.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104353_03.csv",
+          "value": 15.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104423_04.csv",
+          "value": 15.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104453_05.csv",
+          "value": 15.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104523_06.csv",
+          "value": 15.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133051_08.csv",
+          "value": 15.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133119_09.csv",
+          "value": 15.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133146_10.csv",
+          "value": 15.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261120053502_01.csv",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "group": "middle_healthy",
+      "metric": "probes_received",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 100.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 100.0,
+      "ci95_t_high": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_healthy_20261119104253_01.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104323_02.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104353_03.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104423_04.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104453_05.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104523_06.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133051_08.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133119_09.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133146_10.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261120053502_01.csv",
+          "value": 100.0
+        }
+      ]
+    },
+    {
+      "group": "middle_healthy",
+      "metric": "reverse_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 15.8021523,
+      "sample_stddev": 0.26355457908627644,
+      "ci95_t_low": 15.61362981021287,
+      "ci95_t_high": 15.990674789787128,
+      "min": 15.365221,
+      "max": 16.070009,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_healthy_20261119104253_01.csv",
+          "value": 16.022812
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104323_02.csv",
+          "value": 16.028936
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104353_03.csv",
+          "value": 15.683635
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104423_04.csv",
+          "value": 15.983129
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104453_05.csv",
+          "value": 16.051324
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104523_06.csv",
+          "value": 16.070009
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133051_08.csv",
+          "value": 15.508639
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133119_09.csv",
+          "value": 15.54578
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133146_10.csv",
+          "value": 15.762038
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261120053502_01.csv",
+          "value": 15.365221
+        }
+      ]
+    },
+    {
+      "group": "middle_healthy",
+      "metric": "rtt_half_error_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": -0.0108485,
+      "sample_stddev": 0.02729616882050992,
+      "ci95_t_low": -0.030373646273431854,
+      "ci95_t_high": 0.008676646273431853,
+      "min": -0.053663,
+      "max": 0.044136,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_healthy_20261119104253_01.csv",
+          "value": -0.053663
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104323_02.csv",
+          "value": -0.014923
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104353_03.csv",
+          "value": -0.025464
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104423_04.csv",
+          "value": -0.017548
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104453_05.csv",
+          "value": 0.018832
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104523_06.csv",
+          "value": 0.044136
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133051_08.csv",
+          "value": -0.028453
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133119_09.csv",
+          "value": 0.005468
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133146_10.csv",
+          "value": -0.017419
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261120053502_01.csv",
+          "value": -0.019451
+        }
+      ]
+    },
+    {
+      "group": "middle_healthy",
+      "metric": "rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 31.626002099999997,
+      "sample_stddev": 0.5152339244154484,
+      "ci95_t_low": 31.2574515607138,
+      "ci95_t_high": 31.994552639286194,
+      "min": 30.769346,
+      "max": 32.152952,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_middle_healthy_20261119104253_01.csv",
+          "value": 32.152952
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104323_02.csv",
+          "value": 32.08772
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104353_03.csv",
+          "value": 31.418199
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104423_04.csv",
+          "value": 32.001354
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104453_05.csv",
+          "value": 32.064983
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119104523_06.csv",
+          "value": 32.051745
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133051_08.csv",
+          "value": 31.074184
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133119_09.csv",
+          "value": 31.080623
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261119133146_10.csv",
+          "value": 31.558915
+        },
+        {
+          "file": "redfill_e15_middle_healthy_20261120053502_01.csv",
+          "value": 30.769346
+        }
+      ]
+    },
+    {
+      "group": "north_fault",
+      "metric": "forward_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 44.9243343,
+      "sample_stddev": 0.1759876607720292,
+      "ci95_t_low": 44.798449057954194,
+      "ci95_t_high": 45.0502195420458,
+      "min": 44.571057,
+      "max": 45.17618,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_fault_20261119103756_01.csv",
+          "value": 44.749757
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103823_02.csv",
+          "value": 44.571057
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103849_03.csv",
+          "value": 44.778312
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103919_04.csv",
+          "value": 45.023369
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103949_05.csv",
+          "value": 44.979434
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104019_06.csv",
+          "value": 44.916421
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104049_07.csv",
+          "value": 45.031906
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104120_08.csv",
+          "value": 45.014928
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104150_09.csv",
+          "value": 45.17618
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104220_10.csv",
+          "value": 45.001979
+        }
+      ]
+    },
+    {
+      "group": "north_fault",
+      "metric": "half_rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 25.904236,
+      "sample_stddev": 0.17377693701089567,
+      "ci95_t_low": 25.77993210459263,
+      "ci95_t_high": 26.028539895407373,
+      "min": 25.518294,
+      "max": 26.079479,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_fault_20261119103756_01.csv",
+          "value": 25.776728
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103823_02.csv",
+          "value": 25.518294
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103849_03.csv",
+          "value": 25.756532
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103919_04.csv",
+          "value": 26.009445
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103949_05.csv",
+          "value": 25.906418
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104019_06.csv",
+          "value": 25.928167
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104049_07.csv",
+          "value": 26.025613
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104120_08.csv",
+          "value": 26.036286
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104150_09.csv",
+          "value": 26.079479
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104220_10.csv",
+          "value": 26.005398
+        }
+      ]
+    },
+    {
+      "group": "north_fault",
+      "metric": "owd_compliant_35ms",
+      "unit": "flag",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_fault_20261119103756_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103823_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103849_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103919_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103949_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104019_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104049_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104120_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104150_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104220_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "north_fault",
+      "metric": "planned_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 44.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 44.0,
+      "ci95_t_high": 44.0,
+      "min": 44.0,
+      "max": 44.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_fault_20261119103756_01.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103823_02.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103849_03.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103919_04.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103949_05.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104019_06.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104049_07.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104120_08.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104150_09.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104220_10.csv",
+          "value": 44.0
+        }
+      ]
+    },
+    {
+      "group": "north_fault",
+      "metric": "probes_received",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 100.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 100.0,
+      "ci95_t_high": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_fault_20261119103756_01.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103823_02.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103849_03.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103919_04.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103949_05.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104019_06.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104049_07.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104120_08.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104150_09.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104220_10.csv",
+          "value": 100.0
+        }
+      ]
+    },
+    {
+      "group": "north_fault",
+      "metric": "reverse_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 6.8841376,
+      "sample_stddev": 0.1812802479644276,
+      "ci95_t_low": 6.754466532193227,
+      "ci95_t_high": 7.013808667806773,
+      "min": 6.465531,
+      "max": 7.057643,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_fault_20261119103756_01.csv",
+          "value": 6.803699
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103823_02.csv",
+          "value": 6.465531
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103849_03.csv",
+          "value": 6.734752
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103919_04.csv",
+          "value": 6.995521
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103949_05.csv",
+          "value": 6.833401
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104019_06.csv",
+          "value": 6.939913
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104049_07.csv",
+          "value": 7.01932
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104120_08.csv",
+          "value": 7.057643
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104150_09.csv",
+          "value": 6.982779
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104220_10.csv",
+          "value": 7.008817
+        }
+      ]
+    },
+    {
+      "group": "north_fault",
+      "metric": "rtt_half_error_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": -19.0200985,
+      "sample_stddev": 0.04145689224095,
+      "ci95_t_low": -19.049752913788584,
+      "ci95_t_high": -18.990444086211415,
+      "min": -19.096701,
+      "max": -18.973029,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_fault_20261119103756_01.csv",
+          "value": -18.973029
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103823_02.csv",
+          "value": -19.052763
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103849_03.csv",
+          "value": -19.02178
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103919_04.csv",
+          "value": -19.013924
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103949_05.csv",
+          "value": -19.073017
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104019_06.csv",
+          "value": -18.988254
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104049_07.csv",
+          "value": -19.006293
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104120_08.csv",
+          "value": -18.978643
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104150_09.csv",
+          "value": -19.096701
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104220_10.csv",
+          "value": -18.996581
+        }
+      ]
+    },
+    {
+      "group": "north_fault",
+      "metric": "rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 51.8084718,
+      "sample_stddev": 0.34755398077862193,
+      "ci95_t_low": 51.55986393282132,
+      "ci95_t_high": 52.05707966717868,
+      "min": 51.036588,
+      "max": 52.158959,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_fault_20261119103756_01.csv",
+          "value": 51.553456
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103823_02.csv",
+          "value": 51.036588
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103849_03.csv",
+          "value": 51.513063
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103919_04.csv",
+          "value": 52.01889
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119103949_05.csv",
+          "value": 51.812836
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104019_06.csv",
+          "value": 51.856333
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104049_07.csv",
+          "value": 52.051226
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104120_08.csv",
+          "value": 52.072571
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104150_09.csv",
+          "value": 52.158959
+        },
+        {
+          "file": "redfill_e15_north_fault_20261119104220_10.csv",
+          "value": 52.010796
+        }
+      ]
+    },
+    {
+      "group": "north_healthy",
+      "metric": "forward_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 6.6956814,
+      "sample_stddev": 0.086453487031017,
+      "ci95_t_low": 6.633840597679767,
+      "ci95_t_high": 6.757522202320232,
+      "min": 6.540315,
+      "max": 6.870513,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_healthy_20261119103332_01.csv",
+          "value": 6.540315
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103359_02.csv",
+          "value": 6.74323
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103425_03.csv",
+          "value": 6.633447
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103451_04.csv",
+          "value": 6.870513
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103517_05.csv",
+          "value": 6.707064
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103543_06.csv",
+          "value": 6.719941
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103610_07.csv",
+          "value": 6.652713
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103636_08.csv",
+          "value": 6.649222
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103702_09.csv",
+          "value": 6.736081
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103728_10.csv",
+          "value": 6.704288
+        }
+      ]
+    },
+    {
+      "group": "north_healthy",
+      "metric": "half_rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 6.6767491,
+      "sample_stddev": 0.06031018409568625,
+      "ci95_t_low": 6.633608790677138,
+      "ci95_t_high": 6.719889409322863,
+      "min": 6.573945,
+      "max": 6.782994,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_healthy_20261119103332_01.csv",
+          "value": 6.573945
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103359_02.csv",
+          "value": 6.719672
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103425_03.csv",
+          "value": 6.639034
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103451_04.csv",
+          "value": 6.782994
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103517_05.csv",
+          "value": 6.658035
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103543_06.csv",
+          "value": 6.72905
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103610_07.csv",
+          "value": 6.638723
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103636_08.csv",
+          "value": 6.659882
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103702_09.csv",
+          "value": 6.719944
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103728_10.csv",
+          "value": 6.646212
+        }
+      ]
+    },
+    {
+      "group": "north_healthy",
+      "metric": "owd_compliant_35ms",
+      "unit": "flag",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_healthy_20261119103332_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103359_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103425_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103451_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103517_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103543_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103610_07.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103636_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103702_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103728_10.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "north_healthy",
+      "metric": "planned_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 6.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 6.0,
+      "ci95_t_high": 6.0,
+      "min": 6.0,
+      "max": 6.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_healthy_20261119103332_01.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103359_02.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103425_03.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103451_04.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103517_05.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103543_06.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103610_07.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103636_08.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103702_09.csv",
+          "value": 6.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103728_10.csv",
+          "value": 6.0
+        }
+      ]
+    },
+    {
+      "group": "north_healthy",
+      "metric": "probes_received",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 100.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 100.0,
+      "ci95_t_high": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_healthy_20261119103332_01.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103359_02.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103425_03.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103451_04.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103517_05.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103543_06.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103610_07.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103636_08.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103702_09.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103728_10.csv",
+          "value": 100.0
+        }
+      ]
+    },
+    {
+      "group": "north_healthy",
+      "metric": "reverse_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 6.6578168,
+      "sample_stddev": 0.05016348736946696,
+      "ci95_t_low": 6.6219344959699065,
+      "ci95_t_high": 6.6936991040300935,
+      "min": 6.588135,
+      "max": 6.738158,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_healthy_20261119103332_01.csv",
+          "value": 6.607576
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103359_02.csv",
+          "value": 6.696114
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103425_03.csv",
+          "value": 6.644622
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103451_04.csv",
+          "value": 6.695475
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103517_05.csv",
+          "value": 6.609006
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103543_06.csv",
+          "value": 6.738158
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103610_07.csv",
+          "value": 6.624733
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103636_08.csv",
+          "value": 6.670542
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103702_09.csv",
+          "value": 6.703807
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103728_10.csv",
+          "value": 6.588135
+        }
+      ]
+    },
+    {
+      "group": "north_healthy",
+      "metric": "rtt_half_error_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": -0.0189322,
+      "sample_stddev": 0.03685085913004231,
+      "ci95_t_low": -0.0452918851099145,
+      "ci95_t_high": 0.007427485109914502,
+      "min": -0.087519,
+      "max": 0.03363,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_healthy_20261119103332_01.csv",
+          "value": 0.03363
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103359_02.csv",
+          "value": -0.023558
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103425_03.csv",
+          "value": 0.005588
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103451_04.csv",
+          "value": -0.087519
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103517_05.csv",
+          "value": -0.049029
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103543_06.csv",
+          "value": 0.009109
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103610_07.csv",
+          "value": -0.01399
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103636_08.csv",
+          "value": 0.01066
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103702_09.csv",
+          "value": -0.016137
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103728_10.csv",
+          "value": -0.058076
+        }
+      ]
+    },
+    {
+      "group": "north_healthy",
+      "metric": "rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 13.3534983,
+      "sample_stddev": 0.12062016556949003,
+      "ci95_t_low": 13.267217826291168,
+      "ci95_t_high": 13.439778773708833,
+      "min": 13.147891,
+      "max": 13.565988,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_north_healthy_20261119103332_01.csv",
+          "value": 13.147891
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103359_02.csv",
+          "value": 13.439344
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103425_03.csv",
+          "value": 13.278069
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103451_04.csv",
+          "value": 13.565988
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103517_05.csv",
+          "value": 13.31607
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103543_06.csv",
+          "value": 13.4581
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103610_07.csv",
+          "value": 13.277446
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103636_08.csv",
+          "value": 13.319764
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103702_09.csv",
+          "value": 13.439888
+        },
+        {
+          "file": "redfill_e15_north_healthy_20261119103728_10.csv",
+          "value": 13.292423
+        }
+      ]
+    },
+    {
+      "group": "south_fault",
+      "metric": "forward_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 52.9624875,
+      "sample_stddev": 0.11318689134863091,
+      "ci95_t_low": 52.88152410091095,
+      "ci95_t_high": 53.04345089908905,
+      "min": 52.844548,
+      "max": 53.149489,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_fault_20261119134221_01.csv",
+          "value": 52.942994
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134251_02.csv",
+          "value": 53.149489
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134322_03.csv",
+          "value": 52.844548
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134351_04.csv",
+          "value": 52.900501
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134420_05.csv",
+          "value": 52.884249
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134451_06.csv",
+          "value": 53.115767
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134520_07.csv",
+          "value": 52.862996
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134550_08.csv",
+          "value": 53.09544
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134620_09.csv",
+          "value": 52.900428
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134650_10.csv",
+          "value": 52.928463
+        }
+      ]
+    },
+    {
+      "group": "south_fault",
+      "metric": "half_rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 38.936006,
+      "sample_stddev": 0.07822229118494402,
+      "ci95_t_low": 38.88005303138847,
+      "ci95_t_high": 38.99195896861153,
+      "min": 38.815039,
+      "max": 39.048092,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_fault_20261119134221_01.csv",
+          "value": 38.893636
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134251_02.csv",
+          "value": 39.048092
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134322_03.csv",
+          "value": 38.815039
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134351_04.csv",
+          "value": 38.999387
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134420_05.csv",
+          "value": 38.897625
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134451_06.csv",
+          "value": 39.0107
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134520_07.csv",
+          "value": 38.835482
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134550_08.csv",
+          "value": 39.004726
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134620_09.csv",
+          "value": 38.93225
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134650_10.csv",
+          "value": 38.923123
+        }
+      ]
+    },
+    {
+      "group": "south_fault",
+      "metric": "owd_compliant_35ms",
+      "unit": "flag",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_fault_20261119134221_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134251_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134322_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134351_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134420_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134451_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134520_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134550_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134620_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134650_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "south_fault",
+      "metric": "planned_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 52.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 52.0,
+      "ci95_t_high": 52.0,
+      "min": 52.0,
+      "max": 52.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_fault_20261119134221_01.csv",
+          "value": 52.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134251_02.csv",
+          "value": 52.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134322_03.csv",
+          "value": 52.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134351_04.csv",
+          "value": 52.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134420_05.csv",
+          "value": 52.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134451_06.csv",
+          "value": 52.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134520_07.csv",
+          "value": 52.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134550_08.csv",
+          "value": 52.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134620_09.csv",
+          "value": 52.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134650_10.csv",
+          "value": 52.0
+        }
+      ]
+    },
+    {
+      "group": "south_fault",
+      "metric": "probes_received",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 100.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 100.0,
+      "ci95_t_high": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_fault_20261119134221_01.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134251_02.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134322_03.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134351_04.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134420_05.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134451_06.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134520_07.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134550_08.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134620_09.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134650_10.csv",
+          "value": 100.0
+        }
+      ]
+    },
+    {
+      "group": "south_fault",
+      "metric": "reverse_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 24.9095244,
+      "sample_stddev": 0.0882132054402538,
+      "ci95_t_low": 24.846424858419823,
+      "ci95_t_high": 24.972623941580174,
+      "min": 24.78553,
+      "max": 25.098273,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_fault_20261119134221_01.csv",
+          "value": 24.844278
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134251_02.csv",
+          "value": 24.946694
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134322_03.csv",
+          "value": 24.78553
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134351_04.csv",
+          "value": 25.098273
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134420_05.csv",
+          "value": 24.911001
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134451_06.csv",
+          "value": 24.905633
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134520_07.csv",
+          "value": 24.807968
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134550_08.csv",
+          "value": 24.914012
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134620_09.csv",
+          "value": 24.964072
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134650_10.csv",
+          "value": 24.917783
+        }
+      ]
+    },
+    {
+      "group": "south_fault",
+      "metric": "rtt_half_error_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": -14.0264816,
+      "sample_stddev": 0.0646352452875192,
+      "ci95_t_low": -14.072715656762929,
+      "ci95_t_high": -13.980247543237072,
+      "min": -14.105067,
+      "max": -13.901114,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_fault_20261119134221_01.csv",
+          "value": -14.049358
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134251_02.csv",
+          "value": -14.101398
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134322_03.csv",
+          "value": -14.029509
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134351_04.csv",
+          "value": -13.901114
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134420_05.csv",
+          "value": -13.986624
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134451_06.csv",
+          "value": -14.105067
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134520_07.csv",
+          "value": -14.027514
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134550_08.csv",
+          "value": -14.090714
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134620_09.csv",
+          "value": -13.968178
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134650_10.csv",
+          "value": -14.00534
+        }
+      ]
+    },
+    {
+      "group": "south_fault",
+      "metric": "rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 77.87201189999999,
+      "sample_stddev": 0.1564442857032853,
+      "ci95_t_low": 77.76010617498468,
+      "ci95_t_high": 77.9839176250153,
+      "min": 77.630078,
+      "max": 78.096183,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_fault_20261119134221_01.csv",
+          "value": 77.787272
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134251_02.csv",
+          "value": 78.096183
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134322_03.csv",
+          "value": 77.630078
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134351_04.csv",
+          "value": 77.998774
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134420_05.csv",
+          "value": 77.79525
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134451_06.csv",
+          "value": 78.0214
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134520_07.csv",
+          "value": 77.670965
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134550_08.csv",
+          "value": 78.009452
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134620_09.csv",
+          "value": 77.864499
+        },
+        {
+          "file": "redfill_e15_south_fault_20261119134650_10.csv",
+          "value": 77.846246
+        }
+      ]
+    },
+    {
+      "group": "south_healthy",
+      "metric": "forward_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 24.9430765,
+      "sample_stddev": 0.11938314747088692,
+      "ci95_t_low": 24.857680874251955,
+      "ci95_t_high": 25.028472125748046,
+      "min": 24.748165,
+      "max": 25.116098,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_healthy_20261119133722_01.csv",
+          "value": 24.856925
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133752_02.csv",
+          "value": 25.026327
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133821_03.csv",
+          "value": 24.954627
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133851_04.csv",
+          "value": 25.116098
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133921_05.csv",
+          "value": 24.981263
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133951_06.csv",
+          "value": 24.914285
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134020_07.csv",
+          "value": 24.748165
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134050_08.csv",
+          "value": 24.912709
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134119_09.csv",
+          "value": 24.81516
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134149_10.csv",
+          "value": 25.105206
+        }
+      ]
+    },
+    {
+      "group": "south_healthy",
+      "metric": "half_rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 24.9267724,
+      "sample_stddev": 0.1064438596279227,
+      "ci95_t_low": 24.85063234009598,
+      "ci95_t_high": 25.00291245990402,
+      "min": 24.757224,
+      "max": 25.056685,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_healthy_20261119133722_01.csv",
+          "value": 24.811018
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133752_02.csv",
+          "value": 25.048286
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133821_03.csv",
+          "value": 24.883163
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133851_04.csv",
+          "value": 25.056685
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133921_05.csv",
+          "value": 24.947974
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133951_06.csv",
+          "value": 25.022089
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134020_07.csv",
+          "value": 24.757224
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134050_08.csv",
+          "value": 24.890945
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134119_09.csv",
+          "value": 24.837253
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134149_10.csv",
+          "value": 25.013087
+        }
+      ]
+    },
+    {
+      "group": "south_healthy",
+      "metric": "owd_compliant_35ms",
+      "unit": "flag",
+      "n_independent_runs": 10,
+      "mean": 1.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 1.0,
+      "ci95_t_high": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_healthy_20261119133722_01.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133752_02.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133821_03.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133851_04.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133921_05.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133951_06.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134020_07.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134050_08.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134119_09.csv",
+          "value": 1.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134149_10.csv",
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "group": "south_healthy",
+      "metric": "planned_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 24.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 24.0,
+      "ci95_t_high": 24.0,
+      "min": 24.0,
+      "max": 24.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_healthy_20261119133722_01.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133752_02.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133821_03.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133851_04.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133921_05.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133951_06.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134020_07.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134050_08.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134119_09.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134149_10.csv",
+          "value": 24.0
+        }
+      ]
+    },
+    {
+      "group": "south_healthy",
+      "metric": "probes_received",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 100.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 100.0,
+      "ci95_t_high": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_healthy_20261119133722_01.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133752_02.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133821_03.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133851_04.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133921_05.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133951_06.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134020_07.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134050_08.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134119_09.csv",
+          "value": 100.0
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134149_10.csv",
+          "value": 100.0
+        }
+      ]
+    },
+    {
+      "group": "south_healthy",
+      "metric": "reverse_owd_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 24.910467999999998,
+      "sample_stddev": 0.12352756278211298,
+      "ci95_t_low": 24.82210784411215,
+      "ci95_t_high": 24.998828155887846,
+      "min": 24.76511,
+      "max": 25.129893,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_healthy_20261119133722_01.csv",
+          "value": 24.76511
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133752_02.csv",
+          "value": 25.070246
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133821_03.csv",
+          "value": 24.811698
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133851_04.csv",
+          "value": 24.997272
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133921_05.csv",
+          "value": 24.914685
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133951_06.csv",
+          "value": 25.129893
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134020_07.csv",
+          "value": 24.766282
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134050_08.csv",
+          "value": 24.86918
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134119_09.csv",
+          "value": 24.859346
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134149_10.csv",
+          "value": 24.920968
+        }
+      ]
+    },
+    {
+      "group": "south_healthy",
+      "metric": "rtt_half_error_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": -0.0163042,
+      "sample_stddev": 0.05852656293380335,
+      "ci95_t_low": -0.05816867225169155,
+      "ci95_t_high": 0.02556027225169154,
+      "min": -0.092119,
+      "max": 0.107804,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_healthy_20261119133722_01.csv",
+          "value": -0.045907
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133752_02.csv",
+          "value": 0.02196
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133821_03.csv",
+          "value": -0.071465
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133851_04.csv",
+          "value": -0.059413
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133921_05.csv",
+          "value": -0.033289
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133951_06.csv",
+          "value": 0.107804
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134020_07.csv",
+          "value": 0.009059
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134050_08.csv",
+          "value": -0.021765
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134119_09.csv",
+          "value": 0.022093
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134149_10.csv",
+          "value": -0.092119
+        }
+      ]
+    },
+    {
+      "group": "south_healthy",
+      "metric": "rtt_ms",
+      "unit": "ms",
+      "n_independent_runs": 10,
+      "mean": 49.8535447,
+      "sample_stddev": 0.21288783131919217,
+      "ci95_t_low": 49.701264500032245,
+      "ci95_t_high": 50.005824899967756,
+      "min": 49.514448,
+      "max": 50.113369,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e15_south_healthy_20261119133722_01.csv",
+          "value": 49.622035
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133752_02.csv",
+          "value": 50.096573
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133821_03.csv",
+          "value": 49.766326
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133851_04.csv",
+          "value": 50.113369
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133921_05.csv",
+          "value": 49.895948
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119133951_06.csv",
+          "value": 50.044178
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134020_07.csv",
+          "value": 49.514448
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134050_08.csv",
+          "value": 49.78189
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134119_09.csv",
+          "value": 49.674506
+        },
+        {
+          "file": "redfill_e15_south_healthy_20261119134149_10.csv",
+          "value": 50.026174
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [],
+  "runs": [
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133220_01.csv",
+      "run_id": 1,
+      "values": {
+        "forward_owd_ms": 51.095762,
+        "reverse_owd_ms": 16.077779,
+        "rtt_ms": 67.173541,
+        "half_rtt_ms": 33.58677,
+        "rtt_half_error_ms": -17.508991,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133250_02.csv",
+      "run_id": 2,
+      "values": {
+        "forward_owd_ms": 51.046198,
+        "reverse_owd_ms": 16.002133,
+        "rtt_ms": 67.048331,
+        "half_rtt_ms": 33.524166,
+        "rtt_half_error_ms": -17.522033,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133320_03.csv",
+      "run_id": 3,
+      "values": {
+        "forward_owd_ms": 50.978083,
+        "reverse_owd_ms": 16.075525,
+        "rtt_ms": 67.053609,
+        "half_rtt_ms": 33.526804,
+        "rtt_half_error_ms": -17.451279,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133350_04.csv",
+      "run_id": 4,
+      "values": {
+        "forward_owd_ms": 51.001725,
+        "reverse_owd_ms": 16.302383,
+        "rtt_ms": 67.304108,
+        "half_rtt_ms": 33.652054,
+        "rtt_half_error_ms": -17.349671,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133420_05.csv",
+      "run_id": 5,
+      "values": {
+        "forward_owd_ms": 51.151349,
+        "reverse_owd_ms": 16.001286,
+        "rtt_ms": 67.152635,
+        "half_rtt_ms": 33.576318,
+        "rtt_half_error_ms": -17.575031,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133450_06.csv",
+      "run_id": 6,
+      "values": {
+        "forward_owd_ms": 51.01883,
+        "reverse_owd_ms": 16.160854,
+        "rtt_ms": 67.179684,
+        "half_rtt_ms": 33.589842,
+        "rtt_half_error_ms": -17.428988,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133521_07.csv",
+      "run_id": 7,
+      "values": {
+        "forward_owd_ms": 50.989252,
+        "reverse_owd_ms": 15.935022,
+        "rtt_ms": 66.924273,
+        "half_rtt_ms": 33.462137,
+        "rtt_half_error_ms": -17.527115,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133550_08.csv",
+      "run_id": 8,
+      "values": {
+        "forward_owd_ms": 51.240766,
+        "reverse_owd_ms": 15.976192,
+        "rtt_ms": 67.216958,
+        "half_rtt_ms": 33.608479,
+        "rtt_half_error_ms": -17.632287,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133621_09.csv",
+      "run_id": 9,
+      "values": {
+        "forward_owd_ms": 50.791864,
+        "reverse_owd_ms": 15.714423,
+        "rtt_ms": 66.506287,
+        "half_rtt_ms": 33.253144,
+        "rtt_half_error_ms": -17.538721,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_fault",
+      "file": "redfill_e15_middle_fault_20261119133650_10.csv",
+      "run_id": 10,
+      "values": {
+        "forward_owd_ms": 51.370646,
+        "reverse_owd_ms": 16.212909,
+        "rtt_ms": 67.583556,
+        "half_rtt_ms": 33.791778,
+        "rtt_half_error_ms": -17.578869,
+        "planned_owd_ms": 50.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261119104253_01.csv",
+      "run_id": 1,
+      "values": {
+        "forward_owd_ms": 16.130139,
+        "reverse_owd_ms": 16.022812,
+        "rtt_ms": 32.152952,
+        "half_rtt_ms": 16.076476,
+        "rtt_half_error_ms": -0.053663,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261119104323_02.csv",
+      "run_id": 2,
+      "values": {
+        "forward_owd_ms": 16.058783,
+        "reverse_owd_ms": 16.028936,
+        "rtt_ms": 32.08772,
+        "half_rtt_ms": 16.04386,
+        "rtt_half_error_ms": -0.014923,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261119104353_03.csv",
+      "run_id": 3,
+      "values": {
+        "forward_owd_ms": 15.734564,
+        "reverse_owd_ms": 15.683635,
+        "rtt_ms": 31.418199,
+        "half_rtt_ms": 15.709099,
+        "rtt_half_error_ms": -0.025464,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261119104423_04.csv",
+      "run_id": 4,
+      "values": {
+        "forward_owd_ms": 16.018224,
+        "reverse_owd_ms": 15.983129,
+        "rtt_ms": 32.001354,
+        "half_rtt_ms": 16.000677,
+        "rtt_half_error_ms": -0.017548,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261119104453_05.csv",
+      "run_id": 5,
+      "values": {
+        "forward_owd_ms": 16.013659,
+        "reverse_owd_ms": 16.051324,
+        "rtt_ms": 32.064983,
+        "half_rtt_ms": 16.032492,
+        "rtt_half_error_ms": 0.018832,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261119104523_06.csv",
+      "run_id": 6,
+      "values": {
+        "forward_owd_ms": 15.981736,
+        "reverse_owd_ms": 16.070009,
+        "rtt_ms": 32.051745,
+        "half_rtt_ms": 16.025872,
+        "rtt_half_error_ms": 0.044136,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261119133051_08.csv",
+      "run_id": 8,
+      "values": {
+        "forward_owd_ms": 15.565545,
+        "reverse_owd_ms": 15.508639,
+        "rtt_ms": 31.074184,
+        "half_rtt_ms": 15.537092,
+        "rtt_half_error_ms": -0.028453,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261119133119_09.csv",
+      "run_id": 9,
+      "values": {
+        "forward_owd_ms": 15.534843,
+        "reverse_owd_ms": 15.54578,
+        "rtt_ms": 31.080623,
+        "half_rtt_ms": 15.540312,
+        "rtt_half_error_ms": 0.005468,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261119133146_10.csv",
+      "run_id": 10,
+      "values": {
+        "forward_owd_ms": 15.796877,
+        "reverse_owd_ms": 15.762038,
+        "rtt_ms": 31.558915,
+        "half_rtt_ms": 15.779457,
+        "rtt_half_error_ms": -0.017419,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "middle_healthy",
+      "file": "redfill_e15_middle_healthy_20261120053502_01.csv",
+      "run_id": 1,
+      "values": {
+        "forward_owd_ms": 15.404124,
+        "reverse_owd_ms": 15.365221,
+        "rtt_ms": 30.769346,
+        "half_rtt_ms": 15.384673,
+        "rtt_half_error_ms": -0.019451,
+        "planned_owd_ms": 15.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119103756_01.csv",
+      "run_id": 1,
+      "values": {
+        "forward_owd_ms": 44.749757,
+        "reverse_owd_ms": 6.803699,
+        "rtt_ms": 51.553456,
+        "half_rtt_ms": 25.776728,
+        "rtt_half_error_ms": -18.973029,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119103823_02.csv",
+      "run_id": 2,
+      "values": {
+        "forward_owd_ms": 44.571057,
+        "reverse_owd_ms": 6.465531,
+        "rtt_ms": 51.036588,
+        "half_rtt_ms": 25.518294,
+        "rtt_half_error_ms": -19.052763,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119103849_03.csv",
+      "run_id": 3,
+      "values": {
+        "forward_owd_ms": 44.778312,
+        "reverse_owd_ms": 6.734752,
+        "rtt_ms": 51.513063,
+        "half_rtt_ms": 25.756532,
+        "rtt_half_error_ms": -19.02178,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119103919_04.csv",
+      "run_id": 4,
+      "values": {
+        "forward_owd_ms": 45.023369,
+        "reverse_owd_ms": 6.995521,
+        "rtt_ms": 52.01889,
+        "half_rtt_ms": 26.009445,
+        "rtt_half_error_ms": -19.013924,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119103949_05.csv",
+      "run_id": 5,
+      "values": {
+        "forward_owd_ms": 44.979434,
+        "reverse_owd_ms": 6.833401,
+        "rtt_ms": 51.812836,
+        "half_rtt_ms": 25.906418,
+        "rtt_half_error_ms": -19.073017,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119104019_06.csv",
+      "run_id": 6,
+      "values": {
+        "forward_owd_ms": 44.916421,
+        "reverse_owd_ms": 6.939913,
+        "rtt_ms": 51.856333,
+        "half_rtt_ms": 25.928167,
+        "rtt_half_error_ms": -18.988254,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119104049_07.csv",
+      "run_id": 7,
+      "values": {
+        "forward_owd_ms": 45.031906,
+        "reverse_owd_ms": 7.01932,
+        "rtt_ms": 52.051226,
+        "half_rtt_ms": 26.025613,
+        "rtt_half_error_ms": -19.006293,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119104120_08.csv",
+      "run_id": 8,
+      "values": {
+        "forward_owd_ms": 45.014928,
+        "reverse_owd_ms": 7.057643,
+        "rtt_ms": 52.072571,
+        "half_rtt_ms": 26.036286,
+        "rtt_half_error_ms": -18.978643,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119104150_09.csv",
+      "run_id": 9,
+      "values": {
+        "forward_owd_ms": 45.17618,
+        "reverse_owd_ms": 6.982779,
+        "rtt_ms": 52.158959,
+        "half_rtt_ms": 26.079479,
+        "rtt_half_error_ms": -19.096701,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_fault",
+      "file": "redfill_e15_north_fault_20261119104220_10.csv",
+      "run_id": 10,
+      "values": {
+        "forward_owd_ms": 45.001979,
+        "reverse_owd_ms": 7.008817,
+        "rtt_ms": 52.010796,
+        "half_rtt_ms": 26.005398,
+        "rtt_half_error_ms": -18.996581,
+        "planned_owd_ms": 44.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103332_01.csv",
+      "run_id": 1,
+      "values": {
+        "forward_owd_ms": 6.540315,
+        "reverse_owd_ms": 6.607576,
+        "rtt_ms": 13.147891,
+        "half_rtt_ms": 6.573945,
+        "rtt_half_error_ms": 0.03363,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103359_02.csv",
+      "run_id": 2,
+      "values": {
+        "forward_owd_ms": 6.74323,
+        "reverse_owd_ms": 6.696114,
+        "rtt_ms": 13.439344,
+        "half_rtt_ms": 6.719672,
+        "rtt_half_error_ms": -0.023558,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103425_03.csv",
+      "run_id": 3,
+      "values": {
+        "forward_owd_ms": 6.633447,
+        "reverse_owd_ms": 6.644622,
+        "rtt_ms": 13.278069,
+        "half_rtt_ms": 6.639034,
+        "rtt_half_error_ms": 0.005588,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103451_04.csv",
+      "run_id": 4,
+      "values": {
+        "forward_owd_ms": 6.870513,
+        "reverse_owd_ms": 6.695475,
+        "rtt_ms": 13.565988,
+        "half_rtt_ms": 6.782994,
+        "rtt_half_error_ms": -0.087519,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103517_05.csv",
+      "run_id": 5,
+      "values": {
+        "forward_owd_ms": 6.707064,
+        "reverse_owd_ms": 6.609006,
+        "rtt_ms": 13.31607,
+        "half_rtt_ms": 6.658035,
+        "rtt_half_error_ms": -0.049029,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103543_06.csv",
+      "run_id": 6,
+      "values": {
+        "forward_owd_ms": 6.719941,
+        "reverse_owd_ms": 6.738158,
+        "rtt_ms": 13.4581,
+        "half_rtt_ms": 6.72905,
+        "rtt_half_error_ms": 0.009109,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103610_07.csv",
+      "run_id": 7,
+      "values": {
+        "forward_owd_ms": 6.652713,
+        "reverse_owd_ms": 6.624733,
+        "rtt_ms": 13.277446,
+        "half_rtt_ms": 6.638723,
+        "rtt_half_error_ms": -0.01399,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103636_08.csv",
+      "run_id": 8,
+      "values": {
+        "forward_owd_ms": 6.649222,
+        "reverse_owd_ms": 6.670542,
+        "rtt_ms": 13.319764,
+        "half_rtt_ms": 6.659882,
+        "rtt_half_error_ms": 0.01066,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103702_09.csv",
+      "run_id": 9,
+      "values": {
+        "forward_owd_ms": 6.736081,
+        "reverse_owd_ms": 6.703807,
+        "rtt_ms": 13.439888,
+        "half_rtt_ms": 6.719944,
+        "rtt_half_error_ms": -0.016137,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "north_healthy",
+      "file": "redfill_e15_north_healthy_20261119103728_10.csv",
+      "run_id": 10,
+      "values": {
+        "forward_owd_ms": 6.704288,
+        "reverse_owd_ms": 6.588135,
+        "rtt_ms": 13.292423,
+        "half_rtt_ms": 6.646212,
+        "rtt_half_error_ms": -0.058076,
+        "planned_owd_ms": 6.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134221_01.csv",
+      "run_id": 1,
+      "values": {
+        "forward_owd_ms": 52.942994,
+        "reverse_owd_ms": 24.844278,
+        "rtt_ms": 77.787272,
+        "half_rtt_ms": 38.893636,
+        "rtt_half_error_ms": -14.049358,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134251_02.csv",
+      "run_id": 2,
+      "values": {
+        "forward_owd_ms": 53.149489,
+        "reverse_owd_ms": 24.946694,
+        "rtt_ms": 78.096183,
+        "half_rtt_ms": 39.048092,
+        "rtt_half_error_ms": -14.101398,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134322_03.csv",
+      "run_id": 3,
+      "values": {
+        "forward_owd_ms": 52.844548,
+        "reverse_owd_ms": 24.78553,
+        "rtt_ms": 77.630078,
+        "half_rtt_ms": 38.815039,
+        "rtt_half_error_ms": -14.029509,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134351_04.csv",
+      "run_id": 4,
+      "values": {
+        "forward_owd_ms": 52.900501,
+        "reverse_owd_ms": 25.098273,
+        "rtt_ms": 77.998774,
+        "half_rtt_ms": 38.999387,
+        "rtt_half_error_ms": -13.901114,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134420_05.csv",
+      "run_id": 5,
+      "values": {
+        "forward_owd_ms": 52.884249,
+        "reverse_owd_ms": 24.911001,
+        "rtt_ms": 77.79525,
+        "half_rtt_ms": 38.897625,
+        "rtt_half_error_ms": -13.986624,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134451_06.csv",
+      "run_id": 6,
+      "values": {
+        "forward_owd_ms": 53.115767,
+        "reverse_owd_ms": 24.905633,
+        "rtt_ms": 78.0214,
+        "half_rtt_ms": 39.0107,
+        "rtt_half_error_ms": -14.105067,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134520_07.csv",
+      "run_id": 7,
+      "values": {
+        "forward_owd_ms": 52.862996,
+        "reverse_owd_ms": 24.807968,
+        "rtt_ms": 77.670965,
+        "half_rtt_ms": 38.835482,
+        "rtt_half_error_ms": -14.027514,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134550_08.csv",
+      "run_id": 8,
+      "values": {
+        "forward_owd_ms": 53.09544,
+        "reverse_owd_ms": 24.914012,
+        "rtt_ms": 78.009452,
+        "half_rtt_ms": 39.004726,
+        "rtt_half_error_ms": -14.090714,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134620_09.csv",
+      "run_id": 9,
+      "values": {
+        "forward_owd_ms": 52.900428,
+        "reverse_owd_ms": 24.964072,
+        "rtt_ms": 77.864499,
+        "half_rtt_ms": 38.93225,
+        "rtt_half_error_ms": -13.968178,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_fault",
+      "file": "redfill_e15_south_fault_20261119134650_10.csv",
+      "run_id": 10,
+      "values": {
+        "forward_owd_ms": 52.928463,
+        "reverse_owd_ms": 24.917783,
+        "rtt_ms": 77.846246,
+        "half_rtt_ms": 38.923123,
+        "rtt_half_error_ms": -14.00534,
+        "planned_owd_ms": 52.0,
+        "owd_compliant_35ms": 0.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119133722_01.csv",
+      "run_id": 1,
+      "values": {
+        "forward_owd_ms": 24.856925,
+        "reverse_owd_ms": 24.76511,
+        "rtt_ms": 49.622035,
+        "half_rtt_ms": 24.811018,
+        "rtt_half_error_ms": -0.045907,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119133752_02.csv",
+      "run_id": 2,
+      "values": {
+        "forward_owd_ms": 25.026327,
+        "reverse_owd_ms": 25.070246,
+        "rtt_ms": 50.096573,
+        "half_rtt_ms": 25.048286,
+        "rtt_half_error_ms": 0.02196,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119133821_03.csv",
+      "run_id": 3,
+      "values": {
+        "forward_owd_ms": 24.954627,
+        "reverse_owd_ms": 24.811698,
+        "rtt_ms": 49.766326,
+        "half_rtt_ms": 24.883163,
+        "rtt_half_error_ms": -0.071465,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119133851_04.csv",
+      "run_id": 4,
+      "values": {
+        "forward_owd_ms": 25.116098,
+        "reverse_owd_ms": 24.997272,
+        "rtt_ms": 50.113369,
+        "half_rtt_ms": 25.056685,
+        "rtt_half_error_ms": -0.059413,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119133921_05.csv",
+      "run_id": 5,
+      "values": {
+        "forward_owd_ms": 24.981263,
+        "reverse_owd_ms": 24.914685,
+        "rtt_ms": 49.895948,
+        "half_rtt_ms": 24.947974,
+        "rtt_half_error_ms": -0.033289,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119133951_06.csv",
+      "run_id": 6,
+      "values": {
+        "forward_owd_ms": 24.914285,
+        "reverse_owd_ms": 25.129893,
+        "rtt_ms": 50.044178,
+        "half_rtt_ms": 25.022089,
+        "rtt_half_error_ms": 0.107804,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119134020_07.csv",
+      "run_id": 7,
+      "values": {
+        "forward_owd_ms": 24.748165,
+        "reverse_owd_ms": 24.766282,
+        "rtt_ms": 49.514448,
+        "half_rtt_ms": 24.757224,
+        "rtt_half_error_ms": 0.009059,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119134050_08.csv",
+      "run_id": 8,
+      "values": {
+        "forward_owd_ms": 24.912709,
+        "reverse_owd_ms": 24.86918,
+        "rtt_ms": 49.78189,
+        "half_rtt_ms": 24.890945,
+        "rtt_half_error_ms": -0.021765,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119134119_09.csv",
+      "run_id": 9,
+      "values": {
+        "forward_owd_ms": 24.81516,
+        "reverse_owd_ms": 24.859346,
+        "rtt_ms": 49.674506,
+        "half_rtt_ms": 24.837253,
+        "rtt_half_error_ms": 0.022093,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    },
+    {
+      "group": "south_healthy",
+      "file": "redfill_e15_south_healthy_20261119134149_10.csv",
+      "run_id": 10,
+      "values": {
+        "forward_owd_ms": 25.105206,
+        "reverse_owd_ms": 24.920968,
+        "rtt_ms": 50.026174,
+        "half_rtt_ms": 25.013087,
+        "rtt_half_error_ms": -0.092119,
+        "planned_owd_ms": 24.0,
+        "owd_compliant_35ms": 1.0,
+        "probes_received": 100.0
+      }
+    }
+  ]
+}

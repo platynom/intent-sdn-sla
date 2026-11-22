@@ -1,0 +1,70 @@
+DERIVED_COUNT=24
+  TRACKED: experiments/results/redfill_2026-11/E10/model_comparison.csv
+  TRACKED: experiments/results/redfill_2026-11/E10/summary.csv
+  TRACKED: experiments/results/redfill_2026-11/E10/summary.json
+  TRACKED: experiments/results/redfill_2026-11/E10/t0_fit.json
+  TRACKED: experiments/results/redfill_2026-11/E11/model_comparison.csv
+  TRACKED: experiments/results/redfill_2026-11/E11/summary.csv
+  TRACKED: experiments/results/redfill_2026-11/E11/summary.json
+  TRACKED: experiments/results/redfill_2026-11/E12/model_comparison.csv
+  TRACKED: experiments/results/redfill_2026-11/E12/summary.csv
+  TRACKED: experiments/results/redfill_2026-11/E12/summary.json
+  TRACKED: experiments/results/redfill_2026-11/E13/model_comparison.csv
+  TRACKED: experiments/results/redfill_2026-11/E13/summary.csv
+  TRACKED: experiments/results/redfill_2026-11/E13/summary.json
+  TRACKED: experiments/results/redfill_2026-11/E14/summary.csv
+  TRACKED: experiments/results/redfill_2026-11/E14/summary.json
+  TRACKED: experiments/results/redfill_2026-11/E15/model_comparison.csv
+  TRACKED: experiments/results/redfill_2026-11/E15/summary.csv
+  TRACKED: experiments/results/redfill_2026-11/E15/summary.json
+  TRACKED: experiments/results/redfill_2026-11/E16/model_comparison.csv
+  TRACKED: experiments/results/redfill_2026-11/E16/summary.csv
+  TRACKED: experiments/results/redfill_2026-11/E16/summary.json
+  TRACKED: experiments/results/redfill_2026-11/E9/summary.csv
+  TRACKED: experiments/results/redfill_2026-11/E9/summary.json
+  TRACKED: experiments/results/redfill_2026-11/E9/welch_tests.csv
+=== Running: docker compose exec -T sdn python3.9 experiments/redfill/redfill_analysis.py --exp E9 ===
+E9 summarized 50 raw files -> /app/experiments/results/redfill_2026-11/E9/summary.csv
+=== Running: docker compose exec -T sdn python3.9 experiments/redfill/redfill_analysis.py --exp E10 ===
+E10 summarized 150 raw files; t0_hat=97.58 ms
+=== Running: docker compose exec -T sdn python3.9 experiments/redfill/redfill_analysis.py --exp E11 ===
+E11 summarized 50 raw files
+=== Running: docker compose exec -T sdn python3.9 experiments/redfill/redfill_analysis.py --exp E12 ===
+E12 summarized 180 raw files
+=== Running: docker compose exec -T sdn python3.9 experiments/redfill/redfill_analysis.py --exp E13 ===
+E13 summarized 40 raw files
+=== Running: docker compose exec -T sdn python3.9 experiments/redfill/redfill_analysis.py --exp E14 ===
+E14 summarized 80 raw files
+=== Running: docker compose exec -T sdn python3.9 experiments/redfill/redfill_analysis.py --exp E15 ===
+E15 summarized 60 raw files
+=== Running: docker compose exec -T sdn python3.9 experiments/redfill/redfill_analysis.py --exp E16 ===
+E16 summarized 140 raw files
+=== Restoring regenerated PNG/PDF figure timestamps via git checkout -- ===
+=== Reproducibility diff check across all 24 derived CSV/JSON files ===
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E10/model_comparison.csv
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E10/summary.csv
+MATCH (exact bytes): experiments/results/redfill_2026-11/E10/summary.json
+MATCH (exact bytes): experiments/results/redfill_2026-11/E10/t0_fit.json
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E11/model_comparison.csv
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E11/summary.csv
+MATCH (exact bytes): experiments/results/redfill_2026-11/E11/summary.json
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E12/model_comparison.csv
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E12/summary.csv
+MATCH (exact bytes): experiments/results/redfill_2026-11/E12/summary.json
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E13/model_comparison.csv
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E13/summary.csv
+MATCH (exact bytes): experiments/results/redfill_2026-11/E13/summary.json
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E14/summary.csv
+MATCH (exact bytes): experiments/results/redfill_2026-11/E14/summary.json
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E15/model_comparison.csv
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E15/summary.csv
+MATCH (exact bytes): experiments/results/redfill_2026-11/E15/summary.json
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E16/model_comparison.csv
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E16/summary.csv
+MATCH (exact bytes): experiments/results/redfill_2026-11/E16/summary.json
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E9/summary.csv
+MATCH (exact bytes): experiments/results/redfill_2026-11/E9/summary.json
+MATCH (LF-normalized): experiments/results/redfill_2026-11/E9/welch_tests.csv
+SUMMARY: total=24 matches=24 mismatches=0
+=== Restoring working tree line-endings/timestamps via git checkout -- ===
+=== git status --short experiments/results/redfill_2026-11 ===

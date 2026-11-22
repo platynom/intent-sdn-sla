@@ -1,0 +1,2633 @@
+{
+  "description": "E11: Dwell sweep delta in {0, 5, 10, 20, 30} s over 600 s alternating fault",
+  "summaries": [
+    {
+      "group": "dwell=0s",
+      "metric": "duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d0_b3_20261118172208_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118173224_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118174240_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118175256_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118180314_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118181330_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118182347_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118183403_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118184420_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118185436_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=0s",
+      "metric": "dwell_suppressions",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d0_b3_20261118172208_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118173224_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118174240_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118175256_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118180314_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118181330_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118182347_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118183403_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118184420_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118185436_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=0s",
+      "metric": "measurement_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d0_b3_20261118172208_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118173224_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118174240_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118175256_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118180314_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118181330_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118182347_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118183403_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118184420_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118185436_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=0s",
+      "metric": "raw_reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 60.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 60.0,
+      "ci95_t_high": 60.0,
+      "min": 60.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d0_b3_20261118172208_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118173224_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118174240_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118175256_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118180314_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118181330_06.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118182347_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118183403_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118184420_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118185436_10.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=0s",
+      "metric": "reroute_count_10min",
+      "unit": "count_per_10min",
+      "n_independent_runs": 10,
+      "mean": 60.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 60.0,
+      "ci95_t_high": 60.0,
+      "min": 60.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d0_b3_20261118172208_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118173224_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118174240_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118175256_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118180314_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118181330_06.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118182347_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118183403_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118184420_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118185436_10.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=0s",
+      "metric": "restorations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 60.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 60.0,
+      "ci95_t_high": 60.0,
+      "min": 60.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d0_b3_20261118172208_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118173224_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118174240_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118175256_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118180314_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118181330_06.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118182347_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118183403_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118184420_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118185436_10.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=0s",
+      "metric": "violations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 60.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 60.0,
+      "ci95_t_high": 60.0,
+      "min": 60.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d0_b3_20261118172208_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118173224_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118174240_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118175256_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118180314_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118181330_06.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118182347_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118183403_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118184420_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d0_b3_20261118185436_10.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=10s",
+      "metric": "duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d10_b3_20261118204805_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118205826_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118210846_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118211907_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118212928_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119012712_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119013749_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119014832_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119015909_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119020945_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=10s",
+      "metric": "dwell_suppressions",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 28.0,
+      "sample_stddev": 2.6246692913372702,
+      "ci95_t_low": 26.122555140623298,
+      "ci95_t_high": 29.877444859376702,
+      "min": 24.0,
+      "max": 30.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d10_b3_20261118204805_01.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118205826_02.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118210846_03.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118211907_04.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118212928_05.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119012712_06.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119013749_07.csv",
+          "value": 25.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119014832_08.csv",
+          "value": 24.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119015909_09.csv",
+          "value": 25.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119020945_10.csv",
+          "value": 26.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=10s",
+      "metric": "measurement_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d10_b3_20261118204805_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118205826_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118210846_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118211907_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118212928_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119012712_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119013749_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119014832_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119015909_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119020945_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=10s",
+      "metric": "raw_reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 49.2,
+      "sample_stddev": 5.202563470700445,
+      "ci95_t_low": 45.478568855937276,
+      "ci95_t_high": 52.92143114406273,
+      "min": 39.0,
+      "max": 56.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d10_b3_20261118204805_01.csv",
+          "value": 51.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118205826_02.csv",
+          "value": 47.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118210846_03.csv",
+          "value": 45.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118211907_04.csv",
+          "value": 53.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118212928_05.csv",
+          "value": 55.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119012712_06.csv",
+          "value": 39.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119013749_07.csv",
+          "value": 48.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119014832_08.csv",
+          "value": 56.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119015909_09.csv",
+          "value": 46.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119020945_10.csv",
+          "value": 52.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=10s",
+      "metric": "reroute_count_10min",
+      "unit": "count_per_10min",
+      "n_independent_runs": 10,
+      "mean": 49.2,
+      "sample_stddev": 5.202563470700445,
+      "ci95_t_low": 45.478568855937276,
+      "ci95_t_high": 52.92143114406273,
+      "min": 39.0,
+      "max": 56.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d10_b3_20261118204805_01.csv",
+          "value": 51.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118205826_02.csv",
+          "value": 47.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118210846_03.csv",
+          "value": 45.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118211907_04.csv",
+          "value": 53.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118212928_05.csv",
+          "value": 55.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119012712_06.csv",
+          "value": 39.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119013749_07.csv",
+          "value": 48.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119014832_08.csv",
+          "value": 56.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119015909_09.csv",
+          "value": 46.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119020945_10.csv",
+          "value": 52.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=10s",
+      "metric": "restorations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 60.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 60.0,
+      "ci95_t_high": 60.0,
+      "min": 60.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d10_b3_20261118204805_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118205826_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118210846_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118211907_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118212928_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119012712_06.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119013749_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119014832_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119015909_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119020945_10.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=10s",
+      "metric": "violations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 49.2,
+      "sample_stddev": 5.202563470700445,
+      "ci95_t_low": 45.478568855937276,
+      "ci95_t_high": 52.92143114406273,
+      "min": 39.0,
+      "max": 56.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d10_b3_20261118204805_01.csv",
+          "value": 51.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118205826_02.csv",
+          "value": 47.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118210846_03.csv",
+          "value": 45.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118211907_04.csv",
+          "value": 53.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261118212928_05.csv",
+          "value": 55.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119012712_06.csv",
+          "value": 39.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119013749_07.csv",
+          "value": 48.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119014832_08.csv",
+          "value": 56.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119015909_09.csv",
+          "value": 46.0
+        },
+        {
+          "file": "redfill_e11_d10_b3_20261119020945_10.csv",
+          "value": 52.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=20s",
+      "metric": "duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d20_b3_20261119022027_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119035926_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119041010_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119042055_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119043142_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119044228_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119045304_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119050341_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119051421_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119052512_09.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=20s",
+      "metric": "dwell_suppressions",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 35.8,
+      "sample_stddev": 1.3165611772087666,
+      "ci95_t_low": 34.85825430184152,
+      "ci95_t_high": 36.741745698158475,
+      "min": 34.0,
+      "max": 38.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d20_b3_20261119022027_01.csv",
+          "value": 36.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119035926_01.csv",
+          "value": 34.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119041010_02.csv",
+          "value": 37.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119042055_03.csv",
+          "value": 35.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119043142_04.csv",
+          "value": 34.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119044228_05.csv",
+          "value": 35.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119045304_06.csv",
+          "value": 38.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119050341_07.csv",
+          "value": 36.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119051421_08.csv",
+          "value": 37.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119052512_09.csv",
+          "value": 36.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=20s",
+      "metric": "measurement_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d20_b3_20261119022027_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119035926_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119041010_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119042055_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119043142_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119044228_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119045304_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119050341_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119051421_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119052512_09.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=20s",
+      "metric": "raw_reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 30.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 30.0,
+      "ci95_t_high": 30.0,
+      "min": 30.0,
+      "max": 30.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d20_b3_20261119022027_01.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119035926_01.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119041010_02.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119042055_03.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119043142_04.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119044228_05.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119045304_06.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119050341_07.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119051421_08.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119052512_09.csv",
+          "value": 30.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=20s",
+      "metric": "reroute_count_10min",
+      "unit": "count_per_10min",
+      "n_independent_runs": 10,
+      "mean": 30.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 30.0,
+      "ci95_t_high": 30.0,
+      "min": 30.0,
+      "max": 30.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d20_b3_20261119022027_01.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119035926_01.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119041010_02.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119042055_03.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119043142_04.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119044228_05.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119045304_06.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119050341_07.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119051421_08.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119052512_09.csv",
+          "value": 30.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=20s",
+      "metric": "restorations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 59.8,
+      "sample_stddev": 0.4216370213557839,
+      "ci95_t_low": 59.4984,
+      "ci95_t_high": 60.1016,
+      "min": 59.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d20_b3_20261119022027_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119035926_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119041010_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119042055_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119043142_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119044228_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119045304_06.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119050341_07.csv",
+          "value": 59.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119051421_08.csv",
+          "value": 59.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119052512_09.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=20s",
+      "metric": "violations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 30.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 30.0,
+      "ci95_t_high": 30.0,
+      "min": 30.0,
+      "max": 30.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d20_b3_20261119022027_01.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119035926_01.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119041010_02.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119042055_03.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119043142_04.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119044228_05.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119045304_06.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119050341_07.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119051421_08.csv",
+          "value": 30.0
+        },
+        {
+          "file": "redfill_e11_d20_b3_20261119052512_09.csv",
+          "value": 30.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=30s",
+      "metric": "duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d30_b3_20261119053600_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119054646_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119055734_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119060822_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119061911_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119063000_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119064041_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119065120_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119070152_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119071224_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=30s",
+      "metric": "dwell_suppressions",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 46.7,
+      "sample_stddev": 1.8287822299126937,
+      "ci95_t_low": 45.39185889140354,
+      "ci95_t_high": 48.00814110859647,
+      "min": 44.0,
+      "max": 49.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d30_b3_20261119053600_01.csv",
+          "value": 47.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119054646_02.csv",
+          "value": 47.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119055734_03.csv",
+          "value": 45.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119060822_04.csv",
+          "value": 47.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119061911_05.csv",
+          "value": 49.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119063000_06.csv",
+          "value": 48.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119064041_07.csv",
+          "value": 47.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119065120_08.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119070152_09.csv",
+          "value": 44.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119071224_10.csv",
+          "value": 49.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=30s",
+      "metric": "measurement_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d30_b3_20261119053600_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119054646_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119055734_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119060822_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119061911_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119063000_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119064041_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119065120_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119070152_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119071224_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=30s",
+      "metric": "raw_reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 19.4,
+      "sample_stddev": 0.9660917830792959,
+      "ci95_t_low": 18.708947585200658,
+      "ci95_t_high": 20.09105241479934,
+      "min": 17.0,
+      "max": 20.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d30_b3_20261119053600_01.csv",
+          "value": 19.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119054646_02.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119055734_03.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119060822_04.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119061911_05.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119063000_06.csv",
+          "value": 19.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119064041_07.csv",
+          "value": 17.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119065120_08.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119070152_09.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119071224_10.csv",
+          "value": 19.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=30s",
+      "metric": "reroute_count_10min",
+      "unit": "count_per_10min",
+      "n_independent_runs": 10,
+      "mean": 19.4,
+      "sample_stddev": 0.9660917830792959,
+      "ci95_t_low": 18.708947585200658,
+      "ci95_t_high": 20.09105241479934,
+      "min": 17.0,
+      "max": 20.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d30_b3_20261119053600_01.csv",
+          "value": 19.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119054646_02.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119055734_03.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119060822_04.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119061911_05.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119063000_06.csv",
+          "value": 19.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119064041_07.csv",
+          "value": 17.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119065120_08.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119070152_09.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119071224_10.csv",
+          "value": 19.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=30s",
+      "metric": "restorations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 60.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 60.0,
+      "ci95_t_high": 60.0,
+      "min": 60.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d30_b3_20261119053600_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119054646_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119055734_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119060822_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119061911_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119063000_06.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119064041_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119065120_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119070152_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119071224_10.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=30s",
+      "metric": "violations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 19.4,
+      "sample_stddev": 0.9660917830792959,
+      "ci95_t_low": 18.708947585200658,
+      "ci95_t_high": 20.09105241479934,
+      "min": 17.0,
+      "max": 20.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d30_b3_20261119053600_01.csv",
+          "value": 19.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119054646_02.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119055734_03.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119060822_04.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119061911_05.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119063000_06.csv",
+          "value": 19.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119064041_07.csv",
+          "value": 17.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119065120_08.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119070152_09.csv",
+          "value": 20.0
+        },
+        {
+          "file": "redfill_e11_d30_b3_20261119071224_10.csv",
+          "value": 19.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=5s",
+      "metric": "duration_s",
+      "unit": "s",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d5_b3_20261118190454_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118191510_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118192527_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118193543_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118194600_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118195622_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118200642_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118201702_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118202721_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118203741_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=5s",
+      "metric": "dwell_suppressions",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 0.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 0.0,
+      "ci95_t_high": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d5_b3_20261118190454_01.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118191510_02.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118192527_03.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118193543_04.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118194600_05.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118195622_06.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118200642_07.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118201702_08.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118202721_09.csv",
+          "value": 0.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118203741_10.csv",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=5s",
+      "metric": "measurement_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 600.0,
+      "sample_stddev": 0.0,
+      "ci95_t_low": 600.0,
+      "ci95_t_high": 600.0,
+      "min": 600.0,
+      "max": 600.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d5_b3_20261118190454_01.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118191510_02.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118192527_03.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118193543_04.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118194600_05.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118195622_06.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118200642_07.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118201702_08.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118202721_09.csv",
+          "value": 600.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118203741_10.csv",
+          "value": 600.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=5s",
+      "metric": "raw_reroute_count",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 59.9,
+      "sample_stddev": 0.31622776601683794,
+      "ci95_t_low": 59.6738,
+      "ci95_t_high": 60.1262,
+      "min": 59.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d5_b3_20261118190454_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118191510_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118192527_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118193543_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118194600_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118195622_06.csv",
+          "value": 59.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118200642_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118201702_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118202721_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118203741_10.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=5s",
+      "metric": "reroute_count_10min",
+      "unit": "count_per_10min",
+      "n_independent_runs": 10,
+      "mean": 59.9,
+      "sample_stddev": 0.31622776601683794,
+      "ci95_t_low": 59.6738,
+      "ci95_t_high": 60.1262,
+      "min": 59.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d5_b3_20261118190454_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118191510_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118192527_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118193543_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118194600_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118195622_06.csv",
+          "value": 59.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118200642_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118201702_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118202721_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118203741_10.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=5s",
+      "metric": "restorations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 59.9,
+      "sample_stddev": 0.31622776601683794,
+      "ci95_t_low": 59.6738,
+      "ci95_t_high": 60.1262,
+      "min": 59.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d5_b3_20261118190454_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118191510_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118192527_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118193543_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118194600_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118195622_06.csv",
+          "value": 59.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118200642_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118201702_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118202721_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118203741_10.csv",
+          "value": 60.0
+        }
+      ]
+    },
+    {
+      "group": "dwell=5s",
+      "metric": "violations_emitted",
+      "unit": "count",
+      "n_independent_runs": 10,
+      "mean": 59.9,
+      "sample_stddev": 0.31622776601683794,
+      "ci95_t_low": 59.6738,
+      "ci95_t_high": 60.1262,
+      "min": 59.0,
+      "max": 60.0,
+      "ci_method": "two-sided Student t",
+      "individual_runs": [
+        {
+          "file": "redfill_e11_d5_b3_20261118190454_01.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118191510_02.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118192527_03.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118193543_04.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118194600_05.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118195622_06.csv",
+          "value": 59.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118200642_07.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118201702_08.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118202721_09.csv",
+          "value": 60.0
+        },
+        {
+          "file": "redfill_e11_d5_b3_20261118203741_10.csv",
+          "value": 60.0
+        }
+      ]
+    }
+  ],
+  "statistical_tests": [],
+  "runs": [
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118172208_01.csv",
+      "run_id": 1,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118173224_02.csv",
+      "run_id": 2,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118174240_03.csv",
+      "run_id": 3,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118175256_04.csv",
+      "run_id": 4,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118180314_05.csv",
+      "run_id": 5,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118181330_06.csv",
+      "run_id": 6,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118182347_07.csv",
+      "run_id": 7,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118183403_08.csv",
+      "run_id": 8,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118184420_09.csv",
+      "run_id": 9,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=0s",
+      "file": "redfill_e11_d0_b3_20261118185436_10.csv",
+      "run_id": 10,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261118204805_01.csv",
+      "run_id": 1,
+      "values": {
+        "reroute_count_10min": 51.0,
+        "raw_reroute_count": 51.0,
+        "violations_emitted": 51.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 30.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261118205826_02.csv",
+      "run_id": 2,
+      "values": {
+        "reroute_count_10min": 47.0,
+        "raw_reroute_count": 47.0,
+        "violations_emitted": 47.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 30.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261118210846_03.csv",
+      "run_id": 3,
+      "values": {
+        "reroute_count_10min": 45.0,
+        "raw_reroute_count": 45.0,
+        "violations_emitted": 45.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 30.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261118211907_04.csv",
+      "run_id": 4,
+      "values": {
+        "reroute_count_10min": 53.0,
+        "raw_reroute_count": 53.0,
+        "violations_emitted": 53.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 30.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261118212928_05.csv",
+      "run_id": 5,
+      "values": {
+        "reroute_count_10min": 55.0,
+        "raw_reroute_count": 55.0,
+        "violations_emitted": 55.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 30.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261119012712_06.csv",
+      "run_id": 6,
+      "values": {
+        "reroute_count_10min": 39.0,
+        "raw_reroute_count": 39.0,
+        "violations_emitted": 39.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 30.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261119013749_07.csv",
+      "run_id": 7,
+      "values": {
+        "reroute_count_10min": 48.0,
+        "raw_reroute_count": 48.0,
+        "violations_emitted": 48.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 25.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261119014832_08.csv",
+      "run_id": 8,
+      "values": {
+        "reroute_count_10min": 56.0,
+        "raw_reroute_count": 56.0,
+        "violations_emitted": 56.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 24.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261119015909_09.csv",
+      "run_id": 9,
+      "values": {
+        "reroute_count_10min": 46.0,
+        "raw_reroute_count": 46.0,
+        "violations_emitted": 46.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 25.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=10s",
+      "file": "redfill_e11_d10_b3_20261119020945_10.csv",
+      "run_id": 10,
+      "values": {
+        "reroute_count_10min": 52.0,
+        "raw_reroute_count": 52.0,
+        "violations_emitted": 52.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 26.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119022027_01.csv",
+      "run_id": 1,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 36.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119035926_01.csv",
+      "run_id": 1,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 34.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119041010_02.csv",
+      "run_id": 2,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 37.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119042055_03.csv",
+      "run_id": 3,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 35.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119043142_04.csv",
+      "run_id": 4,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 34.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119044228_05.csv",
+      "run_id": 5,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 35.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119045304_06.csv",
+      "run_id": 6,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 38.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119050341_07.csv",
+      "run_id": 7,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 59.0,
+        "dwell_suppressions": 36.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119051421_08.csv",
+      "run_id": 8,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 59.0,
+        "dwell_suppressions": 37.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=20s",
+      "file": "redfill_e11_d20_b3_20261119052512_09.csv",
+      "run_id": 9,
+      "values": {
+        "reroute_count_10min": 30.0,
+        "raw_reroute_count": 30.0,
+        "violations_emitted": 30.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 36.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119053600_01.csv",
+      "run_id": 1,
+      "values": {
+        "reroute_count_10min": 19.0,
+        "raw_reroute_count": 19.0,
+        "violations_emitted": 19.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 47.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119054646_02.csv",
+      "run_id": 2,
+      "values": {
+        "reroute_count_10min": 20.0,
+        "raw_reroute_count": 20.0,
+        "violations_emitted": 20.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 47.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119055734_03.csv",
+      "run_id": 3,
+      "values": {
+        "reroute_count_10min": 20.0,
+        "raw_reroute_count": 20.0,
+        "violations_emitted": 20.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 45.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119060822_04.csv",
+      "run_id": 4,
+      "values": {
+        "reroute_count_10min": 20.0,
+        "raw_reroute_count": 20.0,
+        "violations_emitted": 20.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 47.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119061911_05.csv",
+      "run_id": 5,
+      "values": {
+        "reroute_count_10min": 20.0,
+        "raw_reroute_count": 20.0,
+        "violations_emitted": 20.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 49.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119063000_06.csv",
+      "run_id": 6,
+      "values": {
+        "reroute_count_10min": 19.0,
+        "raw_reroute_count": 19.0,
+        "violations_emitted": 19.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 48.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119064041_07.csv",
+      "run_id": 7,
+      "values": {
+        "reroute_count_10min": 17.0,
+        "raw_reroute_count": 17.0,
+        "violations_emitted": 17.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 47.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119065120_08.csv",
+      "run_id": 8,
+      "values": {
+        "reroute_count_10min": 20.0,
+        "raw_reroute_count": 20.0,
+        "violations_emitted": 20.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 44.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119070152_09.csv",
+      "run_id": 9,
+      "values": {
+        "reroute_count_10min": 20.0,
+        "raw_reroute_count": 20.0,
+        "violations_emitted": 20.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 44.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=30s",
+      "file": "redfill_e11_d30_b3_20261119071224_10.csv",
+      "run_id": 10,
+      "values": {
+        "reroute_count_10min": 19.0,
+        "raw_reroute_count": 19.0,
+        "violations_emitted": 19.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 49.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118190454_01.csv",
+      "run_id": 1,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118191510_02.csv",
+      "run_id": 2,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118192527_03.csv",
+      "run_id": 3,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118193543_04.csv",
+      "run_id": 4,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118194600_05.csv",
+      "run_id": 5,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118195622_06.csv",
+      "run_id": 6,
+      "values": {
+        "reroute_count_10min": 59.0,
+        "raw_reroute_count": 59.0,
+        "violations_emitted": 59.0,
+        "restorations_emitted": 59.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118200642_07.csv",
+      "run_id": 7,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118201702_08.csv",
+      "run_id": 8,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118202721_09.csv",
+      "run_id": 9,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    },
+    {
+      "group": "dwell=5s",
+      "file": "redfill_e11_d5_b3_20261118203741_10.csv",
+      "run_id": 10,
+      "values": {
+        "reroute_count_10min": 60.0,
+        "raw_reroute_count": 60.0,
+        "violations_emitted": 60.0,
+        "restorations_emitted": 60.0,
+        "dwell_suppressions": 0.0,
+        "duration_s": 600.0,
+        "measurement_count": 600.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+run_id,timestamp,metric,value,unit
+7,1795052269,reroute_count_10min,48.000000,count_per_10min
+7,1795052269,raw_reroute_count,48,count
+7,1795052269,violations_emitted,48,count
+7,1795052269,restorations_emitted,60,count
+7,1795052269,dwell_suppressions,25,count
+7,1795052269,duration_s,600.0,s
+7,1795052269,measurement_count,600,count

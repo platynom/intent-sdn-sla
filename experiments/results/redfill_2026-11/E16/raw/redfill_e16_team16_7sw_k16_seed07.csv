@@ -1,0 +1,6 @@
+run_id,timestamp,metric,value,unit
+7,1795152943,admission_latency_ms,1.624044,ms
+7,1795152943,max_rules_per_switch,20,entries
+7,1795152943,max_rules_strict_x2,40,entries
+7,1795152943,total_rules,98,entries
+7,1795152943,active_intents,16,count

@@ -245,9 +245,14 @@ while True:
     if [ "${B2_PROFILE}" -eq 1 ]; then
         DETECTOR_ARGS=(--ewma-alpha 1 --hysteresis-pct 0 --consecutive-required 1)
     fi
+    if [ -n "${TEAM16_DETECTOR_K:-}" ]; then
+        DETECTOR_ARGS+=(--consecutive-required "${TEAM16_DETECTOR_K}")
+    fi
+    TELEMETRY_SAMPLES="${TEAM16_TELEMETRY_SAMPLES:-5}"
+    PROBE_INTERVAL_S="${TEAM16_PROBE_INTERVAL_S:-1}"
     python3.9 -m src.telemetry.runtime \
         --intent INT-001 --source-pid "${H1_PID}" --target 10.0.0.2 \
-        --switch s1 --samples 5 --interval 1 "${DETECTOR_ARGS[@]}" \
+        --switch s1 --samples "${TELEMETRY_SAMPLES}" --interval "${PROBE_INTERVAL_S}" "${DETECTOR_ARGS[@]}" \
         | tee "${LOG_DIR}/telemetry.log"
     MEASUREMENT_COUNT=$(python3.9 -c "
 from src.common import db
@@ -277,7 +282,10 @@ conn.close()")
                 exit 1
             fi
             if [ "${INITIAL_ROUTE}" = "s1,s2,s3,s7" ]; then
-                python3.9 -c "
+                if [ "${TEAM16_WAIT_FOR_LIVE_VIOLATION:-0}" = "1" ]; then
+                    echo "Waiting for controller to consume persisted live violation..."
+                else
+                    python3.9 -c "
 from src.common import db
 from src.common.events import sla_violated
 conn = db.connect()
@@ -285,6 +293,7 @@ db.save_event(conn, sla_violated('INT-001', 'delay_ms', 30.0, 20.0))
 conn.close()
 print('Injected INT-001 delay violation: observed 30 ms, guarantee 20 ms')
 "
+                fi
             else
                 echo "PASS: live telemetry already caused the expected alternate route"
             fi
