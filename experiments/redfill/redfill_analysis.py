@@ -16,8 +16,8 @@ from typing import Dict, List, Optional, Tuple
 REPO = Path.cwd() if (Path.cwd() / "experiments").exists() else Path("/app")
 sys.path.insert(0, str(REPO))
 
-from experiments.analyze_closed_loop import read_run, welch_t_test
-from experiments.summarize_metrics import compute_ci, summarize_group, write_summary_files
+from experiments.analyze_closed_loop import welch_t_test  # noqa: E402
+from experiments.summarize_metrics import compute_ci, summarize_group, write_summary_files  # noqa: E402
 
 
 REDF_ROOT = REPO / "experiments" / "results" / "redfill_2026-11"
