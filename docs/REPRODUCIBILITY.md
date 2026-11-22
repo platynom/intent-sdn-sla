@@ -73,7 +73,7 @@ docker compose exec -T sdn python3.9 experiments/artifact_manifest.py verify
 
 ## Final integration verification and report
 
-Use `feat/final-integration`. Run one live scenario at a time. Measurement harnesses
+Use `main`. Run one live scenario at a time. Measurement harnesses
 use isolated temporary databases so the dashboard seed job cannot change their
 reservations or traffic-control configuration. Presentation/regression prefixes are
 excluded from the registered headline families.

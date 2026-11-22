@@ -12,7 +12,7 @@ This project implements and evaluates an intent-based SDN service-assurance syst
 Use a Linux Docker engine (WSL2 on Windows). The dashboard is at **http://localhost:8080**; its seeded demo samples are labelled simulated. Live Mininet scenarios run separately inside the SDN container.
 
 ```bash
-git clone --branch feat/final-integration https://github.com/platynom/intent-sdn-sla.git
+git clone https://github.com/platynom/intent-sdn-sla.git
 cd intent-sdn-sla
 docker compose up --build -d          # pinned Mininet + OVS + Ryu
 docker compose exec sdn make demo     # topology, controller, one URLLC intent
@@ -204,9 +204,9 @@ docker compose exec -T sdn python3.9 experiments/plot_results.py
 
 ## Status
 
-The evaluated implementation and standards-derived profile layer are integrated on
-branch `feat/final-integration`; the final report is in `docs/FINAL_REPORT.docx/.pdf`.
-- **Current tests**: container `336 passed, 1 skipped`; Windows host `337 passed`. `ruff check src tests topology experiments` exits 0.
+The evaluated implementation, the November 2026 audit fixes and the E9–E16 extension
+experiments are all merged on branch `main`; the final report is in `docs/FINAL_REPORT.docx/.pdf`.
+- **Current tests**: container `326 passed, 11 skipped` (the 11 API tests need an `httpx` version not available in the pinned container); Windows host `337 passed`. `ruff check src tests topology experiments` exits 0.
 - **Profile functional checks**: eMBB and non-GBR mMTC installed the northern path and forwarded matching traffic; the default delay-critical profiles returned explained refusals. This is not 3GPP service-compliance evidence.
 - **Live smoke scenarios**: `s1_single_intent.sh`, `s1_single_intent.sh --st7`, `s9_preemption.sh`, and `s10_two_phase.sh` all pass in sequence.
 - **Resolved HTB queue-binding defect (O3)**: Forward inter-switch OpenFlow rules emit `OFPActionSetQueue(queue_id)` when `min_bandwidth_mbps > 0`, using deterministic per-intent queue IDs starting at `1`. Under 150 Mbit/s competing cross-traffic (`n=10`), the queue-bound 20 Mbit/s SLA intent achieves `24.995 Mbit/s` (`[24.995, 24.996]`, `0.000%` loss), whereas the unbound control drops to `19.091 Mbit/s` (`[18.818, 19.365]`, `23.620%` loss).
@@ -221,6 +221,14 @@ branch `feat/final-integration`; the final report is in `docs/FINAL_REPORT.docx/
   - **E8 Control-plane overhead (60 s window)**: corrected E8v2 full-control-stack CPU is `0.939%` (`[0.907, 0.971]`, `B1`) vs `5.078%` (`[4.954, 5.201]`, `B3`). The original controller-only CPU result is retained as provenance but superseded because it excluded the telemetry process.
 - See [`docs/HANDOVER.md`](docs/HANDOVER.md), [`docs/EXPERIMENTAL_RESULTS.md`](docs/EXPERIMENTAL_RESULTS.md), [`docs/RESULT_PROVENANCE.md`](docs/RESULT_PROVENANCE.md), and [`docs/AUDIT_FIXES_2026-11.md`](docs/AUDIT_FIXES_2026-11.md) for full details.
 
+## Extension experiments (E9–E16)
+
+To fill the red items in the professor's conference and journal drafts, E9–E16 were run on `main` (commit `75f2d2e`), `n = 10` per group, about 700 emulated runs. They cover a same-build rerun of Table I and O3 (E9), detection-delay, dwell and packet-rate sweeps against the cost models (E10–E12), false confirmations (E13), contention-safe recovery (E14), one-way delay versus RTT/2 (E15) and a larger Topology Zoo graph (E16).
+
+- Results: [`experiments/results/redfill_2026-11/`](experiments/results/redfill_2026-11/); analysis scripts: [`experiments/redfill/`](experiments/redfill/)
+- Full write-up: [`docs/RED_ITEMS_RESPONSE_2026-11.md`](docs/RED_ITEMS_RESPONSE_2026-11.md)
+- Two-page summary: [`docs/sir_response/Team16_Red_Items_Response.pdf`](docs/sir_response/Team16_Red_Items_Response.pdf)
+
 **Resolved ST-7 defect.** Confirmed violation events are persisted to SQLite for
 the controller and audit log to consume. The live ST-7 scenario verified
 the persisted event, reroute, causal audit entry and post-reroute UDP delivery.
@@ -231,7 +239,7 @@ the persisted event, reroute, causal audit entry and post-reroute UDP delivery.
 - **No TLS on the OpenFlow control channel:** Switch-to-controller communication between Open vSwitch and Ryu runs over plain local TCP (`127.0.0.1:6653`) inside the container without mutual TLS.
 - **Privileged host-network container in `docker-compose.yml`:** The `sdn` service requires `privileged: true` and `network_mode: host` so Mininet and Open vSwitch can create kernel network namespaces, veth pairs, and `tc` qdiscs.
 - **Emulated 7-switch / 8-host topology only:** All functional and quantitative evaluations run on the fixed 7-switch / 8-host Mininet/OVS software datapath (`Team16Topo`) and are not hardware-validated on physical ASIC switches.
-- **Published figures predate the audit fixes:** E1 to E8 were measured at commit `cf25af2`. An `n=3` recheck on the fixed code reproduced them except B2 recovery latency (about 451 ms against the published 279 ms); see section 4.1 of [`docs/AUDIT_FIXES_2026-11.md`](docs/AUDIT_FIXES_2026-11.md).
+- **Published E1–E8 figures predate the audit fixes:** they were measured at commit `cf25af2`. E9 re-measured Table I on the fixed code (`n = 10`): B2 recovery `458.1 ms` (`[421.1, 495.1]`) against `279.4 ms` published, and B3 recovery `628.5 ms` (`[601.0, 656.1]`); see [`docs/RED_ITEMS_RESPONSE_2026-11.md`](docs/RED_ITEMS_RESPONSE_2026-11.md).
 
 ## Licence
 
