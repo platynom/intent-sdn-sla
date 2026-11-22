@@ -28,3 +28,15 @@ Run `bash demo/final_demo.sh`. It pauses before each act and prints a SAY line.
 - Docker not working: open `demo/transcripts/final_demo_20261122T141952Z.txt` (passing rehearsal) and
   the figures. Say: "This is the recorded output of our rehearsal run; the live
   engine is unavailable right now."
+
+## Hands-on segment: "Try an intent" (http://localhost:8080/try)
+
+Use this after Act 1 or at the end, and hand the keyboard to the examiner.
+
+1. Click **▶ Try an intent** on the dashboard (or open http://localhost:8080/try).
+2. Click a preset, then **Explain decision (dry run)**. The page shows the verdict, the reason, and all three candidate routes with why each passed or failed. Nothing is written.
+3. In **What-if faults**, set `s1-s2` to `+40 ms delay` or `link down`. The chosen path moves to s1-s4-s5-s7 and the table shows why the fast route is now rejected. This is planning only; the live fault test is Act 4.
+4. Click **Submit to controller**. The intent goes through the real API (HTTP 201) and appears on the dashboard with its audit trail. Submitting the same ID again gives HTTP 409; the **Invalid document** preset gives HTTP 422.
+5. Click **Withdraw** next to the intent to free its bandwidth (HTTP 204).
+
+After a demo, re-seed the four demo intents if one was withdrawn: `docker compose run --rm seed-demo-intents`.
