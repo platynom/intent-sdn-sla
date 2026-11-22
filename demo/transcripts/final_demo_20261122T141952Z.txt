@@ -1,0 +1,318 @@
+Team 16 final demo - started Sun Nov 22 14:19:52 UTC 2026 - transcript demo/transcripts/final_demo_20261122T141952Z.txt
+Code revision: e8b201b Merge pull request #4 from platynom/docs/readme-main
+
+==================================================================
+ACT 0: Check the system is up
+SAY: Everything runs in Docker inside WSL: Mininet, Open vSwitch, the Ryu controller, the intent API and the dashboard.
+==================================================================
+
+$ docker compose ps
+NAME                          IMAGE                       COMMAND                  SERVICE      CREATED         STATUS         PORTS
+intent-sdn-sla                team16/intent-sdn-sla:dev   "/usr/local/bin/entr…"   sdn          2 minutes ago   Up 2 minutes   
+intent-sdn-sla-dashboard-1    team16/intent-sdn-sla:dev   "python3.9 -m uvicor…"   dashboard    2 minutes ago   Up 2 minutes   127.0.0.1:8080->8080/tcp
+intent-sdn-sla-intent-api-1   team16/intent-sdn-sla:dev   "python3.9 -m uvicor…"   intent-api   2 minutes ago   Up 2 minutes   8000/tcp
+[OK]
+
+==================================================================
+ACT 1: Operator dashboard
+SAY: Open http://localhost:8080. Four application intents are seeded (V2X, remote surgery, public-safety video, smart grid). The yellow SIMULATED label marks illustrative telemetry; live values replace it when the collector runs.
+==================================================================
+Presenter: show the dashboard in the browser now (INT-010 to INT-013, path, audit trail).
+
+==================================================================
+ACT 2: Intent API: reject, accept, refuse a duplicate
+SAY: An operator states WHAT it needs, not how. Invalid grammar is rejected with a reason; a valid intent gets a path; a second copy of a live intent is refused (audit fix D6).
+==================================================================
+
+$ docker compose exec -T intent-api curl -sS -i -X DELETE http://127.0.0.1:8000/intent/INT-001; echo
+HTTP/1.1 204 No Content
+date: Sun, 22 Nov 2026 14:19:52 GMT
+server: uvicorn
+
+
+[OK]
+
+$ docker compose exec -T intent-api curl -sS -i -X POST http://127.0.0.1:8000/intent -H 'Content-Type: text/plain' --data-binary @intents/invalid/bad_sixth_constraint.yaml; echo
+HTTP/1.1 422 Unprocessable Entity
+date: Sun, 22 Nov 2026 14:19:52 GMT
+server: uvicorn
+content-length: 112
+content-type: application/json
+
+[{"path":"intent.guarantee","message":"Additional properties are not allowed ('max_jitter_ms' was unexpected)"}]
+[OK]
+
+$ docker compose exec -T intent-api curl -sS -i -X POST http://127.0.0.1:8000/intent -H 'Content-Type: text/plain' --data-binary @intents/s1_urllc_baseline.yaml; echo
+HTTP/1.1 201 Created
+date: Sun, 22 Nov 2026 14:19:52 GMT
+server: uvicorn
+content-length: 189
+content-type: application/json
+
+{"id":"INT-001","tenant":"telemedicine-video","priority":1,"state":"admitted","path":["s1-s2","s2-s3","s3-s7"],"switches":["s1","s2","s3","s7"],"est_latency_ms":6.0,"bottleneck_mbps":100.0}
+[OK]
+Presenter: refresh the dashboard - INT-001 now appears with its computed path.
+
+$ docker compose exec -T intent-api curl -sS -i -X POST http://127.0.0.1:8000/intent -H 'Content-Type: text/plain' --data-binary @intents/s1_urllc_baseline.yaml; echo
+HTTP/1.1 409 Conflict
+date: Sun, 22 Nov 2026 14:19:53 GMT
+server: uvicorn
+content-length: 104
+content-type: application/json
+
+{"detail":"Intent INT-001 already exists in state 'admitted'; updating a live intent is not supported."}
+[OK]
+
+$ docker compose exec -T intent-api curl -sS -i -X DELETE http://127.0.0.1:8000/intent/INT-001; echo
+HTTP/1.1 204 No Content
+date: Sun, 22 Nov 2026 14:19:53 GMT
+server: uvicorn
+
+
+[OK]
+
+==================================================================
+ACT 3: Planning pipeline without the network
+SAY: Validation, admission and constrained route selection are deterministic: the same input always gives the same decision, including an explained refusal.
+==================================================================
+
+$ docker compose exec -T sdn python3.9 demo_st4.py
+
+==============================================================================
+1. THE NETWORK
+==============================================================================
+7 modelled switches, 8 inter-switch links
+
+   s1-s2       100 Mbps     2.0 ms
+   s2-s3       100 Mbps     2.0 ms
+   s3-s7       100 Mbps     2.0 ms
+   s1-s4        50 Mbps     5.0 ms
+   s4-s5        50 Mbps     5.0 ms
+   s5-s7        50 Mbps     5.0 ms
+   s1-s6        40 Mbps    12.0 ms
+   s6-s7        40 Mbps    12.0 ms
+
+   Routes from s1 to s7 (where h1 and h2 live):
+   s1 -> s2 -> s3 -> s7      100 Mbps     6.0 ms
+   s1 -> s4 -> s5 -> s7       50 Mbps    15.0 ms
+   s1 -> s6 -> s7             40 Mbps    24.0 ms
+
+==============================================================================
+2. A VALID INTENT IS ACCEPTED AND COMPILED TO A PATH
+==============================================================================
+intent:
+  id: INT-001
+  tenant: telemedicine-video
+  priority: 1
+  match: {src: 10.0.0.1/32, dst: 10.0.0.2/32, proto: udp, dport: 5001}
+  guarantee: {min_bandwidth_mbps: 20, max_latency_ms: 20, max_loss_pct: 0.5}
+
+   validation : accepted
+   promise    : 20 Mbps, 20 ms, 0.5% loss
+   chosen path: s1 -> s2 -> s3 -> s7
+   modelled   : 100.0 Mbps bottleneck, 6.0 ms one-way delay
+   links used : s1-s2, s2-s3, s3-s7
+   computed in: 0.4 ms  (budget is 200 ms)
+
+==============================================================================
+3. AN IMPOSSIBLE INTENT IS REFUSED, WITH A REASON
+==============================================================================
+intent:
+  id: INT-002
+  tenant: bulk-backup
+  priority: 4
+  match: {src: 10.0.0.7/32, dst: 10.0.0.8/32, proto: tcp, dport: 873}
+  guarantee: {min_bandwidth_mbps: 500, max_latency_ms: 5}
+
+   path found : None
+   why not    :
+     s3-s7                  insufficient bandwidth: 100 < 500
+     s3-s2-s1-s4-s5-s7      exceeds max_latency_ms: 19 > 5
+     s3-s2-s1-s6-s7         exceeds max_latency_ms: 28 > 5
+
+   No silent failure. Every refusal explains itself.
+
+==============================================================================
+4. THE INTENT GRAMMAR IS FROZEN
+==============================================================================
+intent:
+  id: INT-003
+  tenant: rogue
+  priority: 9
+  match: {src: 10.0.0.1/32, dst: 10.0.0.2/32}
+  guarantee: {max_jitter_ms: 5}
+
+   validation : rejected
+     intent.guarantee
+       Additional properties are not allowed ('max_jitter_ms' was unexpected)
+     intent.priority
+       9 is greater than the maximum of 5
+
+   priority 9 is outside the 1-5 scale, and max_jitter_ms is not one
+   of the five frozen constraint types. Both are caught before the
+   intent reaches the network.
+
+==============================================================================
+5. SQLITE STATE OPERATIONS (IN-MEMORY DEMONSTRATION)
+==============================================================================
+   schema version : 1
+   intents stored : 1
+   current path   : s1 -> s2 -> s3 -> s7
+   reroute count  : 1  (software simulation; not live E6)
+
+==============================================================================
+STATUS
+==============================================================================
+   This walkthrough demonstrates the software-only ST-1 through ST-4 path.
+   The current project status and live-network checks are documented in
+   README.md and docs/HANDOVER.md.
+[OK]
+
+==================================================================
+ACT 4: Live closed loop: fault, detection, safe reroute
+SAY: A 40 ms delay is injected on the primary link. The detector confirms the breach (EWMA, hysteresis, 3 samples), the controller computes a new path on the residual-capacity graph and installs it with the two-phase update.
+==================================================================
+
+$ sed 's/\r$//' experiments/scenarios/s1_single_intent.sh | docker compose exec -T -e TEAM16_DB_PATH=/tmp/team16-final-b3-20261122T141952Z.db -e TEAM16_RESULT_TAG=regression_final_demo_b3 sdn bash -s -- --b3
+=== [1/6] Starting Ryu Controller ===
+=== [2/6] Starting M1 REST API ===
+=== [3/6] Starting Mininet Topology ===
+PASS: injected 40 ms delay on the primary-only s1-eth2 link
+=== [4/6] Submitting Intent INT-001 ===
+PASS: Intent submitted successfully (HTTP 201)
+=== [5/6] Verification Checks ===
+PASS: Flow rules with cookie found on s1 (1 rules)
+PASS: latency-only experiment intent does not require a bandwidth queue
+PASS: Traffic route traverses s2 (northern route s1-s2-s3-s7 verified)
+=== [6/6] Live Telemetry ===
+sample delay_ms=51.0353509999959 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=amber event=none event_persisted_at=None
+sample delay_ms=50.76747200001819 jitter_ms=0.2678789999777109 loss_pct=0.0 throughput_mbps=0.0 status=amber event=none event_persisted_at=None
+sample delay_ms=50.421837999977015 jitter_ms=0.34563400004117284 loss_pct=0.0 throughput_mbps=0.0004156099851366287 status=red event=sla.violated event_persisted_at=1795357210.5895262
+sample delay_ms=31.463084999984403 jitter_ms=18.958752999992612 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+sample delay_ms=30.944600999987415 jitter_ms=0.5184839999969881 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+PASS: 5 live measurements persisted (4 complete samples)
+=== ST-7: Injecting a confirmed event through the SQLite process boundary ===
+PASS: live telemetry already caused the expected alternate route
+PASS: B3 replacement path used strict versioned installation
+sample delay_ms=30.440705999978945 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=green event=none event_persisted_at=None
+PASS: alternate route probe recovered below the 35 ms latency guarantee
+PASS: controller consumed persisted violation and installed s1,s4,s5,s7
+PASS: matching UDP traffic received a probe reply after the reroute
+PASS: reroute count=1; causal audit entries=1
+REGRESSION_FINAL_DEMO_B3 run metrics written to experiments/results/raw/regression_final_demo_b3_20261122142015.csv
+=== SCENARIO S1: ALL ST-1 THROUGH ST-6 CHECKS PASSED ===
+=== SCENARIO ST-7: LIVE REROUTE CHECK PASSED ===
+*** Cleaning up processes and Mininet state
+[OK]
+
+$ docker compose exec -T sdn tail -n 12 /var/log/team16/telemetry.log
+sample delay_ms=51.0353509999959 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=amber event=none event_persisted_at=None
+sample delay_ms=50.76747200001819 jitter_ms=0.2678789999777109 loss_pct=0.0 throughput_mbps=0.0 status=amber event=none event_persisted_at=None
+sample delay_ms=50.421837999977015 jitter_ms=0.34563400004117284 loss_pct=0.0 throughput_mbps=0.0004156099851366287 status=red event=sla.violated event_persisted_at=1795357210.5895262
+sample delay_ms=31.463084999984403 jitter_ms=18.958752999992612 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+sample delay_ms=30.944600999987415 jitter_ms=0.5184839999969881 loss_pct=0.0 throughput_mbps=0.0 status=red event=none event_persisted_at=None
+sample delay_ms=30.440705999978945 jitter_ms=None loss_pct=0.0 throughput_mbps=None status=green event=none event_persisted_at=None
+[OK]
+
+$ docker compose exec -T -e TEAM16_DB_PATH=/tmp/team16-final-b3-20261122T141952Z.db sdn python3.9 scripts/show_demo_audit.py | head -n 60
+{
+  "database": "/tmp/team16-final-b3-20261122T141952Z.db",
+  "mode": "read-only",
+  "paths": [
+    {
+      "id": 1,
+      "intent_id": "INT-001",
+      "switches_json": "[\"s1\", \"s2\", \"s3\", \"s7\"]",
+      "links_json": "[\"s1-s2\", \"s2-s3\", \"s3-s7\"]",
+      "est_latency_ms": 6.0,
+      "bottleneck_mbps": 100.0,
+      "version": 0,
+      "computed_at": 1795357204.8272176,
+      "superseded_at": 1795357211.1975508
+    },
+    {
+      "id": 2,
+      "intent_id": "INT-001",
+      "switches_json": "[\"s1\", \"s4\", \"s5\", \"s7\"]",
+      "links_json": "[\"s1-s4\", \"s4-s5\", \"s5-s7\"]",
+      "est_latency_ms": 15.0,
+      "bottleneck_mbps": 50.0,
+      "version": 1,
+      "computed_at": 1795357211.0704114,
+      "superseded_at": null
+    }
+  ],
+  "recent_events": [
+    {
+      "id": "849392b67c784f2f88d9a1a2e5bcd726",
+      "type": "path.installed",
+      "severity": "info",
+      "intent_id": "INT-001",
+      "at": 1795357211.19788,
+      "message": "INT-001: measured delay_ms=50.795042509994914, promised delay_ms=35.0, feasible alternative selected, installed s1 -> s4 -> s5 -> s7",
+      "payload_json": "{\"action\": \"installed s1 -> s4 -> s5 -> s7\", \"decision\": \"feasible alternative selected\", \"measurement\": \"delay_ms=50.795042509994914\", \"threshold\": \"delay_ms=35.0\"}"
+    },
+    {
+      "id": "045ccd16dd7d4449b0ae02b692fd85f3",
+      "type": "path.installed",
+      "severity": "info",
+      "intent_id": "INT-001",
+      "at": 1795357211.1974003,
+      "message": "INT-001: installed s1 -> s4 -> s5 -> s7 (two-phase, 8 rules)",
+      "payload_json": "{\"mode\": \"two-phase\", \"rule_count\": 8, \"switches\": [\"s1\", \"s4\", \"s5\", \"s7\"]}"
+    },
+    {
+      "id": "c48a1f5dc7df463fa9c709f1029c4738",
+      "type": "sla.violated",
+      "severity": "warning",
+      "intent_id": "INT-001",
+      "at": 1795357210.5009797,
+      "message": "INT-001: delay_ms is 50.795, guarantee is 35",
+      "payload_json": "{\"metric\": \"delay_ms\", \"observed\": 50.795042509994914, \"threshold\": 35.0}"
+    },
+    {
+      "id": "f498f54fd26f4f50befce8d942f263d7",
+      "type": "path.installed",
+      "severity": "info",
+      "intent_id": "INT-001",
+[OK]
+
+==================================================================
+ACT 5: Preemption and two-phase update
+SAY: A critical intent preempts a lower-priority one when capacity is short; a strict intent moves paths with the versioned two-phase update so no packet is lost.
+==================================================================
+
+$ sed 's/\r$//' experiments/scenarios/s9_preemption.sh | docker compose exec -T -e TEAM16_DB_PATH=/tmp/team16-final-s9-20261122T141952Z.db sdn bash -s
+=== Starting Ryu and the intent API ===
+=== Starting Mininet topology ===
+=== Reserving 80 Mbps for lower-priority INT-901 ===
+=== Requesting 60 Mbps for higher-priority INT-902 ===
+PASS: critical intent active on s1 -> s2 -> s3 -> s7
+PASS: victim state and persisted intent.preempted event verified
+PASS: victim rules removed before critical intent rules are active
+=== ST-9 LIVE PREEMPTION CHECK PASSED ===
+[OK]
+
+$ sed 's/\r$//' experiments/scenarios/s10_two_phase.sh | docker compose exec -T -e TEAM16_DB_PATH=/tmp/team16-final-s10-20261122T141952Z.db sdn bash -s
+PASS: strict update flipped VLAN 100 to VLAN 101, removed old north-path rules, and preserved UDP delivery
+[OK]
+
+==================================================================
+ACT 6: Evidence
+SAY: E4: relaxed reroute loses 41 packets, two-phase loses 0 at the cost of 28 reordered. E6: damping cuts reroutes from 90 to 48 per 10 minutes. E10/E11: the cost models match measurement. Every summary is checked against the raw data.
+==================================================================
+(opened experiments/figures/e4_packet_loss.png)
+(opened experiments/figures/e6_oscillation.png)
+(opened experiments/results/redfill_2026-11/E10/fig_e10_detection_sweep.png)
+(opened experiments/results/redfill_2026-11/E11/fig_e11_dwell_sweep.png)
+
+$ docker compose exec -T sdn python3.9 experiments/verify_summaries.py
+summary verification passed: raw CSVs, summaries, and public result claims agree
+[OK]
+
+==================================================================
+ACT 7: Close
+SAY: Code, data, scripts and the report are public at github.com/platynom/intent-sdn-sla.
+==================================================================
+
+Demo finished Sun Nov 22 14:20:52 UTC 2026. Failed steps: 0. Transcript: demo/transcripts/final_demo_20261122T141952Z.txt
