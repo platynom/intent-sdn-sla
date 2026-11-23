@@ -203,3 +203,16 @@ def test_read_only_mode_and_unreachable_api(client, monkeypatch):
     assert c.post("/api/try/submit", json={"yaml": URLLC}).status_code == 502
     big = "#" * (64 * 1024 + 1)
     assert c.post("/api/try/plan", json={"yaml": big}).status_code == 413
+
+
+def test_review_module_lists_every_red_item():
+    from src.dashboard import review
+    data = review.review_data()
+    red = [i for i in data["items"] if i["group"] == "red"]
+    assert [i["id"] for i in red] == ["C1", "C2"] + [f"J{n}" for n in range(1, 13)]
+    assert sum(i["status"] == "done" for i in red) == 12
+    assert len([i for i in data["items"] if i["group"] == "stale"]) == 5
+    page = review.review_page()
+    assert "Sir's review" in page and '"C1"' in page and "__DATA__" not in page
+    assert review.RESPONSE_PDF.is_file()
+    assert "tab-review" in dashboard_app.dashboard()
