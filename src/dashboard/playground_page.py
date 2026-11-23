@@ -62,13 +62,25 @@ pre{background:#081523;border:1px solid var(--line);border-radius:9px;padding:10
 .live ul{list-style:none;margin:0;padding:0}
 .small{font-size:12px;color:var(--muted)}
 .note{font-size:12px;color:var(--muted);border-left:3px solid var(--amber);padding:4px 10px;margin:8px 0 0}
+body.embed{background:transparent}body.embed header{display:none}body.embed .wrap{padding-top:18px}
+.flow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin:0 0 18px}
+.stage{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:11px;padding:9px 8px;min-width:0}
+.stage .n{display:flex;align-items:center;gap:6px;font-weight:700;font-size:13px}.stage .n i{font-style:normal;display:inline-grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#173049;color:var(--muted);font-size:11px}
+.stage small{display:block;color:var(--muted);font-size:11px;line-height:1.3;margin-top:3px}
+.stage.ok{border-color:#61e5a588}.stage.ok .n i{background:var(--green);color:#04131c}
+.stage.fail{border-color:#ff718588}.stage.fail .n i{background:var(--red);color:#04131c}
+.stage.sim{border-color:#ffd16688}.stage.sim .n i{background:var(--amber);color:#04131c}
+.stage.live .n i{background:#82baff;color:#04131c}
+@media (max-width:980px){.flow{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:520px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:980px){.grid{grid-template-columns:1fr}.wrap{padding:16px}header{padding:12px 16px}}
 @media (max-width:520px){.form,.faults{grid-template-columns:1fr}}
 </style></head>
 <body>
-<header><div><h1>Try an intent</h1><p>Hands-on · say what the service needs, the controller decides how</p></div><a class="back" href="/">← Operator dashboard</a></header>
+<header><div><h1>Try an intent</h1><p>Hands-on · say what the service needs, the controller decides how</p></div><a class="back" href="/#monitor" id="back">← Operator dashboard</a></header>
 <main class="wrap">
 <p class="intro">Describe a service-level requirement in plain fields (or edit the YAML). <b>Explain</b> shows how admission control and path selection would decide on the current network, without changing anything. <b>Submit</b> sends it to the real intent API, exactly as an operator would, and it then appears on the dashboard.</p>
+<div class="flow" id="flow" aria-label="Intent lifecycle"></div>
 <div class="grid">
 <div>
 <section class="panel"><h2><span class="step">1</span>Describe the intent</h2><p class="sub">Start from a preset or fill in the fields.</p>
@@ -139,6 +151,28 @@ const INVALID_YAML="# Invalid on purpose: max_jitter_ms is not one of the five f
 const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e};
 const svgEl=(tag,attrs)=>{const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const k in attrs)e.setAttribute(k,attrs[k]);return e};
 const num=v=>v===null||v===undefined||v===''?'—':Number(v).toLocaleString(undefined,{maximumFractionDigits:2});
+const EMBED=new URLSearchParams(location.search).get('embed')==='1';
+if(EMBED)document.body.classList.add('embed');
+const STAGES=[['Intent','YAML promise'],['Validate','Schema + rules'],['Compute','Candidate paths'],['Enforce','Flows + queue'],['Measure','Live telemetry'],['Detect','Stable breach'],['Correct','Live reroute']];
+const FLOW_IDLE=['','','','','live','live','live'];
+const FLOW_NOTE_IDLE=['Fill in the fields','On Explain / Submit','On Explain / Submit','On Submit','Ryu + probes (Act 4)','EWMA, ±10%, k = 3','Two-phase reroute'];
+function setFlow(states,notes){const f=$('flow');f.replaceChildren();STAGES.forEach(([t,sub],i)=>{const d=el('div','stage '+(states[i]||''));const n=el('div','n');const ic=el('i',null,states[i]==='ok'?'✓':states[i]==='fail'?'✕':states[i]==='sim'?'≈':String(i+1));n.append(ic,document.createTextNode(t));d.append(n,el('small',null,(notes&&notes[i])||sub));f.append(d)})}
+function notifyParent(type,extra){if(EMBED&&window.parent!==window){try{window.parent.postMessage(Object.assign({type},extra||{}),location.origin)}catch(e){}}}
+function postHeight(){notifyParent('try-height',{height:document.documentElement.scrollHeight})}
+if(EMBED&&'ResizeObserver' in window)new ResizeObserver(postHeight).observe(document.body);
+function flowFromPlan(p){
+ if(!p.ok)return setFlow(['ok','fail'],['Document received',p.stage==='parse'?'Malformed YAML (422)':'Grammar refused (422)','Not reached','Not reached','','','']);
+ const adm=p.decision.verdict!=='reject';const sim=p.faults_applied.length>0;
+ setFlow(['ok','ok',adm?'ok':'fail','',sim?'sim':'live',sim?'sim':'live',sim?(adm?'sim':'fail'):'live'],
+  ['Document received','Valid: 5 frozen constraints',adm?('Path '+p.chosen.switches.join('-')):'No feasible path','Happens on Submit',
+   sim?'What-if fault applied':'Ryu + probes (Act 4)',sim?'Breach assumed (dry run)':'EWMA, ±10%, k = 3',sim?(adm?'Re-planned around fault':'Nowhere to reroute'):'Two-phase reroute'])}
+function flowFromSubmit(r){const b=r.body||{};
+ if(r.status===422)return setFlow(['ok','fail'],['Document received','Grammar refused (422)','Not reached','Not reached','','','']);
+ if(r.status===409)return setFlow(['ok','fail'],['Document received','Refused: conflict (409)','Not reached','Not reached','','','']);
+ if(r.status===204)return setFlow(['ok','ok','ok','ok','','',''],['Withdraw request','Intent found','Reservation released','Rules removed when Ryu runs','','','']);
+ if(r.status===201&&b.state==='admitted')return setFlow(['ok','ok','ok','ok','live','live','live'],['Accepted (201)','Valid','Path '+(b.switches||[]).join('-'),'Bandwidth reserved; rules on Ryu','Ryu + probes (Act 4)','EWMA, ±10%, k = 3','Two-phase reroute']);
+ if(r.status===201)return setFlow(['ok','ok','fail'],['Accepted (201)','Valid','Rejected, reason audited','Not reached','','','']);
+ setFlow(['fail'],['HTTP '+r.status])}
 function hostIp(name){const h=(S.topo?.hosts||[]).find(x=>x.name===name);return h?h.ip:'10.0.0.1'}
 function linkNames(){return (S.topo?.links||[]).map(l=>l.name)}
 
@@ -209,6 +243,7 @@ function drawTopo(){
 function verdictBadge(v){const map={admit:['ADMITTED','b-admit'],preempt:['ADMITTED BY PREEMPTION','b-preempt'],reject:['REJECTED','b-reject']};const [t,c]=map[v]||[String(v).toUpperCase(),'b-info'];return el('span','badge '+c,t)}
 
 function renderPlan(p){
+ flowFromPlan(p);
  const box=$('result');box.replaceChildren();
  const head=el('div','verdict');
  if(!p.ok){head.append(el('span','badge b-error','INVALID INTENT · HTTP 422'));box.append(head);
@@ -229,6 +264,7 @@ function renderPlan(p){
 }
 
 function renderSubmit(r){
+ flowFromSubmit(r);notifyParent('intent-changed');
  const box=$('result');box.replaceChildren();const head=el('div','verdict');
  const ok=r.status>=200&&r.status<300;head.append(el('span','badge '+(ok?'b-admit':'b-error'),'HTTP '+r.status));
  const b=r.body||{};
@@ -263,6 +299,8 @@ async function loadTopo(){const r=await fetch('/api/try/topology',{cache:'no-sto
  try{const d=await (await fetch('/api/dashboard',{cache:'no-store'})).json();S.allIds=(d.intents||[]).map(i=>i.id)}catch(e){S.allIds=[]}
  renderLive();drawTopo()}
 
+setFlow(FLOW_IDLE,FLOW_NOTE_IDLE);
 (async()=>{try{await loadTopo();buildControls();$('f-id').value=nextId();syncYaml();drawTopo();$('f-src').addEventListener('change',drawTopo);$('f-dst').addEventListener('change',drawTopo)}
- catch(e){showError(e)}})();
+ catch(e){showError(e)}finally{postHeight()}})();
+$('back').addEventListener('click',e=>{if(EMBED){e.preventDefault();notifyParent('show-monitor')}});
 </script></body></html>"""
