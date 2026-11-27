@@ -4,13 +4,14 @@ from __future__ import annotations
 
 import inspect
 import os
-from typing import Optional, Set
+import threading
+from typing import Dict, Optional, Set, Tuple
 
 from src.admission.feasibility import reconcile_preempted_intents
 from src.admission.residual import residual_graph, tenant_paths
 from src.common import db
 from src.common.events import Event, EventBus, EventType, Severity
-from src.common.models import Consistency, IntentState, OnViolation
+from src.common.models import Consistency, IntentRecord, IntentState, OnViolation, PathPlan
 from src.enforcement import queues, two_phase
 from src.pathing.compute import compute_path
 
@@ -25,6 +26,14 @@ class ControlLoop:
         self.bus = bus
         self.audit = audit
         self._processed_event_ids: Set[str] = set()
+        # Concurrent recovery (E14b): the controller dispatches simultaneous
+        # violations on parallel green threads, and a new path is persisted
+        # only after its install finishes.  Planning is therefore serialised
+        # under _plan_lock, and every plan that is still installing is held in
+        # _in_flight so the next planner subtracts its bandwidth and honours
+        # its tenant isolation.  Installs themselves may still overlap.
+        self._plan_lock = threading.RLock()
+        self._in_flight: Dict[str, Tuple[PathPlan, IntentRecord, float]] = {}
         bus.subscribe(self.on_violation, EventType.SLA_VIOLATED)
         bus.subscribe(self.on_restored, EventType.SLA_RESTORED)
 
@@ -41,6 +50,24 @@ class ControlLoop:
             severity=severity,
             event_type=event_type,
         )
+
+    def _apply_in_flight(self, graph, t_paths, exclude_intent_id: str) -> None:
+        """Count reroutes that are planned but not yet persisted (caller holds the lock)."""
+        for other_id, (plan, rec, amount) in self._in_flight.items():
+            if other_id == exclude_intent_id:
+                continue
+            if amount > 0:
+                for u, v in zip(plan.switches, plan.switches[1:]):
+                    if graph.has_edge(u, v):
+                        data = graph[u][v]
+                        data["reserved_mbps"] = float(data.get("reserved_mbps", 0.0)) + amount
+                        capacity = float(data.get("capacity_mbps", data.get("bw_mbps", 0.0)))
+                        data["residual_mbps"] = max(0.0, capacity - data["reserved_mbps"])
+            switches = list(plan.switches)
+            t_paths.setdefault(rec.tenant, []).append(switches)
+            for isolated_tenant in rec.guarantee.isolate_from:
+                protected = t_paths.isolated_by.setdefault(isolated_tenant, {})
+                protected.setdefault(rec.tenant, []).append(switches)
 
     def on_violation(self, event: Event, now: Optional[float] = None):
         """Handle one violation synchronously without letting failures escape."""
@@ -100,16 +127,21 @@ class ControlLoop:
                 EventType.VIOLATION_SUPPRESSED,
             )
 
-        candidate_graph = residual_graph(
-            self.conn, self.graph, exclude_intent_ids={intent.id}
-        )
-        if current is not None:
-            candidate_graph.remove_edges_from(zip(current.switches, current.switches[1:]))
-        t_paths = tenant_paths(self.conn, exclude_intent_ids={intent.id})
-        if len(inspect.signature(compute_path).parameters) >= 3:
-            new_plan, reasons = compute_path(intent, candidate_graph, t_paths)
-        else:
-            new_plan, reasons = compute_path(intent, candidate_graph)
+        with self._plan_lock:
+            candidate_graph = residual_graph(
+                self.conn, self.graph, exclude_intent_ids={intent.id}
+            )
+            t_paths = tenant_paths(self.conn, exclude_intent_ids={intent.id})
+            self._apply_in_flight(candidate_graph, t_paths, intent.id)
+            if current is not None:
+                candidate_graph.remove_edges_from(zip(current.switches, current.switches[1:]))
+            if len(inspect.signature(compute_path).parameters) >= 3:
+                new_plan, reasons = compute_path(intent, candidate_graph, t_paths)
+            else:
+                new_plan, reasons = compute_path(intent, candidate_graph)
+            if new_plan is not None:
+                amount = db.effective_min_bandwidth_mbps(self.conn, intent)
+                self._in_flight[intent.id] = (new_plan, intent, amount)
         if new_plan is None:
             self._processed_event_ids.add(event.id)
             detail = "; ".join(str(value) for value in reasons.values())
@@ -134,6 +166,8 @@ class ControlLoop:
                     f"installed {installed} of {expected} expected OpenFlow rules"
                 )
         except Exception as exc:  # noqa: BLE001 - event subscribers must be isolated
+            with self._plan_lock:
+                self._in_flight.pop(intent.id, None)
             self._processed_event_ids.add(event.id)
             return self._audit(
                 event,
@@ -143,11 +177,13 @@ class ControlLoop:
                 Severity.ERROR,
             )
 
-        db.save_path(self.conn, new_plan)
-        intent.current_path = new_plan
-        intent.last_replan_at = timestamp
-        intent.state = IntentState.ACTIVE
-        db.save_intent(self.conn, intent)
+        with self._plan_lock:
+            db.save_path(self.conn, new_plan)
+            intent.current_path = new_plan
+            intent.last_replan_at = timestamp
+            intent.state = IntentState.ACTIVE
+            db.save_intent(self.conn, intent)
+            self._in_flight.pop(intent.id, None)
         reconcile_preempted_intents(self.conn, self.graph, self.bus)
         self._processed_event_ids.add(event.id)
         return self._audit(

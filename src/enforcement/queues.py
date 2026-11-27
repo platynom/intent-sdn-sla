@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import os
 import subprocess
+import threading
 import time
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
@@ -42,6 +43,19 @@ def _run_cmd(cmd: list[str]) -> str:
 # OVS queue, including default queue 0) once ovs-vswitchd has created them.
 # Outside Mininet (no netem present, or no ``tc``) this is a no-op.
 # ---------------------------------------------------------------------------
+
+# One lock per port: concurrent reroutes onto the same port must not race the
+# "get qos" / "create qos" sequence (the last create would orphan the others'
+# queues) or the netem restoration.  Under ryu-manager, threading is
+# monkey-patched by eventlet, so these are green locks.
+_PORT_LOCKS: Dict[str, threading.Lock] = {}
+_PORT_LOCKS_GUARD = threading.Lock()
+
+
+def _port_lock(port: str) -> threading.Lock:
+    with _PORT_LOCKS_GUARD:
+        return _PORT_LOCKS.setdefault(port, threading.Lock())
+
 
 _NETEM_VALUE_KEYS = ("limit", "loss", "duplicate", "corrupt", "reorder", "rate")
 _ROOT_CLASS = "1:fffe"
@@ -211,72 +225,73 @@ def ensure_queue(
         else:
             queue_id = 1
 
-    netem_args = capture_netem(port)
+    with _port_lock(port):
+        netem_args = capture_netem(port)
 
-    try:
-        # Check if a QoS record already exists on this port
-        existing_qos = _run_cmd(["ovs-vsctl", "--if-exists", "get", "port", port, "qos"])
-        existing_qos = existing_qos.strip("[]\"' \n")
+        try:
+            # Check if a QoS record already exists on this port
+            existing_qos = _run_cmd(["ovs-vsctl", "--if-exists", "get", "port", port, "qos"])
+            existing_qos = existing_qos.strip("[]\"' \n")
 
-        if existing_qos and existing_qos != "[]":
-            _run_cmd([
-                "ovs-vsctl",
-                "--",
-                "set",
-                "qos",
-                existing_qos,
-                f"other-config:max-rate={qos_max_bps}",
-                f"queues:{queue_id}=@q",
-                "--",
-                "--id=@q",
-                "create",
-                "queue",
-                f"other-config:min-rate={min_bps}",
-                f"other-config:max-rate={max_bps}",
-            ])
-        else:
-            _run_cmd([
-                "ovs-vsctl",
-                "--",
-                "set",
-                "port",
-                port,
-                "qos=@newqos",
-                "--",
-                "--id=@newqos",
-                "create",
-                "qos",
-                "type=linux-htb",
-                f"other-config:max-rate={qos_max_bps}",
-                "queues:0=@q0",
-                f"queues:{queue_id}=@q",
-                "--",
-                # Default queue 0 (HTB class 1:1) carries traffic with no
-                # SET_QUEUE, so it stays shaped and keeps the link's netem.
-                "--id=@q0",
-                "create",
-                "queue",
-                f"other-config:max-rate={qos_max_bps}",
-                "--",
-                "--id=@q",
-                "create",
-                "queue",
-                f"other-config:min-rate={min_bps}",
-                f"other-config:max-rate={max_bps}",
-            ])
-        if netem_args:
-            restore_netem(port, netem_args, [queue_id])
-    except Exception:
-        if intent_id is not None and conn is not None and not had_existing_row:
-            conn.execute(
-                "DELETE FROM intent_queues WHERE intent_id = ? AND switch = ? AND port = ?",
-                (intent_id, switch, port),
-            )
-            conn.commit()
-        raise
-    finally:
-        if owns_conn and conn is not None:
-            conn.close()
+            if existing_qos and existing_qos != "[]":
+                _run_cmd([
+                    "ovs-vsctl",
+                    "--",
+                    "set",
+                    "qos",
+                    existing_qos,
+                    f"other-config:max-rate={qos_max_bps}",
+                    f"queues:{queue_id}=@q",
+                    "--",
+                    "--id=@q",
+                    "create",
+                    "queue",
+                    f"other-config:min-rate={min_bps}",
+                    f"other-config:max-rate={max_bps}",
+                ])
+            else:
+                _run_cmd([
+                    "ovs-vsctl",
+                    "--",
+                    "set",
+                    "port",
+                    port,
+                    "qos=@newqos",
+                    "--",
+                    "--id=@newqos",
+                    "create",
+                    "qos",
+                    "type=linux-htb",
+                    f"other-config:max-rate={qos_max_bps}",
+                    "queues:0=@q0",
+                    f"queues:{queue_id}=@q",
+                    "--",
+                    # Default queue 0 (HTB class 1:1) carries traffic with no
+                    # SET_QUEUE, so it stays shaped and keeps the link's netem.
+                    "--id=@q0",
+                    "create",
+                    "queue",
+                    f"other-config:max-rate={qos_max_bps}",
+                    "--",
+                    "--id=@q",
+                    "create",
+                    "queue",
+                    f"other-config:min-rate={min_bps}",
+                    f"other-config:max-rate={max_bps}",
+                ])
+            if netem_args:
+                restore_netem(port, netem_args, [queue_id])
+        except Exception:
+            if intent_id is not None and conn is not None and not had_existing_row:
+                conn.execute(
+                    "DELETE FROM intent_queues WHERE intent_id = ? AND switch = ? AND port = ?",
+                    (intent_id, switch, port),
+                )
+                conn.commit()
+            raise
+        finally:
+            if owns_conn and conn is not None:
+                conn.close()
 
     return int(queue_id)
 

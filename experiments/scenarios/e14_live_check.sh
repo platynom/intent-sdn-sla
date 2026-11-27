@@ -178,6 +178,18 @@ for np in ${NETEM_PARENTS}; do
     sudo tc qdisc change dev "${FAULT_IF}" parent "${np}" netem delay 40ms
 done
 
+# Keep each intent's 20 Mbit/s load running while the detector samples, so the
+# throughput guarantee is judged on real traffic (probe-only traffic reads as
+# ~0 Mbit/s and caused a spurious throughput "violation" in the first live run).
+WARM_PIDS=()
+for i in 1 2 3 4; do
+    dport=$((5100 + i))
+    mnexec -da "${H1_PID}" python3.9 /app/scripts/udp_load.py 10.0.0.2 "${dport}" 20.0 16 \
+        >"/tmp/e14live_warm_${TAG}_${dport}.log" 2>&1 &
+    WARM_PIDS+=("$!")
+done
+sleep 1
+
 # Trigger B3 detection across all 4 flows
 for i in 1 2 3 4; do
     dport=$((5100 + i))
@@ -192,6 +204,9 @@ for pid in "${TEL_PIDS[@]}"; do
     wait "${pid}" || true
 done
 TEL_PIDS=()
+for pid in "${WARM_PIDS[@]}"; do
+    wait "${pid}" || true
+done
 sleep 2
 
 # Reset receiver counters from h1 and send 4 x 20 Mbps flows for 20 s
