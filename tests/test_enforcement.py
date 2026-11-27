@@ -334,6 +334,7 @@ def test_ensure_queue_reuses_existing_qos_record(monkeypatch):
 
     monkeypatch.setattr(queues.subprocess, "run", fake_run)
     queues.ensure_queue("s1", "s1-eth2", 20, egress_peer="s2")
+    calls = [c for c in calls if c[0] == "ovs-vsctl"]  # ignore netem-preservation tc reads
     assert calls[1][calls[1].index("qos") + 1] == "qos-existing"
     assert not any(
         left == "create" and right == "qos"
@@ -352,6 +353,7 @@ def test_ensure_queue_creates_qos_when_port_has_none(monkeypatch):
 
     monkeypatch.setattr(queues.subprocess, "run", fake_run)
     queues.ensure_queue("s1", "s1-eth2", 20, egress_peer="s2")
+    calls = [c for c in calls if c[0] == "ovs-vsctl"]  # ignore netem-preservation tc reads
     assert "qos=@newqos" in calls[1]
     assert "type=linux-htb" in calls[1]
 
@@ -366,6 +368,7 @@ def test_queue_root_ceiling_uses_actual_egress_link_capacity(monkeypatch):
 
     monkeypatch.setattr(queues.subprocess, "run", fake_run)
     queues.ensure_queue("s1", "s1-eth4", 20, egress_peer="s6")
+    calls = [c for c in calls if c[0] == "ovs-vsctl"]  # ignore netem-preservation tc reads
     assert "other-config:max-rate=40000000" in calls[1]
 
 

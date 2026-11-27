@@ -166,15 +166,17 @@ while True:
 done
 sleep 0.5
 
-# Inject 40 ms fault on north primary link (s1-eth2, or s2-eth1 fallback if HTB replaced s1-eth2 root)
+# Inject 40 ms fault on the north primary link s1-eth2. Bandwidth intents put an
+# OVS HTB queue on this port; queues.restore_netem keeps one netem per HTB class,
+# so the fault is applied to every netem on the port.
 FAULT_IF="s1-eth2"
-NP=$(sudo tc qdisc show dev "${FAULT_IF}" | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") {print $(i+1); exit}}')
-if [ -z "${NP}" ]; then
-    FAULT_IF="s2-eth1"
-    NP=$(sudo tc qdisc show dev "${FAULT_IF}" | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") {print $(i+1); exit}}')
-fi
-[ -n "${NP}" ] || { echo "FAIL: no netem parent on s1-eth2 or s2-eth1"; exit 1; }
-sudo tc qdisc change dev "${FAULT_IF}" parent "${NP}" netem delay 40ms
+NETEM_PARENTS=$(sudo tc qdisc show dev "${FAULT_IF}" | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") print $(i+1)}')
+[ -n "${NETEM_PARENTS}" ] || { echo "FAIL: no netem on ${FAULT_IF}"; sudo tc qdisc show dev "${FAULT_IF}"; exit 1; }
+echo "E14-LIVE qdiscs on ${FAULT_IF} before fault:"
+sudo tc qdisc show dev "${FAULT_IF}"
+for np in ${NETEM_PARENTS}; do
+    sudo tc qdisc change dev "${FAULT_IF}" parent "${np}" netem delay 40ms
+done
 
 # Trigger B3 detection across all 4 flows
 for i in 1 2 3 4; do
