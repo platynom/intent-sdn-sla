@@ -30,6 +30,15 @@ netem_parent() {
     tc qdisc show dev "$1" | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") {print $(i+1); exit}}'
 }
 
+# A port that carries a bandwidth intent has one netem per OVS HTB queue class
+# (see src/enforcement/queues.py restore_netem); a fault must change all of them.
+set_netem_delay() {
+    local dev="$1" delay="$2" p
+    for p in $(tc qdisc show dev "${dev}" | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") print $(i+1)}'); do
+        tc qdisc change dev "${dev}" parent "${p}" netem delay "${delay}"
+    done
+}
+
 case "${ACTION}" in
     down)
         ip link set "${IF_A}" down
@@ -54,7 +63,7 @@ case "${ACTION}" in
             tc qdisc show dev "${TARGET_IF}" | grep -o 'delay [0-9.]*[mu]*s' | head -n1 | awk '{print $2}' \
                 > "${STATE_DIR}/delay-${TARGET_IF}"
         fi
-        tc qdisc change dev "${TARGET_IF}" parent "${PARENT}" netem delay "${VALUE}ms"
+        set_netem_delay "${TARGET_IF}" "${VALUE}ms"
         echo "FAULT: ${A}-${B} delay set to ${VALUE} ms on ${TARGET_IF} (was $(cat "${STATE_DIR}/delay-${TARGET_IF}"))"
         ;;
     clear)
@@ -62,7 +71,7 @@ case "${ACTION}" in
             PARENT=$(netem_parent "${TARGET_IF}")
             ORIGINAL=$(cat "${STATE_DIR}/delay-${TARGET_IF}" 2>/dev/null || true)
             if [ -n "${PARENT}" ] && [ -n "${ORIGINAL}" ]; then
-                tc qdisc change dev "${TARGET_IF}" parent "${PARENT}" netem delay "${ORIGINAL}"
+                set_netem_delay "${TARGET_IF}" "${ORIGINAL}"
                 rm -f "${STATE_DIR}/delay-${TARGET_IF}"
                 echo "RESTORED: ${A}-${B} delay back to ${ORIGINAL} on ${TARGET_IF}"
             fi

@@ -166,15 +166,29 @@ while True:
 done
 sleep 0.5
 
-# Inject 40 ms fault on north primary link (s1-eth2, or s2-eth1 fallback if HTB replaced s1-eth2 root)
+# Inject 40 ms fault on the north primary link s1-eth2. Bandwidth intents put an
+# OVS HTB queue on this port; queues.restore_netem keeps one netem per HTB class,
+# so the fault is applied to every netem on the port.
 FAULT_IF="s1-eth2"
-NP=$(sudo tc qdisc show dev "${FAULT_IF}" | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") {print $(i+1); exit}}')
-if [ -z "${NP}" ]; then
-    FAULT_IF="s2-eth1"
-    NP=$(sudo tc qdisc show dev "${FAULT_IF}" | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") {print $(i+1); exit}}')
-fi
-[ -n "${NP}" ] || { echo "FAIL: no netem parent on s1-eth2 or s2-eth1"; exit 1; }
-sudo tc qdisc change dev "${FAULT_IF}" parent "${NP}" netem delay 40ms
+NETEM_PARENTS=$(sudo tc qdisc show dev "${FAULT_IF}" | awk '/netem/ {for (i=1; i<=NF; i++) if ($i == "parent") print $(i+1)}')
+[ -n "${NETEM_PARENTS}" ] || { echo "FAIL: no netem on ${FAULT_IF}"; sudo tc qdisc show dev "${FAULT_IF}"; exit 1; }
+echo "E14-LIVE qdiscs on ${FAULT_IF} before fault:"
+sudo tc qdisc show dev "${FAULT_IF}"
+for np in ${NETEM_PARENTS}; do
+    sudo tc qdisc change dev "${FAULT_IF}" parent "${np}" netem delay 40ms
+done
+
+# Keep each intent's 20 Mbit/s load running while the detector samples, so the
+# throughput guarantee is judged on real traffic (probe-only traffic reads as
+# ~0 Mbit/s and caused a spurious throughput "violation" in the first live run).
+WARM_PIDS=()
+for i in 1 2 3 4; do
+    dport=$((5100 + i))
+    mnexec -da "${H1_PID}" python3.9 /app/scripts/udp_load.py 10.0.0.2 "${dport}" 20.0 16 \
+        >"/tmp/e14live_warm_${TAG}_${dport}.log" 2>&1 &
+    WARM_PIDS+=("$!")
+done
+sleep 1
 
 # Trigger B3 detection across all 4 flows
 for i in 1 2 3 4; do
@@ -190,6 +204,9 @@ for pid in "${TEL_PIDS[@]}"; do
     wait "${pid}" || true
 done
 TEL_PIDS=()
+for pid in "${WARM_PIDS[@]}"; do
+    wait "${pid}" || true
+done
 sleep 2
 
 # Reset receiver counters from h1 and send 4 x 20 Mbps flows for 20 s
