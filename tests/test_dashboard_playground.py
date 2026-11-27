@@ -216,3 +216,6 @@ def test_review_module_lists_every_red_item():
     assert "Sir's review" in page and '"C1"' in page and "__DATA__" not in page
     assert review.RESPONSE_PDF.is_file()
     assert "tab-review" in dashboard_app.dashboard()
+    status = {i["id"]: i["status"] for i in data["items"]}
+    assert status["L1"] == "done"  # E14b live check passed on 27 Nov 2026
+    assert [k for k, v in status.items() if v == "notrun"] == ["L2"]

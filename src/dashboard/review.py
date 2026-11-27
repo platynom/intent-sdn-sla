@@ -48,13 +48,13 @@ REVIEW: Dict[str, Any] = {
                     "28 reordered packets at 1000 pkt/s = 28.0 ms."),
          "evidence": ["experiments/scenarios/e4_packet_loss.sh", "topology/topology_spec.py",
                       "experiments/results/redfill_2026-11/E12/model_comparison.csv"]},
-        {"id": "J1", "group": "red", "paper": JOUR, "where": "p. 1, author/funding footnote",
+        {"id": "J1", "why": "Not a data item. Choosing the corresponding author and stating funding is the team's decision, not something an experiment can fill. Suggested: \u201cThis work received no external funding.\u201d",  "group": "red", "paper": JOUR, "where": "p. 1, author/funding footnote",
          "red": "[Corresponding author and funding acknowledgement, if any.]", "status": "team",
          "exp": "Editorial",
          "did": "Not a data item. Left for the team to decide.",
          "result": "Suggested funding sentence: “This work received no external funding.” Corresponding author: team decision.",
          "evidence": []},
-        {"id": "J2", "group": "red", "paper": JOUR, "where": "p. 2, Introduction",
+        {"id": "J2", "why": "The journal must cite the conference paper, which is not accepted yet. The placeholder stays until acceptance; nothing can be filled now.",  "group": "red", "paper": JOUR, "where": "p. 2, Introduction",
          "red": "[citation once accepted]", "status": "wait", "exp": "Editorial",
          "did": "Left as is by design.",
          "result": "Filled once the conference paper is accepted.",
@@ -106,7 +106,7 @@ REVIEW: Dict[str, Any] = {
          "red": "[result]", "status": "done", "exp": "E14",
          "did": "Concurrent reroutes of 4 to 16 intents, old build cf25af2 vs current 75f2d2e (40 runs each).",
          "result": ("Old build over-committed all 3 middle-path links (up to 1.60x capacity); current build: "
-                    "0 over-committed links. The live variant E14b was not run (see limitations)."),
+                    "0 over-committed links. The live variant E14b now also passes (27 Nov, n = 11, 0 over-committed links, 0% loss; see L1)."),
          "evidence": ["experiments/results/redfill_2026-11/E14/summary.csv"]},
         {"id": "J11", "group": "red", "paper": JOUR, "where": "p. 11, Table 5, row E15",
          "red": "[result]", "status": "done", "exp": "E15",
@@ -150,13 +150,20 @@ REVIEW: Dict[str, Any] = {
          "did": "Checked the S6 schedule: one phase lasts only 1.5 s, too short for k = 3 at 1 Hz.",
          "result": "B3 can confirm 60 transitions (B2 reacts to all 90); both predictions reported in E11.",
          "evidence": ["experiments/scenarios/e6_oscillation.sh"]},
-        {"id": "L1", "group": "limit", "paper": "Disclosure", "where": "E14b",
-         "red": "Live multi-intent contention check", "status": "notrun", "exp": "E14b",
-         "did": "Attempted twice; failed both times.",
-         "result": ("Finding: an OVS HTB queue replaces Mininet's netem delay on that port, so the live fault "
-                    "cannot be injected there. E14a (control-plane, 80 runs) is the primary evidence."),
-         "evidence": ["experiments/results/redfill_2026-11/FAILURES.md"]},
-        {"id": "L2", "group": "limit", "paper": "Disclosure", "where": "E16",
+        {"id": "L1", "group": "limit", "paper": "Disclosure", "where": "E14b (resolved 27 Nov 2026)",
+         "red": "Live multi-intent contention check", "status": "done", "exp": "E14b",
+         "did": ("Was NOT RUN on 19 Nov: the OVS HTB bandwidth queue erased Mininet's netem delay, so the fault "
+                 "could not be injected. Fixed on 27 Nov: queues.py now re-attaches the netem delay under every "
+                 "HTB queue class. The first live run then exposed a second defect, simultaneous recoveries all "
+                 "planning onto the same 40 Mbit/s link (60 Mbit/s reserved), fixed in loop.py by serialised "
+                 "planning with an in-flight reservation ledger."),
+         "result": ("Passes, n = 11 (build 449aa7e): four 20 Mbit/s intents leave the faulted north path (0 of 44 "
+                    "placements left on it), every run ends 2 south + 2 middle, 0 over-committed links (max load "
+                    "1.000 of capacity), 19.999 Mbit/s per flow, 0% loss."),
+         "evidence": ["experiments/results/redfill_2026-11/E14_LIVE/summary_new.csv",
+                      "experiments/results/redfill_2026-11/E14_LIVE/routes_and_load.csv",
+                      "tests/test_netem_preservation.py", "tests/test_concurrent_recovery.py"]},
+        {"id": "L2", "why": "TCAM is memory inside physical switches; we have no hardware or P4 switch and Open vSwitch has none, so rule counts come from the software model (76 per switch, 152 during two-phase). The topology-zoo.org download reset the connection, so Geant2012 came from a GitHub mirror (SHA-256 recorded). Admission scaling still measured: 3.8 to 11.1 ms.",  "group": "limit", "paper": "Disclosure", "where": "E16",
          "red": "Hardware TCAM usage and official Topology Zoo file", "status": "notrun", "exp": "E16",
          "did": "No hardware/P4 switch available; topology-zoo.org download reset the connection.",
          "result": "Rule counts come from the software model; Geant2012 was taken from a third-party mirror (SHA-256 recorded).",
@@ -225,10 +232,12 @@ h2{margin:0 0 4px;font-size:20px}.ask{color:var(--muted);max-width:980px;margin:
 .id{font-weight:800;font-size:15px;color:var(--blue)}
 .where{font-size:12px;color:var(--muted)}.where b{display:block;color:var(--txt);font-size:13px;font-weight:600}
 .red{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:#ff9aa9;overflow:hidden;text-overflow:ellipsis}
-.badge{justify-self:start;font-size:11.5px;font-weight:700;border-radius:999px;padding:4px 10px;border:1px solid;white-space:nowrap}
+.badge{position:relative;justify-self:start;font-size:11.5px;font-weight:700;border-radius:999px;padding:4px 10px;border:1px solid;white-space:nowrap}
 .s-done{color:var(--green);border-color:#61e5a566;background:#61e5a514}.s-team{color:var(--amber);border-color:#ffd16666;background:#ffd16614}
 .s-wait{color:var(--blue);border-color:#82baff66;background:#82baff14}.s-notrun{color:var(--red);border-color:#ff718566;background:#ff718514}
-.chev{color:var(--muted);transition:transform .15s}.item.open .chev{transform:rotate(90deg)}
+.chev{color:var(--muted);transition:transform .15s}.badge[data-tip]{cursor:help;outline:none}.badge[data-tip]::after{content:' ⓘ';opacity:.85}
+.tip{position:fixed;z-index:50;max-width:380px;background:#0b1a2b;border:1px solid #ffd16699;border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.45;color:var(--txt);box-shadow:0 10px 30px #000a;pointer-events:none;display:none}
+.tip b{display:block;color:var(--amber);margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.04em}.item.open .chev{transform:rotate(90deg)}
 .body{display:none;padding:0 14px 14px 90px;border-top:1px solid var(--line)}.item.open .body{display:block}
 .body dl{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 14px;margin:12px 0 0}
 .body dt{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em}.body dd{margin:0}
@@ -242,8 +251,8 @@ h2{margin:0 0 4px;font-size:20px}.ask{color:var(--muted);max-width:980px;margin:
 <h2>Sir's review: what was asked and what we did</h2>
 <p class="ask" id="ask"></p>
 <section class="stats" id="stats"></section>
-<div class="bar"><div class="chips" id="chips"></div><a class="pdf" href="/review/response.pdf" target="_blank" rel="noopener">⬇ Response PDF for Sir</a></div>
-<section class="list" id="list"></section>
+<div class="bar"><div class="chips" id="chips"></div><a class="pdf" href="/review/response.pdf" target="_blank" rel="noopener">⬇ Response PDF (22 Nov, before E14b fix)</a></div>
+<section class="list" id="list"></section><div class="tip" id="tip" role="tooltip"></div>
 <section class="deliv"><h3>Where everything is</h3><ul id="deliv"></ul></section>
 </main>
 <script>
@@ -257,9 +266,13 @@ const FILTERS=[['all','All'],['red','Red items (14)'],['conf','Conference'],['jo
 let filter='all';
 function post(){if(EMBED&&window.parent!==window){try{window.parent.postMessage({type:'review-height',height:document.documentElement.scrollHeight},location.origin)}catch(e){}}}
 function match(i){if(filter==='all')return true;if(filter==='conf')return i.group==='red'&&i.paper.startsWith('Conference');if(filter==='jour')return i.group==='red'&&i.paper.startsWith('Journal');return i.group===filter}
+function badge(i){const b=el('span','badge s-'+i.status,STATUS[i.status]);if(i.why){b.dataset.tip='1';b.tabIndex=0;b.setAttribute('aria-label',STATUS[i.status]+': '+i.why);
+ const show=()=>{const t=$('tip');t.replaceChildren(el('b',null,'Why not done'),document.createTextNode(i.why));t.style.display='block';const r=b.getBoundingClientRect();const w=Math.min(380,innerWidth-24);t.style.maxWidth=w+'px';
+  const x=Math.min(Math.max(12,r.right-w),innerWidth-w-12);const y=r.bottom+8;t.style.left=x+'px';t.style.top=y+'px';const h=t.getBoundingClientRect().height;if(y+h>innerHeight-8)t.style.top=Math.max(8,r.top-h-8)+'px'};
+ const hide=()=>{$('tip').style.display='none'};b.addEventListener('mouseenter',show);b.addEventListener('mouseleave',hide);b.addEventListener('focus',show);b.addEventListener('blur',hide);b.addEventListener('click',e=>{e.stopPropagation();show()})}return b}
 function render(){const L=$('list');L.replaceChildren();D.items.filter(match).forEach(i=>{const it=el('article','item');const h=el('button','head');h.type='button';h.setAttribute('aria-expanded','false');
  const w=el('div','where');w.append(el('b',null,i.paper),document.createTextNode(i.where));
- h.append(el('span','id',i.id),w,el('span','red',i.red),el('span','badge s-'+i.status,STATUS[i.status]),el('span','chev','›'));
+ h.append(el('span','id',i.id),w,el('span','red',i.red),badge(i),el('span','chev','›'));
  const b=el('div','body');const dl=el('dl');
  [['Asked (red text)',i.red],['Experiment',i.exp],['What we did',i.did],['Result',i.result]].forEach(([k,v])=>{dl.append(el('dt',null,k),el('dd',null,v))});
  if(i.evidence.length){const dd=el('dd');i.evidence.forEach(p=>dd.append(el('span','ev',p)));dl.append(el('dt',null,'Evidence'),dd)}
