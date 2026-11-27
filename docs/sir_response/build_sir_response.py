@@ -185,7 +185,7 @@ def main():
     r_sum = p_sum.add_run(
         "All experimental red-item runs (E9 through E16, plus code inspection for E4 path verification) were completed on the current main build at github.com/platynom/intent-sdn-sla (commit 75f2d2e) inside our Docker and Mininet emulated testbed, providing 95% t-confidence-interval replacement text for both the conference and extended journal drafts. "
         "Same-build Table I/Table 2 reruns (E9), detection-delay scaling (E10, 150 runs), dwell-timer sweeps (E11, 50 runs), packet-loss and reordering sweeps (E12, 180 runs), jitter false-confirmation filtering (E13, 40 runs), offline multi-intent contention testing (E14a, 80 runs), shared-clock one-way delay evaluation (E15, 60 runs), and Geant2012 control-plane scaling (E16, 140 runs) all ran cleanly to completion. "
-        "The secondary live Mininet contention check (E14b) did not run after two attempts because attaching an Open vSwitch linux-htb QoS queue for bandwidth intents replaces Mininet's root netem delay qdisc. "
+        "The secondary live Mininet contention check (E14b) now passes (11 runs on build 449aa7e) after we fixed the two defects it exposed: an Open vSwitch linux-htb queue erased Mininet's netem delay on bandwidth-intent ports, and simultaneous recoveries could all plan onto the same link. "
         "In E16, hardware or P4 switch TCAM usage was not run because no hardware switch is available, so rule counts are reported strictly from the software model. "
         "Finally, journal placeholders J1 (corresponding author and funding wording) and J2 (acceptance citation) remain team editorial decisions rather than experimental items."
     )
@@ -253,7 +253,7 @@ def main():
         (
             "J10",
             "Journal p. 11 (Table 5, row E14): [result]",
-            "Across N in {4, 8, 12, 16} (80 Mbit/s total floor), the earlier baseline build over-committed all 3 links of the middle path in every run (max res/cap 1.20 to 1.40 all-intents fault; 1.47 to 1.60 north-fault), whereas the current main build recorded 0 over-committed links (max res/cap ≤ 1.000) across all 40 runs; live check E14b NOT RUN (OVS HTB replaces root netem).",
+            "Across N in {4, 8, 12, 16} (80 Mbit/s total floor), the earlier baseline build over-committed all 3 links of the middle path in every run (max res/cap 1.20 to 1.40 all-intents fault; 1.47 to 1.60 north-fault), whereas the current main build recorded 0 over-committed links (max res/cap ≤ 1.000) across all 40 runs; the live Mininet/OVS check E14b (build 449aa7e, n = 11) moved all north intents off the faulted path with 0 over-committed links (2 x 20 Mbit/s on the 40 Mbit/s south path, 2 x 20 on the 50 Mbit/s middle path), 19.999 Mbit/s per flow and 0% loss.",
         ),
         (
             "J11",
@@ -325,8 +325,8 @@ def main():
         "Strict two-phase recovery is 174.0 ms slower than relaxed replacement on the current build (p = 5.27e-7); the cause of the increase over the earlier build is not isolated, the barrier-reply wait (audit fix P3) is the most likely contributor.",
         "Eq. (10) fits the dwell sweep when Nf = 60: in each 20 s cycle of the S6 fault, the third breach lasts only 1.5 s, which gives at most two 1 s samples, so the k = 3 detector cannot confirm it (the k = 1 detector sees all 90 transitions).",
         "Under a one-direction fault, RTT/2 under-reads one-way delay by up to 19.0 ms and would wrongly report the 35 ms budget as met on two routes (E15).",
-        "Attaching an OVS HTB queue to a port (intents with a bandwidth floor) replaces Mininet's netem qdisc, so that port loses its emulated delay; only O3 used such intents, so the latency results are unaffected. This is why the live E14 check could not run.",
-        "Not run: the live E14 check and hardware/P4 TCAM measurement for E16.",
+        "The live E14 check found two defects, now fixed: an OVS HTB queue erased Mininet's netem delay on bandwidth-intent ports (only O3 used such intents, so earlier latency results are unaffected), and simultaneous recoveries all planned onto the same 40 Mbit/s link (60 Mbit/s reserved), which the sequential E14a did not exercise.",
+        "Not run: hardware/P4 TCAM measurement for E16 (no hardware switch available).",
     ]
     for body in bullets:
         p = doc.add_paragraph()
