@@ -228,6 +228,7 @@ To fill the red items in the professor's conference and journal drafts, E9–E16
 - Results: [`experiments/results/redfill_2026-11/`](experiments/results/redfill_2026-11/); analysis scripts: [`experiments/redfill/`](experiments/redfill/)
 - Full write-up: [`docs/RED_ITEMS_RESPONSE_2026-11.md`](docs/RED_ITEMS_RESPONSE_2026-11.md)
 - Two-page summary: [`docs/sir_response/Team16_Red_Items_Response.pdf`](docs/sir_response/Team16_Red_Items_Response.pdf)
+- **E14b live check (27 Nov 2026, `n = 11`):** on the live Mininet/OVS network, four 20 Mbit/s intents recover from a north-path fault with 0 over-committed links and 0% loss (`experiments/results/redfill_2026-11/E14_LIVE/`). Getting there fixed two defects the live run exposed: an OVS HTB queue erased Mininet's `netem` delay on bandwidth-intent ports (`src/enforcement/queues.py`), and simultaneous recoveries could all plan onto the same link (`src/telemetry/loop.py`). Run it with `bash experiments/scenarios/e14b_run_all.sh 10`.
 
 **Resolved ST-7 defect.** Confirmed violation events are persisted to SQLite for
 the controller and audit log to consume. The live ST-7 scenario verified

@@ -1,0 +1,16 @@
+run_id,timestamp,metric,value,unit
+1,1795788261,flow1_wire_mbps,19.999297,Mbps
+1,1795788261,flow1_payload_mbps,19.260960,Mbps
+1,1795788261,flow1_loss_pct,0.000000,pct
+1,1795788261,flow2_wire_mbps,19.999297,Mbps
+1,1795788261,flow2_payload_mbps,19.260960,Mbps
+1,1795788261,flow2_loss_pct,0.000000,pct
+1,1795788261,flow3_wire_mbps,19.998798,Mbps
+1,1795788261,flow3_payload_mbps,19.260480,Mbps
+1,1795788261,flow3_loss_pct,0.000000,pct
+1,1795788261,flow4_wire_mbps,19.999297,Mbps
+1,1795788261,flow4_payload_mbps,19.260960,Mbps
+1,1795788261,flow4_loss_pct,0.000000,pct
+1,1795788261,mean_flow_wire_mbps,19.999172,Mbps
+1,1795788261,total_delivered_wire_mbps,79.996689,Mbps
+1,1795788261,mean_flow_loss_pct,0.000000,pct
